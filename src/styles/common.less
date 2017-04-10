@@ -1,12 +1,11 @@
 @import 'lib/include.all.less';
 
-
 html, body {
 	height: 100%;
 }
 
 body {
-	color:@colorFontMain;
+	color: @colorFontMain;
 	font-size: 15px;
 	line-height: 1.4;
 }
@@ -20,6 +19,17 @@ ul {
 a {
 	text-decoration: none !important;
 	outline: none !important;
+}
+
+.title {
+	text-align: center;
+
+}
+.title>span {
+	font-weight: bold;
+	color: @colorMain;
+	font-size: 23px;
+	line-height: 2;
 }
 
 //-------------scroll-up-btn-------------//
@@ -64,6 +74,7 @@ a {
 	font-size: 30px;
 	font-weight: bold;
 	line-height: 50px;
+	padding-left: 15px;
 }
 
 .logo>a {
@@ -144,16 +155,13 @@ a {
 
 .menu-header {
 	position: relative;
-	@body-padding();
-}
-
-.menu {
-	@body-padding();
+	border-bottom: solid 1px @colorLineColor;
 }
 
 .menu>li {
 	padding-top: 15px;
 	padding-bottom: 15px;
+	border-bottom: solid 1px @colorLineColor;
 }
 
 .member-area>div {
@@ -161,17 +169,15 @@ a {
 	width: 50%;
 	text-align: center;
 }
-/* body*/
-.title {
-	text-align: center;
 
+.member-area>div:first-child {
+	border-right: solid 1px @colorLineColor;
 }
-.title>span {
-	font-weight: bold;
-	color: @colorMain;
-	font-size: 23px;
-	line-height: 2;
+
+.text {
+	@body-padding();
 }
+
 
 //-------------footer-------------//
 footer {
