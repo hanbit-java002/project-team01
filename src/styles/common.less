@@ -1,12 +1,11 @@
 @import 'lib/include.all.less';
 
-
 html, body {
 	height: 100%;
 }
 
 body {
-	color:@colorFontMain;
+	color: @colorFontMain;
 	font-size: 15px;
 	line-height: 1.4;
 }
@@ -75,6 +74,7 @@ a {
 	font-size: 30px;
 	font-weight: bold;
 	line-height: 50px;
+	padding-left: 15px;
 }
 
 .logo>a {
@@ -155,21 +155,27 @@ a {
 
 .menu-header {
 	position: relative;
-}
-
-.menu {
-	@body-padding();
+	border-bottom: solid 1px @colorLineColor;
 }
 
 .menu>li {
 	padding-top: 15px;
 	padding-bottom: 15px;
+	border-bottom: solid 1px @colorLineColor;
 }
 
 .member-area>div {
 	display: inline-block;
 	width: 50%;
 	text-align: center;
+}
+
+.member-area>div:first-child {
+	border-right: solid 1px @colorLineColor;
+}
+
+.text {
+	@body-padding();
 }
 
 
