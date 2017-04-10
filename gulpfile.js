@@ -216,7 +216,7 @@ gulp.task('html:dynamic', function() {
 		helpers: {
         	set: function(options) {
         		for (var attr in options.hash) {
-        			this[attr] = options[attr];
+        			this[attr] = options.hash[attr];
 				}
 			},
 			eq: function(left, right) {
