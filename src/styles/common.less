@@ -1,8 +1,17 @@
 @import 'lib/include.all.less';
 
+@body-padding {
+	padding-left: 15px;
+	padding-right: 15px;
+}
 
 html, body {
 	height: 100%;
+}
+
+.common-padding {
+	padding-right: 15px;
+	padding-left: 15px;
 }
 
 body {
@@ -17,15 +26,61 @@ ul {
 	margin: 0;
 }
 
-header {
-
+//-------------header-------------//
+.header {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	background-color: #50546D;
 }
+
+.logo {
+	display: inline-block;
+	font-size: 30px;
+	color: #FFFFFF;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.header-search {
+	display: inline-block;
+	font-size: 20px;
+	color: @colorLineColor;
+	@abs-vmiddle();
+}
+
+.header-menu {
+	display: inline-block;
+
+	font-size: 20px;
+	color: @colorLineColor;
+	@abs-vmiddle();
+}
+
+
+	//-------------scroll-up-btn-------------//
+#scroll-up-btn {
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 90px;
+	width: 74px;
+	height: 74px;
+	border-radius: 100%;
+	background: black;
+	font-size: 20px;
+	line-height: 74px;
+	color: white;
+	text-align: center;
+	z-index: 20;
+	cursor: pointer;
+	border: 0px;
+	outline: 0px;
+}
+
 
 footer {
 
 }
 
-.resell-container {
-	padding-top: 50px;
-	padding-bottom: 80px;
-}
+
