@@ -21,5 +21,29 @@ define([
 		});
 	}
 
+	function searchAll() {
+		$(".search-icon.white").click(function() {
+			$(".search-bar").css("display", "block");
+			$(".header-menu").css("display", "none");
+		});
+	}
+
+	function closeSearchBar() {
+		$(".search-bar>.close-icon").click(function() {
+			$(".search-bar").css("display", "none");
+			$(".header-menu").css("display", "block");
+			$("#header-search-input").val();
+		});
+	}
+
+	function writeToSell() {
+		$(".write-btn").click(function() {
+			location.href = "/selling/selling.html";
+		});
+	}
+
 	scrollUp();
+	writeToSell();
+	searchAll();
+	closeSearchBar();
 });
