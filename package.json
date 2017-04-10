@@ -1,0 +1,56 @@
+{
+  "name": "pkjs-webapp-starter",
+  "version": "1.0.2",
+  "homepage": "http://pkjs.io/",
+  "license": "MIT",
+  "private": true,
+  "pkjs-configs": {
+    "directories": {
+      "archive": "archive",
+      "dist": "dist",
+      "src": "src"
+    },
+    "globals": {
+      "lang": "ko"
+    }
+  },
+  "scripts": {
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "@alrra/travis-scripts": "^1.1.1",
+    "archiver": "^0.21.0",
+    "bootstrap": "^3.0.0",
+    "clipboard": "^1.5.16",
+    "del": "^2.0.2",
+    "eslint": "^3.12.2",
+    "eslint-config-google": "^0.7.1",
+    "font-awesome": "4.7.0",
+    "glob": "^6.0.1",
+    "gulp": "^3.9.1",
+    "gulp-all": "^1.1.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-compile-handlebars": "^0.6.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-header": "^1.2.2",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-less": "^3.3.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-nginxer": "^1.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-replace": "^0.5.3",
+    "gulp-uglify": "^2.0.0",
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.1.1",
+    "jquery-hammerjs": "^2.0.0",
+    "less-plugin-autoprefix": "^1.5.1",
+    "normalize.css": "3.0.3",
+    "pump": "^1.0.1",
+    "requirejs": "^2.3.2",
+    "run-sequence": "^1.0.2",
+    "url-search-params": "^0.6.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

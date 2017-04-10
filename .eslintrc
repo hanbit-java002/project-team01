@@ -1,0 +1,29 @@
+{
+    "extends": "google",
+
+	"rules": {
+		"quotes": [
+			"error",
+			"double"
+		],
+		"require-jsdoc": ["error", {
+			"require": {
+				"FunctionDeclaration": false,
+				"MethodDefinition": false,
+				"ClassDeclaration": false,
+				"ArrowFunctionExpression": false
+			}
+		}],
+		"no-var": "off",
+		"brace-style" : [
+			"error",
+			"stroustrup"
+		],
+		"max-len": ["error", {
+			"code": 120,
+			"tabWidth": 4,
+			"ignoreUrls": true,
+			"ignorePattern": /^goog\.(module|require)/
+		}]
+	}
+}

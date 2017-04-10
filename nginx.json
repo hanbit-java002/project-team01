@@ -1,0 +1,36 @@
+{
+	"listen": 80,
+	"server_name": [
+		"example.com",
+		"www.example.com"
+	],
+	"statics": [
+		{
+			"location": "/",
+			"root": "/apps/pkjs-webapp-starter/dist"
+		}
+	],
+	"proxys": [
+		{
+			"location": "/api/",
+			"backends_name": "backend",
+			"backends": [
+				{
+					"address": "127.0.0.1",
+					"port": 8080
+				}
+			]
+		}
+	],
+	"globals": {
+		"trust_proxy": true
+	},
+	"logs": {
+		"access": {
+			"path": "logs/acc.pkjs.log"
+		},
+		"error": {
+			"path": "logs/err.pkjs.log"
+		}
+	}
+}
