@@ -42,8 +42,38 @@ define([
 		});
 	}
 
+	function openMenuLayer() {
+		$(".menu-icon.fa-reorder").on("click", function() {
+			$(".dark-layer").css("display", "block");
+			$(".side-menu-layer").animate({
+				right: 0,
+			}, 300);
+		});
+	}
+
+	function closeMenuLayer() {
+		$(".menu.close-icon").click(function() {
+			var sideMenuLayerWidth = $(".side-menu-layer").width();
+			$(".side-menu-layer").animate({
+				right: -sideMenuLayerWidth,
+			}, 300, function(e) {
+				$(".dark-layer").css("display", "none");
+				$(this).off(e);
+			});
+		});
+	}
+
+	$(".menu>.market").on("click", function() {
+		$(".menu").css("display", "none");
+		$(".sub.menu.market").animate({
+			right: 0,
+		}, 300);
+	});
+
 	scrollUp();
 	writeToSell();
 	searchAll();
 	closeSearchBar();
+	closeMenuLayer();
+	openMenuLayer();
 });
