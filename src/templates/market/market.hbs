@@ -1,152 +1,120 @@
 {{set root=".."}}
-<!DOCTYPE html>
-<html lang="{{lang}}">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
+{{>header title="마켓" cssName="market"}}
+<section class="title market-title">
+	<span>Market</span>
+</section>
+<section class="brand">
+	<ul>
+		<li brand-name="all" class="brand-name">
+			ALL
+		</li>
+		<li brand-name="palace" class="brand-name">
+			PALACE
+		</li>
+		<li brand-name="nike" class="brand-name active">
+			NIKE
+		</li>
+		<li brand-name="supreme" class="brand-name">
+			SUPREME
+		</li>
+	</ul>
+</section>
 
-	<title>{{title}}</title>
-
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="apple-touch-icon" href="{{root}}/apple-touch-icon.png">
-	<link rel="stylesheet" href="{{root}}/plugins/normalize/normalize.css">
-	<link rel="stylesheet" href="{{root}}/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{root}}/plugins/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="{{root}}/css/market.css">
-	<script src="{{root}}/plugins/modernizr/modernizr-2.8.3.min.js"></script>
-</head>
-<body>
-
-<div class="resell-container">
-	<section class="title market-title">
-		<span>Market</span>
-	</section>
-	<section class="brand">
+<section class="contents-wrapper">
+	<section class="filter">
 		<ul>
-			<li class="brand-name">
-				ALL
-			</li>
-			<li class="brand-name">
-				PALACE
-			</li>
-			<li class="brand-name">
-				NIKE
-			</li>
-			<li class="brand-name">
-				SUPREME
-			</li>
+			<ul>
+				<li class="filter-search active">
+					<input type="text" class="form-control filter-search-box" placeholder="검색">
+					<i class="fa fa-search"></i>
+				</li>
+				<li class="filter-series active">
+					Series
+					<i class="glyphicon glyphicon-th-large"></i>
+				</li>
+			</ul>
+			<ul class="filter-dropdown">
+				<li>
+					<select class="form-control category-select">
+						<option>상의</option>
+						<option>하의</option>
+						<option>신발</option>
+						<option>잡화</option>
+					</select>
+				</li>
+				<li>
+					<select class="form-control size-select">
+						<option value="default" selected>사이즈선택</option>
+						<option value="size-230" >230이하</option>
+						<option value="size-240">240</option>
+						<option value="size-250">250</option>
+						<option value="size-260">260</option>
+						<option value="size-270">270</option>
+						<option value="size-280">280</option>
+						<option value="size-290">290</option>
+						<option value="size-300">300이상</option>
+					</select>
+				</li>
+				<li>
+					<select class="form-control quality-select">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>새제품</option>
+					</select>
+				</li>
+			</ul>
 		</ul>
 	</section>
-
-	<section class="contents-wrapper">
-		<section class="filter">
-			<ul>
-				<ul>
-					<li class="filter-search active">
-						<input type="text" class="form-control filter-search-box" placeholder="검색">
-						<i class="fa fa-search"></i>
-					</li>
-					<li class="filter-series active">
-						Series
-						<i class="glyphicon glyphicon-th-large"></i>
-					</li>
-				</ul>
-				<ul class="filter-dropdown">
-					<li>
-						<select class="form-control category-select">
-							<option>상의</option>
-							<option>하의</option>
-							<option>신발</option>
-							<option>잡화</option>
-						</select>
-					</li>
-					<li>
-						<select class="form-control size-select">
-							<option value="default" selected>사이즈선택</option>
-							<option value="size-230" >230이하</option>
-							<option value="size-240">240</option>
-							<option value="size-250">250</option>
-							<option value="size-260">260</option>
-							<option value="size-270">270</option>
-							<option value="size-280">280</option>
-							<option value="size-290">290</option>
-							<option value="size-300">300이상</option>
-						</select>
-					</li>
-					<li>
-						<select class="form-control quality-select">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-							<option>6</option>
-							<option>7</option>
-							<option>8</option>
-							<option>9</option>
-							<option>새제품</option>
-						</select>
-					</li>
-				</ul>
-			</ul>
-		</section>
-		<section class="product-view">
-			<div class="product-view-bar">
-				<div class="product-name">
-					NAME
-				</div>
-				<ul class="product-price">
-					<li class="price-low">
-						Low Price
-					</li>
-					<li class="price-high">
-						High Price
-					</li>
-				</ul>
+	<section class="product-view">
+		<div class="product-view-bar">
+			<div class="main-product-name active">
+				NAME
 			</div>
-			<div class="product-list">
-				<ul>
-					<li>
-						<img src="{{root}}/img/shoes.jpg">
+			<ul class="product-price-order">
+				<li class="price-low active">
+					Low Price
+				</li>
+				<li class="price-high">
+					High Price
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<ul>
+				<li class="product-list">
+					<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+					<div class="product-detail">
 						<div class="product-name">컨버스 네이버후드</div>
-						<div class="product-price">26만원</div>
+						<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
 						<ul>
-							<li class="product-size"></li>
-							<li class="product-quality"></li>
+							<li class="product-size">Size<span>260</span></li>
+							<li class="product-quality">Quality<span>8</span></li>
 						</ul>
 						<div class="seller-name">
 							Seller <span>욱이님</span>
 						</div>
-						<div class="product-like">
-							Seller <span>욱이님</span>
-						</div>
-						<i class="fa fa-heart"><span>찜수</span></i>
-					</li>
-				</ul>
-			</div>
-		</section>
-		<section class="more">
-			<span>더보기</span><i class="glyphicon glyphicon-chevron-down"></i>
-		</section>
-		<section class="write-btn list-more">
-			<i class="fa fa-pencil"></i>
-		</section>
-		<section>
-			<div class="top">
-				<i class="glyphicon glyphicon-menu-left"></i>
-			</div>
-		</section>
+					</div>
+					<div class="product-like">
+						<i class="fa fa-heart"><span>찜</span></i>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</section>
-</div>
-<script>
-	window._ctx = {
-		root: "{{root}}",
-	};
-</script>
-<script src="{{root}}/plugins/requirejs/require.min.js"></script>
-<script src="{{root}}/js/require.config.js"></script>
-<script src="{{root}}/js/market.js"></script>
-</body>
-</html>
+	<section class="more">
+		<span>More</span><i class="glyphicon glyphicon-chevron-down"></i>
+	</section>
+	<section class="write-btn list-more">
+		<i class="fa fa-pencil"></i>
+	</section>
+
+</section>
+{{>footer jsName="market"}}
