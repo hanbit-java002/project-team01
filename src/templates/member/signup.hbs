@@ -1,0 +1,85 @@
+{{>header title="회원가입" cssName="signup"}}
+
+<span class="title">Sign Up</span>
+
+<div class="signup">
+
+	<div class="input-style">
+		<div class="desc">ID</div>
+		<input id="input-email" type="text" placeholder="Email Address">
+		<button class="btn-side btn-verify">인증</button>
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Verification Code</div>
+		<input id="input-code" type="number" placeholder="인증 번호를 입력해주세요.">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Password</div>
+		<input id="input-pw" type="password" placeholder="Password">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Confirm Password</div>
+		<input id="input-pw-conf" type="password" placeholder="Confirm Password">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Name</div>
+		<input id="input-name" type="text" placeholder="Name">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Phone Number</div>
+		<input id="input-phone-num" type="text" placeholder="Phone Number">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Address</div>
+		<input id="input-addr" type="text" placeholder="Address">
+		<button class="btn-side btn-addr-search"> <i class="fa fa-search"></i> </button>
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Detail Address</div>
+		<input id="input-detail-addr" type="text" placeholder="Detail Address">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Zip Code</div>
+		<input id="input-zip-code" type="text" placeholder="Zip Code">
+	</div>
+
+
+
+	<button class="btn-bottom btn-signup">Sign Up</button>
+	<button class="btn-bottom btn-cancel">Cancel</button>
+</div>
+
+
+<div class="popup-email-verify-box">
+	<div class="popup-contents">
+		<span class="text1">
+			입력하신 이메일 주소로<br>
+			인증 메일이 발송되었습니다.
+		</span>
+
+		<span class="text2">인증 메일을 확인해주세요.</span>
+
+		<button class="btn-ok">확인</button>
+	</div>
+</div>
+
+
+<script>
+	window._ctx = {
+		root: "{{root}}",
+	};
+</script>
+<script src="{{root}}/plugins/requirejs/require.min.js"></script>
+<script src="{{root}}/js/require.config.js"></script>
+<script src="{{root}}/js/signup.js"></script>
+</body>
+</html>
+

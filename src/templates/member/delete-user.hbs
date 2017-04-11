@@ -1,0 +1,45 @@
+{{>header title="회원 탈퇴" cssName="delete-user"}}
+
+
+<div class="delete-user">
+	<span class="title">회원 탈퇴</span>
+	<input id="member-name" type="text" value="백수현" disabled>
+	<input id="member-phone-num" type="text" value="010-2371-6848" disabled>
+	<input id="member-pw" type="password" placeholder="Password">
+	<input id="member-reason" type="text" placeholder="탈퇴 사유">
+
+	<button class="btn-bottom btn-delete">탈퇴 완료</button>
+	<button class="btn-bottom btn-cancel">취소</button>
+
+</div>
+
+
+
+
+<div class="popup-delete-box">
+	<div class="popup-contents">
+		<span class="text1">
+			정상적으로 탈퇴되었습니다.
+		</span>
+		<span class="text2">
+			그동안 이용해주셔서 감사합니다.
+		</span>
+
+		<button class="btn-ok">확인</button>
+	</div>
+</div>
+
+
+
+
+<script>
+	window._ctx = {
+		root: "{{root}}",
+	};
+</script>
+<script src="{{root}}/plugins/requirejs/require.min.js"></script>
+<script src="{{root}}/js/require.config.js"></script>
+<script src="{{root}}/js/delete-user.js"></script>
+</body>
+</html>
+

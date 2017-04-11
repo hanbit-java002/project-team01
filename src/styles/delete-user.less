@@ -1,0 +1,100 @@
+@import 'lib/include.all.less';
+@import 'common.css';
+
+
+
+
+.delete-user {
+	@body-padding();
+	margin-top: 8%;
+	margin-bottom: 5%;
+}
+
+.title {
+	display: block;
+	margin-top: 10%;
+	font-size: 25px;
+	color: rgb(80, 84, 109);
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+
+.delete-user>input {
+	width: 100%;
+	height: 40px;
+	padding-left: 5%;
+	border: solid 1px #333;
+	margin-bottom: 2%;
+}
+.delete-user>#member-reason {
+	margin-bottom: 4%;
+}
+
+
+
+.delete-user>.btn-bottom {
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border: 0;
+}
+.delete-user>.btn-delete {
+	background-color: rgb(80, 84, 109);
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+.delete-user>.btn-cancel {
+	background-color: rgb(139, 142, 158);
+}
+
+
+
+
+
+//탈퇴 완료 팝업창
+.popup-delete-box {
+	display: none;
+	position: fixed;
+	top: 23%;
+	left: 4%;
+	width: 92%;
+	height: 30%;
+	background-color: #fff;
+	z-index: 30;
+}
+.popup-delete-box>.popup-contents {
+	position: relative;
+	height: 100%;
+}
+
+.popup-contents>span {
+	position: relative;
+	display: block;
+	top: 15%;
+	color: rgb(80, 84, 109);
+	text-align: center;
+}
+.popup-contents>.text1 {
+	font-size: 19px;
+	font-weight: bold;
+}
+.popup-contents>.text2 {
+	font-size: 17px;
+	margin-top: 15px;
+}
+
+.popup-contents>.btn-ok {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 14%;
+	color: #fff;
+	background-color: #50546d;
+	border: 0;
+}
+
