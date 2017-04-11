@@ -17,6 +17,7 @@ ul {
 }
 
 a {
+	color: initial;
 	text-decoration: none !important;
 	outline: none !important;
 }
@@ -55,7 +56,7 @@ a {
 //-------------dark-layer-------------//
 .dark-layer {
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0px;
 	width: 100%;
 	height: 100%;
@@ -158,10 +159,7 @@ header {
 	color: @colorMain;
 	background-color: #FFFFFF;
 	z-index: 40;
-}
-
-.sub.menu {
-	right: -@side-menu-layer-width;
+	overflow-x: hidden;
 }
 
 .menu-header {
@@ -169,58 +167,99 @@ header {
 	border-bottom: solid 1px @colorLineColor;
 }
 
-.menu>li {
+.main-menu {
+	position: relative;
+	right: 0%;
+	width: 100%;
+}
+
+.sub-menu {
+	display: none;
+	position: relative;
+	right: 100%;
+	width: 100%;
+}
+
+.sub-menu>.sub-title {
+	color: @colorWhite;
+	background-color: @colorMain;
+	border-bottom: none;
+	text-align: center;
+}
+
+.sub-menu>.sub-title>.fa-angle-left {
+	position: absolute;
+	@abs-vmiddle();
+	@body-padding();
+	left: 0;
+	color: @colorWhite;
+}
+
+.main-menu>li,
+.sub-menu>li {
 	position: relative;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	border-bottom: solid 1px @colorLineColor;
 }
 
-.menu>li.log-out,
-.menu>li.write-btn {
-	border-bottom: none;
+.member-area {
+	border-bottom: solid 1px @colorLineColor;
 }
 
-.member-area>div {
+.log-out,
+.write-btn {
+	border-bottom: none !important;
+}
+
+.member-area>a {
 	display: inline-block;
 	width: 50%;
 	text-align: center;
 }
 
-.member-area>div:first-child {
+.member-area>a:first-child {
 	border-right: solid 1px @colorLineColor;
 }
 
-.menu>li>.text {
+.main-menu>li>a>.text,
+.sub-menu>li>a>.text {
+	width: 100%;
+	color: @colorMain;
 	@body-padding();
 }
 
-.menu>li>.text>a {
-	color: @colorMain;
-}
-
-.menu>li>div {
+.main-menu>li>a>div,
+.sub-menu>li>a>div {
 	display: inline-block;
 }
 
-.menu>li>.menu-icon {
+.main-menu>li>a>.menu-icon,
+.sub-menu>li>a>.menu-icon {
 	position: absolute;
 	@abs-vmiddle();
 	color: @colorMain;
 }
 
-.menu>li>.fa-angle-right {
+.main-menu>li>a>.fa-angle-right,
+.sub-menu>li>a>.fa-angle-right,
+.sub-menu>li>a>.fa-angle-left {
 	font-size: 34px;
 }
 
-.log-out {
+.main-menu>.log-out,
+.sub-menu>.log-out {
 	background-color: @colorFontSelect;
-	color: @colorWhite;
 }
 
-.menu>.write-btn {
+.log-out>a>.text,
+.write-btn>a>.text {
+	color: @colorWhite !important;
+}
+
+.main-menu>.write-btn,
+.sub-menu>.write-btn {
 	background-color: @colorMain;
-	color: @colorWhite;
 }
 
 .menu-icon.fa-power-off,
