@@ -1,5 +1,5 @@
 {
-	"listen": 80,
+	"listen": 83,
 	"server_name": [
 		"example.com",
 		"www.example.com"
@@ -17,7 +17,7 @@
 			"backends": [
 				{
 					"address": "127.0.0.1",
-					"port": 8080
+					"port": 8680
 				}
 			]
 		}
