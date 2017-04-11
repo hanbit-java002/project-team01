@@ -1,0 +1,35 @@
+{{>header title="로그인" cssName="login"}}
+
+
+<span class="title">Log In</span>
+
+<div class="login">
+	<input id="member-email" type="text" placeholder="Email Address">
+	<input id="member-pw" type="password" placeholder="Password">
+
+	<button class="btn-login">Log In</button>
+
+	<div class="link">
+		<hr class="line">
+		<ul class="link_list">
+			<li><a href="signup.html">회원가입</a></li>
+			<li><a href="find-id.html">아이디 찾기</a></li>
+			<li><a href="find-pw.html">비밀번호 찾기</a></li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<script>
+	window._ctx = {
+		root: "{{root}}",
+	};
+</script>
+<script src="{{root}}/plugins/requirejs/require.min.js"></script>
+<script src="{{root}}/js/require.config.js"></script>
+<script src="{{root}}/js/login.js"></script>
+</body>
+</html>
+

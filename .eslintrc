@@ -24,6 +24,13 @@
 			"tabWidth": 4,
 			"ignoreUrls": true,
 			"ignorePattern": /^goog\.(module|require)/
-		}]
+		}],
+		"linebreak-style": "off",
+		"space-before-function-paren": "off",
+		"spaced-comment": "off",
+		"comma-dangle": "off",
+		"padded-blocks": "off",
+		"no-multiple-empty-lines": "off",
+		"valid-jsdoc": "off"
 	}
 }

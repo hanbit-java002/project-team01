@@ -1,0 +1,197 @@
+@import 'lib/include.all.less';
+@import 'common.css';
+
+
+
+
+.update {
+	@body-padding();
+	margin-top: 8%;
+	margin-bottom: 5%;
+}
+
+.title {
+	display: block;
+	margin-top: 10%;
+	font-size: 25px;
+	color: rgb(80, 84, 109);
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+
+.update>input {
+	width: 100%;
+	height: 40px;
+	padding-left: 5%;
+	border: solid 1px #333;
+	margin-bottom: 2%;
+}
+
+.update>.input-style {
+	display: inline-table;
+	width: 100%;
+}
+.update>.input-style>#member-address {
+	display: inline-block;
+	width: 80%;
+	height: 40px;
+	padding-left: 5%;
+	border: solid 1px #333;
+	margin-bottom: 2%;
+}
+.update>.input-style>.btn-addr-search {
+	position: relative;
+	display: inline-block;
+	width: 20%;
+	height: 40px;
+	top: -1px;
+	color: #fff;
+	background-color: rgb(80, 84, 109);
+	border: 0;
+}
+.update>.input-style>.btn-addr-search>.fa-search {
+	color: #fff;
+	font-size: 13px;
+}
+
+.update>#member-email {
+	margin-bottom: 4%;
+}
+
+
+.update>.btn-bottom {
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border: 0;
+}
+.update>.btn-update {
+	background-color: rgb(80, 84, 109);
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+.update>.btn-cancel {
+	background-color: rgb(139, 142, 158);
+}
+
+
+.link {
+	top: 1%;
+}
+.link>.line {
+	border-top: 1px solid @colorDarkGray;
+}
+.link>ul.link_list {
+	display: block;
+	text-align: center;
+	color: @colorFontMain;
+}
+.link>ul>li {
+	display: inline-block;
+	padding-left: 5%;
+	padding-right: 5%;
+	color: @colorFontMain;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+
+
+
+//수정 완료 팝업창
+.popup-update-box {
+	display: none;
+	position: fixed;
+	top: 23%;
+	left: 4%;
+	width: 92%;
+	height: 20%;
+	background-color: #fff;
+	z-index: 30;
+}
+.popup-update-box>.popup-contents {
+	position: relative;
+	height: 100%;
+}
+
+.popup-update-box>.popup-contents>span {
+	position: relative;
+	display: block;
+	top: 15%;
+	color: rgb(80, 84, 109);
+	text-align: center;
+}
+.popup-update-box>.popup-contents>.text1 {
+	font-size: 17px;
+}
+
+.popup-update-box>.popup-contents>.btn-ok {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 14%;
+	color: #fff;
+	background-color: #50546d;
+	border: 0;
+}
+
+
+//탈퇴 신청 팝업창
+.popup-apply-leave-box {
+	display: none;
+	position: fixed;
+	top: 23%;
+	left: 4%;
+	width: 92%;
+	height: 30%;
+	background-color: #fff;
+	z-index: 30;
+}
+.popup-apply-leave-box>.popup-contents {
+	position: relative;
+	height: 100%;
+}
+.popup-apply-leave-box>.popup-contents>span {
+	position: relative;
+	display: block;
+	top: 15%;
+	color: rgb(80, 84, 109);
+	text-align: center;
+}
+.popup-apply-leave-box>.popup-contents>.text1 {
+	font-size: 17px;
+}
+.popup-apply-leave-box>.popup-contents>.text2 {
+	position: relative;
+	top: 25%;
+	font-size: 13px;
+}
+
+.popup-apply-leave-box>.popup-contents>.btn {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 14%;
+	color: #fff;
+	background-color: #50546d;
+	border: 0;
+	border-radius: 0;
+}
+
+.popup-apply-leave-box>.popup-contents>.btn-cancel {
+	width: 50%;
+	background-color: rgb(139, 142, 158);
+}
+.popup-apply-leave-box>.popup-contents>.btn-ok {
+	width: 50%;
+	background-color: rgb(80, 84, 109);
+	right: 0;
+}
+

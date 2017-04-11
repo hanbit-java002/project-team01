@@ -1,0 +1,116 @@
+@import 'lib/include.all.less';
+@import 'common.css';
+
+
+.title {
+	display: block;
+	margin-top: 10%;
+	font-size: 25px;
+	color: rgb(80, 84, 109);
+	font-weight: bold;
+	text-align: center;
+}
+
+.signup {
+	position: relative;
+	@body-padding();
+	margin-top: 8%;
+}
+.signup>.input-style {
+	width: 100%;
+	display: inline-table;
+}
+.signup>.input-style>.desc {
+	color: @colorFontMain;
+}
+.signup>.input-style>input {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 4%;
+	padding-left: 5%;
+	border: solid 1px #333;
+}
+.signup>.input-style>.btn-side {
+	position: relative;
+	display: inline-block;
+	width: 20%;
+	height: 40px;
+	color: #fff;
+	background-color: rgb(80, 84, 109);
+	border: 0;
+}
+.signup>.input-style>.btn-side>.fa-search {
+	color: #fff;
+	font-size: 13px;
+}
+
+.signup>.input-style>#input-email {
+	width: 80%;
+	display: inline-block;
+}
+.signup>.input-style>#input-addr{
+	width: 80%;
+	display: inline-block;
+}
+
+
+.signup>.btn-bottom {
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border: 0;
+}
+.signup>.btn-signup {
+	background-color: rgb(80, 84, 109);
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+.signup>.btn-cancel {
+	background-color: rgb(139, 142, 158);
+}
+
+
+
+//팝업창
+.popup-email-verify-box {
+	display: none;
+	position: fixed;
+	top: 23%;
+	left: 4%;
+	width: 92%;
+	height: 35%;
+	background-color: #fff;
+	z-index: 30;
+}
+.popup-email-verify-box>.popup-contents {
+	position: relative;
+	height: 100%;
+}
+.popup-contents>span {
+	position: relative;
+	display: block;
+	top: 15%;
+	color: rgb(80, 84, 109);
+	text-align: center;
+}
+.popup-contents>.text1 {
+	font-size: 17px;
+}
+.popup-contents>.text2 {
+	position: relative;
+	top: 25%;
+	font-size: 20px;
+	font-weight: bold;
+}
+.popup-contents>.btn-ok {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 14%;
+	color: #fff;
+	background-color: #50546d;
+	border: 0;
+}

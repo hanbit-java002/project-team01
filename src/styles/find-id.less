@@ -1,0 +1,134 @@
+@import 'lib/include.all.less';
+@import 'common.css';
+
+
+.title {
+	display: block;
+	margin-top: 10%;
+	font-size: 25px;
+	color: rgb(80, 84, 109);
+	font-weight: bold;
+	text-align: center;
+}
+.desc {
+	display: block;
+	font-size: 12px;
+	color: rgb(80, 84, 109);
+	text-align: center;
+	margin-top: 5%;
+}
+
+.find-id {
+	@body-padding();
+	margin-top: 8%;
+	margin-bottom: 5%;
+}
+
+
+.find-id>input {
+	width: 100%;
+	height: 40px;
+	padding-left: 5%;
+	border: solid 1px #333;
+}
+.find-id>#member-name {
+	margin-bottom: 2%;
+}
+.find-id>#member-phone-num {
+	margin-bottom: 4%;
+}
+
+
+.find-id>.btn-bottom {
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border: 0;
+}
+.find-id>.btn-find {
+	background-color: rgb(80, 84, 109);
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+.find-id>.btn-cancel {
+	background-color: rgb(139, 142, 158);
+}
+
+
+.link {
+	top: 1%;
+}
+.link>.line {
+	border-top: 1px solid @colorDarkGray;
+}
+.link>ul.link_list {
+	display: block;
+	text-align: center;
+	color: @colorFontMain;
+}
+.link>ul>li {
+	display: inline-block;
+	border-right: solid 1px @colorDarkGray;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.link>ul>li:last-child {
+	border: 0;
+}
+.link>ul>li>a {
+	text-decoration: none;
+	color: @colorFontMain;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+
+
+//팝업창
+.popup-find-id-box {
+	display: none;
+	position: fixed;
+	top: 23%;
+	left: 4%;
+	width: 92%;
+	height: 45%;
+	background-color: #fff;
+	z-index: 30;
+}
+.popup-find-id-box>.popup-contents {
+	position: relative;
+	height: 100%;
+}
+.popup-contents>span {
+	position: relative;
+	display: block;
+	top: 15%;
+	color: rgb(80, 84, 109);
+	text-align: center;
+}
+.popup-contents>.text1 {
+	font-size: 17px;
+}
+.popup-contents>.text2 {
+	position: relative;
+	top: 25%;
+	font-size: 20px;
+	font-weight: bold;
+}
+.popup-contents>.text3 {
+	position: relative;
+	font-size: 17px;
+	top: 30%;
+}
+.popup-contents>.btn-ok {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 14%;
+	color: #fff;
+	background-color: #50546d;
+	border: 0;
+}

@@ -1,0 +1,71 @@
+{{>header title="회원 정보 변경" cssName="update-user"}}
+
+
+<div class="update">
+	<span class="title">회원 정보 변경</span>
+	<input id="member-name" type="text" value="백수현">
+	<input id="member-phone-num" type="text" value="010-2371-6848">
+	<div class="input-style">
+		<input id="member-address" type="text" value="서울시 양천구">
+		<button class="btn-addr-search"> <i class="fa fa-search"></i> </button>
+	</div>
+	<input id="member-email" type="text" value="100suhyun@naver.com" disabled>
+
+
+	<span class="title">비밀번호 변경</span>
+	<input id="member-pw" type="password" placeholder="Password">
+	<input id="member-pw-conf" type="password" placeholder="Confirm Password">
+
+
+	<button class="btn-bottom btn-update">Update</button>
+	<button class="btn-bottom btn-cancel">Cancel</button>
+
+
+	<div class="link">
+		<hr class="line">
+		<ul class="link_list">
+			<li class="apply-leave">회원탈퇴</li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<div class="popup-update-box">
+	<div class="popup-contents">
+		<span class="text1">
+			수정이 완료되었습니다.
+		</span>
+
+		<button class="btn-ok">확인</button>
+	</div>
+</div>
+
+
+<div class="popup-apply-leave-box">
+	<div class="popup-contents">
+		<span class="text1">
+			정말 회원에서 탈퇴하시겠습니까?
+		</span>
+		<span class="text2">
+			확인을 누르면 탈퇴 신청 페이지로 이동합니다.
+		</span>
+
+		<button class="btn btn-cancel">취소</button>
+		<button class="btn btn-ok">확인</button>
+	</div>
+</div>
+
+
+<script>
+	window._ctx = {
+		root: "{{root}}",
+	};
+</script>
+<script src="{{root}}/plugins/requirejs/require.min.js"></script>
+<script src="{{root}}/js/require.config.js"></script>
+<script src="{{root}}/js/update-user.js"></script>
+</body>
+</html>
+

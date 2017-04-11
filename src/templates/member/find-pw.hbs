@@ -1,0 +1,55 @@
+{{>header title="비밀번호 찾기" cssName="find-pw"}}
+
+
+<span class="title">비밀번호 찾기</span>
+<span class="desc">가입 시 입력한 이메일 주소로 인증 메일이 발송됩니다.</span>
+
+<div class="find-pw">
+	<input id="member-email" type="text" placeholder="Email Address">
+
+	<button class="btn-bottom btn-find">찾기</button>
+	<button class="btn-bottom btn-cancel">취소</button>
+
+	<div class="link">
+		<hr class="line">
+		<ul class="link_list">
+			<li><a href="signup.html">회원가입</a></li>
+			<li><a href="login.html">로그인</a></li>
+			<li><a href="find-id.html">아이디 찾기</a></li>
+
+		</ul>
+	</div>
+</div>
+
+
+<div class="popup-find-pw-box">
+	<div class="popup-contents">
+		<span class="text1">
+			입력하신 이메일 주소로<br>
+			임시 비밀번호가 발송됐습니다.
+		</span>
+
+		<span class="text2">인증 메일을 확인해주세요.</span>
+
+		<span class="text3">
+			비밀번호 변경은<br>
+			[My Page > 회원정보 변경]에서 가능합니다.
+		</span>
+
+		<button class="btn-ok">확인</button>
+	</div>
+</div>
+
+
+
+<script>
+	window._ctx = {
+		root: "{{root}}",
+	};
+</script>
+<script src="{{root}}/plugins/requirejs/require.min.js"></script>
+<script src="{{root}}/js/require.config.js"></script>
+<script src="{{root}}/js/find-pw.js"></script>
+</body>
+</html>
+

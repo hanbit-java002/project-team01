@@ -1,0 +1,56 @@
+{{>header title="아이디 찾기" cssName="find-id"}}
+
+
+<span class="title">아이디 찾기</span>
+<span class="desc">회원 정보에 등록된 이름과 핸드폰 번호를 입력해주세요.</span>
+
+<div class="find-id">
+	<input id="member-name" type="text" placeholder="Name">
+	<input id="member-phone-num" type="text" placeholder="Phone Number">
+
+	<button class="btn-bottom btn-find">찾기</button>
+	<button class="btn-bottom btn-cancel">취소</button>
+
+	<div class="link">
+		<hr class="line">
+		<ul class="link_list">
+			<li><a href="signup.html">회원가입</a></li>
+			<li><a href="login.html">로그인</a></li>
+			<li><a href="find-pw.html">비밀번호 찾기</a></li>
+
+		</ul>
+	</div>
+</div>
+
+
+
+
+<div class="popup-find-id-box">
+	<div class="popup-contents">
+		<span class="text1">
+			백수현 님이<br>
+			가입한 이메일 주소는
+		</span>
+
+		<span class="text2">100suhyun@naver.com</span>
+
+		<span class="text3">
+			입니다.
+		</span>
+
+		<button class="btn-ok">확인</button>
+	</div>
+</div>
+
+
+<script>
+	window._ctx = {
+		root: "{{root}}",
+	};
+</script>
+<script src="{{root}}/plugins/requirejs/require.min.js"></script>
+<script src="{{root}}/js/require.config.js"></script>
+<script src="{{root}}/js/find-id.js"></script>
+</body>
+</html>
+
