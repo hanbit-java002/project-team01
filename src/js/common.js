@@ -113,12 +113,14 @@ define([
 	* 사용방법
 	* 1. 팝업을 가져올 큰틀  <div class="popup-something">~~~</div>
 	* 클래스 이름은 아무거나 해도됨.
+	*
 	* 2. 해당 자바스크립트에서
 	* var common = require("common");   선언
 	* 그리고
 	* 	$(".popup-something").on("click", function() {
 	 		common.popUp("pop-up-series", "left");
 	 	});
+	 	left,right,bottom,top 네 가지가 있습니다.
 	 	이렇게 해주면 팝업 설정 끝.
 	 	취소 버튼을 따로 해주고 싶다면 취소 버튼에 클래스를 popup-close로
 	 	해주시면 됩니다.
