@@ -3,12 +3,23 @@ require([
 ], function() {
 	var common = require("common");
 
-	$(".brand>ul>li").on("click", function () {
-		$(".brand>ul>li").removeClass("active");
-		$(this).addClass("active");
+	var naviHandler = function (jqElement) {
+		if ($(jqElement).attr("menu-category-detail") === "all") {
+			alert("all");
+		}
+		else if ($(jqElement).attr("menu-category-detail") === "nike") {
+			alert("nike");
+		}
+		else if ($(jqElement).attr("menu-category-detail") === "palace") {
+			alert("palace");
+		}
+		else if ($(jqElement).attr("menu-category-detail") === "supreme") {
+			alert("supreme");
+		}
+	};
 
-		/* 버튼을 눌렀을때 실행될 상황*/
-		console.log($(this).attr("brand-name"));
+	$(".menu-category>ul>li").on("click", function () {
+		common.navigate(this, naviHandler);
 	});
 
 	$(".filter-series").on("click", function() {

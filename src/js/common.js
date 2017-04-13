@@ -241,7 +241,80 @@ define([
 		});
 	}
 
+	/* 네비게이션 갯수에 따른 세팅*/
+	function initNavi() {
+		if ($(".menu-category").length>0) {
+			var naviCount = $(".menu-category>ul>li").length;
+			$(".menu-category>ul>li").css({
+				width: "calc(100%/"+naviCount+")",
+				opacity: 1,
+			});
+		}
+	}
 
+	/*
+	 * 메뉴 네이비게션바 사용법
+	 * 1. test.Html
+	 *
+	 <section class="menu-category">
+		 <ul>
+			 <li menu-category-detail="somthing1">
+			 somthing1
+			 </li>
+			 <li menu-category-detail="somthing2">
+			 somthing2
+			 </li>
+			 <li menu-category-detail="nike" class="somthing3">
+			 somthing3
+			 </li>
+			 <li menu-category-detail="somthing4">
+			 somthing4
+			 </li>
+		 </ul>
+	 </section>
+	 등등 가짓수는 많아질수 있음.
+
+	 2.test.js
+	 //커먼을 가져옴
+	 var common = require("common");
+
+	// 핸들러로 이용해 메뉴 카테고리 디테일에
+	 설 정해둔 것이 실행 될 때를 만들어줌
+
+	 var naviHandler = function (jqElement) {
+	 if ($(jqElement).attr("menu-category-detail") === "somthing1") {
+	 	alert("all"); // 실행 예시
+	 }
+	 else if ($(jqElement).attr("menu-category-detail") === "somthing2") {
+	 alert("nike");
+	 }
+	 else if ($(jqElement).attr("menu-category-detail") === "somthing3") {
+	 alert("palace");
+	 }
+	 else if ($(jqElement).attr("menu-category-detail") === "somthing4") {
+	 alert("supreme");
+	 }
+	 };
+
+	메뉴 카테고리를 클릭했을 때 일어나는 이벤트
+	 common.navigate(this, naviHandler)로 지금 현재 클릭 한 this와
+	 naviHandler의 클로져 함수에 일어날 이벤트를 만들어주면 됨.
+	 $(".menu-category>ul>li").on("click", function () {
+	 	common.navigate(this, naviHandler);
+	 });
+	 *
+	 *
+	 *
+	 * */
+
+	function navigate(jqElement, naviHandler) {
+		$(".menu-category>ul>li").removeClass("active");
+		$(jqElement).addClass("active");
+		naviHandler(jqElement);
+	}
+
+
+	initNavi();
 	scrollUp();
 	transparentHeader();
 	writeToSell();
@@ -254,6 +327,7 @@ define([
 
 	return ({
 		popUp: popUp,
+		navigate: navigate,
 	});
 
 });

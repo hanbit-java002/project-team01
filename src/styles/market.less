@@ -6,34 +6,30 @@
 	border-radius: 0px;
 }
 
-.brand>ul {
+.menu-category>ul {
 	width: 100%;
 	border-bottom: solid 1px @colorLineColor;
 	border-top: solid 1px @colorLineColor;
 }
 
-.brand>ul>li {
+.menu-category>ul>li {
 	display: inline-block;
-	width: 25%;
 	text-align: center;
 	font-weight: bold;
 	line-height: 2;
 	border-right: solid 1px @colorLineColor;
 	background-color: @colorWhite;
 	color: @colorDarkGray;
+	opacity: 0;
 
 }
-.brand>ul>li.active {
+.menu-category>ul>li.active {
 	background-color: @colorMain;
 	color:@colorWhite;
 }
 
-.brand>ul>li:last-child {
+.menu-category>ul>li:last-child {
 	border-right: none;
-}
-
-.contents-wrapper {
-	@body-padding();
 }
 
 .filter {
