@@ -184,19 +184,11 @@ define([
 				right: "-"+width,
 			}, 100);
 		}
-		$(".black-layer").remove();
+		$(".dark-layer").css("display", "none");
 	}
 
 	function popUp(className, direction) {
-		var blackLayer= "<div class='black-layer'></div>";
-		$("body").prepend(blackLayer);
-		$(".black-layer").css({
-			"position": "fixed",
-			"width": "100%",
-			"height": "100%",
-			"z-index": "10",
-			"background-color": "rgba(0,0,0,0.7)",
-		});
+		$(".dark-layer").css("display", "block");
 		var height=$("."+className).outerHeight();
 		var width=$("."+className).outerWidth();
 		var windowHeight= $(window).height();
@@ -246,7 +238,7 @@ define([
 				}, 300, "easeInOutQuint");
 			}
 		}
-		$(".black-layer, .popup-close").on("click", function() {
+		$(".dark-layer, .popup-close").on("click", function() {
 			closePopUp(className, direction);
 		});
 	}

@@ -1,4 +1,62 @@
 {{set root="."}}
 {{>header title="메인" cssName="main"}}
-<div>Hello Pkjs!</div>
+<div class="resell-container">
+	<section class="main-img-area">
+		<div class="main-img"></div>
+		<div class="view-details">
+			<!--해당 img 상품의 상세페이지 URL-->
+			<a href="#"></a>
+		</div>
+		<div class="main-img-rolling-area">
+			<div class="rolling-img left"></div>
+			<div class="img-text">
+				<div class="product-name"></div>
+				<div class="release-date"></div>
+			</div>
+			<div class="rolling-img right"></div>
+		</div>
+	</section>
+	<section class="title market-title">
+		<span>Market</span>
+	</section>
+	<section class="brand">
+		<ul>
+			<li brand-name="palace" class="brand-name">
+				PALACE
+			</li>
+			<li brand-name="nike" class="brand-name active">
+				NIKE
+			</li>
+			<li brand-name="supreme" class="brand-name">
+				SUPREME
+			</li>
+		</ul>
+	</section>
+	<section class="product-view">
+		<div>
+			<ul>
+				<li class="product-list">
+					<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+					<div class="product-detail">
+						<div class="product-name">컨버스 네이버후드</div>
+						<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+						<ul>
+							<li class="product-size">Size<span>260</span></li>
+							<li class="product-quality">Quality<span>8</span></li>
+						</ul>
+						<div class="seller-name">
+							Seller <span>욱이님</span>
+						</div>
+					</div>
+					<div class="product-like">
+						<i class="fa fa-heart"><span>찜</span></i>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+	<section class="view-more">
+		더 많은 상품 보기
+	</section>
+</div>
 {{>footer jsName="main"}}
