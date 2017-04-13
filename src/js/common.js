@@ -47,7 +47,7 @@ define([
 			$(".dark-layer").css("display", "block");
 			$(".side-menu-layer").animate({
 				right: 0,
-			}, 300);
+			}, 300, "easeInOutQuint");
 		});
 	}
 
@@ -186,12 +186,12 @@ define([
 			if (direction === "top") {
 				$("."+className).animate({
 					top: verticleCenter,
-				}, 300, "easeInOutBack");
+				}, 300, "easeInOutQuint");
 			}
 			else {
 				$("."+className).animate({
 					bottom: verticleCenter,
-				}, 300, "easeInOutBack");
+				}, 300, "easeInOutQuint");
 			}
 
 		}
@@ -207,12 +207,12 @@ define([
 			if (direction === "left") {
 				$("."+className).animate({
 					left: horizontalCenter,
-				}, 300, "easeInOutBack");
+				}, 300, "easeInOutQuint");
 			}
 			else {
 				$("."+className).animate({
 					right: horizontalCenter,
-				}, 300, "easeInOutBack");
+				}, 300, "easeInOutQuint");
 			}
 		}
 		$(".black-layer, .popup-close").on("click", function() {

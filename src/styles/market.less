@@ -232,4 +232,40 @@
 	font-size: 20px;
 }
 
+.pop-up-series {
+	background-color: @colorWhite;
+	text-align: left;
+	width: 80%;
+	padding: 10px;
+}
+
+.pop-up-series>ul {
+	width: 100%;
+	border-bottom: 1px solid #F2F2F2;
+}
+
+.pop-up-series>ul>li {
+	text-align: center;
+	display: inline-block;
+	width: calc(100% / 3);
+	padding: 3px;
+	border-right: 1px solid #F2F2F2;
+
+}
+.pop-up-series>ul>li:last-child {
+	border-right: none;
+}
+
+.pop-up-series>ul>li>img {
+	width: 100%;
+}
+
+.popup-close {
+	position: absolute;
+	top : -30px;
+	right: 0px;
+	@btn-close-white();
+}
+
+
 
