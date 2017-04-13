@@ -2,32 +2,43 @@
 {{set pageId="index"}}
 {{>header title="메인" cssName="main"}}
 <section class="main-img-area">
-	<div class="main-img"></div>
+	<div class="main-img-dark"></div>
+	<img src="{{root}}/img/main_img_01.jpg" class="main-img">
 	<div class="view-details">
 		<!--해당 img 상품의 상세페이지 URL-->
-		<a href="#"></a>
+		<a href="#">
+			View Details
+			<div class="fa fa-angle-double-right"></div>
+		</a>
 	</div>
-	<div class="main-img-rolling-area">
-		<div class="rolling-img left"></div>
-		<div class="img-text">
-			<div class="product-name"></div>
-			<div class="release-date"></div>
+</section>
+<section class="main-img-rolling-area">
+	<div class="slide-arrow fa fa-chevron-circle-left"></div>
+	<div class="img-text">
+		<div class="product-name">
+			NIKE JORDAN
 		</div>
-		<div class="rolling-img right"></div>
+		<div class="release-date">
+			2017 / 04 / 22 Sat
+		</div>
 	</div>
+	<div class="slide-arrow fa fa-chevron-circle-right"></div>
 </section>
 <section class="title market-title">
 	<span>Market</span>
 </section>
-<section class="brand">
+<section class="menu-category">
 	<ul>
-		<li brand-name="palace" class="brand-name">
+		<li menu-category-detail="brand-all" class="active">
+			ALL
+		</li>
+		<li menu-category-detail="brand-palace">
 			PALACE
 		</li>
-		<li brand-name="nike" class="brand-name active">
+		<li menu-category-detail="brand-nike">
 			NIKE
 		</li>
-		<li brand-name="supreme" class="brand-name">
+		<li menu-category-detail="brand-supreme">
 			SUPREME
 		</li>
 	</ul>
@@ -58,7 +69,9 @@
 	</section>
 </section>
 <section class="view-more">
-	더 많은 상품 보기
-	<span class="fa fa-angle-double-right"></span>
+	<div class="view-more-text">
+		더 많은 상품 보기
+	</div>
+	<div class="fa fa-angle-double-right"></div>
 </section>
 {{>footer jsName="main"}}

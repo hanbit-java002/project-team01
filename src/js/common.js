@@ -32,10 +32,18 @@ define([
 						top: "0",
 					});
 				}
-				else {
-					$("header").css({
-						position: "relative",
-					});
+				else if(currentPosition <= 0) {
+					if (window._ctx.pageId === "index") {
+						$("header").css({
+							position: "fixed",
+							top: "0",
+						});
+					}
+					else {
+						$("header").css({
+							position: "relative",
+						});
+					}
 				}
 			});
 		});
@@ -44,6 +52,10 @@ define([
 	function transparentHeader() {
 		if (window._ctx.pageId !== "index") {
 			$("header").removeClass("header-transparent");
+			$("header").css("position", "relative");
+		}
+		else if (window._ctx.pageId === "index") {
+			$("header").css("position", "fixed");
 		}
 		fixHeader();
 	}

@@ -113,8 +113,8 @@ header.header-transparent {
 }
 
 .search-icon.white {
-	color: @colorLineColor;
-	border-right: solid 1px #8B8E9E;
+	color: @colorWhite;
+	border-right: solid 1px @colorDarkGray;
 }
 
 .search-bar {
@@ -131,6 +131,7 @@ header.header-transparent {
 #header-search-input {
 	padding: 15px;
 	width: calc(~"100% - 95px");
+	height: 50px;
 	border: none;
 	outline: none;
 }
@@ -156,7 +157,7 @@ header.header-transparent {
 	display: inline-block;
 	right: 0px;
 	font-size: 22px;
-	color: @colorLineColor;
+	color: @colorWhite;
 	@abs-vmiddle();
 	@body-padding();
 }
@@ -194,10 +195,14 @@ header.header-transparent {
 }
 
 .sub-menu>.sub-title {
-	color: @colorWhite !important;
+	color: @colorWhite;
 	background-color: @colorMain;
 	border-bottom: none;
 	text-align: center;
+}
+
+.sub-menu>.sub-title>.text {
+	color: @colorWhite;
 }
 
 .sub-menu>.sub-title>.fa-angle-left {
@@ -236,7 +241,9 @@ header.header-transparent {
 }
 
 .main-menu>li>a>.text,
-.sub-menu>li>.text {
+.main-menu>li>.text,
+.sub-menu>li>.text,
+.sub-menu>li>a>.text {
 	width: 100%;
 	color: @colorMain;
 	@body-padding();
@@ -260,12 +267,12 @@ header.header-transparent {
 	font-size: 34px;
 }
 
-.main-menu>.log-out,
-.sub-menu>.log-out {
+.main-menu .log-out,
+.sub-menu .log-out {
 	background-color: @colorFontSelect;
 }
 
-.log-out>a>.text,
+.log-out .text,
 .write-btn>a>.text {
 	color: @colorWhite !important;
 }
