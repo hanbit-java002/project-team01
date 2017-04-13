@@ -1,0 +1,175 @@
+@import 'lib/include.all.less';
+@import 'common.less';
+
+
+.title {
+	display: block;
+	margin-top: 5%;
+	padding-bottom: 3%;
+	font-size: 20px;
+	color: @colorMain;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: solid 1px @colorDarkGray;
+}
+
+.purchase-contents {
+	@body-padding();
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+
+.info-title {
+	display: block;
+	font-size: 14px;
+	color: @colorFontMain;
+	font-weight: bold;
+	border-bottom: solid 1px @colorDarkGray;
+	padding-bottom: 1%;
+	margin-top: 8%;
+	margin-bottom: 3%;
+}
+
+.line {
+	border-top: 1px solid @colorDarkGray;
+}
+
+
+.product-info {
+	margin-bottom: -5%;
+}
+.pd-information {
+	display: inline-block;
+	margin-top: 1%;
+}
+
+.pd-information>.image {
+	display: inline-block;
+}
+.image>.pd-image {
+	width: 90px;
+	height: 90px;
+	background-image: url("../img/ect.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: solid 1px @colorDarkGray;
+}
+
+.pd-information>.info {
+	position: relative;
+	display: inline-block;
+	top: -13px;
+	left: 5%;
+}
+.pd-information>.info>div {
+	display: block;
+}
+.pd-name {
+	color: @colorFontMain;
+	font-size: 15px;
+	font-weight: bold;
+}
+.pd-price {
+	color: @colorPoint;
+	font-size: 18px;
+	font-weight: bold;
+}
+.pd-info {
+	color: @colorFontMain;
+	font-size: 14px;
+	font-weight: bold;
+}
+.pd-info>span {
+	display: inline-block;
+	color: @colorFontMain;
+	font-size: 13px;
+	font-weight: 100;
+	margin-left: 10%;
+}
+
+
+.td-information {
+	display: block;
+}
+.td-information>.td-info {
+	display: block;
+	color: @colorNavy;
+	font-size: 14px;
+	line-height: 1.7;
+
+}
+.td-information>.td-info>.border-left {
+	display: inline;
+	font-size: 11px;
+	border-left: solid 1px @colorDarkGray;
+	margin-left: 3%;
+}
+.td-information>.td-info>span {
+	display: inline-block;
+	margin-left: 4%;
+	color: @colorNavy;
+}
+
+
+
+.button-select {
+	position: relative;
+	display: inline-flex;
+	width: 100%;
+	height: 40px;
+	border: solid 1px @colorDarkGray;
+	margin-top: 3%;
+	margin-bottom: 10%;
+}
+
+.trade-select {
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #fff;
+	color: @colorNavy;
+	border: 0;
+}
+.trade-select.selected {
+	background-color: @colorMain;
+	color: #fff;
+}
+.trade-select.left {
+	width: 50%;
+	border-right: solid 1px @colorDarkGray;
+}
+.trade-select.right {
+	width: 50%;
+	right: 0;
+}
+
+
+.alert-text {
+	color: @colorNavy;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 10%;
+}
+
+
+.btn-bottom {
+	width: 100%;
+	height: 40px;
+	font-size: 18px;
+	color: #fff;
+	border: 0;
+}
+.btn-cancel {
+	display: inline-block;
+	width: 48%;
+	background-color: @colorDarkGray;
+}
+.btn-ok {
+	display: inline-block;
+	width: 47%;
+	float: right;
+	right: 0;
+	background-color: @colorMain;
+	margin-bottom: 3%;
+}

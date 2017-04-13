@@ -1,0 +1,172 @@
+{{set root=".."}}
+{{>header title="판매 상품 수정" cssName="update-selling"}}
+
+<div class="selling-contents">
+
+	<section class="product-info">
+		<div class="info-title">상품 정보</div>
+
+		<div class="input-style">
+			<div class="desc">Product Name</div>
+			<input id="input-product-name" type="text" placeholder="Product Name">
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Brand</div>
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Brand <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Brand 1</a></li>
+					<li><a href="#">Brand 2</a></li>
+					<li><a href="#">Brand 3</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Category</div>
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Category <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Category 1</a></li>
+					<li><a href="#">Category 2</a></li>
+					<li><a href="#">Category 3</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Series</div>
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Series <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Series 1</a></li>
+					<li><a href="#">Series 2</a></li>
+					<li><a href="#">Series 3</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Size</div>
+			<input id="input-size" type="text" placeholder="Size">
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Price</div>
+			<input id="input-price" type="text" placeholder="Price">
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Details</div>
+			<textarea id="input-details" placeholder="ex : 제품 판매 사유 / 구매 날짜 / 사용 기간 / 워런티 보유 / 취급 방법 등"></textarea>
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Images</div>
+			<button class="btn-add-image">+</button>
+			<div class="preview-images">
+				<i class="fa fa-angle-left"></i>
+				<div class="images">
+					<div class="image"></div>
+					<div class="image"></div>
+					<div class="image"></div>
+				</div>
+				<i class="fa fa-angle-right"></i>
+			</div>
+		</div>
+
+		<hr class="line">
+	</section>
+
+
+	<section class="trade-info">
+		<div class="info-title">거래 정보</div>
+		<div class="desc">거래 방식을 선택해주세요.</div>
+		<span class='alert-text trade'></span>
+
+		<div class="button-select">
+			<button class="trade-select left btn-direct selected">직접 거래</button>
+			<button class="trade-select right btn-delivery">택배 거래</button>
+		</div>
+
+
+		<div class="trade-details">
+			<div class="input-style">
+				<div class="desc">거래 장소 / 시간</div>
+				<input id="input-place-time" type="text" placeholder="ex : 목동역, 신정역, 18시 이후">
+			</div>
+		</div>
+	</section>
+
+
+	<section class="payment-info">
+		<div class="info-title">결제 정보</div>
+		<div class="desc">결제 방식을 선택해주세요.</div>
+		<span class='alert-text payment'></span>
+
+		<div class="button-select">
+			<button class="payment-select left btn-escrow selected">안심 거래</button>
+			<button class="payment-select right btn-direct">직접 거래</button>
+		</div>
+
+		<div class="payment-details">
+			<div class="input-style">
+				<div class="desc">Bank</div>
+				<div class="dropdown">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Bank <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Bank 1</a></li>
+						<li><a href="#">Bank 2</a></li>
+						<li><a href="#">Bank 3</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="input-style">
+				<div class="desc">Account Number</div>
+				<input id="input-account-num" type="text" placeholder="Account Number">
+			</div>
+		</div>
+	</section>
+
+
+	<section class="seller-info">
+		<div class="info-title">판매자 정보</div>
+
+		<div class="input-style">
+			<div class="desc">Name</div>
+			<input class="input-default" id="input-name" type="text" value="백수현">
+		</div>
+
+		<div class="input-style">
+			<div class="desc">Phone Number</div>
+			<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
+		</div>
+	</section>
+
+
+	<hr class="line">
+	<button class="btn-bottom btn-update">수정</button>
+	<button class="btn-bottom btn-cancel">취소</button>
+</div>
+
+
+<div class="pop-up-series">
+	<span class="text1"></span>
+
+	<button class="btn popup-ok">확인</button>
+	<button class="btn popup-close">취소</button>
+</div>
+
+{{>footer jsName="update-selling"}}

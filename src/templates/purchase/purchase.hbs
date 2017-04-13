@@ -1,0 +1,52 @@
+{{set root=".."}}
+{{>header title="상품 구매" cssName="purchase"}}
+
+<div class="title">상품 구매</div>
+
+<div class="purchase-contents">
+
+	<section class="product-info">
+		<div class="info-title">상품 정보</div>
+
+		<div class="pd-information">
+			<div class="image">
+				<div class="pd-image"></div>
+			</div>
+			<div class="info">
+				<div class="pd-name">에어 조던 14 Black</div>
+				<div class="pd-price">$ 200,000</div>
+				<div class="pd-info">size  <span class="pd-size">265mm</span></div>
+				<div class="pd-info">Quality <span class="pd-quality">새상품</span></div>
+			</div>
+		</div>
+	</section>
+
+	<hr class="line">
+
+
+	<section class="trade-info">
+		<div class="info-title">거래 정보</div>
+
+		<div class="td-information">
+			<div class="td-info">거래 날짜 <div class="border-left"></div> <span class="td-date">2017/04/06</span> </div>
+			<div class="td-info">직접 거래 <div class="border-left"></div> <span class="td-direct">목동역,오목교역,18시 이후</span> </div>
+			<div class="td-info">택배 거래 <div class="border-left"></div> <span class="td-delivery">택배비 착불</span> </div>
+			<div class="td-info">안심 거래 <div class="border-left"></div> <span class="td-escrow">가능</span> </div>
+		</div>
+
+		<div class="button-select">
+			<button class="trade-select left btn-direct">직접 거래</button>
+			<button class="trade-select right btn-delivery">택배 거래</button>
+		</div>
+		<div class="trade">
+			<div class='alert-text'>거래 수단을 선택해주세요.</div>
+		</div>
+
+	</section>
+
+	<hr class="line">
+	<button class="btn-bottom btn-cancel">취소</button>
+	<button class="btn-bottom btn-ok">확인</button>
+</div>
+
+{{>footer jsName="purchase"}}

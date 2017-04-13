@@ -1,0 +1,238 @@
+@import 'lib/include.all.less';
+@import 'common.less';
+
+.info-title {
+	display: block;
+	font-size: 15px;
+	color: @colorFontMain;
+	font-weight: bold;
+	border-bottom: solid 1px @colorDarkGray;
+	padding-bottom: 1%;
+	margin-top: 8%;
+	margin-bottom: 3%;
+}
+
+.selling-contents {
+	@body-padding();
+	margin-top: 5%;
+	margin-bottom: 3%;
+}
+
+.line {
+	border-top: 1px solid @colorDarkGray;
+}
+
+.desc {
+	font-size: 13px;
+	color: @colorFontMain;
+}
+
+
+
+.input-style {
+	width: 100%;
+	display: inline-table;
+	margin-bottom: 2%;
+}
+
+.input-style>input {
+	width: 100%;
+	height: 40px;
+	padding-left: 5%;
+	border: solid 1px #333;
+}
+
+.input-style>#input-details {
+	width: 100%;
+	height: 60px;
+	padding-left: 5%;
+	border: solid 1px #333;
+	resize: none;
+}
+.input-style>#input-details::-webkit-input-placeholder {
+
+}
+
+
+
+.input-style>.dropdown>.dropdown-toggle {
+	position: relative;
+	min-width: 100%;
+	padding-left: 5%;
+	text-align: left;
+	border: solid 1px #333;
+	border-radius: 0;
+	height: 40px;
+}
+
+.input-style>.dropdown>.dropdown-toggle>.caret {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translate(-50%);
+}
+.input-style>.dropdown>.dropdown-menu {
+	width: 100%;
+}
+
+
+
+.input-style>.btn-add-image {
+	width: 100%;
+	height: 40px;
+	border: 0;
+	background-color: @colorMain;
+	color: #fff;
+	font-size: 30px;
+}
+
+.input-style>.preview-images {
+	display: inline-block;
+	width: 100%;
+}
+.input-style>.preview-images>.fa {
+	position: relative;
+	display: inline-block;
+	top: 30px;
+	font-size: 30px;
+	cursor: pointer;
+
+}
+.input-style>.preview-images>.fa-angle-left {
+	float: left;
+}
+.input-style>.preview-images>.fa-angle-right {
+	float: right;
+}
+
+.input-style>.preview-images>.images {
+	display: inline-block;
+	position: relative;
+	top: 15px;
+	margin-left: 4%;
+}
+.input-style>.preview-images>.images>.image {
+	display: inline-block;
+	width: 72px;
+	height: 72px;
+	background-image: url("../img/ect.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: solid 1px @colorDarkGray;
+	margin: 0 5px;
+}
+
+
+
+.alert-text {
+	display: block;
+	font-size: 10px;
+	color: #ff0066;
+}
+
+.button-select {
+	position: relative;
+	display: inline-flex;
+	width: 100%;
+	height: 40px;
+	border: solid 1px @colorMain;
+	margin: 3% 0%;
+}
+
+.trade-select,
+.payment-select {
+	font-size: 17px;
+	font-weight: bold;
+	background-color: #fff;
+	color: @colorDarkGray;
+	border: 0;
+}
+.trade-select.selected,
+.payment-select.selected{
+	background-color: @colorMain;
+	color: #fff;
+}
+.trade-select.left,
+.payment-select.left{
+	width: 50%;
+	border-right: solid 1px #333;
+}
+.trade-select.right,
+.payment-select.right{
+	width: 50%;
+	right: 0;
+}
+
+
+
+.input-style>.input-default {
+	background-color: @colorLineColor;
+}
+
+
+.btn-bottom {
+	width: 100%;
+	height: 40px;
+	font-size: 16px;
+	color: #fff;
+	border: 0;
+}
+.btn-ok {
+	background-color: @colorMain;
+	margin-bottom: 3%;
+}
+.btn-cancel {
+	background-color: @colorDarkGray;
+}
+
+
+.pop-up-series {
+	display: none;
+	position: relative;
+	top: 80%;
+	left: 4%;
+	width: 92%;
+	height: 25%;
+	background-color: #fff;
+	z-index: 30;
+}
+
+.pop-up-series>span {
+	position: relative;
+	display: block;
+	top: 30%;
+	color: @colorMain;
+	text-align: center;
+}
+.pop-up-series>.text1 {
+	font-size: 17px;
+	font-weight: bold;
+}
+.pop-up-series>.text2 {
+	font-size: 14px;
+}
+
+.pop-up-series>.btn {
+	position: absolute;
+	display: block;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	margin-top: 14%;
+	color: #fff;
+	background-color: #50546d;
+	border: 0;
+	border-radius: 0;
+}
+
+.pop-up-series>.popup-close {
+	width: 50%;
+	background-color: rgb(139, 142, 158);
+}
+.pop-up-series>.popup-ok {
+	width: 50%;
+	background-color: rgb(80, 84, 109);
+	right: 0;
+}
+
