@@ -21,6 +21,37 @@ define([
 		});
 	}
 
+	function transparentHeader() {
+		var currentURL = document.location.href;
+		if (currentURL !== "http://localhost:84/index.html") {
+			$("header").removeClass("header-transparent");
+		}
+		fixHeader();
+	}
+
+	function fixHeader() {
+		$(document).ready(function() {
+			$(window).on("scroll", function(event) {
+				var currentPosition = $(this).scrollTop();
+				if(currentPosition > 0) {
+					$("header").removeClass("header-transparent");
+					$("header").css({
+						position: "fixed",
+						top: "0",
+					});
+				}
+				else {
+					$("header").css({
+						position: "relative",
+						top: "0",
+					});
+				}
+			});
+		});
+	}
+
+
+
 	function searchAll() {
 		$(".search-icon.white").click(function() {
 			$(".search-bar").css("display", "block");
@@ -222,6 +253,7 @@ define([
 
 
 	scrollUp();
+	transparentHeader();
 	writeToSell();
 	searchAll();
 	closeSearchBar();
