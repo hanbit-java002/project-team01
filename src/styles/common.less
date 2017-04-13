@@ -35,7 +35,9 @@ a {
 }
 
 .resell-container {
+	position: relative;
 	margin-bottom: 30px;
+	min-height: calc(~"100% - 204px");
 }
 
 .contents-wrapper {
@@ -192,7 +194,7 @@ header.header-transparent {
 }
 
 .sub-menu>.sub-title {
-	color: @colorWhite;
+	color: @colorWhite !important;
 	background-color: @colorMain;
 	border-bottom: none;
 	text-align: center;
@@ -234,27 +236,27 @@ header.header-transparent {
 }
 
 .main-menu>li>a>.text,
-.sub-menu>li>a>.text {
+.sub-menu>li>.text {
 	width: 100%;
 	color: @colorMain;
 	@body-padding();
 }
 
 .main-menu>li>a>div,
-.sub-menu>li>a>div {
+.sub-menu>li>div {
 	display: inline-block;
 }
 
 .main-menu>li>a>.menu-icon,
-.sub-menu>li>a>.menu-icon {
+.sub-menu>li>.menu-icon {
 	position: absolute;
 	@abs-vmiddle();
 	color: @colorMain;
 }
 
 .main-menu>li>a>.fa-angle-right,
-.sub-menu>li>a>.fa-angle-right,
-.sub-menu>li>a>.fa-angle-left {
+.sub-menu>li>.fa-angle-right,
+.sub-menu>li>.fa-angle-left {
 	font-size: 34px;
 }
 

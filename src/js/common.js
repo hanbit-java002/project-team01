@@ -21,13 +21,6 @@ define([
 		});
 	}
 
-	function transparentHeader() {
-		if (window._ctx.pageId !== "index") {
-			$("header").removeClass("header-transparent");
-		}
-		fixHeader();
-	}
-
 	function fixHeader() {
 		$(document).ready(function() {
 			$(window).on("scroll", function(event) {
@@ -40,13 +33,19 @@ define([
 					});
 				}
 				else {
-					$("header").addClass("header-transparent");
 					$("header").css({
 						position: "relative",
 					});
 				}
 			});
 		});
+	}
+
+	function transparentHeader() {
+		if (window._ctx.pageId !== "index") {
+			$("header").removeClass("header-transparent");
+		}
+		fixHeader();
 	}
 
 
