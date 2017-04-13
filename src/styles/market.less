@@ -1,4 +1,5 @@
 @import 'common.less';
+@import 'lib/product-list.less';
 .form-control {
 	border: none;
 	box-shadow:none;
@@ -136,78 +137,6 @@
 	font-size: 13px;
 }
 
-.product-list {
-	border-bottom: solid 1px @colorLineColor;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	position: relative;
-}
-
-.product-list>div {
-	display: inline-block;
-	vertical-align: top;
-}
-
-.product-img {
-	width: 28%;
-	height: 100px;
-	background-size: cover;
-	background-repeat: no-repeat;
-	margin-right: 10px;
-}
-.product-detail {
-	color: @colorNavy;
-}
-.product-detail>div,
-.product-detail>ul {
-	margin-bottom: 3px;
-}
-
-
-.product-name {
-	font-weight: bold;
-	font-size: 17px;
-}
-.seller-name,
-.product-quality,
-.product-size,
-.product-price {
-	font-weight: bold;
-}
-
-.seller-name>span,
-.product-quality>span,
-.product-size>span,
-.product-price>span {
-	font-weight: normal;
-	margin-left: 10px;
-}
-
-.product-detail>ul>li {
-	display: inline-block;
-	margin-right: 10px;
-}
-.product-detail>ul>li:last-child {
-	margin-right: 0px;
-}
-
-.product-like {
-	position: absolute;
-	@abs-vmiddle();
-	right: 10px;
-}
-.product-like>i {
-	position: relative;
-	font-size: 50px;
-	color: #F1E3DD;
-}
-
-.product-like>i>span {
-	position: absolute;
-	@abs-center();
-	color: @colorDarkBrown;
-	font-size: 12px;
-}
 .more {
 	text-align: center;
 	padding-top: 15px;
