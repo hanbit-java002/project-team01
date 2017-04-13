@@ -129,8 +129,8 @@ define([
 	* */
 	function closePopUp(className, direction) {
 		className ="."+className;
-		var height=$(className).height();
-		var width=$(className).width();
+		var height=$(className).outerHeight();
+		var width=$(className).outerWidth();
 
 		if (direction === "top") {
 			$(className).animate({
@@ -166,8 +166,8 @@ define([
 			"z-index": "10",
 			"background-color": "rgba(0,0,0,0.7)",
 		});
-		var height=$("."+className).height();
-		var width=$("."+className).width();
+		var height=$("."+className).outerHeight();
+		var width=$("."+className).outerWidth();
 		var windowHeight= $(window).height();
 		var windowWidth= $(window).width();
 		var verticleCenter=(windowHeight/2)-(height/2)+"px";
