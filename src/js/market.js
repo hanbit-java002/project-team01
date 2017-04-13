@@ -12,6 +12,6 @@ require([
 	});
 
 	$(".filter-series").on("click", function() {
-		common.popUp("pop-up-series", "left");
+		common.popUp("pop-up-series", "top");
 	});
 });
