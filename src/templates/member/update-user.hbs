@@ -1,3 +1,4 @@
+{{set root=".."}}
 {{>header title="회원 정보 변경" cssName="update-user"}}
 
 
@@ -58,14 +59,4 @@
 </div>
 
 
-<script>
-	window._ctx = {
-		root: "{{root}}",
-	};
-</script>
-<script src="{{root}}/plugins/requirejs/require.min.js"></script>
-<script src="{{root}}/js/require.config.js"></script>
-<script src="{{root}}/js/update-user.js"></script>
-</body>
-</html>
-
+{{>footer jsName="update-user"}}

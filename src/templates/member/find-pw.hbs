@@ -1,3 +1,4 @@
+{{set root=".."}}
 {{>header title="비밀번호 찾기" cssName="find-pw"}}
 
 
@@ -42,14 +43,5 @@
 
 
 
-<script>
-	window._ctx = {
-		root: "{{root}}",
-	};
-</script>
-<script src="{{root}}/plugins/requirejs/require.min.js"></script>
-<script src="{{root}}/js/require.config.js"></script>
-<script src="{{root}}/js/find-pw.js"></script>
-</body>
-</html>
+{{>footer jsName="find-pw"}}
 

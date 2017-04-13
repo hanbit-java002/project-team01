@@ -1,3 +1,4 @@
+{{set root=".."}}
 {{>header title="회원 탈퇴" cssName="delete-user"}}
 
 
@@ -32,14 +33,4 @@
 
 
 
-<script>
-	window._ctx = {
-		root: "{{root}}",
-	};
-</script>
-<script src="{{root}}/plugins/requirejs/require.min.js"></script>
-<script src="{{root}}/js/require.config.js"></script>
-<script src="{{root}}/js/delete-user.js"></script>
-</body>
-</html>
-
+{{>footer jsName="delete-user"}}

@@ -1,3 +1,4 @@
+{{set root=".."}}
 {{>header title="회원가입" cssName="signup"}}
 
 <span class="title">Sign Up</span>
@@ -72,14 +73,4 @@
 </div>
 
 
-<script>
-	window._ctx = {
-		root: "{{root}}",
-	};
-</script>
-<script src="{{root}}/plugins/requirejs/require.min.js"></script>
-<script src="{{root}}/js/require.config.js"></script>
-<script src="{{root}}/js/signup.js"></script>
-</body>
-</html>
-
+{{>footer jsName="signup"}}

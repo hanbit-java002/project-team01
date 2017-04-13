@@ -1,3 +1,4 @@
+{{set root=".."}}
 {{>header title="로그인" cssName="login"}}
 
 
@@ -20,16 +21,4 @@
 </div>
 
 
-
-
-<script>
-	window._ctx = {
-		root: "{{root}}",
-	};
-</script>
-<script src="{{root}}/plugins/requirejs/require.min.js"></script>
-<script src="{{root}}/js/require.config.js"></script>
-<script src="{{root}}/js/login.js"></script>
-</body>
-</html>
-
+{{>footer jsName="login"}}
