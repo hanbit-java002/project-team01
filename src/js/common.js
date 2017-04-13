@@ -122,7 +122,7 @@ define([
 	 	이렇게 해주면 팝업 설정 끝.
 	 	취소 버튼을 따로 해주고 싶다면 취소 버튼에 클래스를 popup-close로
 	 	해주시면 됩니다.
-	 	
+
 	*
 	* */
 	function closePopUp(className, direction) {
