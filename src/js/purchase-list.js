@@ -1,25 +1,19 @@
 require([
 	"common",
 ], function() {
+	var common = require("common");
 
-	var naviHandler=function () {
+	var naviHandler = function (jqElement) {
+		if ($(jqElement).attr("menu-category-detail") === "purchase-process") {
 
+		}
+		else if ($(jqElement).attr("menu-category-detail") === "purchase-complete") {
 
+		}
 	};
 
-	function naviGate(className, naviHandler) {
-		className= "."+className;
-		$(className+">ul>li").on("click", function () {
-			$(className+">ul>li").removeClass("active");
-			$(this).addClass("active");
-
-			/* 버튼을 눌렀을때 실행될 상황*/
-			console.log($(this).attr(className));
-		});
-	}
-
-
-
-	naviGate("purchase-progress", naviHandler);
+	$(".menu-category>ul>li").on("click", function () {
+		common.navigate(this, naviHandler);
+	});
 
 });
