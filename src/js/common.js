@@ -22,8 +22,7 @@ define([
 	}
 
 	function transparentHeader() {
-		var currentURL = document.location.href;
-		if (currentURL !== "http://localhost:84/index.html") {
+		if (window._ctx.pageId !== "index") {
 			$("header").removeClass("header-transparent");
 		}
 		fixHeader();
@@ -41,9 +40,9 @@ define([
 					});
 				}
 				else {
+					$("header").addClass("header-transparent");
 					$("header").css({
 						position: "relative",
-						top: "0",
 					});
 				}
 			});
