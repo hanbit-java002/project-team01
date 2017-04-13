@@ -6,6 +6,7 @@ require.config({
 
 
         "jquery"        : "/plugins/jquery/jquery.min",
+		"jquery.easing" : "/plugins/jquery.easing/jquery.easing.min",
         "bootstrap"     : "/plugins/bootstrap/js/bootstrap.min",
         "clipboard"     : "/plugins/clipboard/clipboard.min",
 
@@ -13,6 +14,9 @@ require.config({
     },
 
     shim: {
+		"jquery.easing": {
+			deps: ["jquery"],
+		},
         "bootstrap": {
             deps: ["jquery"],
         },

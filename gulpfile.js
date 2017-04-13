@@ -93,6 +93,7 @@ gulp.task('copy', [
 	'copy:requirejs',
 	'copy:url-search-params',
     'copy:jquery',
+	'copy:jquery.easing',
     'copy:normalize',
     'copy:bootstrap',
 	'copy:font-awesome',
@@ -125,6 +126,10 @@ gulp.task('copy:url-search-params', function() {
 gulp.task('copy:jquery', function () {
     return gulp.src(['node_modules/jquery/dist/jquery.min.js'])
                .pipe(gulp.dest(dirs.dist + '/plugins/jquery'));
+});
+gulp.task('copy:jquery.easing', function () {
+	return gulp.src(['node_modules/jquery.easing/jquery.easing.min.js'])
+		.pipe(gulp.dest(dirs.dist + '/plugins/jquery.easing'));
 });
 
 gulp.task('copy:font-awesome', function() {
