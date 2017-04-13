@@ -9,10 +9,39 @@ require([
 		console.log($(this).attr("brand-name"));
 	});
 
-	function popUp(className, direction) {
+	function closePopUp(className, direction) {
+		className ="."+className;
+		var height=$(className).height();
+		var width=$(className).width();
 
-		var balckLayer= "<div class='black-layer'></div>";
-		$("body").prepend(balckLayer);
+		if (direction === "top") {
+			$(className).animate({
+				top: "-"+height,
+			}, 200);
+		}
+		else if(direction === "bottom") {
+			$(className).animate({
+				bottom: "-"+height,
+			}, 200);
+		}
+
+		else if (direction === "left") {
+			$(className).animate({
+				left: "-"+width,
+			}, 200);
+		}
+		else if(direction === "right") {
+				$(className).animate({
+					right: "-"+width,
+				}, 200);
+			}
+		}
+		$(".black-layer").remove();
+	}
+
+	function popUp(className, direction) {
+		var blackLayer= "<div class='black-layer'></div>";
+		$("body").prepend(blackLayer);
 		$(".black-layer").css({
 			"position": "fixed",
 			"width": "100%",
@@ -24,7 +53,8 @@ require([
 		var width=$("."+className).width();
 		var windowHeight= $(window).height();
 		var windowWidth= $(window).width();
-		console.log(windowWidth);
+		var verticleCenter=(windowHeight/2)-(height/2)+"px";
+		var horizontalCenter=(windowWidth/2)-(width/2)+"px";
 
 		if (direction === "top" || direction === "bottom") {
 			$("."+className).css({
@@ -35,17 +65,15 @@ require([
 				"z-index": "100",
 			});
 
-			var here=(windowHeight/2)-(height/2)+"px";
-			console.log(here);
 			$("."+className).css(direction, "-"+height+"px");
 			if (direction === "top") {
 				$("."+className).animate({
-					top: here,
+					top: verticleCenter,
 				}, 200);
 			}
 			else {
 				$("."+className).animate({
-					bottom: here,
+					bottom: verticleCenter,
 				}, 200);
 			}
 
@@ -59,10 +87,22 @@ require([
 				"z-index": "100",
 			});
 			$("."+className).css(direction, "-"+width+"px");
+			if (direction === "left") {
+				$("."+className).animate({
+					left: horizontalCenter,
+				}, 200);
+			}
+			else {
+				$("."+className).animate({
+					right: horizontalCenter,
+				}, 200);
+			}
 		}
+		$(".black-layer").on("click", function() {
+			closePopUp(className, direction);
+		});
 	}
-
-	$(".filter-series").on("click", function () {
-		popUp("pop-up-series", "top");
+	$(".filter-series").on("click", function() {
+		popUp("pop-up-series", "left");
 	});
 });
