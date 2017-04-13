@@ -1,0 +1,26 @@
+@import 'common.less';
+.purchase-progress>ul {
+	width: 100%;
+	border-bottom: solid 1px @colorLineColor;
+	border-top: solid 1px @colorLineColor;
+}
+
+.purchase-progress>ul>li {
+	display: inline-block;
+	width: 25%;
+	text-align: center;
+	font-weight: bold;
+	line-height: 2;
+	border-right: solid 1px @colorLineColor;
+	background-color: @colorWhite;
+	color: @colorDarkGray;
+
+}
+.purchase-progress>ul>li.active {
+	background-color: @colorMain;
+	color:@colorWhite;
+}
+
+.purchase-progress>ul>li:last-child {
+	border-right: none;
+}
