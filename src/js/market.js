@@ -4,22 +4,20 @@ require([
 	var common = require("common");
 
 	function initBrand() {
-		var brand=common.getQuerystring(brand);
+		var brand=common.getQuerystring("brand");
+
+		$(".menu-category>ul>li").removeClass("active");
 		if (brand=== "all") {
-			$(".menu-category>ul>li").removeClass("active");
-			$([brand="all"]).addClass("active");
+			$("[menu-category-detail='all']").addClass("active");
 		}
 		else if (brand=== "nike") {
-			$(".menu-category>ul>li").removeClass("active");
-			$([brand="nike"]).addClass("active");
+			$("[menu-category-detail='nike']").addClass("active");
 		}
 		else if (brand=== "palace") {
-			$(".menu-category>ul>li").removeClass("active");
-			$([brand="palace"]).addClass("active");
+			$("[menu-category-detail='palace']").addClass("active");
 		}
 		else if (brand=== "supreme") {
-			$(".menu-category>ul>li").removeClass("active");
-			$([brand="supreme"]).addClass("active");
+			$("[menu-category-detail='supreme']").addClass("active");
 		}
 	}
 

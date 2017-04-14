@@ -3,11 +3,98 @@
 <section class="title market-title">
 	<span>판매리스트</span>
 </section>
-<section class="purchase-progress">
+
+<section class="menu-category">
 	<ul>
-		<li purchase-progress="purchase-running" >진행중</li>
-		<li purchase-progress="purchase-complete">거래완료</li>
+		<li menu-category-detail="selling-all">
+			ALL
+		</li>
+		<li menu-category-detail="selling-processing">
+			진행중
+		</li>
+		<li menu-category-detail="selling-complete" class="active">
+			거래완료
+		</li>
 	</ul>
 </section>
+
+<section class="contents-wrapper">
+	<div class="list-search-box">
+		<input type="text" class="form-control" placeholder="Search">
+		<i class="fa fa-search"></i>
+	</div>
+	<div class="purchase-contents">
+		<div class="product-count">
+			총 <span>15</span>건
+		</div>
+		<ul class="user-list">
+			<li class="product-list">
+				<div class="product-date">2017/04/02</div>
+				<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+				<div class="product-detail">
+					<div class="product-name">컨버스 네이버후드</div>
+					<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+					<ul>
+						<li class="product-size"><span>260</span>mm</li>
+						<li class="product-quality"><span>새상품</span></li>
+						<li class="product-deal"><span>직접거래</span></li>
+					</ul>
+				</div>
+				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+				<ul class="seller-control">
+					<li></li>
+					<li></li>
+				</ul>
+			</li>
+			<li process="processing" class="product-list">
+				<div class="product-date">2017/04/02</div>
+				<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+				<div class="product-detail">
+					<div class="product-name">컨버스 네이버후드</div>
+					<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+					<ul>
+						<li class="product-size"><span>260</span>mm</li>
+						<li class="product-quality"><span>새상품</span></li>
+						<li class="product-deal"><span>직접거래</span></li>
+					</ul>
+				</div>
+				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+			</li>
+			<li process="complete" class="product-list">
+				<div class="product-date">2017/04/02</div>
+				<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+				<div class="product-detail">
+					<div class="product-name">컨버스 네이버후드</div>
+					<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+					<ul>
+						<li class="product-size"><span>260</span>mm</li>
+						<li class="product-quality"><span>새상품</span></li>
+						<li class="product-deal"><span>직접거래</span></li>
+					</ul>
+				</div>
+				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+			</li>
+			<li process="cancel" class="product-list">
+				<div class="product-date">2017/04/02</div>
+				<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+				<div class="product-detail">
+					<div class="product-name">컨버스 네이버후드</div>
+					<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+					<ul>
+						<li class="product-size"><span>260</span>mm</li>
+						<li class="product-quality"><span>새상품</span></li>
+						<li class="product-deal"><span>직접거래</span></li>
+					</ul>
+				</div>
+				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<section class="more">
+	<span>More</span><i class="glyphicon glyphicon-chevron-down"></i>
+</section>
+
 
 {{>footer jsName="selling-list"}}
