@@ -1,4 +1,5 @@
 @import 'common.less';
+@import 'lib/product-list.less';
 
 .form-control {
 	border: none;
@@ -37,7 +38,29 @@
 	margin: 10px 0px 10px 0px;
 	border: solid 1px @colorLineColor;
 }
+.purchase-search-box>input {
+	padding: 0px 20px 0px 10px;
+}
 
 .purchase-search-box>i {
+	position: absolute;
+	@abs-vmiddle();
+	right:5px;
+}
+
+.purchase-count::before {
+	content: "";
+	border-right: solid 5px @colorMain;
+	margin-right: 5px;
+}
+.purchase-count {
+	font-weight: bold;
+	font-size: 18px;
+	color: @colorMain;
+	line-height: 2;
+	border-bottom: solid 2px @colorLineColor;
+}
+
+.product-detail {
 
 }
