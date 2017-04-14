@@ -23,7 +23,7 @@
 	<header {{#if (eq pageId "main")}}class="header-transparent"{{/if}}>
 		<div class="dark-layer"></div>
 		<div class="logo">
-			<a href="http://localhost:84/index.html">
+			<a href="{{root}}/index.html">
 				<div>
 					ReSell
 				</div>
@@ -31,7 +31,7 @@
 		</div>
 		<div class="header-search">
 			<div class="search-icon white fa fa-search"></div>
-			<div class="search-bar">
+			<div class="all-search-bar">
 				<input id="header-search-input" type="text" placeholder="검색어">
 				<div class="search-icon gray fa fa-search"></div>
 				<div class="close-icon"></div>
@@ -42,7 +42,7 @@
 			<div class="side-menu-layer">
 				<div class="menu-header">
 					<div class="logo">
-						<a href="http://localhost:84/index.html">
+						<a href="{{root}}/index.html">
 							ReSell
 						</a>
 					</div>
@@ -50,19 +50,19 @@
 				</div>
 				<ul class="main-menu">
 					<li class="member-area">
-						<a href="http://localhost:84/member/login.html">
+						<a href="{{root}}/member/login.html">
 							<div class="text Log-in-btn">
 								로그인
 							</div>
 						</a>
-						<a href="http://localhost:84/member/signup.html">
+						<a href="{{root}}/member/signup.html">
 							<div class="text sign-out-btn">
 								회원가입
 							</div>
 						</a>
 					</li>
 					<li class="news">
-						<a href="http://localhost:84/news/news.html">
+						<a href="{{root}}/news/news.html">
 							<div class="text">
 								News
 							</div>
@@ -78,7 +78,7 @@
 						</a>
 					</li>
 					<li class="free-talk">
-						<a href="http://localhost:84/freetalk/freetalk.html">
+						<a href="{{root}}/freetalk/freetalk.html">
 							<div class="text">
 								Free Talk
 							</div>
@@ -100,40 +100,38 @@
 						<div class="menu-icon fa fa-power-off"></div>
 					</li>
 					<li class="write-btn">
-						<a href="#">
-							<div class="text">
-								판매 등록
-							</div>
-							<div class="menu-icon glyphicon glyphicon-pencil"></div>
-						</a>
+						<div class="text">
+							판매 등록
+						</div>
+						<div class="menu-icon glyphicon glyphicon-pencil"></div>
 					</li>
 				</ul>
 				<ul class="sub-menu market">
-					<li class="sub-title" for="market">
+					<div class="sub-title" for="market">
 						<div class="sub-menu-icon fa fa-angle-left"></div>
 						<div class="text">
 							Market
 						</div>
-					</li>
-					<li class="ALL">
+					</div>
+					<li brand="all">
 						<div class="text">
 							ALL
 						</div>
 						<div class="menu-icon fa fa-angle-right"></div>
 					</li>
-					<li class="palace">
+					<li brand="palace">
 						<div class="text">
 							PALACE
 						</div>
 						<div class="menu-icon fa fa-angle-right"></div>
 					</li>
-					<li class="nike">
+					<li brand="nike">
 						<div class="text">
 							NIKE
 						</div>
 						<div class="menu-icon fa fa-angle-right"></div>
 					</li>
-					<li class="supreme">
+					<li brand="supreme">
 						<div class="text">
 							SUPREME
 						</div>
@@ -148,10 +146,12 @@
 						</div>
 					</li>
 					<li class="like-list">
-						<div class="text">
-							찜 목록
-						</div>
-						<div class="menu-icon fa fa-angle-right"></div>
+						<a href="{{root}}/like/like.html">
+							<div class="text">
+								찜 목록
+							</div>
+							<div class="menu-icon fa fa-angle-right"></div>
+						</a>
 					</li>
 					<li class="my-written">
 						<div class="text">
@@ -178,9 +178,11 @@
 						<div class="menu-icon fa fa-angle-right"></div>
 					</li>
 					<li class="modify-member-info">
-						<div class="text">
-							회원 정보 수정
-						</div>
+						<a href="{{root}}/member/update-user.html">
+							<div class="text">
+								회원 정보 수정
+							</div>
+						</a>
 						<div class="menu-icon fa fa-angle-right"></div>
 					</li>
 					<li class="log-out">

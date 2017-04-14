@@ -70,9 +70,9 @@ define([
 		});
 	}
 
-	function writeToSell() {
+	function locationWriteToSell() {
 		$(".write-btn").click(function() {
-			location.href = "/selling/selling.html";
+			location.href = window._ctx.root + "/selling/selling.html";
 		});
 	}
 
@@ -144,8 +144,14 @@ define([
 		});
 	}
 
-
-
+	function locationSubMenu() {
+		$(".sub-menu.market>li").on("click", function() {
+			var brandId = $(this).attr("brand");
+			var url = window._ctx.root + "/market/market.html";
+			url += "?brand=" + brandId;
+			location.href = url;
+		});
+	}
 
 	/* 팝업 공통화
 	* 사용방법
@@ -339,14 +345,16 @@ define([
 	initNavi();
 	scrollUp();
 	fixHeader();
-	writeToSell();
+	locationWriteToSell();
 	searchAll();
 	closeSearchBar();
 	closeMenuLayer();
 	openMenuLayer();
 	showSubMenu();
 	backSubMenu();
+	locationSubMenu();
 
+	/*외부에서 해당 함수 사용 가능*/
 	return ({
 		popUp: popUp,
 		navigate: navigate,

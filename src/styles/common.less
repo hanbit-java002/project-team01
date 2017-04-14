@@ -21,10 +21,10 @@ a {
 	text-decoration: none !important;
 	outline: none !important;
 }
-.resell-container
 
-.title {
+section.title {
 	text-align: center;
+	border-bottom: solid 1px @colorLineColor;
 
 }
 .title>span {
@@ -128,7 +128,7 @@ header.header-transparent {
 	opacity: .2;
 }
 
-.search-bar {
+.all-search-bar {
 	display: none;
 	position: absolute;
 	top: 0px;
@@ -225,7 +225,8 @@ header.header-transparent {
 }
 
 .main-menu>li,
-.sub-menu>li {
+.sub-menu>li,
+.sub-menu>.sub-title {
 	position: relative;
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -253,8 +254,7 @@ header.header-transparent {
 
 .main-menu>li>a>.text,
 .main-menu>li>.text,
-.sub-menu>li>.text,
-.sub-menu>li>a>.text {
+.sub-menu>li .text {
 	width: 100%;
 	color: @colorMain;
 	@body-padding();
@@ -266,15 +266,16 @@ header.header-transparent {
 }
 
 .main-menu>li>a>.menu-icon,
-.sub-menu>li>.menu-icon {
+.sub-menu>li>.menu-icon,
+.sub-menu>li>a>.menu-icon {
 	position: absolute;
 	@abs-vmiddle();
 	color: @colorMain;
 }
 
 .main-menu>li>a>.fa-angle-right,
-.sub-menu>li>.fa-angle-right,
-.sub-menu>li>.fa-angle-left {
+.sub-menu .fa-angle-right,
+.sub-menu .fa-angle-left {
 	font-size: 34px;
 }
 
@@ -284,7 +285,7 @@ header.header-transparent {
 }
 
 .log-out .text,
-.write-btn>a>.text {
+.write-btn .text {
 	color: @colorWhite !important;
 }
 
@@ -301,8 +302,6 @@ header.header-transparent {
 
 .menu-category>ul {
 	width: 100%;
-	border-bottom: solid 1px @colorLineColor;
-	border-top: solid 1px @colorLineColor;
 }
 
 .menu-category>ul>li {
@@ -311,14 +310,15 @@ header.header-transparent {
 	font-weight: bold;
 	line-height: 2;
 	border-right: solid 1px @colorLineColor;
+	border-bottom: solid 1px @colorLineColor;
 	background-color: @colorWhite;
 	color: @colorDarkGray;
 	opacity: 0;
 
 }
 .menu-category>ul>li.active {
-	background-color: @colorMain;
-	color:@colorWhite;
+	color: @colorFontSelect;
+	border-bottom: none;
 }
 
 .menu-category>ul>li:last-child {
@@ -367,3 +367,6 @@ footer {
 	font-size: 13px;
 	font-weight: bold;
 }
+
+
+//-------------header-------------//

@@ -13,16 +13,16 @@ require([
 	}
 
 	var naviHandler = function (jqElement) {
-		if ($(jqElement).attr("brand") === "all") {
+		if ($(jqElement).attr("menu-category-detail") === "all") {
 			alert("all"); // 실행 예시
 		}
-		else if ($(jqElement).attr("brand") === "palace") {
+		else if ($(jqElement).attr("menu-category-detail") === "palace") {
 			alert("palace");
 		}
-		else if ($(jqElement).attr("brand") === "nike") {
+		else if ($(jqElement).attr("menu-category-detail") === "nike") {
 			alert("nike");
 		}
-		else if ($(jqElement).attr("brand") === "supreme") {
+		else if ($(jqElement).attr("menu-category-detail") === "supreme") {
 			alert("supreme");
 		}
 	};
