@@ -71,6 +71,33 @@ section.title {
 	z-index: 30;
 }
 
+//-------------search-bar-------------//
+.list-search-box>.form-control {
+	border: none;
+	box-shadow:none;
+	border-radius: 0px;
+}
+
+.list-search-box {
+	 position: relative;
+	 margin: 20px auto 25px;
+	 border: solid 1px @colorLineColor;
+ }
+
+.list-search-box>input {
+	padding-left: 15px;
+	padding-right: 45px;
+}
+
+.list-search-box>i {
+	position: absolute;
+	right: 0px;
+	@abs-vmiddle();
+	@body-padding();
+	color: @colorLineColor;
+	font-size: 20px;
+}
+
 //-------------header-------------//
 @header-height: 50px;
 
@@ -366,6 +393,3 @@ footer {
 	font-size: 13px;
 	font-weight: bold;
 }
-
-
-//-------------header-------------//
