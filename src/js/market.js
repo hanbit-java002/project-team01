@@ -44,5 +44,9 @@ require([
 		common.popUp("pop-up-series", "top");
 	});
 
+	$(".product-inquire").on("click", function () {
+		location.href = "/mypage/purchase-inqure-view.html";
+	});
+
 	initBrand();
 });
