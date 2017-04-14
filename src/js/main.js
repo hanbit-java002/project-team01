@@ -4,21 +4,25 @@ require([
 	var common= require("common");
 	function viewMoreProduct() {
 		$(".view-more").on("click", function() {
-			location.href = window._ctx.root + "/market/market.html";
+			var brandId = $(".menu-category>ul .active").attr("brand");
+			console.log(brandId);
+			var url = window._ctx.root + "/market/market.html";
+			url += "?brand=" + brandId;
+			location.href = url;
 		});
 	}
 
 	var naviHandler = function (jqElement) {
-		if ($(jqElement).attr("menu-category-detail") === "brand-all") {
+		if ($(jqElement).attr("brand") === "all") {
 			alert("all"); // 실행 예시
 		}
-		else if ($(jqElement).attr("menu-category-detail") === "brand-palace") {
+		else if ($(jqElement).attr("brand") === "palace") {
 			alert("palace");
 		}
-		else if ($(jqElement).attr("menu-category-detail") === "brand-nike") {
+		else if ($(jqElement).attr("brand") === "nike") {
 			alert("nike");
 		}
-		else if ($(jqElement).attr("menu-category-detail") === "brand-supreme") {
+		else if ($(jqElement).attr("brand") === "supreme") {
 			alert("supreme");
 		}
 	};

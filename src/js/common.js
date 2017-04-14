@@ -22,44 +22,37 @@ define([
 	}
 
 	function fixHeader() {
-		$(document).ready(function() {
+		if (window._ctx.pageId === "main") {
+			if ($(window).scrollTop() > 0) {
+				$("header").removeClass("header-transparent");
+			}
 			$(window).on("scroll", function(event) {
 				var currentPosition = $(this).scrollTop();
-				if(currentPosition > 0) {
+				if (currentPosition > 0) {
 					$("header").removeClass("header-transparent");
-					$("header").css({
-						position: "fixed",
-						top: "0",
-					});
+					$("header").css("position", "fixed");
 				}
-				else if(currentPosition <= 0) {
-					if (window._ctx.pageId === "index") {
-						$("header").css({
-							position: "fixed",
-							top: "0",
-						});
-					}
-					else {
-						$("header").css({
-							position: "relative",
-						});
-					}
+				else {
+					$("header").addClass("header-transparent");
 				}
 			});
-		});
-	}
-
-	function transparentHeader() {
-		if (window._ctx.pageId !== "index") {
+		}
+		else {
 			$("header").removeClass("header-transparent");
-			$("header").css("position", "relative");
+			$(window).on("scroll", function(event) {
+				var currentPosition = $(this).scrollTop();
+				if (currentPosition > 0) {
+					$("header").css({
+						"position": "fixed",
+						"top": "0",
+					});
+				}
+				else {
+					$("header").css("position", "relative");
+				}
+			});
 		}
-		else if (window._ctx.pageId === "index") {
-			$("header").css("position", "fixed");
-		}
-		fixHeader();
 	}
-
 
 
 	function searchAll() {
@@ -150,6 +143,10 @@ define([
 			position: "relative",
 		});
 	}
+
+
+
+
 	/* 팝업 공통화
 	* 사용방법
 	* 1. 팝업을 가져올 큰틀  <div class="popup-something">~~~</div>
@@ -319,16 +316,29 @@ define([
 	 *
 	 * */
 
+	/*선택한 menu-category에 active class 추가*/
 	function navigate(jqElement, naviHandler) {
 		$(".menu-category>ul>li").removeClass("active");
 		$(jqElement).addClass("active");
 		naviHandler(jqElement);
+		console.log(jqElement);
 	}
 
+	/* url 주소 넘겨서 받기 논 ajax*/
+	function getQuerystring(paraName) {
+		var tempURL = location.search.substring(1);
+		var tempUnitURL=tempURL.split("&");
+		for (var count=0; count<tempUnitURL.length; count++) {
+			var tempValueURL=tempUnitURL[count].split("=");
+			if (tempValueURL[0] === paraName) {
+				return tempValueURL[1];
+			}
+		}
+	}
 
 	initNavi();
 	scrollUp();
-	transparentHeader();
+	fixHeader();
 	writeToSell();
 	searchAll();
 	closeSearchBar();
@@ -340,6 +350,7 @@ define([
 	return ({
 		popUp: popUp,
 		navigate: navigate,
+		getQuerystring: getQuerystring,
 	});
 
 });

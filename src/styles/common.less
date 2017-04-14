@@ -85,6 +85,7 @@ header {
 }
 
 header.header-transparent {
+	position: fixed;
 	background-color: transparent;
 }
 
@@ -107,14 +108,24 @@ header.header-transparent {
 .search-icon {
 	display: inline-block;
 	right: 47.16px;
-	font-size: 22px;
+	font-size: 21px;
 	@abs-vmiddle();
 	@body-padding();
 }
 
 .search-icon.white {
 	color: @colorWhite;
-	border-right: solid 1px @colorDarkGray;
+}
+
+.search-icon:after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	right: 0px;
+	width: 1px;
+	height: 20px;
+	background-color: #fff;
+	opacity: .2;
 }
 
 .search-bar {
