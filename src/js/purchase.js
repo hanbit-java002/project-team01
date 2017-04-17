@@ -16,21 +16,70 @@ require([
 
 
 		if(!$(".trade-select").hasClass("selected")) {
-			$(".alert-text").show();
+			$(".alert-text1").show();
 			$(".trade-select.btn-direct").focus();
+
+			$(".selected-direct").hide();
+			$(".selected-delivery").hide();
+			$(".alert-text2").hide();
+			$(".alert-text3").hide();
 		}
 		else {
-			$(".alert-text").hide();
+			$(".alert-text1").hide();
+			$(".alert-text2").hide();
 		}
 
 
 		if($(".trade-select.btn-direct").hasClass("selected")) {
-			$(".trade-details").show();
+			if( $(".td-direct").text() === "불가") {
+				$(".alert-text2").text("해당 상품은 직접 거래가 불가합니다.").show();
+				$(".alert-text3").hide();
+
+				$(".selected-direct").hide();
+				$(".selected-delivery").hide();
+			}
+			else if( $(".td-escrow").text() === "불가") {
+				$(".alert-text2").text("해당 상품은 안심 거래가 불가합니다.").show();
+				$(".alert-text3").hide();
+
+				$(".selected-direct").show();
+				$(".selected-delivery").hide();
+			}
+			else {
+				$(".alert-text2").hide();
+				$(".alert-text3").show();
+
+				$(".selected-direct").show();
+				$(".selected-delivery").hide();
+			}
 		}
 		else if($(".trade-select.btn-delivery").hasClass("selected")) {
-			$(".trade-details").hide();
+			if( $(".td-delivery").text() === "불가") {
+				$(".alert-text2").text("해당 상품은 택배 거래가 불가합니다.").show();
+				$(".alert-text3").hide();
+
+				$(".selected-direct").hide();
+				$(".selected-delivery").hide();
+			}
+			else if( $(".td-escrow").text() === "불가") {
+				$(".alert-text2").text("해당 상품은 안심 거래가 불가합니다.").show();
+				$(".alert-text3").hide();
+
+				$(".selected-direct").hide();
+				$(".selected-delivery").show();
+			}
+			else {
+				$(".alert-text2").hide();
+				$(".alert-text3").show();
+
+				$(".selected-direct").hide();
+				$(".selected-delivery").show();
+			}
 		}
 
 	});
+
+
+
 
 });
