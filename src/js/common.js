@@ -3,10 +3,10 @@ define([
 ], function() {
 	function scrollUp() {
 		$(document).ready(function() {
-			var prePosition = 0;
+			var initPosition = 0;
 			$(window).on("scroll", function(event) {
-				var initPosition = $(this).scrollTop();
-				if(initPosition > prePosition) {
+				var currentPosition = $(this).scrollTop();
+				if(currentPosition > initPosition) {
 					$("#scroll-up-btn").show();
 				}
 				else {
@@ -57,14 +57,14 @@ define([
 
 	function searchAll() {
 		$(".search-icon.white").click(function() {
-			$(".search-bar").css("display", "block");
+			$(".all-search-bar").css("display", "block");
 			$(".header-menu").css("display", "none");
 		});
 	}
 
 	function closeSearchBar() {
-		$(".search-bar>.close-icon").click(function() {
-			$(".search-bar").css("display", "none");
+		$(".all-search-bar>.close-icon").click(function() {
+			$(".all-search-bar").css("display", "none");
 			$(".header-menu").css("display", "block");
 			$("#header-search-input").val();
 		});
@@ -341,6 +341,7 @@ define([
 			}
 		}
 	}
+
 
 	initNavi();
 	scrollUp();

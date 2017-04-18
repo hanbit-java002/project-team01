@@ -7,10 +7,10 @@
 <section class="menu-category">
 	<ul>
 		<li menu-category-detail="selling-all">
-			ALL
+			판매중
 		</li>
 		<li menu-category-detail="selling-processing">
-			진행중
+			거래중
 		</li>
 		<li menu-category-detail="selling-complete" class="active">
 			거래완료
@@ -23,9 +23,14 @@
 		<input type="text" class="form-control" placeholder="Search">
 		<i class="fa fa-search"></i>
 	</div>
-	<div class="purchase-contents">
+	<div class="purchase-contents selling-list">
 		<div class="product-count">
 			총 <span>15</span>건
+			<div class="all-selected">
+				<span>전체선택</span>
+				<div check-box id="all-selected" get-checked="false"></div>
+			</div>
+
 		</div>
 		<ul class="user-list">
 			<li class="product-list">
@@ -55,6 +60,17 @@
 					</li>
 				</ul>
 				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+				<!--만약 구매자가 있다면-->
+				<ul class="purchaser-info">
+					<li class="purchaser-title">
+						구매자
+					</li>
+					<li class="purchaser-name">
+						백수현
+					</li>
+				</ul>
+				<div class="list-selector" check-box name="chk" get-checked="false"></div>
+				<!--있다면-->
 			</li>
 			<li process="processing" class="product-list">
 				<div class="product-date">2017/04/02</div>
@@ -83,6 +99,17 @@
 					</li>
 				</ul>
 				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+				<!--만약 구매자가 있다면-->
+				<ul class="purchaser-info">
+					<li class="purchaser-title">
+						구매자
+					</li>
+					<li class="purchaser-name">
+						백수현
+					</li>
+				</ul>
+				<div class="list-selector" check-box name="chk" get-checked="false"></div>
+				<!--있다면-->
 			</li>
 			<li process="complete" class="product-list">
 				<div class="product-date">2017/04/02</div>
@@ -111,6 +138,17 @@
 					</li>
 				</ul>
 				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+				<!--만약 구매자가 있다면-->
+				<ul class="purchaser-info">
+					<li class="purchaser-title">
+						구매자
+					</li>
+					<li class="purchaser-name">
+						백수현
+					</li>
+				</ul>
+				<div class="list-selector" check-box name="chk" get-checked="false"></div>
+				<!--있다면-->
 			</li>
 			<li process="cancel" class="product-list">
 				<div class="product-date">2017/04/02</div>
@@ -139,6 +177,17 @@
 					</li>
 				</ul>
 				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+				<!--만약 구매자가 있다면-->
+				<ul class="purchaser-info">
+					<li class="purchaser-title">
+						구매자
+					</li>
+					<li class="purchaser-name">
+						백수현
+					</li>
+				</ul>
+				<div class="list-selector" check-box name="chk" get-checked="false"></div>
+				<!--있다면-->
 			</li>
 		</ul>
 	</div>

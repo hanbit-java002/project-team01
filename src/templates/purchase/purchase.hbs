@@ -38,8 +38,58 @@
 			<button class="trade-select left btn-direct">직접 거래</button>
 			<button class="trade-select right btn-delivery">택배 거래</button>
 		</div>
+
+
 		<div class="trade">
-			<div class='alert-text'>거래 수단을 선택해주세요.</div>
+			<section class="selected-direct">
+				<div class="input-style">
+					<div class="desc">이름</div>
+					<input class="input-default" id="input-name" type="text" value="백수현">
+				</div>
+
+				<div class="input-style">
+					<div class="desc">연락처</div>
+					<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
+				</div>
+
+				<div class="input-style">
+					<div class="desc">희망장소</div>
+					<input id="input-place" type="text" placeholder="ex : 신촌역 2번 출구">
+				</div>
+			</section>
+
+
+			<section class="selected-delivery">
+				<div class="input-style">
+					<div class="desc">이름</div>
+					<input class="input-default" id="input-name" type="text" value="백수현">
+				</div>
+
+				<div class="input-style">
+					<div class="desc">연락처</div>
+					<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
+				</div>
+
+				<div class="input-style">
+					<div class="desc">우편번호</div>
+					<input class="input-default" id="input-zip-code" type="text" value="078-234">
+				</div>
+
+				<div class="input-style">
+					<div class="desc">주소</div>
+					<input class="input-default" id="input-addr" type="text" value="서울시 양천구">
+				</div>
+			</section>
+
+
+
+			<div class='alert-text1'>거래 수단을 선택해주세요.</div>
+			<div class='alert-text2'>해당 상품은 안심 거래가 불가합니다.</div>
+
+			<div class="alert-text3"> 안심 거래를 원하면 체크
+				<input type="checkbox" id="checkbox-escrow" value="escrow">
+			</div>
+
 		</div>
 
 	</section>
