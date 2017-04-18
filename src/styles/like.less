@@ -2,14 +2,13 @@
 @import 'lib/product-list.less';
 
 /* -------product-list------- */
-.product-list {
+.like-list {
 	position: relative;
-	color: @colorFontMain;
 	border: none;
 	padding: 0;
 }
 
-.product-list>li {
+.like-list>li {
 	position: relative;
 	border-bottom: solid 1px #DDDDE0;
 	padding-top: 15px;
@@ -40,24 +39,16 @@
 
 .product.name {
 	width: 100%;
-	font-size: 17px;
-	font-weight: bold;
-	color: @colorMain;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	@product-name();
 }
 
 
 .product.price {
-	font-size: 17px;
-	font-weight: bold;
-	color: @colorPoint;
+	@price();
 }
 
 .product.price>i {
-	font-size: 15px;
-	color: @colorPoint;
+	@price-icon();
 }
 
 .product.size,
@@ -70,7 +61,7 @@
 .product.dealing-mode,
 .seller-info,
 .board-info {
-	font-size: 13px;
+	@list-inner-font();
 }
 
 @product-info-width: 37%;
@@ -106,10 +97,7 @@
 }
 
 .seller-info>.seller-rank {
-	color: #F1E3DD;
-	font-size: 14px;
-	padding-right: 7px;
-	vertical-align: middle;
+	@seller-rank();
 }
 
 .seller-info>.seller-name {
@@ -142,50 +130,12 @@
 	position: absolute;
 	top: 25%;
 	right: 0;
-	font-size: 45px;
-	color: @colorLike;
+	@like-heart();
 }
 
 .like.fa-heart[valid="false"] {
 	position: absolute;
 	top: 25%;
 	right: 0;
-	font-size: 40px;
-	color: @colorWhite;
-	border: solid 2px @colorFontSelect;
+	@like-heart();
 }
-
-.more-list {
-	padding-top: 15px;
-	width: 100%;
-	color: @colorMain;
-	font-size: 17px;
-	font-weight: bold;
-	text-align: center;
-}
-
-.more-list>span {
-	padding-left: 7px;
-	font-size: 25px;
-	font-weight: bold;
-	vertical-align: middle;
-}
-
-.disabled-list {
-	display: none;
-}
-
-.disabled-list[valid="true"] {
-	display: block;
-	position: absolute;
-	top: -1px;
-	right: -15px;
-	padding-top: 20%;
-	width: 360px;
-	height: 101%;
-	color: #FFFFFF;
-	font-size: 40px;
-	text-align: center;
-	background-color: rgba(0,0,0,0.3);
-}
-
