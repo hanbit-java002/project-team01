@@ -90,32 +90,32 @@
 	display: block;
 }
 
-[process="cancel"]::before,
+//-------------disabled-list-------------//
+[process="blind"]::before,
 [process="complete"]::before,
 [process="processing"]:before {
 	content: "";
 	position: absolute;
-	top: 0;
+	top: -1px;
 	left: -15px;
-	bottom: 0;
+	bottom: -1px;
 	right: -15px;
-
-	opacity: 0.6;
+	opacity: 0.3;
 }
 
 
 [process="complete"]::before{
-	background-color: @colorPoint;
+	background-color: @colorDarkBrown;
 }
 
 [process="processing"]::before {
-	background-color: darkseagreen;
+	background-color: @colorPoint;
 }
-[process="cancel"]::before {
-	background-color: coral;
+[process="blind"]::before {
+	background-color: @colorMain;
 }
 
-[process="cancel"]::after,
+[process="blind"]::after,
 [process="complete"]::after,
 [process="processing"]::after {
 	position: absolute;
@@ -130,9 +130,9 @@
 }
 
 [process="complete"]::after {
-	content: "판매완료";
+	content: "판매 완료";
 }
 
-[process="cancel"]::after {
-	content: "판매 취소"
+[process="blind"]::after {
+	content: "블라인드"
 }

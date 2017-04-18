@@ -58,3 +58,45 @@
 	background-size: 18px;
 	cursor: pointer;
 };
+
+@text-overflow : {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+};
+
+@product-name : {
+	color: @colorMain;
+	font-size: 17px;
+	font-weight: bold;
+	@text-overflow();
+};
+
+@price : {
+	font-size: 17px;
+	font-weight: bold;
+	color: #76627D;
+};
+
+@price-icon : {
+	font-size: 15px;
+	color: #76627D;
+};
+
+// product-list 내부 detail-info 폰트사이즈 및 color
+@list-inner-font : {
+	font-size: 13px;
+	color: @colorFontMain;
+};
+
+@like-heart : {
+	font-size: 45px;
+	color: #F1E3DD;
+};
+
+@seller-rank : {
+	color: @colorLike;
+	font-size: 14px;
+	padding-right: 7px;
+	vertical-align: middle;
+};

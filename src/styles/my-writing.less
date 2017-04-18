@@ -1,0 +1,81 @@
+@import 'common.less';
+
+@bulletins-li-width: 48%;
+@bulletins-li-padding: 7px;
+
+.my-writing>.bulletins,
+.my-writing>.comment {
+	padding-bottom: 15px;
+	border-bottom: solid 1px @colorLineColor;
+}
+
+.my-writing>section.comment {
+	display: none;
+}
+
+//-------------bulletins-------------//
+.bulletins li {
+	display: inline-block;
+	width: @bulletins-li-width;
+	padding-top: 15px;
+}
+
+.bulletins li:nth-child(2n) {
+	margin-left: calc(100% - (@bulletins-li-width*2));
+}
+
+.bulletins li>.product-img {
+	width: 100%;
+	padding-top: 100%;
+	background-size: 100% 100%;
+}
+
+.bulletins li>.bulletins-title {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: @bulletins-li-padding;
+	margin-bottom: @bulletins-li-padding;
+	border-bottom: solid 1px #F2F2F2;
+	@product-name();
+}
+
+.bulletins .board-info>div {
+	display: inline-block;
+	@list-inner-font();
+}
+
+.bulletins .board-info>.comment,
+.bulletins .board-info>.hits,
+.bulletins .board-info>.like {
+	width: calc(~"100% / 3");
+}
+
+.bulletins .board-info>.comment {
+	text-align: left;
+}
+
+.bulletins .board-info>.hits {
+	text-align: center;
+}
+
+.bulletins .board-info>.like {
+	text-align: right;
+}
+
+.bulletins .board-info>.reporting-date{
+	display: block;
+	padding-top: @bulletins-li-padding;
+}
+
+//-------------comments-------------//
+
+.comment tr {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	@list-inner-font();
+}
+
+.comment thead {
+	background-color: @colorLineColor;
+	text-align: center;
+}

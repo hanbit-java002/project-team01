@@ -13,7 +13,7 @@
 			총 <span>15</span>건
 		</div>
 	</div>
-	<ul class="product-list">
+	<ul class="like-list">
 		<li product-id="#">
 			<div class="product-info">
 				<img class="product-img" src="{{root}}/img/shoes.jpg">
@@ -65,11 +65,8 @@
 				</div>
 			</div>
 			<div class="like fa fa-heart" valid="true"></div>
-			<div class="sold-out disabled-list" valid="false">
-				판매 완료
-			</div>
 		</li>
-		<li product-id="#">
+		<li product-id="#" process="complete">
 			<div class="product-info">
 				<img class="product-img" src="{{root}}/img/shoes.jpg">
 				<div class="detail-info">
@@ -120,14 +117,11 @@
 				</div>
 			</div>
 			<div class="like fa fa-heart" valid="true"></div>
-			<div class="sold-out disabled-list" valid="true">
-				판매 완료
-			</div>
 		</li>
 	</ul>
-	<div class="more-list">
+	<section class="more-list">
 		More
 		<span class="fa fa-angle-down"></span>
-	</div>
+	</section>
 </section>
 {{>footer jsName="like"}}
