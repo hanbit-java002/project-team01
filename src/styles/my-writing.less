@@ -3,8 +3,7 @@
 @bulletins-li-width: 48%;
 @bulletins-li-padding: 7px;
 
-.my-writing>.bulletins,
-.my-writing>.comment {
+.my-writing>.bulletins {
 	padding-bottom: 15px;
 	border-bottom: solid 1px @colorLineColor;
 }
@@ -69,13 +68,14 @@
 
 //-------------comments-------------//
 
-.my-writing>section.comment {
-	padding-bottom: 0;
-}
-
 .comment td,
 .comment th {
 	padding: 5px 0;
+}
+
+.comment>table {
+	border-bottom: solid 1px #DDDDE0;
+	margin-bottom: 20px;
 }
 
 .comment tr {
