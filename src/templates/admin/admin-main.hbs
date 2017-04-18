@@ -1,11 +1,15 @@
 {{set root=".."}}
 {{>header title="관리자페이지" cssName="admin-main"}}
 
+<div class="admin-header">
+	<div>Admin</div>
+</div>
+
 <nav class="admin-menu">
 	<ul>
-		<li class="member">회원 관리<i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
-		<li class="sales">판매 관리<i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
-		<li class="category">카테고리 관리<i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+		<li menu="admin-member">회원 관리<i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+		<li menu="admin-product">판매 관리<i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+		<li menu="admin-category">카테고리 관리<i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
 	</ul>
 </nav>
 

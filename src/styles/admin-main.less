@@ -1,8 +1,18 @@
 @import 'common.less';
 
-
-.admin-menu {
-	margin-top: 10px;
+.admin-header {
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 50px;
+}
+.admin-header>div {
+	position: absolute;
+	left: 120px;
+	color: rgb(241, 227, 221);
 }
 
 .admin-menu>ul>li {
@@ -13,6 +23,7 @@
 	text-align: center;
 	font-size: 22px;
 	font-weight: bold;
+	border-bottom: solid 1px @colorLineColor;
 }
 
 .fa-angle-double-right {
@@ -21,4 +32,20 @@
 	margin-right: 15px;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+header {
+	background-color: @colorPoint;
+}
+
+footer {
+	display: none;
+}
+
+.search-icon {
+	display: none;
+}
+
+.menu-icon {
+	display: none;
 }

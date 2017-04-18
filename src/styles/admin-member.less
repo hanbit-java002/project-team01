@@ -1,0 +1,185 @@
+@import 'common.less';
+
+header {
+	background-color: @colorPoint;
+}
+
+footer {
+	display: none;
+}
+
+.admin-header {
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 50px;
+}
+.admin-header>div {
+	position: absolute;
+	left: 120px;
+	color: rgb(241, 227, 221);
+}
+.admin-header>a>i {
+	position: absolute;
+	top: 11px;
+	right: 10px;
+	width: 33px;
+	height: 33px;
+	color: @colorWhite;
+}
+
+.search-icon {
+	display: none;
+}
+
+.menu-icon {
+	display: none;
+}
+
+
+.member-container {
+	position: relative;
+	padding:15px;
+}
+
+.form-control::-webkit-input-placeholder { color: #CCC; }
+
+.form-control {
+	border-right: none;
+	font-weight: bold;
+}
+
+.input-group-addon {
+	border-left: none;
+	background-color: transparent;
+}
+.heading-bar {
+	position: relative;
+	width: 100%;
+	text-align: center;
+	height: 50px;
+	font-size: 22px;
+	font-weight: bold;
+	color: @colorPoint;
+  	line-height: 50px;
+	border-bottom: solid 1px #DDDDE0;
+}
+
+.heading-bar>a {
+	color: @colorPoint;
+}
+
+.fa-fast-backward {
+	position: absolute;
+	left: 20px;
+	line-height: 50px;
+}
+
+.btn-group {
+	width: 100%;
+}
+
+.btn-default {
+	position: relative;
+	width: 100%;
+	text-align: left;
+	background-color: transparent;
+	color: #CCC;
+	font-weight: bold;
+}
+.caret {
+	position: absolute;
+	color: #5e5e5e;
+	font-weight: bold;
+	font-size: 22px;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.dropdown-menu {
+	width: 100%;
+	color: @colorFontMain;
+}
+
+.member-list-heading {
+	position: relative;
+	color: @colorPoint;
+	margin: 20px 0 10px 0;
+}
+.heading-list {
+	position: relative;
+	line-height: 100%;
+	left: 5px;
+	border-left: solid 4px @colorPoint;
+	padding-left: 5px;
+	font-weight: bold;
+}
+
+.table {
+	margin-bottom: 10px;
+}
+
+.heading-line-up {
+	position: absolute;
+	right: 5px;
+	top: 0;
+}
+
+.heading-line-up>div {
+	display: inline-block;
+	padding: 0 5px;
+	font-size: 14px;
+	color: @colorPoint;
+}
+
+.line-up-sell {
+	border-right: solid 1px @colorLineColor;
+	line-height: 100%;
+}
+thead>tr {
+	border: solid 1px #DDDDE0;
+	background-color: #CCCCCC;
+}
+
+th {
+	border: solid 1px #DDDDE0;
+	text-align: center;
+}
+
+td {
+	border: solid 1px #DDDDE0;
+	text-align: center;
+}
+
+nav {
+	text-align: center;
+}
+
+.pagination {
+	margin: 0;
+}
+
+.pagination>li>a {
+	border: none;
+	color: black;
+}
+
+.pagination>li>a>span {
+	font-weight: bold;
+}
+.btn-admin-add {
+	width: 100%;
+	height: 40px;
+	background-color: @colorPoint;
+	border-color: transparent;
+	font-size: 22px;
+	font-weight: bold;
+}
+.btn-success:hover {
+	background-color: gray;
+	border: gray;
+}
