@@ -91,26 +91,28 @@
 
 .td-information {
 	display: block;
+	width: 100%;
 }
 .td-information>.td-info {
-	display: block;
+	display: inline-block;
+	width: 23%;
 	color: @colorNavy;
 	font-size: 14px;
 	line-height: 1.7;
-
 }
-.td-information>.td-info>.border-left {
+
+.td-information>span {
+	display: inline-block;
+	width: 77%;
+	color: @colorNavy;
+}
+.td-information>span>.border-left {
 	display: inline;
 	font-size: 11px;
 	border-left: solid 1px @colorDarkGray;
 	margin-left: 3%;
+	margin-right: 5%;
 }
-.td-information>.td-info>span {
-	display: inline-block;
-	margin-left: 4%;
-	color: @colorNavy;
-}
-
 
 
 .button-select {
