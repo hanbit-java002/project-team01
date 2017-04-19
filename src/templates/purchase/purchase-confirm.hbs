@@ -1,0 +1,59 @@
+{{set root=".."}}
+{{>header title="구매자 주문 완료" cssName="purchase-confirm"}}
+
+
+<div class="purchase-confm-contents">
+
+	<section class="product-info">
+		<div class="info-title">상품 정보</div>
+
+		<div class="pd-information">
+			<div class="image">
+				<div class="pd-image"></div>
+			</div>
+			<div class="info">
+				<div class="pd-name">에어 조던 14 Black</div>
+				<div class="pd-price">$ 200,000</div>
+				<div class="pd-info">size  <span class="pd-size">265mm</span></div>
+				<div class="pd-info">Quality <span class="pd-quality">새상품</span></div>
+			</div>
+		</div>
+	</section>
+
+	<hr class="line">
+
+
+	<section class="trade-info">
+		<div class="info-title">거래 정보</div>
+		<div class="td-information">
+			<div class="td-info">거래 날짜 </div> <span class="td-date"> <div class="border-left"></div>2017/04/06</span>
+			<div class="td-info">직접 거래 </div> <span class="td-direct"> <div class="border-left"></div>목동역,오목교역,18시 이후</span>
+			<div class="td-info">택배 거래 </div> <span class="td-delivery"> <div class="border-left"></div>택배비 착불</span>
+			<div class="td-info">안심 거래 </div> <span class="td-escrow"> <div class="border-left"></div>가능</span>
+		</div>
+		<hr class="line">
+
+		<div class="info-title">판매자 정보</div>
+		<div class="td-information">
+			<div class="td-info">이름</div>  <span class="seller-name"><div class="border-left"></div>백수현</span>
+			<div class="td-info">회원 등급</div> <span class="seller-class"><div class="border-left"></div>일반 회원</span>
+			<div class="td-info">연락처</div> <span class="seller-phone-num"><div class="border-left"></div>010-2371-6848</span>
+			<div class="td-info">주소</div> <span class="seller-addr"><div class="border-left"></div>서울시 양천구</span>
+			<div class="td-info">입금 계좌</div>  <span class="seller-bank"><div class="border-left"></div>1002-950-000000 (우리은행)</span>
+		</div>
+		<hr class="line">
+
+		<div class="info-title">구매자 정보</div>
+		<div class="td-information">
+			<div class="td-info">이름 </div> <span class="consumer-name"> <div class="border-left"></div> 백수현</span>
+			<div class="td-info">연락처 </div> <span class="consumer-phone-num"> <div class="border-left"></div> 010-2371-6848</span>
+			<div class="td-info">주소 </div> <span class="consumer-addr"> <div class="border-left"></div> 서울시 양천구</span>
+		</div>
+	</section>
+
+	<hr class="line">
+	<button class="btn-bottom btn-escrow">안심거래 하러 가기</button>
+	<button class="btn-bottom btn-ok">확인</button>
+</div>
+
+{{>footer jsName="purchase-confirm"}}
