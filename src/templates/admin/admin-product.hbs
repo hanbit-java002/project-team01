@@ -1,10 +1,451 @@
 {{set root=".."}}
-{{>header title="관리자페이지" cssName="admin-product"}}
-<div class="admin-header">
-	<div>Admin</div><a href="http://localhost:85/admin/admin-main.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+{{>admin-header title="판매 관리" cssName="admin-product"}}
+<section class="title my-writing-title">
+	<span>판매 관리</span>
+</section>
+<section class="menu-category">
+	<ul>
+		<li menu-category-detail="complete" class="active">
+			판매 완료
+		</li>
+		<li menu-category-detail="processing">
+			거래 중
+		</li>
+		<li menu-category-detail="complain">
+			신고 리스트
+		</li>
+	</ul>
+</section>
+<section class="contents-wrapper admin-product">
+	<div class="list-search-box">
+		<input type="text" class="form-control" placeholder="Search">
+		<i class="fa fa-search"></i>
+	</div>
+	<div class="admin-product-contents">
+		<div class="product-count">
+			총 <span>15</span>건
+			<div class="all-selected">
+				<span>전체 선택</span>
+				<div check-box="" id="all-selected" get-checked="false"></div>
+			</div>
+		</div>
+	</div>
+	<section class="complete">
+		<ul class="list product-list">
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+			</li>
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+			</li>
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+			</li>
+		</ul>
+		<section class="more-list">
+			More
+			<span class="fa fa-angle-down"></span>
+		</section>
+	</section>
+	<section class="processing">
+		<ul class="list product-list">
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+				<div class="list-selector" check-box="" name="chk" get-checked="false"></div>
+			</li>
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+				<div class="list-selector" check-box="" name="chk" get-checked="false"></div>
+			</li>
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+				<div class="list-selector" check-box="" name="chk" get-checked="false"></div>
+			</li>
+		</ul>
+		<section class="more-list">
+			More
+			<span class="fa fa-angle-down"></span>
+		</section>
+		<section class="resell-btn sell-complete">
+			판매 완료
+		</section>
+	</section>
+	<section class="complain">
+		<ul class="list product-list">
+			<li product-id="#">
+				<div class="product-info">
+					<img class="product-img" src="{{root}}/img/shoes.jpg">
+					<div class="detail-info">
+						<div class="product name">
+							에어 조던 14 Black Pink New
+						</div>
+						<div class="product price">
+							<i class="fa fa-won"></i>
+							200,000
+						</div>
+						<div class="product size">
+							235mm
+						</div>
+						<div class="product quality">
+							새제품
+						</div>
+						<ul class="product dealing-mode">
+							<li class="dealing-mode directly">
+								직접거래
+							</li>
+							<li class="dealing-mode delivery">
+								택배거래
+							</li>
+							<li class="dealing-mode safety">
+								안심거래
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="seller-info">
+					<div class="seller-rank fa fa-star"></div>
+					<div class="seller-name">
+						수현이당당다랑
+					</div>
+				</div>
+				<div class="board-info">
+					<div class="comment">
+						<span class="fa fa-commenting-o"></span>
+						10
+					</div>
+					<div class="hits">
+						<span class="fa fa-eye"></span>
+						1,000
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+				</div>
+				<div class="list-selector" check-box="" name="chk" get-checked="false"></div>
+			</li>
+		</ul>
+		<section class="more-list">
+			More
+			<span class="fa fa-angle-down"></span>
+		</section>
+		<section class="resell-btn list-blind">
+			Blind <i class="fa fa-eye-slash"></i>
+		</section>
+	</section>
+</section>
+<div class="popup-layer selling-complete">
+	<div class="popup-text-area">
+		<div class="popup-text-body">
+			<div class="text1">
+				판매를 완료하시겠습니까?
+			</div>
+		</div>
+	</div>
+	<div class="popup-btn-area">
+		<div class="popup-btn btn-cancel">취소</div>
+		<div class="popup-btn btn-ok">확인</div>
+	</div>
 </div>
-
-<div class="heading-bar"><a href="http://localhost:85/admin/admin-main.html"><i class="fa fa-fast-backward" aria-hidden="true"></i>판매 관리</a></div>
-
-
-{{>footer jsName="admin-main"}}
+<div class="popup-layer list-blind">
+	<div class="popup-text-area">
+		<div class="popup-text-body">
+			<div class="text1">
+				해당 글을 블라인드 처리하시겠습니까?
+			</div>
+		</div>
+	</div>
+	<div class="popup-btn-area">
+		<div class="popup-btn btn-cancel">취소</div>
+		<div class="popup-btn btn-ok">확인</div>
+	</div>
+</div>
+{{>footer jsName="admin-product"}}

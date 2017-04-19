@@ -1,0 +1,64 @@
+@import 'common.less';
+
+
+
+
+//---------------팝업창---------------//
+.popup-layer {
+	display: none;
+	position: fixed;
+	top: 23%;
+	left: 4%;
+	width: 92%;
+	height: 185px;
+	color: @colorMain;
+	background-color: @colorWhite;
+	z-index: 40;
+}
+
+@popup-text-area-height: 78%;
+
+.popup-text-area {
+	position: relative;
+	width: 100%;
+	height: @popup-text-area-height;
+}
+
+.popup-text-body {
+	width: 100%;
+	@abs-vmiddle();
+}
+
+.popup-text-body>div {
+	text-align: center;
+}
+
+.popup-text-body>.text1 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.popup-text-body>.text2 {
+	padding-top: 15px;
+	font-size: 14px;
+}
+
+.popup-btn-area {
+	height: 100% - @popup-text-area-height;
+}
+
+.popup-btn-area>.popup-btn {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	color: @colorWhite;
+	text-align: center;
+	line-height: 260%;
+}
+
+.popup-btn-area>.popup-btn.btn-cancel {
+	background-color: @colorDarkGray;
+}
+.popup-btn-area>.popup-btn.btn-ok {
+	background-color: @colorMain;
+}

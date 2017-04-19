@@ -30,7 +30,6 @@ define([
 				var currentPosition = $(this).scrollTop();
 				if (currentPosition > 0) {
 					$("header").removeClass("header-transparent");
-					$("header").css("position", "fixed");
 				}
 				else {
 					$("header").addClass("header-transparent");
@@ -39,18 +38,6 @@ define([
 		}
 		else {
 			$("header").removeClass("header-transparent");
-			$(window).on("scroll", function(event) {
-				var currentPosition = $(this).scrollTop();
-				if (currentPosition > 0) {
-					$("header").css({
-						"position": "fixed",
-						"top": "0",
-					});
-				}
-				else {
-					$("header").css("position", "relative");
-				}
-			});
 		}
 	}
 
@@ -201,6 +188,7 @@ define([
 
 	function popUp(className, direction) {
 		$(".dark-layer").css("display", "block");
+		$("body").css("overflow", "hidden");
 		var height=$("."+className).outerHeight();
 		var width=$("."+className).outerWidth();
 		var windowHeight= $(window).height();
@@ -341,6 +329,28 @@ define([
 		}
 	}
 
+	/* list selector */
+	function listSelector() {
+		$("[check-box]").on("click", function () {
+			if ($(this).attr("get-checked") == "true") {
+				$(this).attr("get-checked", "false");
+			}
+			else if ($(this).attr("get-checked") == "false") {
+				$(this).attr("get-checked", "true");
+			}
+		});
+
+		$("#all-selected").on("click", function () {
+			if ($(this).attr("get-checked") == "true") {
+				$("[name='chk']").attr("get-checked", "true");
+			}
+			else if ($(this).attr("get-checked") == "false") {
+				$("[name='chk']").attr("get-checked", "false");
+			}
+
+		});
+	}
+
 
 	initNavi();
 	scrollUp();
@@ -359,6 +369,7 @@ define([
 		popUp: popUp,
 		navigate: navigate,
 		getQuerystring: getQuerystring,
+		listSelector: listSelector,
 	});
 
 });

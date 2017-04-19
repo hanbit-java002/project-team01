@@ -1,0 +1,89 @@
+@import 'common.less';
+
+
+.product-info .product-img {
+	display: inline-block;
+	margin-right: 13px;
+	width: 33%;
+	height: 104px;
+	vertical-align: top;
+}
+
+.info-body {
+	position: relative;
+	padding-bottom: 10px;
+	border-bottom: solid 1px @colorLineColor;
+}
+
+.product-info .detail-info {
+	display: inline-block;
+	width: 62%;
+}
+
+.detail-info {
+	padding-bottom: 10px;
+	border-bottom: solid 1px @colorLineColor;
+}
+
+.product-info .detail-info {
+	padding-bottom: 0px;
+	border-bottom: none;
+}
+
+.detail-info>div {
+	padding-bottom: 5px;
+	@list-inner-font();
+}
+
+.detail-info>div:last-child {
+	padding-bottom: 0;
+}
+
+.product.name {
+	width: 100%;
+	@product-name();
+}
+
+.product.price {
+	@price();
+}
+
+.product.price>i {
+	@price-icon();
+}
+
+.info-body .fa-angle-double-right {
+	position: absolute;
+	top: 30%;
+	right: 0;
+	color: #76627D;
+	font-size: 30px;
+}
+
+.info-category,
+.product>span,
+div.trade-info>span {
+	display: inline-block;
+}
+
+.info-category {
+	width: 70px;
+}
+
+.trade-info:last-child {
+	padding-bottom: 0px;
+}
+
+.product>.info-category {
+	width: 52px;
+}
+
+.product>span:before,
+div.trade-info>span:before,
+div.seller-info>span:before,
+div.purchaser-info>span:before{
+	margin-right: 15px;
+	font-size: 11px;
+	border-left: solid 1px @colorLineColor;
+	content: '';
+}

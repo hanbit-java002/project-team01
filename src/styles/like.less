@@ -2,29 +2,29 @@
 @import 'lib/product-list.less';
 
 /* -------product-list------- */
-.like-list {
+.contents-wrapper ul.list {
 	position: relative;
 	border: none;
 	padding: 0;
 }
 
-.like-list>li {
+.contents-wrapper ul.list>li {
 	position: relative;
 	border-bottom: solid 1px #DDDDE0;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
-.product-info {
+div.product-info {
 	padding-bottom: 15px;
 	border-bottom: solid 1px #F2F2F2;
 }
 
-.product-info>.product-img {
+.product-info .product-img {
 	display: inline-block;
 	margin-right: 13px;
-	width: 34%;
-	height: 112px;
+	width: 33%;
+	height: 104px;
 	vertical-align: top;
 }
 
@@ -34,11 +34,11 @@
 }
 
 .detail-info>div {
-	padding-bottom: 9px;
+	padding-bottom: 5px;
 }
 
 .product.name {
-	width: 100%;
+	width: 80%;
 	@product-name();
 }
 
@@ -80,20 +80,31 @@
 	width: 26%;
 }
 
-@seller-info-width: 35%;
-
 .seller-info {
-	width: @seller-info-width;
+	padding-bottom: 10px;
+	border-bottom: solid 1px @colorWhiteGray;
 }
 
 .seller-info,
 .board-info {
-	display: inline-block;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 
 .seller-info>div {
 	display: inline-block;
+}
+
+.seller-info>.info-label {
+	width: 33%;
+	font-weight: bold;
+	text-align: center;
+}
+
+division {
+	margin-right: 15px;
+	font-size: 11px;
+	border-left: solid 1px #DDDDE0;
+	content: '';
 }
 
 .seller-info>.seller-rank {
@@ -102,40 +113,35 @@
 
 .seller-info>.seller-name {
 	width: 92px;
-	padding-right: 15px;
-	border-right: solid 1px #F2F2F2;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	vertical-align: middle;
 }
 
-.board-info {
-	width: calc(100% - @seller-info-width);
-	padding-left: 15px;
-}
-
-.board-info>.comment,
-.board-info>.hits,
-.board-info>.reporting-date {
+.board-info>div {
+	width: 19%;
 	display: inline-block;
-	padding-right: 12px;
+	padding-right: 13px;
 }
 
-.board-info>.reporting-date {
-	padding-right: 0;
+.board-info>div.hits {
+	width: 21%;
+}
+
+.board-info>div.complain {
+	width: 17%;
+}
+
+.board-info>div.reporting-date {
+	width: 24%;
+	padding-right: 0px;
 }
 
 .like.fa-heart[valid="true"] {
-	position: absolute;
-	top: 25%;
-	right: 0;
 	@like-heart();
 }
 
-.like.fa-heart[valid="false"] {
-	position: absolute;
-	top: 25%;
-	right: 0;
+.like.fa-heart-o[valid="false"] {
 	@like-heart();
 }

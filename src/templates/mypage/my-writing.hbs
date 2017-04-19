@@ -184,34 +184,47 @@
 				</tr>
 			</tbody>
 		</table>
-		<nav>
-			<ul class="pagination">
-				<li>
-					<a href="#" aria-label="first-page">
-						<span aria-hidden="true" class="fa fa-angle-double-left"></span>
-					</a>
-				</li>
-				<li>
-					<a href="#" aria-label="Previous">
-						<span aria-hidden="true" class="fa fa-angle-double-right">&lt;</span>
-					</a>
-				</li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li>
-					<a href="#" aria-label="Next">
-						<span aria-hidden="true">&gt;</span>
-					</a>
-				</li>
-				<li>
-					<a href="#" aria-label="last-page">
-						<span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
+		<ul class="paging">
+			<li page="firstPage">
+				<a href='#'>
+					<i class="fa fa-angle-double-left"></i>
+				</a>
+			<li page="(startPage - 1)">
+				<a href="#">
+					<i class="fa fa-angle-left"></i>
+				</a>
+			</li>
+			<li page="i" class="active">
+				<a href="#">
+					1
+				</a>
+			</li>
+			<li page="i">
+				<a href="#">
+					2
+				</a>
+			</li>
+			<li page="i">
+				<a href="#">
+					3
+				</a>
+			</li>
+			<li page="i">
+				<a href="#">
+					4
+				</a>
+			</li>
+			<li page="(endPage + 1)">
+				<a href="#">
+					<i class="fa fa-angle-right"></i>
+				</a>
+			</li>
+			<li page="lastPage">
+				<a href="#">
+					<i class="fa fa-angle-double-right"></i>
+				</a>
+			</li>
+		</ul>
 	</section>
 </section>
 {{>footer jsName="my-writing"}}

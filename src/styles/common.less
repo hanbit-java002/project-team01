@@ -28,21 +28,27 @@ a {
 	outline: none !important;
 }
 
+a:focus, a:hover {
+	color: initial;
+}
+
 section.title {
+	padding-top: 5px;
+	padding-bottom: 5px;
 	text-align: center;
 	border-bottom: solid 1px @colorLineColor;
-
 }
 .title>span {
 	font-weight: bold;
 	color: @colorMain;
-	font-size: 23px;
+	font-size: 21px;
 	line-height: 2;
 }
 
 .resell-container {
 	margin-bottom: 30px;
-	min-height: calc(~"100% - 204px");
+	padding-top: 50px;
+	min-height: calc(~"100% - 154px");
 }
 
 .contents-wrapper {
@@ -55,7 +61,7 @@ section.title {
 	position: fixed;
 	bottom: 15px;
 	right: 15px;
-	color: #DDDDE0;
+	color: @colorFontSelect;
 	background-color: transparent;
 	font-size: 45px;
 	z-index: 20;
@@ -166,21 +172,128 @@ nav {
 	border: gray;
 }
 
+
+//-------------paging-------------//
+.paging {
+	text-align: center;
+}
+
+.paging>li {
+	display: inline-block;
+	padding: 0 2px;
+	margin-left: 13px;
+}
+
+.paging>li:first-child {
+	margin-left: 0px;
+}
+
+.paging>li.active {
+	font-weight: bold;
+	border-bottom: solid 1px @colorDarkGray;
+}
+
+//-------------product-info-------------//
+.info-title {
+	display: block;
+	font-size: 15px;
+	color: @colorFontMain;
+	font-weight: bold;
+	border-bottom: solid 1px @colorLineColor;
+	padding-bottom: 1%;
+	margin-top: 22px;
+	margin-bottom: 10px;
+}
+
+//-------------btn-style-------------//
+.resell-btn {
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #FFFFFF;
+	background-color: #50546D;
+	font-size: 18px;
+	text-align: center;
+}
+
+.half {
+	display: inline-block;
+	width: 48%;
+}
+
+.resell-btn>i {
+	font-size: 21px;
+	text-align: center;
+	color: @colorWhite;
+}
+
+.half.resell-btn.cancel {
+	margin-right: 4%;
+	background-color: @colorDarkGray;
+}
+
+//----------list-selector / check-box----------//
+@check-box-size: 22px;
+
+.all-selected {
+	float: right;
+}
+
+.all-selected>span {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.all-selected>span,
+.all-selected>div {
+	vertical-align: middle;
+	display: inline-block;
+}
+.all-selected>div {
+	margin-left: 5px;
+}
+
+.list-selector {
+	position: absolute;
+	top: 20px;
+	right: 0;
+}
+
+section.admin-product .all-selected {
+	display: none;
+}
+
+[check-box] {
+	position: relative;
+	width: @check-box-size;
+	height: @check-box-size;
+	border-radius: 3px;
+	border: solid 2px @colorMain;
+	cursor: pointer;
+	padding: 3px;
+}
+[check-box][get-checked="true"] {
+	content: url("../img/checker-white.png");
+	background-color: @colorMain;
+
+}
+
 //-------------header-------------//
 @header-height: 50px;
 
 header {
-	position: relative;
+	position: fixed;
 	width: 100%;
 	height: @header-height;
-	background-color: #50546D;
+	background-color: @colorMain;
 	@body-padding();
 	z-index: 10;
+	transition: all 0.3s
 }
 
 header.header-transparent {
-	position: fixed;
 	background-color: transparent;
+	transition: all 0.3s
 }
 
 .logo {
@@ -258,7 +371,8 @@ header.header-transparent {
 	color: @colorMain;
 }
 
-.menu-icon {
+.menu-icon,
+.admin-header .fa-home {
 	display: inline-block;
 	right: 0px;
 	font-size: 22px;
@@ -379,21 +493,28 @@ header.header-transparent {
 }
 
 .log-out .text,
-.write-btn .text {
+.write-btn .text,
+.admin-btn .text {
 	color: @colorWhite !important;
 }
 
-.main-menu>.write-btn,
-.sub-menu>.write-btn {
+.main-menu .admin-btn,
+.sub-menu .admin-btn {
+	background-color: @colorPoint;
+}
+
+.main-menu .write-btn,
+.sub-menu .write-btn {
 	background-color: @colorMain;
 }
 
 .menu-icon.fa-power-off,
-.menu-icon.glyphicon-pencil {
+.menu-icon.glyphicon-pencil,
+.menu-icon.fa-gears {
 	color: @colorWhite !important;
 }
-/* 카테고리 네비게션 공통화*/
 
+/* 카테고리 네비게션 공통화*/
 .menu-category>ul {
 	width: 100%;
 }
@@ -430,6 +551,15 @@ header.header-transparent {
 }
 .more>span {
 	margin-right: 10px;
+}
+
+//-------------admin-header-------------//
+.admin-header .logo span {
+	color: @colorLike;
+}
+
+.admin-header .fa-home {
+	font-size: 30px;
 }
 
 //-------------footer-------------//

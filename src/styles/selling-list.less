@@ -1,25 +1,6 @@
 @import 'common.less';
 @import 'lib/product-list.less';
 
-/* 체크박스 설정*/
-[check-box] {
-	position: relative;
-	width: 20px;
-	height: 20px;
-	border-radius: 3px;
-	border: 1px solid @colorLineColor;
-	box-shadow: 1px 1px 1px #888888;
-	cursor: pointer;
-	padding: 2px;
-}
-[check-box][get-checked="true"] {
-	content: url("../img/checker-white.png");
-	background-color: @colorPoint;
-
-}
-
-/* 체크박스 여기까지*/
-
 .product-detail-view>li {
 	display: inline-block;
 	width: calc(100%/3);
@@ -33,24 +14,7 @@
 .product-detail-view>span {
 	margin-left: 5px;
 }
-.all-selected {
-	float: right;
-}
-.all-selected>span,
-.all-selected>div {
-	vertical-align: middle;
-	display: inline-block;
-}
-.all-selected>div {
-	margin-left: 5px;
-}
-.list-selector {
-	position: absolute;
-	width: 30px;
-	height: 30px;
-	right:5px;
-	top: 5px;
-}
+
 .purchaser-title {
 	font-weight: bold;
 }
@@ -63,4 +27,3 @@
 .selling-list .product-detail-arrow {
 	top: 40%;
 }
-
