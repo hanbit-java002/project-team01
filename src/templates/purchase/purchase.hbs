@@ -1,102 +1,174 @@
 {{set root=".."}}
 {{>header title="상품 구매" cssName="purchase"}}
 
-<div class="title">상품 구매</div>
-
-<div class="purchase-contents">
-
-	<section class="product-info">
-		<div class="info-title">상품 정보</div>
-
-		<div class="pd-information">
-			<div class="image">
-				<div class="pd-image"></div>
+<section class="title purchase-title">
+	<span>상품 구매</span>
+</section>
+<section class="contents-wrapper purchase">
+	<div class="purchase-contents">
+		<section class="product-info">
+			<div class="info-title">
+				상품 정보
 			</div>
-			<div class="info">
-				<div class="pd-name">에어 조던 14 Black</div>
-				<div class="pd-price">$ 200,000</div>
-				<div class="pd-info">size  <span class="pd-size">265mm</span></div>
-				<div class="pd-info">Quality <span class="pd-quality">새상품</span></div>
+			<div class="info-body">
+				<img class="product-img" src="{{root}}/img/shoes.jpg">
+				<div class="detail-info">
+					<div class="product name">
+						에어 조던 14 Black Pink New
+					</div>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						200,000
+					</div>
+					<div class="product size">
+						<div class="info-label">
+							Size
+						</div>
+						<span for="date">
+					235mm
+					</span>
+					</div>
+					<div class="product quality">
+						<div class="info-label">
+							Quality
+						</div>
+						<span for="quality">
+					새제품
+					</span>
+					</div>
+				</div>
+				<i class="fa fa-angle-double-right"></i>
+			</div>
+		</section>
+		<section class="trade-info">
+			<div class="info-title">
+				거래 정보
+			</div>
+			<div class="detail-info">
+				<div class="trade-info" detail-info="date">
+					<div class="info-label">
+						거래 날짜
+					</div>
+					<span for="date">
+						2017/04/06
+					</span>
+				</div>
+				<div class="trade-info" detail-info="directly">
+					<div class="info-label">
+						직접 거래
+					</div>
+					<span for="directly">
+						<!--불가-->
+						목동역,오목교역,18시 이후
+					</span>
+				</div>
+				<div class="trade-info" detail-info="delivery">
+					<div class="info-label">
+						택배 거래
+					</div>
+					<span for="delivery">
+						<!--불가-->
+						택배비 착불
+					</span>
+				</div>
+				<div class="trade-info" detail-info="safety-payment">
+					<div class="info-label">
+						안심 결제
+					</div>
+					<span for="safety-payment">
+						<!--불가-->
+						가능
+					</span>
+				</div>
+			</div>
+		</section>
+		<section class="input-trade-info">
+			<div class="info-title">
+				거래 수단 선택 / 정보 확인
+			</div>
+			<div class="detail-info">
+				<div class="button-select">
+					<div class="trade-select-btn direct">직접 거래</div>
+					<div class="trade-select-btn delivery">택배 거래</div>
+				</div>
+				<div class="trade">
+					<section class="selected-direct">
+						<div class="input-style">
+							<div class="desc">이름</div>
+							<input class="input-default" id="input-name" type="text" value="백수현">
+						</div>
+
+						<div class="input-style">
+							<div class="desc">연락처</div>
+							<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
+						</div>
+
+						<div class="input-style">
+							<div class="desc">희망장소</div>
+							<input id="input-place" type="text" placeholder="ex : 신촌역 2번 출구">
+						</div>
+					</section>
+					<section class="selected-delivery">
+						<div class="input-style">
+							<div class="desc">이름</div>
+							<input class="input-default" id="input-name" type="text" value="백수현">
+						</div>
+
+						<div class="input-style">
+							<div class="desc">연락처</div>
+							<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
+						</div>
+
+						<div class="input-style">
+							<div class="desc">우편번호</div>
+							<input class="input-default" id="input-zip-code" type="text" value="078-234">
+						</div>
+
+						<div class="input-style">
+							<div class="desc">주소</div>
+							<input class="input-default" id="input-addr" type="text" value="서울시 양천구">
+						</div>
+					</section>
+					<div class='alert-default'>거래 수단을 선택해주세요.</div>
+					<div class='alert-text2'>해당 상품은 안심 거래가 불가합니다.</div>
+					<div class="alert-text3">
+						안심 결제를 원하면 체크
+						<span class="list-selector escrow" check-box="" name="chk" get-checked="false"></span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="half resell-btn cancel">취소</section>
+		<section class="half resell-btn purchase-ok">구매</section>
+		<div class="popup-layer purchase-cancel">
+			<div class="popup-text-area">
+				<div class="popup-text-body">
+					<div class="text1">
+						구매를 취소하시겠습니까?
+					</div>
+				</div>
+			</div>
+			<div class="popup-btn-area">
+				<div class="popup-btn btn-cancel">취소</div>
+				<div class="popup-btn btn-ok">확인</div>
 			</div>
 		</div>
-	</section>
-
-	<hr class="line">
-
-
-	<section class="trade-info">
-		<div class="info-title">거래 정보</div>
-
-		<div class="td-information">
-			<div class="td-info">거래 날짜 </div> <span class="td-date"> <div class="border-left"></div>2017/04/06</span>
-			<div class="td-info">직접 거래 </div> <span class="td-direct"> <div class="border-left"></div>목동역,오목교역,18시 이후</span>
-			<div class="td-info">택배 거래 </div> <span class="td-delivery"> <div class="border-left"></div>택배비 착불</span>
-			<div class="td-info">안심 거래 </div> <span class="td-escrow"> <div class="border-left"></div>가능</span>
-		</div>
-
-		<div class="button-select">
-			<button class="trade-select left btn-direct">직접 거래</button>
-			<button class="trade-select right btn-delivery">택배 거래</button>
-		</div>
-
-
-		<div class="trade">
-			<section class="selected-direct">
-				<div class="input-style">
-					<div class="desc">이름</div>
-					<input class="input-default" id="input-name" type="text" value="백수현">
+		<div class="popup-layer purchase-complete">
+			<div class="popup-text-area">
+				<div class="popup-text-body">
+					<div class="text1">
+						해당 상품을 구매하시겠습니까?
+					</div>
 				</div>
-
-				<div class="input-style">
-					<div class="desc">연락처</div>
-					<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
-				</div>
-
-				<div class="input-style">
-					<div class="desc">희망장소</div>
-					<input id="input-place" type="text" placeholder="ex : 신촌역 2번 출구">
-				</div>
-			</section>
-
-
-			<section class="selected-delivery">
-				<div class="input-style">
-					<div class="desc">이름</div>
-					<input class="input-default" id="input-name" type="text" value="백수현">
-				</div>
-
-				<div class="input-style">
-					<div class="desc">연락처</div>
-					<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
-				</div>
-
-				<div class="input-style">
-					<div class="desc">우편번호</div>
-					<input class="input-default" id="input-zip-code" type="text" value="078-234">
-				</div>
-
-				<div class="input-style">
-					<div class="desc">주소</div>
-					<input class="input-default" id="input-addr" type="text" value="서울시 양천구">
-				</div>
-			</section>
-
-
-
-			<div class='alert-text1'>거래 수단을 선택해주세요.</div>
-			<div class='alert-text2'>해당 상품은 안심 거래가 불가합니다.</div>
-
-			<div class="alert-text3"> 안심 거래를 원하면 체크
-				<input type="checkbox" id="checkbox-escrow" value="escrow">
 			</div>
-
+			<div class="popup-btn-area">
+				<div class="popup-btn btn-cancel">취소</div>
+				<div class="popup-btn btn-ok">확인</div>
+			</div>
 		</div>
+	</div>
+</section>
 
-	</section>
 
-	<hr class="line">
-	<button class="btn-bottom btn-cancel">취소</button>
-	<button class="btn-bottom btn-ok">확인</button>
-</div>
 
 {{>footer jsName="purchase"}}

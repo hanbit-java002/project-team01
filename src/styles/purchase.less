@@ -1,160 +1,64 @@
-@import 'lib/include.all.less';
 @import 'common.less';
+@import 'purchase-detail';
+@import 'popup';
 
 
-.title {
-	display: block;
-	margin-top: 5%;
-	padding-bottom: 3%;
-	font-size: 20px;
-	color: @colorMain;
-	font-weight: bold;
-	text-align: center;
-	border-bottom: solid 1px @colorDarkGray;
+.input-trade-info>.detail-info {
+	padding-bottom: 0px;
 }
 
-.purchase-contents {
-	@body-padding();
-	margin-top: 5%;
-	margin-bottom: 3%;
-}
-
-.line {
-	border-top: 1px solid @colorDarkGray;
-}
-
-
-.product-info {
-	margin-bottom: -5%;
-}
-.pd-information {
-	display: inline-block;
-	margin-top: 1%;
-}
-
-.pd-information>.image {
-	display: inline-block;
-}
-.image>.pd-image {
-	width: 90px;
-	height: 90px;
-	background-image: url("../img/ect.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	border: solid 1px @colorDarkGray;
-}
-
-.pd-information>.info {
-	position: relative;
-	display: inline-block;
-	top: -13px;
-	left: 5%;
-}
-.pd-information>.info>div {
-	display: block;
-}
-.pd-name {
-	color: @colorFontMain;
-	font-size: 15px;
-	font-weight: bold;
-}
-.pd-price {
-	color: @colorPoint;
-	font-size: 18px;
-	font-weight: bold;
-}
-.pd-info {
-	color: @colorFontMain;
-	font-size: 14px;
-	font-weight: bold;
-}
-.pd-info>span {
-	display: inline-block;
-	color: @colorFontMain;
-	font-size: 13px;
-	font-weight: 100;
-	margin-left: 10%;
-}
-
-
-.td-information {
-	display: block;
-	width: 100%;
-}
-.td-information>.td-info {
-	display: inline-block;
-	width: 23%;
-	color: @colorNavy;
-	font-size: 14px;
-	line-height: 1.7;
-}
-
-.td-information>span {
-	display: inline-block;
-	width: 77%;
-	color: @colorNavy;
-}
-.td-information>span>.border-left {
-	display: inline;
-	font-size: 11px;
-	border-left: solid 1px @colorDarkGray;
-	margin-left: 3%;
-	margin-right: 5%;
-}
-
+@button-select-height: 40px;
 
 .button-select {
 	position: relative;
 	display: inline-flex;
 	width: 100%;
-	height: 40px;
+	height: @button-select-height;
 	border: solid 1px @colorDarkGray;
-	margin-top: 3%;
-	margin-bottom: 10%;
+	text-align: center;
 }
 
-.trade-select {
+.detail-info>div.button-select {
+	padding-bottom: 0px;
+}
+
+.trade-select-btn {
+	width: 50%;
+	color: #242947;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: #fff;
-	color: @colorNavy;
-	border: 0;
+	background-color: @colorWhite;
+	line-height: @button-select-height;
 }
-.trade-select.selected {
-	background-color: @colorMain;
-	color: #fff;
-}
-.trade-select.left {
-	width: 50%;
-	border-right: solid 1px @colorDarkGray;
-}
-.trade-select.right {
-	width: 50%;
+
+.trade-select-btn.delivery {
 	right: 0;
+	border-left: solid 1px @colorDarkGray;
 }
 
-
+.trade-select-btn.selected {
+	background-color: @colorMain;
+	color: @colorWhite;
+}
 
 .selected-direct,
 .selected-delivery {
 	display: none;
 	position: relative;
-	top: -15px;
+	padding: 20px 0px;
 }
-
 
 .input-style {
 	width: 100%;
 	display: inline-table;
-	margin-bottom: 2%;
+	margin-bottom: 10px;
 }
 
 .input-style>input {
 	width: 100%;
 	height: 40px;
-	padding-left: 5%;
-	border: solid 1px #333;
+	padding: 0px 15px;
+	border: solid 1px @colorDarkGray;
 }
 .input-style>.input-default {
 	background-color: @colorLineColor;
@@ -163,16 +67,17 @@
 .desc {
 	font-size: 13px;
 	color: @colorFontMain;
+	padding-bottom: 1%;
 }
 
-
-.alert-text1 {
+.alert-default {
 	color: @colorNavy;
 	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
-	margin-bottom: 10%;
+	margin: 40px 0px;
 }
+
 .alert-text2 {
 	display: none;
 	color: @colorNavy;
@@ -183,36 +88,18 @@
 }
 .alert-text3 {
 	display: none;
-	color: @colorPoint;
-	font-size: 18px;
+	position: relative;
+	color: @colorNavy;
+	font-size: 16px;
 	font-weight: bold;
 	text-align: right;
+	padding-bottom: 10px;
 }
-#checkbox-escrow {
+
+.alert-text3>.list-selector.escrow {
+	display: inline-block;
 	position: relative;
-	top: 7px;
-	width: 25px;
-	height: 25px;
-}
-
-
-.btn-bottom {
-	width: 100%;
-	height: 40px;
-	font-size: 18px;
-	color: #fff;
-	border: 0;
-}
-.btn-cancel {
-	display: inline-block;
-	width: 48%;
-	background-color: @colorDarkGray;
-}
-.btn-ok {
-	display: inline-block;
-	width: 47%;
-	float: right;
-	right: 0;
-	background-color: @colorMain;
-	margin-bottom: 3%;
+	top: 0px;
+	margin-left: 5px;
+	vertical-align: bottom;
 }
