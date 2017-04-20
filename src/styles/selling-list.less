@@ -1,29 +1,14 @@
 @import 'common.less';
 @import 'lib/product-list.less';
+@import 'popup.less';
 
-.product-detail-view>li {
-	display: inline-block;
-	width: calc(100%/3);
-}
-.product-detail-view {
-	margin-top: 2px;
-	padding-top: 2px;
-	border-top: 1px solid @colorLineColor;
-	color: @colorNavy;
-}
-.product-detail-view>span {
-	margin-left: 5px;
+
+.selling-list>section.selling-processing,
+.selling-list>section.selling-complete {
+	display: none;
 }
 
-.purchaser-title {
-	font-weight: bold;
-}
-.purchaser-info>li {
-	display: inline-block;
-	margin-right: 10px;
-	padding-top: 3px;
-	padding-bottom: 3px;
-}
-.selling-list .product-detail-arrow {
-	top: 40%;
+.purchaser-name.none {
+	width: 63%;
+	color: @colorDarkGray;
 }

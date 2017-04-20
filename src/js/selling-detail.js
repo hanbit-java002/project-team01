@@ -8,14 +8,14 @@ require([
 	});
 
 	// "거래 취소" 버튼 팝업
-	$(".half.resell-btn.cancel").on("click", function() {
+	$(".half.resell-btn.selling-cancel").on("click", function() {
 		$(".popup-layer.selling-cancel").show();
 		$(".dark-layer").show();
 		$("body").css("overflow", "hidden");
 	});
 
 	// "판매 완료" 버튼 팝업
-	$(".half.resell-btn.complete").on("click", function() {
+	$(".half.resell-btn.selling-complete").on("click", function() {
 		$(".popup-layer.selling-complete").show();
 		$(".dark-layer").show();
 		$("body").css("overflow", "hidden");

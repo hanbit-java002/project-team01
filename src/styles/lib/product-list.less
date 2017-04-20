@@ -1,106 +1,168 @@
 @import 'include.all.less';
 
-
-.product-list {
-	border-bottom: solid 1px @colorLineColor;
-	padding-top: 15px;
-	padding-bottom: 15px;
+/* -------product-list------- */
+.contents-wrapper ul.list {
 	position: relative;
+	border: none;
+	padding: 0;
 }
 
-.product-list>div {
+.contents-wrapper ul.list>li {
+	position: relative;
+	border-bottom: solid 1px #DDDDE0;
+	padding-top: 20px;
+	padding-bottom: 17px;
+}
+
+div.product-info {
+	padding-bottom: 5px;
+	border-bottom: solid 1px #F2F2F2;
+}
+
+.product-info .product-img {
 	display: inline-block;
+	margin-right: 13px;
+	width: 35%;
+	height: 115px;
 	vertical-align: top;
 }
 
-.product-img {
-	width: 28%;
-	height: 100px;
-	background-size: cover;
-	background-repeat: no-repeat;
-	margin-right: 10px;
-}
-.product-detail {
-	color: @colorNavy;
-}
-
-.product-detail>div,
-.product-detail>ul {
-	margin-bottom: 3px;
-}
-
-.product-name {
-	font-weight: bold;
-	font-size: 17px;
-}
-.seller-name,
-.product-price {
-	font-weight: bold;
-}
-
-.seller-name>span,
-.product-price>span {
-	font-weight: normal;
-	margin-left: 10px;
-}
-
-.product-detail>ul>li {
+.detail-info {
 	display: inline-block;
-	margin-right: 20px;
-	font-size: 15px;
-}
-.product-detail>ul>li:last-child {
-	margin-right: 0px;
+	width: 61%;
+	margin-top: -4px;
 }
 
-.product-like {
-	position: absolute;
-	@abs-vmiddle();
-	right: 10px;
-}
-.product-like>i {
-	position: relative;
-	font-size: 50px;
-	color: #F1E3DD;
+.detail-info>div {
+	padding-bottom: 3px;
 }
 
-.product-like>i>span {
-	position: absolute;
-	@abs-center();
-	color: @colorDarkBrown;
-	font-size: 12px;
+.product.name {
+	width: 81%;
+	@product-name();
 }
 
-.product-detail-arrow {
-	position: absolute;
-	@abs-vmiddle();
-	right: 5px;
-	font-size: 50px;
+
+.product.price {
+	@price();
+}
+
+.product.price>i {
+	@price-icon();
+}
+
+.product.size,
+.product.quality {
+	display: inline-block;
+}
+
+.product.size,
+.product.quality,
+.product.dealing-mode,
+.seller-info,
+.purchaser-info,
+.board-info {
+	@list-inner-font();
+	line-height: 23px;
+}
+
+@product-info-width: 37%;
+
+.product.size,
+.product.quality {
+	width: @product-info-width;
+}
+
+.product.dealing-mode>li {
+	width: @product-info-width;
+	display: inline-block;
+}
+
+.product.dealing-mode>li:last-child {
+	width: 26%;
+}
+
+.seller-info>div,
+.purchaser-info>div {
+	display: inline-block;
+}
+
+.seller-info>.info-label,
+.purchaser-info>.info-label {
+	width: @product-info-width;
+	font-weight: bold;
+}
+
+.seller-info>.seller-rank,
+.purchaser-info>.purchaser-rank {
+	@user-rank();
+}
+
+.seller-info>.seller-name,
+.purchaser-info>.purchaser-name {
+	width: 53%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+
+.board-info {
+	padding-top: 5px;
+}
+
+.board-info>div {
+	width: 17%;
+	display: inline-block;
+}
+
+.board-info>div.hits {
+	width: 23%;
+}
+
+.board-info>div.reporting-date {
+	width: 26%;
+	text-align: right;
+}
+
+.like.fa-heart[valid="true"] {
+	@like-heart();
+}
+
+.like.fa-heart-o[valid="false"] {
+	@like-heart();
+}
+
+.more-details {
+	padding-top: 15px;
+	margin-top: 5px;
 	color: @colorMain;
+	font-size: 16px;
+	line-height: 23px;
+	border-top: solid 1px #f2f2f2;
+	text-align: center;
 }
 
-.user-list .product-detail>div,
-.user-list .product-detail>ul {
-	line-height: 2;
+.more-details>span {
+	font-size: 22px;
+	vertical-align: top;
+	padding-left: 10px;
 }
-.user-list .product-date {
-	font-size: 15px;
-	margin-bottom: 3px;
-	color: @colorMain;
-	display: block;
-}
+
 
 //-------------disabled-list-------------//
 [process="blind"]::before,
 [process="complete"]::before,
-[process="processing"]:before {
+[process="processing"]:before,
+[process="selling-cancel"]:before {
 	content: "";
 	position: absolute;
 	top: -1px;
 	left: -15px;
 	bottom: -1px;
 	right: -15px;
-	opacity: 0.3;
+	opacity: 0.5;
+	z-index: 1;
 }
 
 
@@ -111,18 +173,23 @@
 [process="processing"]::before {
 	background-color: @colorPoint;
 }
-[process="blind"]::before {
+[process="blind"]::before,
+[process="selling-cancel"]:before {
 	background-color: @colorMain;
 }
 
 [process="blind"]::after,
 [process="complete"]::after,
-[process="processing"]::after {
+[process="processing"]::after,
+[process="selling-cancel"]::after {
 	position: absolute;
 	@abs-center();
+	width: 100%;
 	color: @colorWhite;
-	font-size: 35px;
+	font-size: 23px;
 	font-weight: bold;
+	text-align: center;
+	z-index: 2;
 }
 
 [process="processing"]::after{
@@ -134,5 +201,9 @@
 }
 
 [process="blind"]::after {
-	content: "블라인드"
+	content: "블라인드 처리된 게시글입니다."
+}
+
+[process="selling-cancel"]::after {
+	content: "판매자가 거래를 취소했습니다."
 }

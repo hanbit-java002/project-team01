@@ -18,17 +18,17 @@ require([
 			$(".admin-product>section.complete").css("display", "block");
 		}
 		else if ($(jqElement).attr("menu-category-detail") === "processing") {
+			$(".admin-product .all-selected").css("display", "block");
 			$(".admin-product>section.complete").css("display", "none");
 			$(".admin-product>section.complain").css("display", "none");
 			$(".admin-product>section.processing").css("display", "block");
-			$(".admin-product .all-selected").css("display", "block");
 			common.listSelector();
 		}
 		else if ($(jqElement).attr("menu-category-detail") === "complain") {
+			$(".admin-product .all-selected").css("display", "block");
 			$(".admin-product>section.complete").css("display", "none");
 			$(".admin-product>section.processing").css("display", "none");
 			$(".admin-product>section.complain").css("display", "block");
-			$(".admin-product .all-selected").css("display", "block");
 			common.listSelector();
 		}
 	};

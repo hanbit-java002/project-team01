@@ -66,6 +66,7 @@ define([
 	function openMenuLayer() {
 		$(".menu-icon.fa-reorder").on("click", function() {
 			$(".dark-layer").css("display", "block");
+			$("body").css("overflow", "hidden");
 			$(".side-menu-layer").animate({
 				right: 0,
 			}, 300, "easeInOutQuint");
@@ -82,6 +83,7 @@ define([
 				initSubMenu();
 				$(this).off(e);
 			});
+			$("body").css("overflow", "");
 		});
 	}
 
