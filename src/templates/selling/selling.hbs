@@ -1,8 +1,11 @@
 {{set root=".."}}
 {{>header title="판매 상품 등록" cssName="selling"}}
 
-<div class="selling-contents">
+<section class="title selling-title">
+	<span>판매 상품 등록</span>
+</section>
 
+<section class="contents-wrapper selling">
 	<section class="product-info">
 		<div class="info-title">상품 정보</div>
 
@@ -71,7 +74,6 @@
 
 		<div class="input-style">
 			<div class="desc">Images</div>
-			<button class="btn-add-image">+</button>
 			<div class="preview-images">
 				<i class="fa fa-angle-left"></i>
 				<div class="images">
@@ -81,6 +83,7 @@
 				</div>
 				<i class="fa fa-angle-right"></i>
 			</div>
+			<button class="btn-add-image">+</button>
 		</div>
 
 		<hr class="line">
@@ -93,7 +96,7 @@
 		<span class='alert-text trade'></span>
 
 		<div class="button-select trade">
-			<button class="trade-select left btn-direct selected">직접 거래</button>
+			<button class="trade-select left btn-direct">직접 거래</button>
 			<button class="trade-select right btn-delivery">택배 거래</button>
 		</div>
 
@@ -113,7 +116,7 @@
 		<span class='alert-text payment'></span>
 
 		<div class="button-select payment">
-			<button class="payment-select left btn-escrow selected">안심 거래</button>
+			<button class="payment-select left btn-escrow">안심 거래</button>
 			<button class="payment-select right btn-direct">직접 거래</button>
 		</div>
 
@@ -145,20 +148,19 @@
 
 		<div class="input-style">
 			<div class="desc">Name</div>
-			<input class="input-default" id="input-name" type="text" value="백수현">
+			<input class="input-default" id="input-name" type="text" value="백수현" disabled>
 		</div>
 
 		<div class="input-style">
 			<div class="desc">Phone Number</div>
-			<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
-		</div>
+			<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848" disabled>		</div>
 	</section>
 
 
 	<hr class="line">
 	<button class="btn-bottom btn-ok">판매 등록</button>
 	<button class="btn-bottom btn-cancel">취소</button>
-</div>
+</section>
 
 
 <div class="pop-up-series">

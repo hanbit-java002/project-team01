@@ -186,6 +186,7 @@ define([
 			}, 100);
 		}
 		$(".dark-layer").css("display", "none");
+		$("body").css("overflow", "");
 	}
 
 	function popUp(className, direction) {

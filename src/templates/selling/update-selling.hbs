@@ -1,8 +1,11 @@
 {{set root=".."}}
 {{>header title="판매 상품 수정" cssName="update-selling"}}
 
-<div class="selling-contents">
+<section class="title update-selling-title">
+	<span>판매 상품 수정</span>
+</section>
 
+<section class="contents-wrapper update-selling">
 	<section class="product-info">
 		<div class="info-title">상품 정보</div>
 
@@ -72,7 +75,6 @@
 
 		<div class="input-style">
 			<div class="desc">Images</div>
-			<button class="btn-add-image">+</button>
 			<div class="preview-images">
 				<i class="fa fa-angle-left"></i>
 				<div class="images">
@@ -82,19 +84,18 @@
 				</div>
 				<i class="fa fa-angle-right"></i>
 			</div>
+			<button class="btn-add-image">+</button>
 		</div>
-
-		<hr class="line">
 	</section>
 
 
 	<section class="trade-info">
 		<div class="info-title">거래 정보</div>
-		<div class="desc">거래 방식을 선택해주세요.</div>
+		<div class="desc">거래 방식을 선택해주세요. (복수 선택 가능)</div>
 		<span class='alert-text trade'></span>
 
 		<div class="button-select">
-			<button class="trade-select left btn-direct selected">직접 거래</button>
+			<button class="trade-select left btn-direct">직접 거래</button>
 			<button class="trade-select right btn-delivery">택배 거래</button>
 		</div>
 
@@ -102,7 +103,7 @@
 		<div class="trade-details">
 			<div class="input-style">
 				<div class="desc">거래 장소 / 시간</div>
-				<input id="input-place-time" type="text" placeholder="ex : 목동역, 신정역, 18시 이후">
+				<input id="input-place-time" type="text" placeholder="목동역, 신정역, 18시 이후">
 			</div>
 		</div>
 	</section>
@@ -110,11 +111,11 @@
 
 	<section class="payment-info">
 		<div class="info-title">결제 정보</div>
-		<div class="desc">결제 방식을 선택해주세요.</div>
+		<div class="desc">결제 방식을 선택해주세요. (복수 선택 가능)</div>
 		<span class='alert-text payment'></span>
 
 		<div class="button-select">
-			<button class="payment-select left btn-escrow selected">안심 거래</button>
+			<button class="payment-select left btn-escrow">안심 거래</button>
 			<button class="payment-select right btn-direct">직접 거래</button>
 		</div>
 
@@ -146,12 +147,12 @@
 
 		<div class="input-style">
 			<div class="desc">Name</div>
-			<input class="input-default" id="input-name" type="text" value="백수현">
+			<input class="input-default" id="input-name" type="text" value="백수현" disabled>
 		</div>
 
 		<div class="input-style">
 			<div class="desc">Phone Number</div>
-			<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848">
+			<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848" disabled>
 		</div>
 	</section>
 
@@ -159,7 +160,7 @@
 	<hr class="line">
 	<button class="btn-bottom btn-update">수정</button>
 	<button class="btn-bottom btn-cancel">취소</button>
-</div>
+</section>
 
 
 <div class="pop-up-series">

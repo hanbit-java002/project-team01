@@ -1,38 +1,52 @@
 {{set root=".."}}
-{{>header title="관리자페이지" cssName="admin-member"}}
+{{>admin-header title="회원 관리" cssName="admin-member"}}
 
 
-<div class="admin-header">
-	<div>Admin</div><a href="http://localhost:85/admin/admin-main.html"><i class="fa fa-home" aria-hidden="true"></i></a>
-</div>
+<section class="admin title member-title">
+	<span>회원 관리</span>
+</section>
 
-<div class="heading-bar"><a href="http://localhost:85/admin/admin-main.html"><i class="fa fa-fast-backward" aria-hidden="true"></i>회원 관리</a></div>
-
-<div class="member-container">
-
-	<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
-		<span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+<section class="contents-wrapper admin-member">
+	<div class="list-search-box">
+		<input type="text" class="form-control" placeholder="Search">
+		<i class="fa fa-search"></i>
 	</div>
-
-	<div class="btn-group">
-		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			Rank <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-			<li><a href="#">Rank1</a></li>
-			<li><a href="#">Rank2</a></li>
-			<li><a href="#">Rank3</a></li>
-			<li><a href="#">Rank4</a></li>
-		</ul>
-	</div>
-	<div class="member-list-heading">
-		<div class="heading-list">회원목록</div>
-		<div class="heading-line-up">
-			<div class="line-up-sell">SELL <i class="fa fa-angle-up" aria-hidden="true"></i></div>
-			<div class="line-up-buy">BUY <i class="fa fa-angle-up" aria-hidden="true"></i></div>
+	<div class="input-style">
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Rank
+			<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a href="#">일반</a></li>
+				<li><a href="#">VIP</a></li>
+				<li><a href="#">관리자</a></li>
+			</ul>
 		</div>
 	</div>
+	<div class="admin-member list-header">
+		<div class="product-count">
+			총 <span>15</span>건
+		</div>
+		<div class="array-area">
+			<ul class="descending-order">
+				<li class="price-low active">
+					Sell
+					<i class="fa fa-angle-up" aria-hidden="true"></i>
+				</li>
+				<li class="price-high">
+					Buy
+					<i class="fa fa-angle-up" aria-hidden="true"></i>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+</section>
+
+
 	<section class="admin-member-list">
 		<table class="table table-striped table-hover table-condensed">
 			<thead>

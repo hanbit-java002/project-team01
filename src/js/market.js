@@ -45,7 +45,7 @@ require([
 	});
 
 	$(".product-inquire").on("click", function () {
-		location.href = "/mypage/purchase-inqure-view.html";
+		location.href = window._ctx.root + "/mypage/purchase-inqure-view.html";
 	});
 
 	initBrand();

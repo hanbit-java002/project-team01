@@ -5,13 +5,13 @@
 </section>
 <section class="menu-category">
 	<ul>
-		<li menu-category-detail="all" class="active">
+		<li menu-category-detail="all">
 			ALL
 		</li>
 		<li menu-category-detail="palace">
 			PALACE
 		</li>
-		<li menu-category-detail="nike" class="active">
+		<li menu-category-detail="nike">
 			NIKE
 		</li>
 		<li menu-category-detail="supreme">
@@ -35,6 +35,7 @@
 			<ul class="filter-dropdown">
 				<li>
 					<select class="form-control category-select">
+						<option>Category</option>
 						<option>상의</option>
 						<option>하의</option>
 						<option>신발</option>
@@ -43,7 +44,7 @@
 				</li>
 				<li>
 					<select class="form-control size-select">
-						<option value="default" selected>사이즈선택</option>
+						<option value="default" selected>Size</option>
 						<option value="size-230" >230이하</option>
 						<option value="size-240">240</option>
 						<option value="size-250">250</option>
@@ -56,6 +57,7 @@
 				</li>
 				<li>
 					<select class="form-control quality-select">
+						<option>Quality</option>
 						<option>중고</option>
 						<option>새제품</option>
 					</select>
@@ -63,51 +65,278 @@
 			</ul>
 		</ul>
 	</section>
-	<section class="product-view">
-		<div class="product-view-bar">
-			<div class="main-product-name active">
-				NAME
-			</div>
-			<ul class="product-price-order">
-				<li class="price-low active">
-					Low Price
-				</li>
-				<li class="price-high">
-					High Price
-				</li>
-			</ul>
+	<div class="market-contents list-header">
+		<div class="main-product-name active">
+			NAME
 		</div>
-
-		<div>
-			<ul>
-				<li class="product-list">
-					<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
-					<div class="product-detail">
-						<div class="product-name">컨버스 네이버후드</div>
-						<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
-						<ul>
-							<li class="product-size"><span>260</span>mm</li>
-							<li class="product-quality"><span>새상품</span></li>
-						</ul>
+		<ul class="product-price-order">
+			<li class="price-low active">
+				Low Price
+			</li>
+			<li class="price-high">
+				High Price
+			</li>
+		</ul>
+	</div>
+	<ul class="list like-list">
+		<li product-id="#">
+			<div class="product-info">
+				<img class="product-img" src="{{root}}/img/shoes.jpg">
+				<div class="detail-info">
+					<div class="product name">
+						에어 조던 14 Black Pink New
+					</div>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						200,000
+					</div>
+					<div class="product size">
+						235mm
+					</div>
+					<div class="product quality">
+						새제품
+					</div>
+					<ul class="product dealing-mode">
+						<li class="dealing-mode directly">
+							직접거래
+						</li>
+						<li class="dealing-mode delivery">
+							택배거래
+						</li>
+						<li class="dealing-mode safety">
+							안심결제
+						</li>
+					</ul>
+					<div class="seller-info">
+						<div class="info-label">판매자</div>
+						<div class="seller-rank fa fa-star"></div>
 						<div class="seller-name">
-							Seller <span>욱이님</span>
+							수현이당당다랑
 						</div>
 					</div>
-					<div class="product-like">
-						<i class="fa fa-heart"><span>찜</span></i>
+				</div>
+			</div>
+			<div class="board-info">
+				<div class="like">
+					<span class="fa fa-heart-o"></span>
+					10
+				</div>
+				<div class="comment">
+					<span class="fa fa-commenting-o"></span>
+					10
+				</div>
+				<div class="complain">
+					<span class="fa fa-thumbs-o-down"></span>
+					10
+				</div>
+				<div class="hits">
+					<span class="fa fa-eye"></span>
+					1,000
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+			</div>
+
+			<div class="list-selector like fa fa-heart" valid="true"></div>
+		</li>
+		<li product-id="#" process="complete">
+			<div class="product-info">
+				<img class="product-img" src="{{root}}/img/shoes.jpg">
+				<div class="detail-info">
+					<div class="product name">
+						에어 조던 14 Black Pink New
 					</div>
-				</li>
-			</ul>
-		</div>
-	</section>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						200,000
+					</div>
+					<div class="product size">
+						235mm
+					</div>
+					<div class="product quality">
+						새제품
+					</div>
+					<ul class="product dealing-mode">
+						<li class="dealing-mode directly">
+							직접거래
+						</li>
+						<li class="dealing-mode delivery">
+							택배거래
+						</li>
+						<li class="dealing-mode safety">
+							안심결제
+						</li>
+					</ul>
+					<div class="seller-info">
+						<div class="info-label">판매자</div>
+						<div class="seller-rank fa fa-star"></div>
+						<div class="seller-name">
+							수현이당당다랑
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="board-info">
+				<div class="like">
+					<span class="fa fa-heart-o"></span>
+					10
+				</div>
+				<div class="comment">
+					<span class="fa fa-commenting-o"></span>
+					10
+				</div>
+				<div class="complain">
+					<span class="fa fa-thumbs-o-down"></span>
+					10
+				</div>
+				<div class="hits">
+					<span class="fa fa-eye"></span>
+					1,000
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+			</div>
+			<div class="list-selector like fa fa-heart-o" valid="false"></div>
+		</li>
+		<li product-id="#" process="blind">
+			<div class="product-info">
+				<img class="product-img" src="{{root}}/img/shoes.jpg">
+				<div class="detail-info">
+					<div class="product name">
+						에어 조던 14 Black Pink New
+					</div>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						200,000
+					</div>
+					<div class="product size">
+						235mm
+					</div>
+					<div class="product quality">
+						새제품
+					</div>
+					<ul class="product dealing-mode">
+						<li class="dealing-mode directly">
+							직접거래
+						</li>
+						<li class="dealing-mode delivery">
+							택배거래
+						</li>
+						<li class="dealing-mode safety">
+							안심결제
+						</li>
+					</ul>
+					<div class="seller-info">
+						<div class="info-label">판매자</div>
+						<div class="seller-rank fa fa-star"></div>
+						<div class="seller-name">
+							수현이당당다랑
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="board-info">
+				<div class="like">
+					<span class="fa fa-heart-o"></span>
+					10
+				</div>
+				<div class="comment">
+					<span class="fa fa-commenting-o"></span>
+					10
+				</div>
+				<div class="complain">
+					<span class="fa fa-thumbs-o-down"></span>
+					10
+				</div>
+				<div class="hits">
+					<span class="fa fa-eye"></span>
+					1,000
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+			</div>
+			<div class="list-selector like fa fa-heart-o" valid="false"></div>
+		</li>
+		<li product-id="#" process="processing">
+			<div class="product-info">
+				<img class="product-img" src="{{root}}/img/shoes.jpg">
+				<div class="detail-info">
+					<div class="product name">
+						에어 조던 14 Black Pink New
+					</div>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						200,000
+					</div>
+					<div class="product size">
+						235mm
+					</div>
+					<div class="product quality">
+						새제품
+					</div>
+					<ul class="product dealing-mode">
+						<li class="dealing-mode directly">
+							직접거래
+						</li>
+						<li class="dealing-mode delivery">
+							택배거래
+						</li>
+						<li class="dealing-mode safety">
+							안심결제
+						</li>
+					</ul>
+					<div class="seller-info">
+						<div class="info-label">판매자</div>
+						<div class="seller-rank fa fa-star"></div>
+						<div class="seller-name">
+							수현이당당다랑
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="board-info">
+				<div class="like">
+					<span class="fa fa-heart-o"></span>
+					10
+				</div>
+				<div class="comment">
+					<span class="fa fa-commenting-o"></span>
+					10
+				</div>
+				<div class="complain">
+					<span class="fa fa-thumbs-o-down"></span>
+					10
+				</div>
+				<div class="hits">
+					<span class="fa fa-eye"></span>
+					1,000
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+			</div>
+			<div class="list-selector like fa fa-heart-o" valid="false"></div>
+		</li>
+	</ul>
 	<section class="more-list">
 		More
 		<span class="fa fa-angle-down"></span>
 	</section>
-	<section class="write-btn list-more">
+	<section class="resell-btn write-btn">
+		판매 등록
 		<i class="fa fa-pencil"></i>
 	</section>
 </section>
+
+
+
 <section class="pop-up-series" style="display: none">
 	<ul>
 		<li>

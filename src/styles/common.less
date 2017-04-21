@@ -112,17 +112,22 @@ section.title {
 }
 
 //-------------product-list-count-------------//
+.list-header {
+	position: relative;
+	padding-bottom: 1%;
+	border-bottom: solid 1px @colorLineColor;
+}
+
 .product-count::before {
 	content: "";
 	border-right: solid 5px @colorMain;
 	margin-right: 5px;
 }
-.product-count {
+.product-count,
+.main-product-name {
 	font-weight: bold;
 	font-size: 18px;
 	color: @colorMain;
-	line-height: 2;
-	border-bottom: solid 1px @colorLineColor;
 }
 
 //-------------More-list-------------//
@@ -237,7 +242,9 @@ nav {
 @check-box-size: 22px;
 
 .all-selected {
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .all-selected>span {
@@ -276,6 +283,60 @@ section .all-selected {
 	content: url("../img/checker-white.png");
 	background-color: @colorMain;
 
+}
+
+
+//-------------DropBox Select-------------//
+.input-style {
+	width: 100%;
+	display: inline-table;
+}
+.input-style>.desc {
+	font-size: 14px;
+	color: @colorFontMain;
+}
+.input-style>input {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 4%;
+	padding-left: 5%;
+	border: solid 1px @colorLineColor;
+}
+
+.input-style>.input-default {
+	background-color: @colorWhiteGray;
+}
+
+.input-style>.dropdown>.dropdown-toggle {
+	position: relative;
+	min-width: 100%;
+	padding-left: 5%;
+	text-align: left;
+	border: solid 1px @colorLineColor;
+	border-radius: 0;
+	height: 40px;
+}
+
+.input-style>.dropdown>.dropdown-toggle>.caret {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translate(-50%);
+}
+.input-style>.dropdown>.dropdown-menu {
+	width: 100%;
+}
+
+.input-style>.dropdown {
+	margin-bottom: 4%;
+}
+
+.dropdown-menu {
+	border-radius: 0;
+}
+
+.dropdown-menu>li:hover {
+	background-color: @colorWhiteGray;
 }
 
 //-------------header-------------//
@@ -566,6 +627,10 @@ header.admin-header {
 
 .admin-header .fa-home {
 	font-size: 30px;
+}
+
+.admin.title>span {
+	color: @colorPoint;
 }
 
 //-------------footer-------------//
