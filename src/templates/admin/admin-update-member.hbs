@@ -1,0 +1,74 @@
+{{set root=".."}}
+{{>header title="회원 상세 정보" cssName="admin-update-member"}}
+
+<div class="admin-header">
+	<div>Admin</div>
+</div>
+
+<div class="title">회원 상세 정보</div>
+
+
+<div class="admin-update-member">
+
+	<div class="input-style">
+		<div class="desc">Name</div>
+		<input id="input-name" type="text" value="백수현">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">ID</div>
+		<input id="input-email" type="text" value="100suhyun@naver.com">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Rank</div>
+		<div class="dropdown">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Default Rank <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a href="#">관리자</a></li>
+				<li><a href="#">일반 (회원가입시)</a></li>
+				<li><a href="#">우수 (판매 or 구매 10건)</a></li>
+				<li><a href="#">골드 (판매 or 구매 30건 이상)</a></li>
+				<li><a href="#">Black List</a></li>
+			</ul>
+		</div>
+	</div>
+	<hr class="line">
+
+
+	<div class="input-style">
+		<div class="desc">Phone Number</div>
+		<input id="input-phone-num" type="text" value="010-2371-6848">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Address</div>
+		<input id="input-addr" type="text" value="서울시 양천구">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Detail Address</div>
+		<input id="input-detail-addr" type="text" value="목동">
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Zip Code</div>
+		<input id="input-zip-code" type="text" value="08080">
+	</div>
+
+
+	<button class="btn-bottom btn-update">Update</button>
+	<button class="btn-bottom btn-cancel">Cancel</button>
+</div>
+
+
+<div class="pop-up-series">
+	<span class="text1"></span>
+
+	<button class="btn popup-ok">확인</button>
+	<button class="btn popup-close">취소</button>
+</div>
+
+{{>footer jsName="admin-update-member"}}
