@@ -5,8 +5,19 @@ li {
 	margin: 5px 0;
 }
 
+.carousel-indicators {
+	margin-bottom: 0;
+}
+.carousel-indicators li {
+	border: solid 1px @colorMain;
+}
+
 #carousel-example-generic {
 	margin-bottom: 20px;
+}
+
+.carousel-indicators .active {
+	background-color: @colorMain;
 }
 
 .detail-container{
@@ -17,23 +28,25 @@ li {
 	position: relative;
 	width: 100%;
 	border-bottom: solid 1px @colorFontMain;
-	margin: 5px 0;
+	margin-top: 5px;
+	padding-bottom: 5px;
 }
 .detail-info>ul>li {
-	color: @colorMain;
 	font-weight: bold;
+	display: inline-block;
+	line-height: 1;
 }
-.detail-info:last-child {
+.detail-info-box>div:last-child {
 	border-bottom: none;
 }
 .detail-product-name {
-	color: @colorMain;
-	font-size: 22px;
+	color: @colorFontMain;
+	font-size: 26px;
 	font-weight: bold;
 }
 .detail-price-info {
 	color: @colorPoint;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 }
 .fa-heart-o {
@@ -59,11 +72,8 @@ li {
 	color: @colorMain;
 }
 
-.detail-info>ul>li {
-	display: inline-block;
-}
 .trade-method {
-	border-right: solid 3px @colorDarkGray;
+	border-right: solid 2px @colorDarkGray;
 	margin-right: 10px;
 	padding-right: 10px;
 }
@@ -76,27 +86,32 @@ li {
 	color: white;
 	font-size: 16px;
 	font-weight: bold;
+	margin-bottom: 20px;
 }
 
 .comment-heading {
 	color: @colorFontMain;
-	border-bottom: solid 5px @colorMain;
-	font-size: 22px;
+	border-bottom: solid 8px @colorMain;
+	font-size: 16px;
 	font-weight: bold;
 }
 .comment-and-hits {
 	position: relative;
-	border-bottom: solid 1px @colorFontMain;
+	border-bottom: solid 1px @colorLineColor;
 }
 .comment-and-hits>ul>li {
 	display: inline-block;
+	padding-left: 20px;
+	margin-bottom: 5px;
 }
 .release-date {
 	position: absolute;
 	right: 0;
 }
+
 .update-and-delete {
-	border-bottom: solid 1px @colorFontMain;
+	border-bottom: solid 1px @colorLineColor;
+	margin-bottom: 20px;
 }
 
 .update-and-delete>ul>li {
@@ -105,51 +120,77 @@ li {
 	border-right: solid 2px @colorLineColor;
 	width: 25%;
 	color: @colorPoint;
-	padding: 5px 0;
+	padding: 10px 0;
+	font-size: 12px;
+	line-height: 0px;
+	margin: 10px 0px;
 }
 .update-and-delete>ul>li:last-child {
 	border-right: none;
 }
 
 
-.comment-user-info-container {
+.user-name-container {
 	position: relative;
-	width: 25%;
+	width: 60px;
 	display: inline-block;
 }
 .comment-user-img {
-	width :35px;
-	height: 35px;
+	width: 100%;
+	/*width :35px;*/
+	/*height: 35px;*/
+	text-align: center;
+}
+.comment-user-name {
 	text-align: center;
 }
 
 .comment-box {
 	position: relative;
 	margin-top: 15px;
+	border-bottom: solid 1px @colorLineColor;
+	padding-bottom: 10px;
+}
+
+.comment-box>div {
+	display: inline-block;
 }
 
 .ellipsis {
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 5px;
+	top: 15px;
 	font-size: 30px;
 	color: @colorDarkGray;
 }
 
+.add-user-comment {
+	position: relative;
+}
+
+.fa-arrow-right {
+	font-size: 35px;
+	color: @colorMain;
+}
+
 .user-comment-container {
 	display: inline-block;
+	padding-left: 20px;
 }
-.user-commnet{
+.user-comment{
 	position: absolute;
 	top:0;
 }
 
-.user-commnet-update {
+.user-comment-update {
 	position: absolute;
 	right: 0;
+	bottom: 0;
+	font-size: 14px;
 }
 
 .add-comment {
 	text-align: center;
 	font-size: 45px;
+	color: @colorMain;
 }

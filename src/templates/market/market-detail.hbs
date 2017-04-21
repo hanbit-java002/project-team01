@@ -69,63 +69,62 @@
 </div>
 
 <div class="detail-container">
-	<div class="detail-info">
-		<ul>
-			<li class="detail-product-name">Product Name</li>
-		</ul>
-		<ul>
-			<li class="detail-price-info">Price Info</li>
-		</ul>
-		<i id="heart" class="fa fa-heart-o" aria-hidden="true"></i>
-	</div>
-	<div class="detail-info">
-		<ul>
-			<li class="info-category">size</li>
-			<li class="info-val">265mm</li>
-		</ul>
-		<ul>
-			<li class="info-category">Quality</li>
-			<li class="info-val">새상품</li>
-		</ul>
-	</div>
-	<div class="detail-info">
-		<ul>
-			<li class="info-category">Seller</li>
-			<li class="info-val"><i class="fa fa-star" aria-hidden="true"></i>수현이당</li>
-		</ul>
-		<ul>
-			<li class="info-category">판매완료</li>
-			<li class="info-val">총 3건</li>
-		</ul>
-	</div>
-	<div class="detail-info">
-		<ul>
-			<li class="info-category">Details</li>
-			<li class="info-val">제품 판매 사유 / 구매날자 / 워런티 보유 / 취급방법 등</li>
-		</ul>
-	</div>
-	<div class="detail-info">
-		<ul>
-			<li class="info-category">거래방식</li>
-		</ul>
-		<ul>
-			<li class="trade-method">직접거래</li>
-			<li>목동역,오목교역,18시 이후</li>
-		</ul>
-		<ul>
-			<li class="trade-method">택배거래</li>
-			<li>택배비 착불</li>
-		</ul>
-		<ul>
-			<li class="trade-method">안심거래</li>
-			<li>가능</li>
-		</ul>
+	<div class="detail-info-box">
+		<div class="detail-info">
+			<ul>
+				<li class="detail-product-name">Product Name</li>
+			</ul>
+			<ul>
+				<li class="detail-price-info">&#36; Price Info</li>
+			</ul>
+			<i id="heart" class="fa fa-heart-o" aria-hidden="true"></i>
+		</div>
+		<div class="detail-info">
+			<ul>
+				<li class="info-category">size</li>
+				<li class="info-val">265mm</li>
+			</ul>
+			<ul>
+				<li class="info-category">Quality</li>
+				<li class="info-val">새상품</li>
+			</ul>
+		</div>
+		<div class="detail-info">
+			<ul>
+				<li class="info-category">Seller</li>
+				<li class="info-val"><i class="fa fa-star" aria-hidden="true"></i>수현이당</li>
+			</ul>
+			<ul>
+				<li class="info-category">판매완료</li>
+				<li class="info-val">총 3건</li>
+			</ul>
+		</div>
+		<div class="detail-info">
+			<ul>
+				<li class="info-category">Details</li>
+				<li class="info-val">제품 판매 사유 / 구매날자 / 워런티 보유 / 취급방법 등</li>
+			</ul>
+		</div>
+		<div class="detail-info">
+			<ul>
+				<li class="info-category">거래방식</li>
+			</ul>
+			<ul>
+				<li class="trade-method">직접거래</li>
+				<li>목동역,오목교역,18시 이후</li>
+			</ul>
+			<ul>
+				<li class="trade-method">택배거래</li>
+				<li>택배비 착불</li>
+			</ul>
+			<ul>
+				<li class="trade-method">안심거래</li>
+				<li>가능</li>
+			</ul>
+		</div>
 	</div>
 	<button type="button" class="buy-button">구매</button>
-	<div>
-		<div></div>
-		<div></div>
-	</div>
+
 	<div class="comment-box-container">
 		<div class="ex-info">
 			<div class="comment-and-hits">
@@ -146,12 +145,12 @@
 		</div>
 		<div class="comment-heading">Comments</div>
 		<div class="comment-box">
-			<div class="comment-user-info-container">
-				<img class="comment-user-img" src="{{root}}/img/jordan6.png">
+			<div class="user-name-container">
+				<img class="comment-user-img" src="{{root}}/img/jordan11.png">
 				<div class="comment-user-name">수현이당</div>
 			</div>
 			<div class="user-comment-container">
-				<div class="user-commnet">
+				<div class="user-comment">
 					<ul>
 						<li>얼마나 신었나요?</li>
 						<li>정품 맞나요?</li>
@@ -160,18 +159,21 @@
 				<div class="ellipsis">
 					<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
 				</div>
-				<div class="user-commnet-update">
-					<i class="fa fa-clock-o" aria-hidden="true"></i>작성일
+				<div class="user-comment-update">
+					<i class="fa fa-clock-o" aria-hidden="true"></i> 작성일
 				</div>
 			</div>
 		</div>
 		<div class="comment-box">
-			<div class="comment-user-info-container">
+			<div class="add-user-comment">
+				<i class="fa fa-arrow-right" aria-hidden="true"></i>
+			</div>
+			<div class="user-name-container">
 				<img class="comment-user-img" src="{{root}}/img/jordan12.png">
 				<div class="comment-user-name">수현이당</div>
 			</div>
 			<div class="user-comment-container">
-				<div class="user-commnet">
+				<div class="user-comment">
 					<ul>
 						<li>얼마나 신었나요?</li>
 						<li>정품 맞나요?</li>
@@ -180,18 +182,18 @@
 				<div class="ellipsis">
 					<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
 				</div>
-				<div class="user-commnet-update">
-					<i class="fa fa-clock-o" aria-hidden="true"></i>작성일
+				<div class="user-comment-update">
+					<i class="fa fa-clock-o" aria-hidden="true"></i> 작성일
 				</div>
 			</div>
 		</div>
 		<div class="comment-box">
-			<div class="comment-user-info-container">
+			<div class="user-name-container">
 				<img class="comment-user-img" src="{{root}}/img/jordan13.png">
 				<div class="comment-user-name">수현이당</div>
 			</div>
 			<div class="user-comment-container">
-				<div class="user-commnet">
+				<div class="user-comment">
 					<ul>
 						<li>얼마나 신었나요?</li>
 						<li>정품 맞나요?</li>
@@ -200,12 +202,13 @@
 				<div class="ellipsis">
 					<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
 				</div>
-				<div class="user-commnet-update">
-					<i class="fa fa-clock-o" aria-hidden="true"></i>작성일
+				<div class="user-comment-update">
+					<i class="fa fa-clock-o" aria-hidden="true"></i> 작성일
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="add-comment"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+
+	<div class="add-comment"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div>
 </div>
 {{>footer jsName="market-detail"}}
