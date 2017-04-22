@@ -1,59 +1,161 @@
 {{set root=".."}}
-{{>header title="구매자 주문 완료" cssName="purchase-confirm"}}
-
-
-<div class="purchase-confm-contents">
-
+{{>header title="구매 완료/확인" cssName="purchase-confirm"}}
+<section class="title selling-detail-title">
+	<span>구매 확인</span>
+</section>
+<section class="contents-wrapper purchase-confirm">
 	<section class="product-info">
-		<div class="info-title">상품 정보</div>
-
-		<div class="pd-information">
-			<div class="image">
-				<div class="pd-image"></div>
+		<div class="info-title">
+			상품 정보
+		</div>
+		<div class="info-body">
+			<img class="product-img" src="{{root}}/img/shoes.jpg">
+			<div class="detail-info">
+				<div class="product name">
+					에어 조던 14 Black Pink New
+				</div>
+				<div class="product price">
+					<i class="fa fa-won"></i>
+					200,000
+				</div>
+				<div class="product size">
+					<div class="info-label">
+						Size
+					</div>
+					<span for="date">
+					235mm
+					</span>
+				</div>
+				<div class="product quality">
+					<div class="info-label">
+						Quality
+					</div>
+					<span for="quality">
+					새제품
+					</span>
+				</div>
 			</div>
-			<div class="info">
-				<div class="pd-name">에어 조던 14 Black</div>
-				<div class="pd-price">$ 200,000</div>
-				<div class="pd-info">size  <span class="pd-size">265mm</span></div>
-				<div class="pd-info">Quality <span class="pd-quality">새상품</span></div>
-			</div>
+			<i class="fa fa-angle-double-right"></i>
 		</div>
 	</section>
-
-	<hr class="line">
-
-
 	<section class="trade-info">
-		<div class="info-title">거래 정보</div>
-		<div class="td-information">
-			<div class="td-info">거래 날짜 </div> <span class="td-date"> <div class="border-left"></div>2017/04/06</span>
-			<div class="td-info">직접 거래 </div> <span class="td-direct"> <div class="border-left"></div>목동역,오목교역,18시 이후</span>
-			<div class="td-info">택배 거래 </div> <span class="td-delivery"> <div class="border-left"></div>택배비 착불</span>
-			<div class="td-info">안심 거래 </div> <span class="td-escrow"> <div class="border-left"></div>가능</span>
+		<div class="info-title">
+			거래 정보
 		</div>
-		<hr class="line">
-
-		<div class="info-title">판매자 정보</div>
-		<div class="td-information">
-			<div class="td-info">이름</div>  <span class="seller-name"><div class="border-left"></div>백수현</span>
-			<div class="td-info">회원 등급</div> <span class="seller-class"><div class="border-left"></div>일반 회원</span>
-			<div class="td-info">연락처</div> <span class="seller-phone-num"><div class="border-left"></div>010-2371-6848</span>
-			<div class="td-info">주소</div> <span class="seller-addr"><div class="border-left"></div>서울시 양천구</span>
-			<div class="td-info">입금 계좌</div>  <span class="seller-bank"><div class="border-left"></div>1002-950-000000 (우리은행)</span>
-		</div>
-		<hr class="line">
-
-		<div class="info-title">구매자 정보</div>
-		<div class="td-information">
-			<div class="td-info">이름 </div> <span class="consumer-name"> <div class="border-left"></div> 백수현</span>
-			<div class="td-info">연락처 </div> <span class="consumer-phone-num"> <div class="border-left"></div> 010-2371-6848</span>
-			<div class="td-info">주소 </div> <span class="consumer-addr"> <div class="border-left"></div> 서울시 양천구</span>
+		<div class="detail-info">
+			<div class="trade-info" detail-info="date">
+				<div class="info-label">
+					거래 날짜
+				</div>
+				<span for="date">
+					2017/04/06
+				</span>
+			</div>
+			<div class="trade-info" detail-info="directly">
+				<div class="info-label">
+					직접 거래
+				</div>
+				<span for="directly">
+					목동역,오목교역,18시 이후
+				</span>
+			</div>
+			<div class="trade-info" detail-info="delivery">
+				<div class="info-label">
+					택배 거래
+				</div>
+				<span for="delivery">
+					택배비 착불
+				</span>
+			</div>
+			<div class="trade-info" detail-info="safety">
+				<div class="info-label">
+					안심 거래
+				</div>
+				<span for="safety">
+					가능
+				</span>
+			</div>
 		</div>
 	</section>
-
-	<hr class="line">
+	<section class="seller-info">
+		<div class="info-title">
+			판매자 정보
+		</div>
+		<div class="detail-info">
+			<div class="seller-info" detail-info="name">
+				<div class="info-label">
+					이름
+				</div>
+				<span for="name">
+					백수현
+				</span>
+			</div>
+			<div class="seller-info" detail-info="rank">
+				<div class="info-label">
+					회원 등급
+				</div>
+				<span for="rank">
+					일반 회원
+				</span>
+			</div>
+			<div class="seller-info" detail-info="contact">
+				<div class="info-label">
+					연락처
+				</div>
+				<span for="contact">
+					010-0000-0000
+				</span>
+			</div>
+			<div class="seller-info" detail-info="address">
+				<div class="info-label">
+					주소
+				</div>
+				<span for="address">
+					서울시 양천구
+				</span>
+			</div>
+			<div class="seller-info" detail-info="account">
+				<div class="info-label">
+					입금 계좌
+				</div>
+				<span for="account">
+					1002-950-000000 (우리은행)
+				</span>
+			</div>
+		</div>
+	</section>
+	<section class="purchaser-info">
+		<div class="info-title">
+			구매자 정보
+		</div>
+		<div class="detail-info">
+			<div class="purchaser-info" detail-info="name">
+				<div class="info-label">
+					이름
+				</div>
+				<span for="name">
+					백수현
+				</span>
+			</div>
+			<div class="purchaser-info" detail-info="contact">
+				<div class="info-label">
+					연락처
+				</div>
+				<span for="contact">
+					010-0000-0000
+				</span>
+			</div>
+			<div class="purchaser-info" detail-info="address">
+				<div class="info-label">
+					주소
+				</div>
+				<span for="address">
+					서울시 양천구
+				</span>
+			</div>
+		</div>
+	</section>
 	<button class="btn-bottom btn-escrow">안심거래 하러 가기</button>
 	<button class="btn-bottom btn-ok">확인</button>
-</div>
-
+</section>
 {{>footer jsName="purchase-confirm"}}

@@ -1,7 +1,6 @@
 {{set root=".."}}
 {{>admin-header title="회원 관리" cssName="admin-member"}}
 
-
 <section class="admin title member-title">
 	<span>회원 관리</span>
 </section>
@@ -24,7 +23,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="admin-member list-header">
+	<div class="admin list-header">
 		<div class="product-count">
 			총 <span>15</span>건
 		</div>
@@ -41,12 +40,6 @@
 			</ul>
 		</div>
 	</div>
-
-
-
-</section>
-
-
 	<section class="admin-member-list">
 		<table class="table table-striped table-hover table-condensed">
 			<thead>
@@ -111,39 +104,50 @@
 			</tbody>
 		</table>
 	</section>
+	<ul class="paging">
+		<li page="firstPage">
+			<a href='#'>
+				<i class="fa fa-angle-double-left"></i>
+			</a>
+		<li page="(startPage - 1)">
+			<a href="#">
+				<i class="fa fa-angle-left"></i>
+			</a>
+		</li>
+		<li page="i" class="active">
+			<a href="#">
+				1
+			</a>
+		</li>
+		<li page="i">
+			<a href="#">
+				2
+			</a>
+		</li>
+		<li page="i">
+			<a href="#">
+				3
+			</a>
+		</li>
+		<li page="i">
+			<a href="#">
+				4
+			</a>
+		</li>
+		<li page="(endPage + 1)">
+			<a href="#">
+				<i class="fa fa-angle-right"></i>
+			</a>
+		</li>
+		<li page="lastPage">
+			<a href="#">
+				<i class="fa fa-angle-double-right"></i>
+			</a>
+		</li>
+	</ul>
+	<section class="resell-btn add-member">
+		Add
+	</section>
+</section>
 
-	<nav>
-		<ul class="pagination">
-			<li>
-				<a href="#" aria-label="first-page">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" aria-label="Previous">
-					<span aria-hidden="true">&lt;</span>
-				</a>
-			</li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li>
-				<a href="#" aria-label="Next">
-					<span aria-hidden="true">&gt;</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" aria-label="last-page">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-
-	<div class="admin-member-buttons">
-		<button class="btn-admin-add btn btn-success">Add</button>
-	</div>
-
-</div>
 {{>footer jsName="admin-main"}}
