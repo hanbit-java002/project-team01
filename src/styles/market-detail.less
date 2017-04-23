@@ -1,196 +1,22 @@
-@import 'lib/include.all.less';
-@import 'common.css';
+@import 'common.less';
 
-li {
-	margin: 5px 0;
+.product-img-area {
+	height:250px;
+	overflow: hidden;
 }
 
-.carousel-indicators {
-	margin-bottom: 0;
+.carousel-control>span {
+	font-size: 35px;
+	@abs-center();
+	background: none;
 }
+
 .carousel-indicators li {
-	border: solid 1px @colorMain;
-}
-
-#carousel-example-generic {
-	margin-bottom: 20px;
+	margin: 0px 5px;
 }
 
 .carousel-indicators .active {
-	background-color: @colorMain;
-}
-
-.detail-container{
-	padding: 0 4%;
-}
-
-.detail-info {
-	position: relative;
-	width: 100%;
-	border-bottom: solid 1px @colorFontMain;
-	margin-top: 5px;
-	padding-bottom: 5px;
-}
-.detail-info>ul>li {
-	font-weight: bold;
-	display: inline-block;
-	line-height: 1;
-}
-.detail-info-box>div:last-child {
-	border-bottom: none;
-}
-.detail-product-name {
-	color: @colorFontMain;
-	font-size: 26px;
-	font-weight: bold;
-}
-.detail-price-info {
-	color: @colorPoint;
-	font-size: 20px;
-	font-weight: bold;
-}
-.fa-heart-o {
-	position: absolute;
-	top: 0;
-	right: 15px;
-	font-size: 40px;
-	color: pink;
-}
-.fa-star {
-	color: pink;
-	margin-right: 4px;
-}
-
-.info-category {
-	color: @colorMain;
-	font-size: 16px;
-	font-weight: bold;
-	margin-right: 20px;
-}
-.info-val {
-	font-size: 14px;
-	color: @colorMain;
-}
-
-.trade-method {
-	border-right: solid 2px @colorDarkGray;
-	margin-right: 10px;
-	padding-right: 10px;
-}
-
-.buy-button {
-	background-color: @colorMain;
-	height: 40px;
-	width: 100%;
-	border: none;
-	color: white;
-	font-size: 16px;
-	font-weight: bold;
-	margin-bottom: 20px;
-}
-
-.comment-heading {
-	color: @colorFontMain;
-	border-bottom: solid 8px @colorMain;
-	font-size: 16px;
-	font-weight: bold;
-}
-.comment-and-hits {
-	position: relative;
-	border-bottom: solid 1px @colorLineColor;
-}
-.comment-and-hits>ul>li {
-	display: inline-block;
-	padding-left: 20px;
-	margin-bottom: 5px;
-}
-.release-date {
-	position: absolute;
-	right: 0;
-}
-
-.update-and-delete {
-	border-bottom: solid 1px @colorLineColor;
-	margin-bottom: 20px;
-}
-
-.update-and-delete>ul>li {
-	display: inline-block;
-	text-align: center;
-	border-right: solid 2px @colorLineColor;
-	width: 25%;
-	color: @colorPoint;
-	padding: 10px 0;
-	font-size: 12px;
-	line-height: 0px;
-	margin: 10px 0px;
-}
-.update-and-delete>ul>li:last-child {
-	border-right: none;
-}
-
-
-.user-name-container {
-	position: relative;
-	width: 60px;
-	display: inline-block;
-}
-.comment-user-img {
-	width: 100%;
-	/*width :35px;*/
-	/*height: 35px;*/
-	text-align: center;
-}
-.comment-user-name {
-	text-align: center;
-}
-
-.comment-box {
-	position: relative;
-	margin-top: 15px;
-	border-bottom: solid 1px @colorLineColor;
-	padding-bottom: 10px;
-}
-
-.comment-box>div {
-	display: inline-block;
-}
-
-.ellipsis {
-	position: absolute;
-	right: 5px;
-	top: 15px;
-	font-size: 30px;
-	color: @colorDarkGray;
-}
-
-.add-user-comment {
-	position: relative;
-}
-
-.fa-arrow-right {
-	font-size: 35px;
-	color: @colorMain;
-}
-
-.user-comment-container {
-	display: inline-block;
-	padding-left: 20px;
-}
-.user-comment{
-	position: absolute;
-	top:0;
-}
-
-.user-comment-update {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	font-size: 14px;
-}
-
-.add-comment {
-	text-align: center;
-	font-size: 45px;
-	color: @colorMain;
+	width: 10px;
+	height: 10px;
+	margin: 0px 5px;
 }
