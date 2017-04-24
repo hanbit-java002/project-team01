@@ -8,26 +8,38 @@
 		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
 		<li data-target="#carousel-example-generic" data-slide-to="2"></li>
 		<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+		<li data-target="#carousel-example-generic" data-slide-to="4"></li>
+		<li data-target="#carousel-example-generic" data-slide-to="5"></li>
 	</ol>
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
-			<img src="{{root}}/img/product_img_01.jpg" alt="...">
+			<div class="product-img" style="background-image: url('{{root}}/img/product_img_01.jpg')"></div>
 			<div class="carousel-caption">
 			</div>
 		</div>
 		<div class="item">
-			<img src="{{root}}/img/product_img_02.jpg" alt="...">
+			<div class="product-img" style="background-image: url('{{root}}/img/product_img_02.jpg')"></div>
 			<div class="carousel-caption">
 			</div>
 		</div>
 		<div class="item">
-			<img src="{{root}}/img/product_img_03.jpg" alt="...">
+			<div class="product-img" style="background-image: url('{{root}}/img/product_img_03.jpg')"></div>
 			<div class="carousel-caption">
 			</div>
 		</div>
 		<div class="item">
-			<img src="{{root}}/img/product_img_04.jpg" alt="...">
+			<div class="product-img" style="background-image: url('{{root}}/img/product_img_04.jpg')"></div>
+			<div class="carousel-caption">
+			</div>
+		</div>
+		<div class="item">
+			<div class="product-img" style="background-image: url('{{root}}/img/product_img_05.jpg')"></div>
+			<div class="carousel-caption">
+			</div>
+		</div>
+		<div class="item">
+			<div class="product-img" style="background-image: url('{{root}}/img/product_img_06.jpg')"></div>
 			<div class="carousel-caption">
 			</div>
 		</div>
@@ -46,50 +58,127 @@
 			에어 조던 14 Black Pink New
 		</div>
 		<div class="product price">
+			<i class="fa fa-won"></i>
 			200,000
 		</div>
 		<div class="product size">
+			<line></line>
 			235mm
 		</div>
 		<div class="product quality">
+			<line></line>
 			새제품
 		</div>
 	</div>
-	<div class="seller-info"></div>
+	<div class="seller-info">
+		<div class="seller name">
+			<line></line>
+			<div class="seller-rank fa fa-star"></div>
+			<div class="seller-name">수현이당당다랑</div>
+		</div>
+		<div class="seller selling-complete">
+			<line></line>
+			총 <span>3</span>건
+		</div>
+	</div>
 	<div class="detail-description">
-		<div class="info-title">
-			Details
+		<div class="info-label">
+			상세 설명
+		</div>
+		<div class="user-description">
+			ex: 제품 판매 사유 / 구매날자 / 워런티 보유 / 취급방법 등
 		</div>
 	</div>
 	<div class="dealing-mode">
-		<div class="info-title">
-			Details
+		<div class="info-label">
+			거래 방식
 		</div>
 		<div class="directly">
-			<div class="info-label">
-				직접 거래
-			</div>
-			<span for="directly">
-				목동역,오목교역,18시 이후
-				</span>
+			<line></line>
+			목동역,오목교역,18시 이후
 		</div>
 		<div class="delivery">
-			<div class="info-label">
-				택배 거래
-			</div>
-			<span for="delivery">
-				택배비 착불
-				</span>
+			<line></line>
+			택배비 착불
 		</div>
 		<div class="safety">
-			<div class="info-label">
-				안심 결제
-			</div>
-			<span for="safety">
-					가능
-				</span>
+			<line></line>
+			가능
 		</div>
 	</div>
+	<div class="board-info">
+		<div class="like">
+			<span class="fa fa-heart-o"></span>
+			10
+		</div>
+		<div class="comment">
+			<span class="fa fa-commenting-o"></span>
+			10
+		</div>
+		<div class="complain">
+			<span class="fa fa-thumbs-o-down"></span>
+			10
+		</div>
+		<div class="hits">
+			<span class="fa fa-eye"></span>
+			1,000
+		</div>
+		<div class="reporting-date">
+			<span class="fa fa-clock-o"></span>
+			2017/03/31
+		</div>
+	</div>
+	<section class="resell-btn purchase">구매</section>
+	<div class="board-setting">
+		<ul>
+			<li class="board-update">
+				수정
+			</li>
+			<li class="board-delete">
+				삭제
+			</li>
+			<li class="board-complain">
+				신고
+			</li>
+			<li class="board-clipboard">
+				URL
+			</li>
+		</ul>
+	</div>
+	<div class="list-selector like fa fa-heart-o" valid="false"></div>
+</section>
+<section class="contents-wrapper market-detail comment">
+	<div class="comment-header">
+		comments
+	</div>
+	<ul class="comments-body">
+		<li>
+			<div class="user-info">
+				<i class="user-rank fa fa-star"></i>
+				<div class="user-name">
+					수현이다다다다다다다다다다다다다다다다다다다다다다다다
+				</div>
+			</div>
+			<div class="reporting-date">
+				<span class="fa fa-clock-o"></span>
+				2017/03/31
+			</div>
+			<div class="comment-content">
+				얼마나 신었나요?
+				<br>
+				정품 맞나요?
+			</div>
+			<div class="comment-setting">
+				<i class="fa fa-ellipsis-v"></i>
+			</div>
+			<ul class="comment-setting-layer">
+				<li class="comment-reply">답글</li>
+				<li class="comment-update">수정</li>
+				<li class="comment-delete">삭제</li>
+				<li class="comment-complain">신고</li>
+			</ul>
+		</li>
+	</ul>
 </section>
 
 

@@ -1,22 +1,242 @@
 @import 'common.less';
 
+
+/*----------img-area----------*/
 .product-img-area {
 	height:250px;
 	overflow: hidden;
 }
 
-.carousel-control>span {
-	font-size: 35px;
-	@abs-center();
-	background: none;
-}
-
 .carousel-indicators li {
 	margin: 0px 5px;
+	background-color: @colorLineColor;
+	border: solid 1px @colorLineColor;
 }
 
 .carousel-indicators .active {
 	width: 10px;
 	height: 10px;
 	margin: 0px 5px;
+	background-color: @colorMain;
+	border: solid 1px @colorMain;
+}
+
+.carousel-inner {
+	height: 100%;
+}
+
+.carousel-inner>.item {
+	height: 100%;
+}
+
+.carousel-inner>.item>.product-img {
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+}
+
+.carousel-control>span {
+	color: @colorLineColor;
+	font-size: 35px;
+	@abs-center();
+	background: none;
+}
+
+.carousel-control {
+	background-image: none !important;
+}
+
+/*----------info-area----------*/
+
+@section-padding-bottom: 10px;
+
+.product-info .product.price,
+.product-info .product.quality,
+.seller-info,
+.detail-description,
+.dealing-mode,
+.board-info,
+.board-setting {
+	margin-bottom: @section-padding-bottom;
+	padding-bottom: @section-padding-bottom;
+	border-bottom: solid 1px @colorLineColor;
+}
+
+line {
+	margin-left: 15px;
+	margin-right: 15px;
+	font-size: 11px;
+	border-left: solid 1px #DDDDE0;
+}
+
+.contents-wrapper.market-detail {
+	font-size: 15px;
+	padding-top: 20px;
+}
+
+.product-info .product,
+.seller-info>div,
+.dealing-mode>div {
+	padding-bottom: 5px;
+}
+
+.product-info .product.name {
+	color: @colorFontMain;
+	font-size: 20px;
+	font-weight: bold;
+	@text-overflow();
+}
+
+.product-info .product.price {
+	color: @colorPoint;
+	font-size: 20px;
+	font-weight: bold;
+	border-bottom: solid 1px @colorLineColor;
+}
+
+.product-info .product.price>i {
+	font-size: 18px;
+}
+
+.product-info .product.size:before {
+	content: 'Size';
+}
+
+.product-info .product.quality:before {
+	content: 'Quality';
+}
+
+.seller-info .seller.name:before {
+	content: '판매자';
+}
+
+.seller-info .seller.name>div,
+.user-info>div {
+	display: inline-block;
+}
+
+.seller-info .seller-rank,
+.user-info .user-rank {
+	padding-right: 7px;
+	color: @colorLike;
+	font-size: 14px;
+	vertical-align: middle;
+}
+
+.seller-info .seller-name,
+.user-info .user-name {
+	@text-overflow();
+	vertical-align: middle;
+}
+
+.seller-info .seller.selling-complete:before {
+	content: '판매 완료';
+}
+
+.info-label {
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+.dealing-mode .directly:before {
+	content: '직접 거래';
+}
+
+.dealing-mode .delivery:before {
+	content: '택배 거래';
+}
+
+.dealing-mode .safety:before {
+	content: '안심 결제';
+}
+
+/*----------board-info-area----------*/
+
+.board-info>div {
+	width: 16%;
+	display: inline-block;
+}
+
+.board-info>div.hits {
+	width: 24%;
+}
+
+.board-info>div.reporting-date {
+	width: 28%;
+	text-align: right;
+}
+
+.board-setting>ul>li {
+	display: inline-block;
+	width: 25%;
+	border-right: solid 1px #DDDDE0;
+	text-align: center;
+	font-size: 13px;
+}
+
+.board-setting>ul>li:last-child {
+	border-right: none;
+}
+
+.board-setting {
+	margin-top: @section-padding-bottom;
+	padding-top: @section-padding-bottom;
+	border-top: solid 1px @colorLineColor;
+}
+
+/*----------button-area----------*/
+
+.market-detail .resell-btn.purchase {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*----------comments-area----------*/
+
+.comment-header {
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: solid 5px @colorMain;
+}
+
+.comment>ul>li {
+	position: relative;
+	margin: 15px 0;
+}
+
+.comments-body .user-info {
+	width: 60%;
+	padding-right: 20px;
+	margin-right: 10%;
+}
+
+.comments-body .user-info>.user-name {
+	width: 88%;
+	@text-overflow();
+}
+
+.comments-body .reporting-date {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.comment-setting {
+	right: 0px;
+	@abs-vmiddle();
+	font-size: 25px;
+	color: #DDDDE0;
+}
+
+.comment-setting-layer {
+	display: none;
+}
+
+
+.comments-body .comment-content {
+	padding-top: 10px;
+	padding-bottom: 15px;
+	padding-right: 10%;
+	min-height: 70px;
+	border-bottom: solid 1px #d2d2d2;
 }
