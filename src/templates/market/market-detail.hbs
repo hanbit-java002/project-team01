@@ -1,37 +1,90 @@
 {{set root=".."}}
 {{set pageId="market-detail"}}
 {{>header title="market-detail" cssName="market-detail"}}
-<div id="carousel-example-generic" class="product-img-area carousel slide" data-ride="carousel">
+<section class="product-img-layer">
+	<div class="product-img-layer-header">
+		<div class="gallery-title">상품 사진</div>
+		<div class="close-icon"></div>
+	</div>
+	<div id="img-layer-carousel" class="product-img-area carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#img-layer-carousel" data-slide-to="0" class="active"></li>
+			<li data-target="#img-layer-carousel" data-slide-to="1"></li>
+			<li data-target="#img-layer-carousel" data-slide-to="2"></li>
+			<li data-target="#img-layer-carousel" data-slide-to="3"></li>
+			<li data-target="#img-layer-carousel" data-slide-to="4"></li>
+			<li data-target="#img-layer-carousel" data-slide-to="5"></li>
+		</ol>
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img src='{{root}}/img/product_img_01.jpg'>
+				<div class="carousel-caption">
+				</div>
+			</div>
+			<div class="item">
+				<img src='{{root}}/img/product_img_02.jpg'>
+				<div class="carousel-caption">
+				</div>
+			</div>
+			<div class="item">
+				<img src='{{root}}/img/product_img_03.jpg'>
+				<div class="carousel-caption">
+				</div>
+			</div>
+			<div class="item">
+				<img src='{{root}}/img/product_img_04.jpg'>
+				<div class="carousel-caption">
+				</div>
+			</div>
+			<div class="item">
+				<img src='{{root}}/img/product_img_05.jpg'>
+				<div class="carousel-caption">
+				</div>
+			</div>
+			<div class="item">
+				<img src='{{root}}/img/product_img_06.jpg'>
+				<div class="carousel-caption">
+				</div>
+			</div>
+		</div>
+		<!-- Control-arrows -->
+		<a class="left carousel-control" href="#img-layer-carousel" role="button" data-slide="prev">
+		<span class="fa fa-angle-left" aria-hidden="true"></span>
+		</a>
+		<a class="right carousel-control" href="#img-layer-carousel" role="button" data-slide="next">
+			<span class="fa fa-angle-right" aria-hidden="true"></span>
+		</a>
+	</div>
+</section>
+<div id="market-detail-img-carousel" class="product-img-area carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
-		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="3"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="4"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="5"></li>
+		<li data-target="#market-detail-img-carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#market-detail-img-carousel" data-slide-to="1"></li>
+		<li data-target="#market-detail-img-carousel" data-slide-to="2"></li>
+		<li data-target="#market-detail-img-carousel" data-slide-to="3"></li>
+		<li data-target="#market-detail-img-carousel" data-slide-to="4"></li>
+		<li data-target="#market-detail-img-carousel" data-slide-to="5"></li>
 	</ol>
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
 			<div class="product-img" style="background-image: url('{{root}}/img/product_img_01.jpg')"></div>
-			<div class="carousel-caption">
-			</div>
+			<div class="carousel-caption"></div>
 		</div>
 		<div class="item">
 			<div class="product-img" style="background-image: url('{{root}}/img/product_img_02.jpg')"></div>
-			<div class="carousel-caption">
-			</div>
+			<div class="carousel-caption"></div>
 		</div>
 		<div class="item">
 			<div class="product-img" style="background-image: url('{{root}}/img/product_img_03.jpg')"></div>
-			<div class="carousel-caption">
-			</div>
+			<div class="carousel-caption"></div>
 		</div>
 		<div class="item">
 			<div class="product-img" style="background-image: url('{{root}}/img/product_img_04.jpg')"></div>
-			<div class="carousel-caption">
-			</div>
+			<div class="carousel-caption"></div>
 		</div>
 		<div class="item">
 			<div class="product-img" style="background-image: url('{{root}}/img/product_img_05.jpg')"></div>
@@ -45,10 +98,10 @@
 		</div>
 	</div>
 	<!-- Control-arrows -->
-	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	<a class="left carousel-control" href="#market-detail-img-carousel" role="button" data-slide="prev">
 		<span class="fa fa-angle-left" aria-hidden="true"></span>
 	</a>
-	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	<a class="right carousel-control" href="#market-detail-img-carousel" role="button" data-slide="next">
 		<span class="fa fa-angle-right" aria-hidden="true"></span>
 	</a>
 </div>
@@ -106,6 +159,7 @@
 			가능
 		</div>
 	</div>
+	<section class="resell-btn purchase">구매</section>
 	<div class="board-info">
 		<div class="like">
 			<span class="fa fa-heart-o"></span>
@@ -128,7 +182,6 @@
 			2017/03/31
 		</div>
 	</div>
-	<section class="resell-btn purchase">구매</section>
 	<div class="board-setting">
 		<ul>
 			<li class="board-update">
@@ -153,32 +206,83 @@
 	</div>
 	<ul class="comments-body">
 		<li>
-			<div class="user-info">
-				<i class="user-rank fa fa-star"></i>
-				<div class="user-name">
-					수현이다다다다다다다다다다다다다다다다다다다다다다다다
+			<div class="comment-body">
+				<div class="user-info">
+					<i class="user-rank fa fa-star"></i>
+					<div class="user-name">
+						수현이다다다다다다다다다다다다다다다다다다다다다다다다
+					</div>
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="comment-content">
+					얼마나 신었나요?
+					<br>
+					정품 맞나요?
 				</div>
 			</div>
-			<div class="reporting-date">
-				<span class="fa fa-clock-o"></span>
-				2017/03/31
-			</div>
-			<div class="comment-content">
-				얼마나 신었나요?
-				<br>
-				정품 맞나요?
-			</div>
-			<div class="comment-setting">
-				<i class="fa fa-ellipsis-v"></i>
-			</div>
-			<ul class="comment-setting-layer">
-				<li class="comment-reply">답글</li>
-				<li class="comment-update">수정</li>
+			<ul class="comment-setting">
+				<li class="comment-modify">수정</li>
 				<li class="comment-delete">삭제</li>
 				<li class="comment-complain">신고</li>
+				<li class="comment-reply">답글</li>
+			</ul>
+		</li>
+		<li>
+			<i class="reply glyphicon glyphicon-arrow-right"></i>
+			<div class="reply comment-body">
+				<div class="user-info">
+					<i class="user-rank fa fa-star"></i>
+					<div class="user-name">
+						수현이다다다다다다다다다다다다다다다다다다다다다다다다
+					</div>
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="comment-content">
+					얼마나 신었나요?
+					<br>
+					정품 맞나요?
+				</div>
+			</div>
+			<ul class="comment-setting">
+				<li class="comment-modify">수정</li>
+				<li class="comment-delete">삭제</li>
+				<li class="comment-complain">신고</li>
+				<li class="comment-reply">답글</li>
+			</ul>
+		</li>
+		<li>
+			<div class="comment-body">
+				<div class="user-info">
+					<i class="user-rank fa fa-star"></i>
+					<div class="user-name">
+						수현이다다다다다다다다다다다다다다다다다다다다다다다다
+					</div>
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="comment-content">
+					얼마나 신었나요?
+					<br>
+					정품 맞나요?
+				</div>
+			</div>
+			<ul class="comment-setting">
+				<li class="comment-modify">수정</li>
+				<li class="comment-delete">삭제</li>
+				<li class="comment-complain">신고</li>
+				<li class="comment-reply">답글</li>
 			</ul>
 		</li>
 	</ul>
+	<section class="resell-btn write-comment fa fa-pencil-square-o">댓글 작성</section>
 </section>
 
 

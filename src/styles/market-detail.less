@@ -48,18 +48,24 @@
 
 /*----------info-area----------*/
 
-@section-padding-bottom: 10px;
+@section-padding-bottom: 15px;
 
 .product-info .product.price,
 .product-info .product.quality,
 .seller-info,
 .detail-description,
-.dealing-mode,
-.board-info,
-.board-setting {
+.dealing-mode {
 	margin-bottom: @section-padding-bottom;
 	padding-bottom: @section-padding-bottom;
 	border-bottom: solid 1px @colorLineColor;
+}
+
+.board-info {
+	border-top: solid 1px #DDDDE0;
+	border-bottom: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-bottom: 0px;
 }
 
 line {
@@ -153,16 +159,17 @@ line {
 /*----------board-info-area----------*/
 
 .board-info>div {
-	width: 16%;
+	width: 15%;
 	display: inline-block;
+	font-size: 13px;
 }
 
 .board-info>div.hits {
-	width: 24%;
+	width: 25%;
 }
 
 .board-info>div.reporting-date {
-	width: 28%;
+	width: 30%;
 	text-align: right;
 }
 
@@ -179,9 +186,10 @@ line {
 }
 
 .board-setting {
-	margin-top: @section-padding-bottom;
-	padding-top: @section-padding-bottom;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	border-top: solid 1px @colorLineColor;
+	border-bottom: solid 1px @colorLineColor;
 }
 
 /*----------button-area----------*/
@@ -202,16 +210,21 @@ line {
 .comment>ul>li {
 	position: relative;
 	margin: 15px 0;
+	border-bottom: solid 1px @colorLineColor;
 }
 
 .comments-body .user-info {
-	width: 60%;
+	width: 70%;
 	padding-right: 20px;
-	margin-right: 10%;
+	margin-right: 5%;
+}
+
+.reply.comment-body .user-info {
+	width: 90%;
 }
 
 .comments-body .user-info>.user-name {
-	width: 88%;
+	width: 80%;
 	@text-overflow();
 }
 
@@ -219,24 +232,105 @@ line {
 	position: absolute;
 	top: 0;
 	right: 0;
+	font-size: 13px;
+	line-height: 23px;
 }
 
-.comment-setting {
-	right: 0px;
-	@abs-vmiddle();
-	font-size: 25px;
-	color: #DDDDE0;
+.comment-setting>li {
+	display: inline-block;
+	padding: 4px 0;
+	width: 25%;
+	font-size: 12px;
+	text-align: center;
+	border-right: solid 1px #DDDDE0;
+	border-top: solid 1px #DDDDE0;
 }
 
-.comment-setting-layer {
-	display: none;
+.comment-setting>li:last-child {
+	border-right: none;
 }
-
 
 .comments-body .comment-content {
 	padding-top: 10px;
 	padding-bottom: 15px;
 	padding-right: 10%;
 	min-height: 70px;
-	border-bottom: solid 1px #d2d2d2;
+}
+
+.reply.glyphicon-arrow-right {
+	position: absolute;
+	top: 2%;
+	font-size: 18px;
+	color: @colorMain;
+}
+.reply.comment-body {
+	padding-left: 35px;
+	width: 72%
+}
+
+.resell-btn.write-comment {
+	margin-top: 10px;
+	padding-top: 0px;
+	padding-bottom: 15px;
+	width: 100%;
+	color: @colorMain;
+	background-color: @colorWhite;
+	font-size: 18px;
+	text-align: center;
+}
+
+.resell-btn.write-comment:before {
+	padding-right: 10px;
+	vertical-align: middle;
+	font-size: 24px;
+}
+
+/*------product-img-layer-area------*/
+
+.product-img-layer {
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	z-index: 20;
+}
+
+.product-img-layer-header {
+	position: relative;
+	padding: 25px 0;
+	color: #fff;
+	text-align: center;
+	font-size: 20px;
+}
+
+.product-img-layer .close-icon {
+	@btn-close-white();
+	margin-right: 3px;
+}
+
+.product-img-layer .carousel-inner {
+	position: relative;
+	height: 76%;
+}
+
+.product-img-layer #img-layer-carousel {
+	height: 100%;
+}
+
+.product-img-layer .carousel-control {
+	bottom: -63%;
+}
+
+.product-img-layer .carousel-indicators {
+	bottom: 15%;
+}
+
+.product-img-layer .carousel-inner>.item>img {
+	@abs-center();
+}
+
+.carousel-indicators {
+	z-index: 1;
 }
