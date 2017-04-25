@@ -354,6 +354,21 @@ define([
 		});
 	}
 
+	function checkSignedIn() {
+		$.ajax({
+			url: window._ctx.root + "/api/member/signedin",
+			success: function (data) {
+				if (data.result === "yes") {
+					alert("들어왔음");
+				}
+				else {
+					alert("노노노");
+				}
+			}
+		});
+	}
+
+    checkSignedIn();
 
 	initNavi();
 	scrollUp();

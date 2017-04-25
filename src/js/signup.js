@@ -2,8 +2,8 @@ require([
 	"common",
 ], function() {
 
-	//인증 버튼 클릭 시
-	<!-- 메일 인증 발송 팝업창 -->
+	/* 인증 버튼 클릭 시
+		메일 인증 발송 팝업창*/
 	$(".btn-verify").on("click", function() {
 		$(".popup-email-verify-box").show();
 
