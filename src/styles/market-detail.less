@@ -1,5 +1,15 @@
 @import 'common.less';
 
+.contents-wrapper.market-detail {
+	position: relative;
+}
+
+.market-detail .list-selector.like {
+	top: 20px;
+	right: 15px;
+	font-size: 40px;
+	color: #F1E3DD;
+}
 
 /*----------img-area----------*/
 .product-img-area {
@@ -87,10 +97,10 @@ line {
 }
 
 .product-info .product.name {
+	width: 82%;
 	color: @colorFontMain;
 	font-size: 20px;
 	font-weight: bold;
-	@text-overflow();
 }
 
 .product-info .product.price {
@@ -180,7 +190,7 @@ line {
 	text-align: center;
 	font-size: 13px;
 }
-p
+
 .board-setting>ul>li:last-child {
 	border-right: none;
 }
@@ -334,3 +344,4 @@ p
 .carousel-indicators {
 	z-index: 1;
 }
+

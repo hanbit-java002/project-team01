@@ -1,16 +1,16 @@
 {{set root=".."}}
-{{>admin-header title="카테고리 관리" cssName="admin-category"}}
+{{>admin-header title="브랜드 관리" cssName="admin-category"}}
 
 <section class="admin-list">
-	<section class="admin title category-title">
-		<span>카테고리 관리</span>
+	<section class="admin title brand-title">
+		<span>브랜드 관리</span>
 	</section>
 	<section class="menu-category">
 		<ul>
-			<li menu-category-detail="category" class="active">
+			<li menu-category-detail="category">
 				Category
 			</li>
-			<li menu-category-detail="brand">
+			<li menu-category-detail="brand" class="active">
 				Brand
 			</li>
 			<li menu-category-detail="series">
@@ -18,46 +18,46 @@
 			</li>
 		</ul>
 	</section>
-	<section class="contents-wrapper admin-category">
-		<section class="category">
+	<section class="contents-wrapper admin-brand">
+		<section class="brand">
 			<table class="table table-striped table-hover table-condensed">
 				<thead>
 				<tr>
 					<th>No</th>
-					<th>Category ID</th>
-					<th>Category Name</th>
+					<th>Brand ID</th>
+					<th>Brand name</th>
 				</tr>
 				</thead>
 				<tbody>
 				<tr>
 					<td>No</td>
-					<td>Category ID</td>
-					<td>Category Namessssssssssssssssssssssssssssssss</td>
+					<td>Brand ID</td>
+					<td>Brand name</td>
 				</tr>
 				<tr>
 					<td>No</td>
-					<td>Category ID</td>
-					<td>Category Name</td>
+					<td>Brand ID</td>
+					<td>Brand name</td>
 				</tr>
 				<tr>
 					<td>No</td>
-					<td>Category ID</td>
-					<td>Category Name</td>
+					<td>Brand ID</td>
+					<td>Brand name</td>
 				</tr>
 				<tr>
 					<td>No</td>
-					<td>Category ID</td>
-					<td>Category Name</td>
+					<td>Brand ID</td>
+					<td>Brand name</td>
 				</tr>
 				<tr>
 					<td>No</td>
-					<td>Category ID</td>
-					<td>Category Name</td>
+					<td>Brand ID</td>
+					<td>Brand name</td>
 				</tr>
 				<tr>
 					<td>No</td>
-					<td>Category ID</td>
-					<td>Category Name</td>
+					<td>Brand ID</td>
+					<td>Brand name</td>
 				</tr>
 				</tbody>
 			</table>
@@ -102,7 +102,7 @@
 					</a>
 				</li>
 			</ul>
-			<section class="resell-btn add" menu-category-detail="category">
+			<section class="resell-btn add" menu-category-detail="brand">
 				Add
 			</section>
 		</section>
@@ -110,13 +110,13 @@
 </section>
 
 <section class="admin-add">
-	<section class="admin title category-title">
-		<span>카테고리 추가</span>
+	<section class="admin title brand-title">
+		<span>브랜드 추가</span>
 	</section>
-	<section class="contents-wrapper admin-category">
+	<section class="contents-wrapper admin-brand">
 		<div class="form-group">
-			<label for="add-location_name">Category Name</label>
-			<input type="text" class="form-control" id="add-category_name" placeholder="Category Name">
+			<label for="add-brand_name">Brand Name</label>
+			<input type="text" class="form-control" id="add-brand_name" placeholder="Brand Name">
 		</div>
 		<div class="admin-buttons">
 			<div class="half resell-btn btn-admin-save">저장</div>
@@ -126,17 +126,17 @@
 </section>
 
 <section class="admin-update">
-	<section class="admin title category-title">
-		<span>카테고리 수정</span>
+	<section class="admin title brand-title">
+		<span>브랜드 수정</span>
 	</section>
-	<section class="contents-wrapper admin-category">
+	<section class="contents-wrapper admin-brand">
 		<div class="form-group">
-			<label for="upt-category_id">Category ID</label>
-			<input type="text" class="form-control" id="upt-category_id" disabled>
+			<label for="upt-brand_id">Brand ID</label>
+			<input type="text" class="form-control" id="upt-brand_id" disabled>
 		</div>
 		<div class="form-group">
-			<label for="upt-category_name">Category Name</label>
-			<input type="text" class="form-control" id="upt-category_name" placeholder="Category Name">
+			<label for="upt-brand_name">Brand Name</label>
+			<input type="text" class="form-control" id="upt-brand_name" placeholder="Brand Name">
 		</div>
 		<div class="admin-buttons">
 			<div class="btn-admin-update triple resell-btn">수정</div>

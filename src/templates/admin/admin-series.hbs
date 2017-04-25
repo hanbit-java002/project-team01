@@ -1,0 +1,167 @@
+{{set root=".."}}
+{{>admin-header title="시리즈 관리" cssName="admin-category"}}
+
+<section class="admin-list">
+	<section class="admin title series-title">
+	<span>시리즈 관리</span>
+	</section>
+	<section class="menu-category">
+	<ul>
+		<li menu-category-detail="category">
+			Category
+		</li>
+		<li menu-category-detail="brand">
+			Brand
+		</li>
+		<li menu-category-detail="series" class="active">
+			Series
+		</li>
+	</ul>
+	</section>
+	<section class="contents-wrapper admin-series">
+		<section class="series">
+			<table class="table table-striped table-hover table-condensed">
+				<thead>
+				<tr>
+					<th>No</th>
+					<th>Series ID</th>
+					<th>Series Name</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>No</td>
+					<td>Series ID</td>
+					<td>Series Name</td>
+				</tr>
+				<tr>
+					<td>No</td>
+					<td>Series ID</td>
+					<td>Series Name</td>
+				</tr>
+				<tr>
+					<td>No</td>
+					<td>Series ID</td>
+					<td>Series Name</td>
+				</tr>
+				<tr>
+					<td>No</td>
+					<td>Series ID</td>
+					<td>Series Name</td>
+				</tr>
+				<tr>
+					<td>No</td>
+					<td>Series ID</td>
+					<td>Series Name</td>
+				</tr>
+				<tr>
+					<td>No</td>
+					<td>Series ID</td>
+					<td>Series Name</td>
+				</tr>
+				</tbody>
+			</table>
+			<ul class="paging">
+				<li page="firstPage">
+					<a href='#'>
+						<i class="fa fa-angle-double-left"></i>
+					</a>
+				<li page="(startPage - 1)">
+					<a href="#">
+						<i class="fa fa-angle-left"></i>
+					</a>
+				</li>
+				<li page="i" class="active">
+					<a href="#">
+						1
+					</a>
+				</li>
+				<li page="i">
+					<a href="#">
+						2
+					</a>
+				</li>
+				<li page="i">
+					<a href="#">
+						3
+					</a>
+				</li>
+				<li page="i">
+					<a href="#">
+						4
+					</a>
+				</li>
+				<li page="(endPage + 1)">
+					<a href="#">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</li>
+				<li page="lastPage">
+					<a href="#">
+						<i class="fa fa-angle-double-right"></i>
+					</a>
+				</li>
+			</ul>
+			<section class="resell-btn add" menu-category-detail="series">
+				Add
+			</section>
+		</section>
+	</section>
+</section>
+
+<section class="admin-add">
+	<section class="admin title series-title">
+		<span>시리즈 추가</span>
+	</section>
+	<section class="contents-wrapper admin-series">
+		<div class="form-group">
+			<label for="add-brand_name">Brand Name</label>
+			<input type="text" class="form-control" id="add-brand_name" placeholder="NIKE" disabled>
+		</div>
+		<div class="form-group">
+			<label for="add-series_name">Series Name</label>
+			<input type="text" class="form-control" id="add-series_name" placeholder="series Name">
+		</div>
+		<div class="form-group">
+			<label class="block" required>Image</label>
+			<input type="file" id="add-series_img" class="hidden" placeholder="대표이미지" accept="image/*">
+			<div class="btn-admin-file resell-btn" for="add-series_img">파일 선택</div>
+		</div>
+		<div class="admin-buttons">
+			<div class="half resell-btn btn-admin-save">저장</div>
+			<div class="half resell-btn btn-admin-cancel">취소</div>
+		</div>
+	</section>
+</section>
+
+<section class="admin-update">
+	<section class="admin title series-title">
+		<span>시리즈 수정</span>
+	</section>
+	<section class="contents-wrapper admin-series">
+		<div class="form-group">
+			<label for="upt-series_id">Series ID</label>
+			<input type="text" class="form-control" id="upt-series_id" disabled>
+		</div>
+		<div class="form-group">
+			<label for="upt-brand_name">Brand Name</label>
+			<input type="text" class="form-control" id="upt-brand_name" placeholder="NIKE" disabled>
+		</div>
+		<div class="form-group">
+			<label for="upt-series_name">Series Name</label>
+			<input type="text" class="form-control" id="upt-series_name" placeholder="Series Name">
+		</div>
+		<div class="form-group">
+			<label class="block">Image</label>
+			<input type="file" id="upt-series_img" class="hidden" placeholder="대표이미지" accept="image/*">
+			<div class="btn-admin-file resell-btn" for="upt-series_img">파일 선택</div>
+		</div>
+		<div class="admin-buttons">
+			<div class="btn-admin-update triple resell-btn">수정</div>
+			<div class="btn-admin-delete triple resell-btn">삭제</div>
+			<div class="btn-admin-cancel triple resell-btn">취소</div>
+		</div>
+	</section>
+</section>
+
+{{>footer jsName="admin-category"}}

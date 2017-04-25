@@ -1,65 +1,56 @@
 @import 'common.less';
 
-header {
-	background-color: @colorPoint;
-}
-
-footer {
+section.admin-add,
+section.admin-update {
 	display: none;
 }
 
-.admin-header {
-	width: 100%;
-	position: fixed;
-	z-index: 10;
-	top: 0;
-	font-size: 30px;
-	font-weight: bold;
-	line-height: 50px;
-}
-.admin-header>div {
-	position: absolute;
-	left: 120px;
-	color: rgb(241, 227, 221);
-}
-.admin-header>a>i {
-	position: absolute;
-	top: 11px;
-	right: 10px;
-	width: 33px;
-	height: 33px;
-	color: @colorWhite;
+.contents-wrapper {
+	padding-top: 25px;
 }
 
-.search-icon {
-	display: none;
-}
-
-.menu-icon {
-	display: none;
-}
-.member-container {
-	position: relative;
-	padding: 15px;
-}
-.heading-bar>a {
-	color: @colorPoint;
-}
-
-.heading-bar {
-	position: relative;
-	width: 100%;
+.table th,
+.table td {
 	text-align: center;
-	height: 50px;
-	font-size: 22px;
-	font-weight: bold;
-	color: @colorPoint;
-  	line-height: 50px;
-	border-bottom: solid 1px #DDDDE0;
+	border: solid 1px @colorLineColor !important;
+	@text-overflow();
 }
 
-.fa-fast-backward {
-	position: absolute;
-	left: 20px;
-	line-height: 50px;
+.table th:first-child {
+	width: 13%;
+}
+
+.table th:last-child {
+	width: 42%
+}
+
+/*-----btn area-----*/
+.btn-admin-cancel {
+	background-color: @colorDarkGray !important;
+}
+
+.btn-admin-update {
+	background-color: @colorMain !important;
+}
+
+.admin-buttons{
+	margin-top: 30px;
+	padding-top: 20px;
+	border-top: solid 1px @colorLineColor;
+}
+
+.admin-buttons>div {
+	margin-right: 2%;
+}
+
+.admin-buttons>div:last-child {
+	margin-right: 0px;
+}
+
+.resell-btn {
+	font-size: 14px;
+}
+
+.btn-admin-file {
+	margin-top: 0px;
 }
