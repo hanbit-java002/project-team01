@@ -3,6 +3,7 @@ require([
 ], function() {
 	var common= require("common");
 
+
 	function viewMoreProduct() {
 		$(".view-more").on("click", function() {
 			var brandId = $(".menu-category>ul .active").attr("menu-category-detail");
