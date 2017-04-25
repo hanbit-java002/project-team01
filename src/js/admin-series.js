@@ -8,7 +8,7 @@ require([
 	});
 
 	$(".resell-btn.add").on("click", function() {
-		showSection(".admin-add");
+		showSection(".admin-add", null, handler);
 	});
 
 	$(".btn-admin-cancel").on("click", function() {
@@ -22,16 +22,17 @@ require([
 			loadList();
 		}
 		else if (section === ".admin-add") {
-			$("#add-category_name").val("");
-			$("#add-category_name").focus();
+			$("#add-series_name").val("");
+			$("#add-series_name").focus();
+			getBrandId();
 		}
 		else if (section === ".admin-update") {
-			var categoryId = jqElement.attr("category-id");
+			var seriesId = jqElement.attr("series-id");
 			$.ajax({
-				url: window._ctx.root + "/api/admin/category/" + categoryId,
+				url: window._ctx.root + "/api/admin/series/" + seriesId,
 				success: function(item) {
-					$("#upt-category_id").val(item.category_id);
-					$("#upt-category_name").val(item.category_name);
+					$("#upt-series_id").val(item.series_id);
+					$("#upt-series_name").val(item.series_name);
 				},
 			});
 		}
@@ -53,17 +54,17 @@ require([
 	/*-----list 불러오기-----*/
 	function loadList() {
 		$.ajax({
-			url: window._ctx.root + "/api/admin/category/list",
+			url: window._ctx.root + "/api/admin/series/list",
 			success: function(list) {
 				var itemHTML = "";
 
 				for (var i=0; i<list.length; i++) {
 					var item = list[i];
 
-					itemHTML += "<tr category-id='" + item.category_id + "'>";
+					itemHTML += "<tr series-id='" + item.series_id + "'>";
 					itemHTML += "<td>" + (i+1) + "</td>";
-					itemHTML += "<td>" + item.category_id + "</td>";
-					itemHTML += "<td>" + item.category_name + "</td>";
+					itemHTML += "<td>" + item.series_id + "</td>";
+					itemHTML += "<td>" + item.series_name + "</td>";
 					itemHTML += "</tr>";
 				}
 				$(".admin-list table>tbody").html(itemHTML);
@@ -76,18 +77,20 @@ require([
 
 	/*-----카테고리 추가-----*/
 	$(".btn-admin-save").on("click", function() {
-		var categoryName = $("#add-category_name").val().trim();
+		var seriesName = $("#add-series_name").val().trim();
+		getBrandId();
 
-		if (categoryName === "") {
+		if (seriesName === "") {
 			alert("카테고리명을 입력하세요.");
-			$("#add-category_name").focus();
+			$("#add-series_name").focus();
 			return;
 		}
 
 		$.ajax({
-			url: window._ctx.root + "/api/admin/category/add",
+			url: window._ctx.root + "/api/admin/series/add",
 			data: {
-				categoryName: categoryName,
+				seriesName: seriesName,
+				brandId: brandId,
 			},
 			success: function() {
 				showSection(".admin-list", null, handler);
@@ -96,25 +99,26 @@ require([
 				alert("저장에 실패했습니다.");
 			},
 		});
+		console.log(brandId);
 	});
 
 	/*-----카테고리 수정-----*/
 	$(".btn-admin-update").on("click", function() {
-		var categoryName = $("#upt-category_name").val().trim();
+		var seriesName = $("#upt-series_name").val().trim();
 
-		if (categoryName === "") {
+		if (seriesName === "") {
 			alert("카테고리명을 입력하세요.");
-			$("#upt-category_name").focus();
+			$("#upt-series_name").focus();
 			return;
 		}
 
-		var categoryId = $("#upt-category_id").val();
+		var seriesId = $("#upt-series_id").val();
 
 		$.ajax({
-			url: window._ctx.root + "/api/admin/category/" + categoryId,
+			url: window._ctx.root + "/api/admin/series/" + seriesId,
 			method: "PUT",
 			data: {
-				categoryName: categoryName,
+				seriesName: seriesName,
 			},
 			success: function() {
 				showSection(".admin-list", null, handler);
@@ -127,10 +131,10 @@ require([
 
 	/*-----카테고리 삭제-----*/
 	$(".btn-admin-delete").on("click", function() {
-		var categoryId = $("#upt-category_id").val();
+		var seriesId = $("#upt-series_id").val();
 
 		$.ajax({
-			url: window._ctx.root + "/api/admin/category/" + categoryId,
+			url: window._ctx.root + "/api/admin/series/" + seriesId,
 			method: "DELETE",
 			success: function() {
 				showSection(".admin-list", null, handler);
