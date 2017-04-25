@@ -24,7 +24,6 @@ require([
 		else if (section === ".admin-add") {
 			$("#add-series_name").val("");
 			$("#add-series_name").focus();
-			getBrandId();
 		}
 		else if (section === ".admin-update") {
 			var seriesId = jqElement.attr("series-id");
@@ -78,7 +77,6 @@ require([
 	/*-----카테고리 추가-----*/
 	$(".btn-admin-save").on("click", function() {
 		var seriesName = $("#add-series_name").val().trim();
-		getBrandId();
 
 		if (seriesName === "") {
 			alert("카테고리명을 입력하세요.");
@@ -90,7 +88,6 @@ require([
 			url: window._ctx.root + "/api/admin/series/add",
 			data: {
 				seriesName: seriesName,
-				brandId: brandId,
 			},
 			success: function() {
 				showSection(".admin-list", null, handler);
@@ -99,7 +96,6 @@ require([
 				alert("저장에 실패했습니다.");
 			},
 		});
-		console.log(brandId);
 	});
 
 	/*-----카테고리 수정-----*/
