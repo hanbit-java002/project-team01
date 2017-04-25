@@ -8,6 +8,13 @@ require([
 	function signIn() {
 		var userId = $("#member-email").val();
 		var userPw = $("#member-pw").val();
+
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if (!userId.matches(regExp)) {
+			alert("이메일 주소로 입력하세요");
+			return;
+		}
+
 		$.ajax({
 			url: window._ctx.root+"/api/member/signIn",
 			method: "POST",

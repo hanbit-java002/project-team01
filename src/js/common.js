@@ -359,14 +359,43 @@ define([
 			url: window._ctx.root + "/api/member/signedin",
 			success: function (data) {
 				if (data.result === "yes") {
-					alert("들어왔음");
+					$(".member-area").hide();
+					$(".log-out").show();
+					$(".admin-btn").hide();
+
+					if (data.userRank == "admin") {
+						$(".admin-btn").show();
+					}
 				}
 				else {
-					alert("노노노");
+					$(".member-area").show();
+					$(".log-out").hide();
+					$(".admin-btn").hide();
 				}
 			}
 		});
 	}
+
+	function signOut() {
+		$.ajax({
+			url: window._ctx.root+"/api/member/signout",
+			success: function (data) {
+				if (data.result == "ok") {
+					alert("로그아웃 되셨습니다.");
+					checkSignedIn();
+				}
+				else {
+					alert("로그아웃 불가합니다.");
+				}
+			}
+		});
+	}
+
+	$(".log-out").on("click", function () {
+		signOut();
+	});
+
+
 
     checkSignedIn();
 
