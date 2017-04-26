@@ -30,8 +30,8 @@ require([
 			alert("비밀번호가 일치하지 않습니다.");
 			$("#input-pw").val("");
 			$("#input-pw-conf").val("");
-			location.href=".input-pw";
 			$("#input-pw").focus;
+			common.fnMove("#input-pw");
 			return;
 		}
 
