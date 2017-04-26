@@ -14,52 +14,61 @@
 			<input id="input-product-name" type="text" placeholder="Product Name">
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-brand">
 			<div class="desc">Brand</div>
 			<div class="dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Brand <span class="caret"></span>
+					<div class="dropdown-selected">Brand</div> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Brand 1</a></li>
-					<li><a href="#">Brand 2</a></li>
-					<li><a href="#">Brand 3</a></li>
+					<li value="id1"><a>Brand 1</a></li>
+					<li value="id2"><a>Brand 2</a></li>
+					<li value="id3"><a>Brand 3</a></li>
 				</ul>
 			</div>
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-category">
 			<div class="desc">Category</div>
 			<div class="dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Category <span class="caret"></span>
+					<div class="dropdown-selected">Category</div> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Category 1</a></li>
-					<li><a href="#">Category 2</a></li>
-					<li><a href="#">Category 3</a></li>
+					<li value="id1"><a>Category 1</a></li>
+					<li value="id2"><a>Category 2</a></li>
+					<li value="id3"><a>Category 3</a></li>
 				</ul>
 			</div>
 
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-series">
 			<div class="desc">Series</div>
 			<div class="dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Series <span class="caret"></span>
+					<div class="dropdown-selected">Series</div> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Series 1</a></li>
-					<li><a href="#">Series 2</a></li>
-					<li><a href="#">Series 3</a></li>
+					<li value="id1"><a>Series 1</a></li>
+					<li value="id2"><a>Series 2</a></li>
+					<li value="id3"><a>Series 3</a></li>
 				</ul>
 			</div>
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-size">
 			<div class="desc">Size</div>
-			<input id="input-size" type="text" placeholder="Size">
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="dropdown-selected">Size</div> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li value="id1"><a>size 1</a></li>
+					<li value="id2"><a>size 2</a></li>
+					<li value="id3"><a>size 3</a></li>
+				</ul>
+			</div>
 		</div>
 
 		<div class="input-style">
@@ -111,34 +120,9 @@
 
 
 	<section class="payment-info">
-		<div class="info-title">결제 정보</div>
-		<div class="desc">결제 방식을 선택해주세요. (복수 선택 가능)</div>
-		<span class='alert-text payment'></span>
-
-		<div class="button-select payment">
-			<button class="payment-select left btn-escrow">안심 거래</button>
-			<button class="payment-select right btn-direct">직접 거래</button>
-		</div>
-
-		<div class="payment-details">
-			<div class="input-style">
-				<div class="desc">Bank</div>
-				<div class="dropdown">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Bank <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Bank 1</a></li>
-						<li><a href="#">Bank 2</a></li>
-						<li><a href="#">Bank 3</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="input-style">
-				<div class="desc">Account Number</div>
-				<input id="input-account-num" type="text" placeholder="Account Number">
-			</div>
+		<div class="info-title">안심거래</div>
+		<div class="button-select trade">
+			<button class="trade-select safe-pay">체크</button>
 		</div>
 	</section>
 
