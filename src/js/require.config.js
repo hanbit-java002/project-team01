@@ -9,6 +9,7 @@ require.config({
 		"jquery.easing" : "/plugins/jquery.easing/jquery.easing.min",
         "bootstrap"     : "/plugins/bootstrap/js/bootstrap.min",
         "clipboard"     : "/plugins/clipboard/clipboard.min",
+		"slick"         : "/plugins/slick/js/slick.min",
 
         "common"        : "/js/common",
     },

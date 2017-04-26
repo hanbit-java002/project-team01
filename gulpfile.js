@@ -98,6 +98,7 @@ gulp.task('copy', [
 	'copy:bootstrap',
 	'copy:font-awesome',
 	'copy:clipboard',
+	'copy:slick-carousel',
 	'copy:license',
 	'copy:img',
 	'copy:misc'
@@ -162,6 +163,23 @@ gulp.task('copy:bootstrap', function () {
 gulp.task('copy:clipboard', function () {
 	return gulp.src('node_modules/clipboard/dist/clipboard.min.js')
 		.pipe(gulp.dest(dirs.dist + '/plugins/clipboard'));
+});
+
+gulp.task('copy:slick-carousel', function () {
+	return all(
+		gulp.src(['node_modules/slick-carousel/slick/slick.css'])
+			.pipe(gulp.dest(dirs.dist + '/plugins/slick/css')),
+		gulp.src(['node_modules/slick-carousel/slick/slick-theme.css'])
+			.pipe(gulp.dest(dirs.dist + '/plugins/slick/css')),
+		gulp.src(['node_modules/slick-carousel/slick/ajax-loader.gif'])
+			.pipe(gulp.dest(dirs.dist + '/plugins/slick/css')),
+		gulp.src(['node_modules/slick-carousel/slick/slick.min.js'])
+			.pipe(uglify())
+			.pipe(plugins.rename('slick.min.js'))
+			.pipe(gulp.dest(dirs.dist + '/plugins/slick/js')),
+		gulp.src(['node_modules/slick-carousel/slick/fonts/*'])
+			.pipe(gulp.dest(dirs.dist + '/plugins/slick/css/fonts'))
+	);
 });
 
 gulp.task('copy:license', function () {

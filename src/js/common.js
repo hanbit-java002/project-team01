@@ -1,5 +1,5 @@
 define([
-	"bootstrap", "jquery.easing"
+	"bootstrap", "jquery.easing", "slick"
 ], function() {
 	function scrollUp() {
 		$(document).ready(function() {

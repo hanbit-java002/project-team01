@@ -56,12 +56,77 @@ require([
 	});
 
 	// 드롭다운 메뉴들
-	function dropDown() {
-		$(".dropdown-menu>li").on("click", function () {
+	function dropDown(className) {
+		$(className+" .dropdown-menu>li").on("click", function () {
 			var value = $(this).children().text();
 			var sValue =$(this).attr("value");
 			$(this).parents(".dropdown").find(".dropdown-selected").text(value);
 			$(this).parents(".dropdown").find(".dropdown-selected").attr("s-value", sValue);
+
+			var brandSelected= $(".dropdown-brand .dropdown-selected").text();
+			var categorySelected= $(".dropdown-category .dropdown-selected").text();
+
+			if (brandSelected == "NIKE" && categorySelected == "신발") {
+				initSeries();
+				$(".dropdown-series").show();
+			}
+			else {
+					$(".dropdown-series").hide();
+			}
+			if (className == ".dropdown-category") {
+				$(".dropdown-size .dropdown-selected").text("Size");
+			}
+
+			if (!(categorySelected == "기타")) {
+				$(".dropdown-size").show();
+				var sizeHTML ="";
+
+				if (categorySelected == "신발") {
+					for (var i=0; i<19; i++) {
+						var shoeSize = (210+i*5);
+						sizeHTML += "<li value=\"SZ-shoes-"+shoeSize+"\"><a>";
+						if (shoeSize == 210) {
+							sizeHTML += shoeSize+" 이하</a></li>";
+						}
+						else if (shoeSize == 300) {
+							sizeHTML += shoeSize+" 이상</a></li>";
+						}
+						else {
+							sizeHTML += shoeSize+"</a></li>";
+						}
+					}
+				}
+				else if (categorySelected == "상의") {
+					sizeHTML += "<li value=\"SZ-top-xsmall\"><a>xsmall 이하</a></li>";
+					sizeHTML += "<li value=\"SZ-top-small\"><a>small</a></li>";
+					sizeHTML += "<li value=\"SZ-top-midum\"><a>midum</a></li>";
+					sizeHTML += "<li value=\"SZ-top-large\"><a>large</a></li>";
+					sizeHTML += "<li value=\"SZ-top-xlarge\"><a>xlarge</a></li>";
+					sizeHTML += "<li value=\"SZ-top-xxlarge\"><a>xxlarge 이상</a></li>";
+				}
+				else if (categorySelected == "하의") {
+					for (var i=0; i<14; i++) {
+						var bottomSize = (23+i);
+						sizeHTML += "<li value=\"SZ-bottom-"+bottomSize+"\"><a>";
+						if (bottomSize == 23) {
+							sizeHTML += bottomSize+" 이하</a></li>";
+						}
+						else if (bottomSize == 40) {
+							sizeHTML += bottomSize+" 이상</a></li>";
+						}
+						else {
+							sizeHTML += bottomSize+"</a></li>";
+						}
+					}
+				}
+				$(".dropdown-size .dropdown-menu").html(sizeHTML);
+				dropDown(".dropdown-size");
+			}
+			else {
+				$(".dropdown-size").hide();
+			}
+
+
 		});
 	}
 
@@ -79,6 +144,22 @@ require([
 		}
 	});
 
+	function initSeries() {
+		$.ajax({
+			url: window._ctx.root+"/api/series/list",
+			success: function(data) {
+				var seriesHTML = "";
+				for (var i = 0; i<data.length; i++) {
+					var item = data[i];
+					var seriesId = item.series_id;
+					var seriesName = item.series_name;
+					seriesHTML += "<li value=\""+seriesId+"\"><a>"+seriesName+"</a></li>";
+				}
+				$(".dropdown-series .dropdown-menu").html(seriesHTML);
+				dropDown(".dropdown-series");
+			},
+		});
+	}
 
 	function initBrand() {
 		$.ajax({
@@ -92,7 +173,7 @@ require([
 					brandHTML += "<li value=\""+brandId+"\"><a>"+brandName+"</a></li>";
 				}
 				$(".dropdown-brand .dropdown-menu").html(brandHTML);
-				dropDown();
+				dropDown(".dropdown-brand");
 			},
 		});
 	}
@@ -109,30 +190,19 @@ require([
 					categoryHTML += "<li value=\""+categoryId+"\"><a>"+categoryName+"</a></li>";
 				}
 				$(".dropdown-category .dropdown-menu").html(categoryHTML);
-				dropDown();
+				dropDown(".dropdown-category");
 
 			},
 		});
 	}
 
-	function initSeries() {
-		$.ajax({
-			url: window._ctx.root+"/api/series/list",
-			success: function(data) {
-				var seriesHTML = "";
-				for (var i = 0; i<data.length; i++) {
-					var item = data[i];
-					var seriesId = item.series_id;
-					var seriesName = item.series_name;
-					seriesHTML += "<li value=\""+seriesId+"\"><a>"+seriesName+"</a></li>";
-				}
-				$(".dropdown-series .dropdown-menu").html(seriesHTML);
-				dropDown();
-			},
-		});
-	}
+	$(".img-input-slider").slick({
+		infinite: true,
+		slidesToShow: 3,
+		slidesToScroll: 3,
+		arrow: true,
+	});
 
-	dropDown();
 	initBrand();
 	initCategory();
 	initSeries();
