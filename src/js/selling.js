@@ -56,12 +56,15 @@ require([
 	});
 
 	// 드롭다운 메뉴들
-	$(".dropdown-menu>li").on("click", function () {
-		var value = $(this).children().text();
-		var sValue =$(this).attr("value");
-		$(this).parents(".dropdown").find(".dropdown-selected").text(value);
-		$(this).parents(".dropdown").find(".dropdown-selected").attr("s-value", sValue);
-	});
+	function dropDown() {
+		$(".dropdown-menu>li").on("click", function () {
+			var value = $(this).children().text();
+			var sValue =$(this).attr("value");
+			$(this).parents(".dropdown").find(".dropdown-selected").text(value);
+			$(this).parents(".dropdown").find(".dropdown-selected").attr("s-value", sValue);
+		});
+	}
+
 
 	//팝업 선택 후 처리
 
@@ -76,18 +79,63 @@ require([
 		}
 	});
 
+
 	function initBrand() {
 		$.ajax({
 			url: window._ctx.root+"/api/brand/list",
 			success: function(data) {
+				var brandHTML = "";
 				for (var i = 0; i<data.length; i++) {
 					var item = data[i];
 					var brandId = item.brand_id;
 					var brandName = item.brand_name;
-
+					brandHTML += "<li value=\""+brandId+"\"><a>"+brandName+"</a></li>";
 				}
+				$(".dropdown-brand .dropdown-menu").html(brandHTML);
+				dropDown();
 			},
 		});
 	}
+
+	function initCategory() {
+		$.ajax({
+			url: window._ctx.root+"/api/category/list",
+			success: function(data) {
+				var categoryHTML = "";
+				for (var i = 0; i<data.length; i++) {
+					var item = data[i];
+					var categoryId = item.category_id;
+					var categoryName = item.category_name;
+					categoryHTML += "<li value=\""+categoryId+"\"><a>"+categoryName+"</a></li>";
+				}
+				$(".dropdown-category .dropdown-menu").html(categoryHTML);
+				dropDown();
+
+			},
+		});
+	}
+
+	function initSeries() {
+		$.ajax({
+			url: window._ctx.root+"/api/series/list",
+			success: function(data) {
+				var seriesHTML = "";
+				for (var i = 0; i<data.length; i++) {
+					var item = data[i];
+					var seriesId = item.series_id;
+					var seriesName = item.series_name;
+					seriesHTML += "<li value=\""+seriesId+"\"><a>"+seriesName+"</a></li>";
+				}
+				$(".dropdown-series .dropdown-menu").html(seriesHTML);
+				dropDown();
+			},
+		});
+	}
+
+	dropDown();
+	initBrand();
+	initCategory();
+	initSeries();
+
 
 });
