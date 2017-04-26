@@ -17,9 +17,11 @@
 			<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a href="#">일반</a></li>
-				<li><a href="#">VIP</a></li>
-				<li><a href="#">관리자</a></li>
+				<li value="admin"><a>admin</a></li>
+				<li value="member"><a>member</a></li>
+				<li value="silver"><a>silver</a></li>
+				<li value="gold"><a>gold</a></li>
+				<li value="blackList"><a>blackList</a></li>
 			</ul>
 		</div>
 	</div>
@@ -27,80 +29,18 @@
 		<div class="product-count">
 			총 <span>15</span>건
 		</div>
-		<div class="array-area">
-			<ul class="descending-order">
-				<li class="price-low active">
-					Sell
-					<i class="fa fa-angle-up" aria-hidden="true"></i>
-				</li>
-				<li class="price-high">
-					Buy
-					<i class="fa fa-angle-up" aria-hidden="true"></i>
-				</li>
-			</ul>
-		</div>
 	</div>
 	<section class="admin-member-list">
 		<table class="table table-striped table-hover table-condensed">
 			<thead>
 			<tr>
-				<th>No</th>
 				<th>Name</th>
 				<th>E-Mail</th>
 				<th>Rank</th>
-				<th>Sell</th>
-				<th>Buy</th>
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td>No</td>
-				<td>Name</td>
-				<td>E-Mail</td>
-				<td>Rank</td>
-				<td>Sell</td>
-				<td>Buy</td>
-			</tr>
-			<tr>
-				<td>No</td>
-				<td>Name</td>
-				<td>E-Mail</td>
-				<td>Rank</td>
-				<td>Sell</td>
-				<td>Buy</td>
-			</tr>
-			<tr>
-				<td>No</td>
-				<td>Name</td>
-				<td>E-Mail</td>
-				<td>Rank</td>
-				<td>Sell</td>
-				<td>Buy</td>
-			</tr>
-			<tr>
-				<td>No</td>
-				<td>Name</td>
-				<td>E-Mail</td>
-				<td>Rank</td>
-				<td>Sell</td>
-				<td>Buy</td>
-			</tr>
-			<tr>
-				<td>No</td>
-				<td>Name</td>
-				<td>E-Mail</td>
-				<td>Rank</td>
-				<td>Sell</td>
-				<td>Buy</td>
-			</tr>
-			<tr>
-				<td>No</td>
-				<td>Name</td>
-				<td>E-Mail</td>
-				<td>Rank</td>
-				<td>Sell</td>
-				<td>Buy</td>
-			</tr>
+
 			</tbody>
 		</table>
 	</section>
@@ -145,9 +85,6 @@
 			</a>
 		</li>
 	</ul>
-	<section class="resell-btn add-member">
-		Add
-	</section>
 </section>
 
-{{>footer jsName="admin-main"}}
+{{>footer jsName="admin-member"}}

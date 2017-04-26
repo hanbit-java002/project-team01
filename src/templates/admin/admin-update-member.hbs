@@ -9,50 +9,64 @@
 
 	<div class="input-style">
 		<div class="desc">Name</div>
-		<input id="input-name" type="text" value="백수현">
+		<input id="userName" type="text" value="백수현">
 	</div>
 
 	<div class="input-style">
 		<div class="desc">ID</div>
-		<input id="input-email" type="text" value="100suhyun@naver.com">
+		<input id="userId" type="text" value="100suhyun@naver.com" disabled>
 	</div>
 
 	<div class="input-style">
 		<div class="desc">Rank</div>
 		<div class="dropdown">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Default Rank <span class="caret"></span>
+			<button id="userRank" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<div class="dropdown-selected">
+					Default Rank
+				</div>
+				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
-				<li><a href="#">관리자</a></li>
-				<li><a href="#">일반 (회원가입시)</a></li>
-				<li><a href="#">우수 (판매 or 구매 10건)</a></li>
-				<li><a href="#">골드 (판매 or 구매 30건 이상)</a></li>
-				<li><a href="#">Black List</a></li>
+				<li value="admin"><a>admin</a></li>
+				<li value="member"><a>member</a></li>
+				<li value="silver"><a>silver</a></li>
+				<li value="gold"><a>gold</a></li>
+				<li value="blackList"><a>blackList</a></li>
 			</ul>
 		</div>
 	</div>
+
+	<div class="input-style">
+		<div class="desc">Sell</div>
+		<input id="input-sell-count" value="총 1건" disabled>
+	</div>
+
+	<div class="input-style">
+		<div class="desc">Buy</div>
+		<input id="input-buy-count" value="총 1건" disabled>
+	</div>
+
 	<hr class="line">
 
 
 	<div class="input-style">
 		<div class="desc">Phone Number</div>
-		<input id="input-phone-num" type="text" value="010-2371-6848">
+		<input id="userPhoneNum" type="text" value="010-2371-6848">
 	</div>
 
 	<div class="input-style">
 		<div class="desc">Address</div>
-		<input id="input-addr" type="text" value="서울시 양천구">
+		<input id="userAddr" type="text" value="서울시 양천구">
 	</div>
 
 	<div class="input-style">
 		<div class="desc">Detail Address</div>
-		<input id="input-detail-addr" type="text" value="목동">
+		<input id="userAddrDetail" type="text" value="목동">
 	</div>
 
 	<div class="input-style">
 		<div class="desc">Zip Code</div>
-		<input id="input-zip-code" type="text" value="08080">
+		<input id="userZipCode" type="text" value="08080">
 	</div>
 
 
