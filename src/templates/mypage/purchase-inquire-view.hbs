@@ -1,141 +1,131 @@
 {{set root=".."}}
-{{>header title="상품 문의" cssName="purchase-inquire-view"}}
+{{>header title="상품 문의" cssName="seller-inqure-view"}}
 
-<section class="title purchase-detail-title">
-	<span>상품 문의</span>
-</section>
-<section class="contents-wrapper purchase-inquire-view">
-	<div class="list-header">
-		<div class="product-count">
-			총 <span>15</span>건
+<div class="product-question">
+	<ul>상품 문의</ul>
+	<div class="product-question-box">
+		<ul class="product-question-count">총 15 건</ul>
+		<ul class="user-list">
+			<li class="product-list">
+				<div class="product-date">2017/04/02</div>
+				<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+				<div class="product-detail">
+					<div class="product-name">컨버스 네이버후드</div>
+					<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+					<ul>
+						<li class="product-size"><span>260</span>mm</li>
+						<li class="product-quality"><span>새상품</span></li>
+						<li class="product-deal"><span>직접거래</span></li>
+					</ul>
+				</div>
+				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+			</li>
+			<div class="product-question-list">
+				<ul class="question-content">
+					<div>
+						문의 내용
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+					<br>
+					<li>새상품 맞나요? 보증서 있어요?</li>
+
+				</ul>
+				<ul class="question-return">
+					<div>
+						판매자 답변
+					</div>
+					<div class="reporting-date">
+						<span class="fa fa-clock-o"></span>
+						2017/03/31
+					</div>
+					<br>
+					<li>새상품입니다. 보증서 동봉해드릴게요.</li>
+				</ul>
+			</div>
+		</ul>		<ul class="user-list">
+		<li class="product-list">
+			<div class="product-date">2017/04/02</div>
+			<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+			<div class="product-detail">
+				<div class="product-name">컨버스 네이버후드</div>
+				<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+				<ul>
+					<li class="product-size"><span>260</span>mm</li>
+					<li class="product-quality"><span>새상품</span></li>
+					<li class="product-deal"><span>직접거래</span></li>
+				</ul>
+			</div>
+			<i class="product-detail-arrow fa fa-angle-double-right" ></i>
+		</li>
+		<div class="product-question-list">
+			<ul class="question-content">
+				<div>
+					문의 내용
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<br>
+				<li>새상품 맞나요? 보증서 있어요?</li>
+
+			</ul>
+			<ul class="question-return">
+				<div>
+					판매자 답변
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<br>
+				<li>새상품입니다. 보증서 동봉해드릴게요.</li>
+			</ul>
 		</div>
-	</div>
-	<ul class="list product-list">
-		<li product-id="#">
-			<div class="product-info">
-				<img class="product-img" src="{{root}}/img/shoes.jpg">
-				<div class="detail-info">
-					<div class="product name">
-						에어 조던 14 Black Pink New
-					</div>
-					<div class="product price">
-						<i class="fa fa-won"></i>
-						200,000
-					</div>
-					<div class="product size">
-						235mm
-					</div>
-					<div class="product quality">
-						새제품
-					</div>
-					<ul class="product dealing-mode">
-						<li class="dealing-mode directly">
-							직접거래
-						</li>
-						<li class="dealing-mode delivery">
-							택배거래
-						</li>
-						<li class="dealing-mode safety">
-							안심결제
-						</li>
-					</ul>
-					<div class="view-details">
-						<a href="#">더보기
-							<div class="fa fa-angle-double-right"></div>
-						</a>
-					</div>
-				</div>
+	</ul>		<ul class="user-list">
+		<li class="product-list">
+			<div class="product-date">2017/04/02</div>
+			<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
+			<div class="product-detail">
+				<div class="product-name">컨버스 네이버후드</div>
+				<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
+				<ul>
+					<li class="product-size"><span>260</span>mm</li>
+					<li class="product-quality"><span>새상품</span></li>
+					<li class="product-deal"><span>직접거래</span></li>
+				</ul>
 			</div>
-			<div class="inquire-view-area">
-				<div class="purchaser-question">
-					<div class="inquire-title">
-						문의 내용
-					</div>
-					<div class="inquire-content">
-						새상품 맞나요? 보증서 있어요?
-					</div>
-					<div class="reporting-date">
-						<span class="fa fa-clock-o"></span>
-						2017/03/31
-					</div>
-				</div>
-				<div class="seller-answer">
-					<div class="inquire-title">
-						판매자 답변
-					</div>
-					<div class="inquire-content">
-						네, 새 상품 맞습니다.
-					</div>
-					<div class="reporting-date">
-						<span class="fa fa-clock-o"></span>
-						2017/03/31
-					</div>
-				</div>
-			</div>
+			<i class="product-detail-arrow fa fa-angle-double-right" ></i>
 		</li>
-		<li product-id="#">
-			<div class="product-info">
-				<img class="product-img" src="{{root}}/img/shoes.jpg">
-				<div class="detail-info">
-					<div class="product name">
-						에어 조던 14 Black Pink New
-					</div>
-					<div class="product price">
-						<i class="fa fa-won"></i>
-						200,000
-					</div>
-					<div class="product size">
-						235mm
-					</div>
-					<div class="product quality">
-						새제품
-					</div>
-					<ul class="product dealing-mode">
-						<li class="dealing-mode directly">
-							직접거래
-						</li>
-						<li class="dealing-mode delivery">
-							택배거래
-						</li>
-						<li class="dealing-mode safety">
-							안심결제
-						</li>
-					</ul>
-					<div class="view-details">
-						<a href="#">더보기
-							<div class="fa fa-angle-double-right"></div>
-						</a>
-					</div>
+		<div class="product-question-list">
+			<ul class="question-content">
+				<div>
+					문의 내용
 				</div>
-			</div>
-			<div class="inquire-view-area">
-				<div class="purchaser-question">
-					<div class="inquire-title">
-						문의 내용
-					</div>
-					<div class="inquire-content">
-						새상품 맞나요? 보증서 있어요?
-					</div>
-					<div class="reporting-date">
-						<span class="fa fa-clock-o"></span>
-						2017/03/31
-					</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
 				</div>
-				<div class="seller-answer">
-					<div class="inquire-title">
-						판매자 답변
-					</div>
-					<div class="inquire-content default">
-						아직 작성된 답변이 없습니다.
-					</div>
+				<br>
+				<li>새상품 맞나요? 보증서 있어요?</li>
+			</ul>
+			<ul class="question-return">
+				<div>
+					판매자 답변
 				</div>
-			</div>
-		</li>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<br>
+				<li>새상품입니다. 보증서 동봉해드릴게요.</li>
+			</ul>
+		</div>
 	</ul>
-	<section class="more-list">
-		More
-		<span class="fa fa-angle-down"></span>
-	</section>
-</section>
-
-{{>footer jsName="purchase-inquire-view"}}
+	</div>
+	<div class="question-more"><li>M o r e</li><li class="fa fa-angle-down"></li></div>
+</div>
+{{>footer jsName="main"}}
