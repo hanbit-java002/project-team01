@@ -10,7 +10,7 @@ require([
 		var userPw = $("#member-pw").val();
 
 		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		if (!userId.matches(regExp)) {
+		if (!userId.match(regExp)) {
 			alert("이메일 주소로 입력하세요");
 			return;
 		}
