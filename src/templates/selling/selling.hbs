@@ -75,13 +75,19 @@
 			<textarea id="input-details" placeholder="ex : 제품 판매 사유 / 구매 날짜 / 사용 기간 / 워런티 보유 / 취급 방법 등"></textarea>
 		</div>
 
-		<div class="img-input-slider">
-			<div>your content</div>
-			<div>your content</div>
-			<div>your content</div>
-			<div>your content</div>
-			<div>your content</div>
-			<div>your content</div>
+		<div class="input-style">
+			<div class="desc">
+				Picture
+			</div>
+		</div>
+		<div class="input-style">
+			<div class="img-input-slider">
+
+			</div>
+		</div>
+		<div class="input-style">
+			<label  class="btn-add-image" for="file-img-input">+</label>
+			<input multiple="multiple" type="file" id="file-img-input"class="hidden" accept="image/*">
 		</div>
 
 		<hr class="line">
@@ -143,5 +149,6 @@
 	<button class="btn popup-ok">확인</button>
 	<button class="btn popup-close">취소</button>
 </div>
+
 
 {{>footer jsName="selling"}}

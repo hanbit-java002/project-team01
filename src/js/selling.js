@@ -196,11 +196,20 @@ require([
 		});
 	}
 
-	$(".img-input-slider").slick({
-		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 3,
-		arrow: true,
+	function readURL(input) {
+		for (var i = 0; i<input[0].files.length; i++ ) {
+			if (input[0].files && input[0].files[i]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$(".img-input-slider").append("<div><img class='input-imgs' src='" + e.target.result + "'></div>");
+				};
+				reader.readAsDataURL(input[0].files[i]);
+			}
+		}
+	}
+
+	$("#file-img-input").on("change", function () {
+		readURL($(this));
 	});
 
 	initBrand();
