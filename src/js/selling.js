@@ -196,8 +196,8 @@ require([
 			if (input[0].files && input[0].files[i]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					$(".img-input-slider").append("<div class='input-img-box'>" +
-						"<div class='input-imgs' style='background-image: url("+e.target.result+")'>" +
+					$(".img-input-slider").append("<div class='input-img-box main-img'>" +
+						"<div class='input-img' style='background-image: url("+e.target.result+")'>" +
 							"<div class='img-delete'>"+
 								"<i class='glyphicon glyphicon-remove-circle'></i>" +
 							"</div>" +
@@ -219,16 +219,20 @@ require([
 		}
 	});
 
-	function currnetValues() {
+	var arrStrImgSrc = new Array(1);
 
+	function currnetValues() {
 		scrapImgs();
 	}
+
 
 	function scrapImgs() {
 		var images = $(".input-imgs");
 
 		for (var i=0; i<images.length; i++) {
-			console.log($(images[i]).css("background-image"));
+			var strImgSrcLen=$(images[i]).css("background-image").length;
+			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
+			arrStrImgSrc.push(strImgSrc);
 		}
 	}
 

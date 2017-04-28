@@ -66,9 +66,10 @@
 	overflow-x: auto;
 	overflow-y: hidden;
 	white-space: nowrap;
+	margin-top: 20px;
 }
 
-.img-input-slider>div {
+.input-img-box {
 	position: relative;
 	display: inline-block;
 	width: 30%;
@@ -77,11 +78,24 @@
 	border-radius: 5px;
 	overflow: hidden;
 }
+.input-img-box.main-img {
+	border: 3px solid green;
+}
+.input-img-box.main-img:before {
+	content: "대표이미지";
+	position: absolute;
+	color: green;
+	font-size: 20px;
+	font-weight: bold;
+	top : 0px;
+	left: 0px;
+}
+
 .img-input-slider>div:last-child {
 	margin-right: 0px;
 }
 
-.input-imgs {
+.input-img {
 	width: 100%;
 	height: 100%;
 	background-size: cover;
