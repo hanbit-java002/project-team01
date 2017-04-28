@@ -196,21 +196,45 @@ require([
 		});
 	}
 
+	var arrImg = new Array(1);
+
+	function deleteImg() {
+		$(".img-delete").off("click");
+		$(".img-delete").on("click", function() {
+			$(this).parents(".input-img-box").remove();
+		});
+	}
+
 	function readURL(input) {
 		for (var i = 0; i<input[0].files.length; i++ ) {
 			if (input[0].files && input[0].files[i]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					$(".img-input-slider").append("<div><img class='input-imgs' src='" + e.target.result + "'></div>");
+					$(".img-input-slider").append("<div class='input-img-box'>" +
+						"<div class='input-imgs' style='background-image: url("+e.target.result+")'>" +
+							"<div class='img-delete'>"+
+								"<i class='glyphicon glyphicon-remove-circle'></i>" +
+							"</div>" +
+						"</div>");
+					deleteImg();
 				};
 				reader.readAsDataURL(input[0].files[i]);
 			}
 		}
 	}
 
+
 	$("#file-img-input").on("change", function () {
 		readURL($(this));
+		for (var i = 0; i<arrImg.length; i++) {
+			if (arrImg[i] != undefined) {
+				console.log(arrImg[i]);
+			}
+		}
 	});
+
+
+
 
 	initBrand();
 	initCategory();
