@@ -55,5 +55,9 @@ require([
 		findPw();
 	});
 
+	$(".btn-cancel").on("click", function() {
+		location.href = window._ctx.root+"/member/login.html";
+	});
+
 
 });
