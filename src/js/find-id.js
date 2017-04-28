@@ -8,7 +8,12 @@ require([
 
 		var regExpPH = /^\d{3}\d{3,4}\d{4}$/;
 
-		if (!phoneNum.match(regExpPH)) {
+		if(userName === "") {
+			alert("\n이름을 입력해 주세요.");
+			$("#member-name").focus();
+			return;
+		}
+		else if (!phoneNum.match(regExpPH)) {
 			alert("\n휴대폰 번호를 정확하게 입력하세요. \n(공백 또는 - 없이)");
 			$("#member-phone-num").focus();
 			return;
