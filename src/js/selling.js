@@ -130,20 +130,6 @@ require([
 		});
 	}
 
-
-	//팝업 선택 후 처리
-
-	$(".popup-ok").on("click", function () {
-		//등록 취소
-		if ($(this).parent().hasClass("register-cancel")) {
-			location.href = window._ctx.root+"/index.html";
-		}
-		//등록
-		else if ($(this).parent().hasClass("register")) {
-
-		}
-	});
-
 	function initSeries() {
 		$.ajax({
 			url: window._ctx.root+"/api/series/list",
@@ -233,7 +219,31 @@ require([
 		}
 	});
 
+	function currnetValues() {
 
+		scrapImgs();
+	}
+
+	function scrapImgs() {
+		var images = $(".input-imgs");
+
+		for (var i=0; i<images.length; i++) {
+			console.log($(images[i]).css("background-image"));
+		}
+	}
+
+	//팝업 선택 후 처리
+
+	$(".popup-ok").on("click", function () {
+		//물품 등록 취소
+		if ($(this).parent().hasClass("register-cancel")) {
+			location.href = window._ctx.root+"/index.html";
+		}
+		//물품 등록
+		else if ($(this).parent().hasClass("register")) {
+			currnetValues();
+		}
+	});
 
 
 	initBrand();
