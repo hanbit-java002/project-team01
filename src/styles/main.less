@@ -1,6 +1,10 @@
 @import 'common.less';
 @import 'lib/product-list.less';
 
+.resell-container[pageId=main] {
+	padding-top: 0px;
+}
+
 .view-more {
 	padding-top: 15px;
 	text-align: center;
@@ -24,10 +28,10 @@
 
 .main-img-area {
 	position: relative;
-	height: @main-img-height - 50px;
+	height: @main-img-height;
 }
 
-@main-img-height: 260px;
+@main-img-height: 220px;
 
 .main-img-dark {
 	width: 100%;
@@ -45,7 +49,6 @@
 	width: 100%;
 	height: @main-img-height;
 	position: absolute;
-	top: -50px;
 }
 
 .view-details>a {
@@ -109,4 +112,3 @@
 .main .product.name {
 	width: 100%	;
 }
-
