@@ -10,7 +10,7 @@ require.config({
         "bootstrap"     : "/plugins/bootstrap/js/bootstrap.min",
         "clipboard"     : "/plugins/clipboard/clipboard.min",
 		"slick"         : "/plugins/slick/js/slick.min",
-
+		"jquery.cookie" : "/plugins/jquery.cookie/jquery.cookie.min",
         "common"        : "/js/common",
     },
 
@@ -21,6 +21,9 @@ require.config({
         "bootstrap": {
             deps: ["jquery"],
         },
+		"jquery.cookie": {
+			deps: ["jquery"],
+		},
     },
 
     deps: [],

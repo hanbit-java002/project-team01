@@ -1,5 +1,5 @@
 define([
-	"bootstrap", "jquery.easing", "slick"
+	"bootstrap", "jquery.easing", "slick", "jquery.cookie"
 ], function() {
 	function scrollUp() {
 		$(document).ready(function() {
@@ -366,6 +366,7 @@ define([
 					if (data.userRank == "admin") {
 						$(".admin-btn").show();
 					}
+
 				}
 				else {
 					$(".member-area").show();

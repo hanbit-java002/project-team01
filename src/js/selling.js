@@ -182,7 +182,19 @@ require([
 		});
 	}
 
-	var arrImg = new Array(1);
+	function defaultMainImg() {
+		/* 여러번 실행되는거 설정 해야함*/
+		$($(".input-img-box")[0]).off("change");
+		$($(".input-img-box")[0]).addClass("main-img");
+	}
+
+	function selectMainImg() {
+		$(".input-img-box").off("click");
+		$(".input-img-box").on("click", function() {
+			$(".input-img-box").removeClass("main-img");
+			$(this).addClass("main-img");
+		});
+	}
 
 	function deleteImg() {
 		$(".img-delete").off("click");
@@ -196,37 +208,27 @@ require([
 			if (input[0].files && input[0].files[i]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					$(".img-input-slider").append("<div class='input-img-box main-img'>" +
+					$(".img-input-slider").append("<div class='input-img-box'>" +
 						"<div class='input-img' style='background-image: url("+e.target.result+")'>" +
 							"<div class='img-delete'>"+
 								"<i class='glyphicon glyphicon-remove-circle'></i>" +
 							"</div>" +
 						"</div>");
 					deleteImg();
+					defaultMainImg();
+					selectMainImg();
 				};
 				reader.readAsDataURL(input[0].files[i]);
 			}
 		}
 	}
 
-
 	$("#file-img-input").on("change", function () {
 		readURL($(this));
-		for (var i = 0; i<arrImg.length; i++) {
-			if (arrImg[i] != undefined) {
-				console.log(arrImg[i]);
-			}
-		}
 	});
 
-	var arrStrImgSrc = new Array(1);
-
-	function currnetValues() {
-		scrapImgs();
-	}
-
-
 	function scrapImgs() {
+		var arrStrImgSrc = new Array(1);
 		var images = $(".input-imgs");
 
 		for (var i=0; i<images.length; i++) {
@@ -234,6 +236,53 @@ require([
 			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
 			arrStrImgSrc.push(strImgSrc);
 		}
+		return arrStrImgSrc;
+	}
+
+	function getMainImg() {
+		var mainImg = $(".input-img-box.main-img").index();
+		return mainImg;
+	}
+
+	function getDealMeans() {
+		var dealMeans = "";
+		if ($(".btn-direct").hasClass("selected")) {
+			dealMeans+= "direct|";
+		}
+		if ($(".btn-delivery").hasClass("selected")) {
+			dealMeans+= "delivery";
+		};
+		return dealMeans;
+	}
+
+	function currentValues() {
+		var formData = new FormData();
+		var name = $("#input-product-name").val();
+		var brandId = $(".dropdown-brand .dropdown-selected").attr("s-value");
+		var categoryId = $(".dropdown-category .dropdown-selected").attr("s-value");
+		var sizeId = $(".dropdown-size .dropdown-selected").attr("s-value");
+		var seriesId = $(".dropdown-series .dropdown-selected").attr("s-value");
+		var price =$("#input-price").val();
+		var detail = $("#input-details").val();
+		var arrImgSrc = scrapImgs();
+		var mainImgIndex = getMainImg();
+		var dealMeans = getDealMeans();
+		var dealPlace= $("#input-place-time").val();
+		var safeDeal = $(".safe-pay").hasClass("selected");
+
+		formData.append("name", name);
+		formData.append("brandId", brandId);
+		formData.append("categoryId", categoryId);
+		formData.append("sizeId", sizeId);
+		formData.append("seriesId", seriesId);
+		formData.append("price", price);
+		formData.append("detail", detail);
+		formData.append("arrImgSrc", arrImgSrc);
+		formData.append("mainImgIndex", mainImgIndex);
+		formData.append("dealMeans", dealMeans);
+		formData.append("dealPlace", dealPlace);
+		formData.append("safeDeal", safeDeal);
+		return formData;
 	}
 
 	//팝업 선택 후 처리
@@ -245,7 +294,23 @@ require([
 		}
 		//물품 등록
 		else if ($(this).parent().hasClass("register")) {
-			currnetValues();
+			var formData = currentValues();
+			console.log(formData);
+			$.ajax({
+				url: window._ctx.root+"/api/market/selling",
+				method: "POST",
+				data: {
+					formData:formData,
+				},
+				processData: false,
+				contentType: false,
+				success: function(data) {
+					if (data.result == "ok") {
+						alert("저장");
+					}
+				},
+
+			});
 		}
 	});
 
