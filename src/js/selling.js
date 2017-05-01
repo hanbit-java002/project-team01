@@ -31,10 +31,6 @@ require([
 		}
 	});
 
-
-
-
-
 	//판매 등록 버튼 클릭 시 확인 팝업 창
 	$(".btn-ok").on("click", function() {
 		common.popUp("pop-up-series", "left");
@@ -84,7 +80,7 @@ require([
 				if (categorySelected == "신발") {
 					for (var i=0; i<19; i++) {
 						var shoeSize = (210+i*5);
-						sizeHTML += "<li value=\"SZ-shoes-"+shoeSize+"\"><a>";
+						sizeHTML += "<li value=\""+shoeSize+"\"><a>";
 						if (shoeSize == 210) {
 							sizeHTML += shoeSize+" 이하</a></li>";
 						}
@@ -97,17 +93,17 @@ require([
 					}
 				}
 				else if (categorySelected == "상의") {
-					sizeHTML += "<li value=\"SZ-top-xsmall\"><a>xsmall 이하</a></li>";
-					sizeHTML += "<li value=\"SZ-top-small\"><a>small</a></li>";
-					sizeHTML += "<li value=\"SZ-top-midum\"><a>midum</a></li>";
-					sizeHTML += "<li value=\"SZ-top-large\"><a>large</a></li>";
-					sizeHTML += "<li value=\"SZ-top-xlarge\"><a>xlarge</a></li>";
-					sizeHTML += "<li value=\"SZ-top-xxlarge\"><a>xxlarge 이상</a></li>";
+					sizeHTML += "<li value=\"xsmall\"><a>xsmall 이하</a></li>";
+					sizeHTML += "<li value=\"small\"><a>small</a></li>";
+					sizeHTML += "<li value=\"midum\"><a>midum</a></li>";
+					sizeHTML += "<li value=\"large\"><a>large</a></li>";
+					sizeHTML += "<li value=\"xlarge\"><a>xlarge</a></li>";
+					sizeHTML += "<li value=\"xxlarge\"><a>xxlarge 이상</a></li>";
 				}
 				else if (categorySelected == "하의") {
 					for (var i=0; i<14; i++) {
 						var bottomSize = (23+i);
-						sizeHTML += "<li value=\"SZ-bottom-"+bottomSize+"\"><a>";
+						sizeHTML += "<li value=\""+bottomSize+"\"><a>";
 						if (bottomSize == 23) {
 							sizeHTML += bottomSize+" 이하</a></li>";
 						}
@@ -223,21 +219,22 @@ require([
 		}
 	}
 
-	$("#file-img-input").on("change", function () {
-		readURL($(this));
-	});
-
 	function scrapImgs() {
-		var arrStrImgSrc = new Array(1);
-		var images = $(".input-imgs");
+		var arrStrImgSrc = new Array(0);
+		var images = $(".input-img");
 
 		for (var i=0; i<images.length; i++) {
 			var strImgSrcLen=$(images[i]).css("background-image").length;
 			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
 			arrStrImgSrc.push(strImgSrc);
 		}
+
 		return arrStrImgSrc;
 	}
+
+	$("#file-img-input").on("change", function () {
+		readURL($(this));
+	});
 
 	function getMainImg() {
 		var mainImg = $(".input-img-box.main-img").index();
@@ -256,32 +253,38 @@ require([
 	}
 
 	function currentValues() {
-		var formData = new FormData();
-		var name = $("#input-product-name").val();
-		var brandId = $(".dropdown-brand .dropdown-selected").attr("s-value");
-		var categoryId = $(".dropdown-category .dropdown-selected").attr("s-value");
-		var sizeId = $(".dropdown-size .dropdown-selected").attr("s-value");
-		var seriesId = $(".dropdown-series .dropdown-selected").attr("s-value");
-		var price =$("#input-price").val();
-		var detail = $("#input-details").val();
-		var arrImgSrc = scrapImgs();
-		var mainImgIndex = getMainImg();
-		var dealMeans = getDealMeans();
-		var dealPlace= $("#input-place-time").val();
-		var safeDeal = $(".safe-pay").hasClass("selected");
+		var currentProduct = {
+			arrImgSrc: scrapImgs(),
+			name: $("#input-product-name").val(),
+			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
+			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
+			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
+			seriesId: $(".dropdown-series .dropdown-selected").attr("s-value"),
+			price: $("#input-price").val(),
+			detail: $("#input-details").val(),
+			mainImgIndex: getMainImg(),
+			dealMeans: getDealMeans(),
+			dealPlace: $("#input-place-time").val(),
+			safeDeal: $(".safe-pay").hasClass("selected"),
+		};
 
-		formData.append("name", name);
-		formData.append("brandId", brandId);
-		formData.append("categoryId", categoryId);
-		formData.append("sizeId", sizeId);
-		formData.append("seriesId", seriesId);
-		formData.append("price", price);
-		formData.append("detail", detail);
-		formData.append("arrImgSrc", arrImgSrc);
-		formData.append("mainImgIndex", mainImgIndex);
-		formData.append("dealMeans", dealMeans);
-		formData.append("dealPlace", dealPlace);
-		formData.append("safeDeal", safeDeal);
+		var formData = new FormData();
+		formData.append("name", currentProduct.name);
+		formData.append("brandId", currentProduct.brandId);
+		formData.append("categoryId", currentProduct.categoryId);
+		formData.append("sizeId", currentProduct.sizeId);
+		formData.append("seriesId", currentProduct.seriesId);
+		formData.append("price", currentProduct.price);
+		formData.append("detail", currentProduct.detail);
+
+		for (var i=0; i<currentProduct.arrImgSrc.length; i++) {
+			formData.append("arrImgSrc", currentProduct.arrImgSrc[i]);
+		}
+
+		formData.append("mainImgIndex", currentProduct.mainImgIndex);
+		formData.append("dealMeans", currentProduct.dealMeans);
+		formData.append("dealPlace", currentProduct.dealPlace);
+		formData.append("safeDeal", currentProduct.safeDeal);
 		return formData;
 	}
 
@@ -299,9 +302,7 @@ require([
 			$.ajax({
 				url: window._ctx.root+"/api/market/selling",
 				method: "POST",
-				data: {
-					formData:formData,
-				},
+				data: formData,
 				processData: false,
 				contentType: false,
 				success: function(data) {
