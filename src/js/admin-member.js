@@ -15,6 +15,13 @@ require([
 		loadList(currentPage);
 	});
 
+	//회원 리스트 클릭 시, 회원 정보 수정으로 이동
+	function updateUserInfo() {
+		$(".admin-member-list table>tbody>tr").on("click", function() {
+			var userUid = $(this).attr("uid");
+			location.href = window._ctx.root + "/admin/admin-update-member.html?uid=" + userUid;
+		});
+	}
 
 	/*-----list 불러오기-----*/
 	function loadList(currentPage) {
@@ -104,16 +111,7 @@ require([
 
 					loadList(page);
 				});
-
-				console.log(list);
-				console.log(count);
-				console.log(svalue);
-
-				//회원 리스트 클릭 시, 회원 정보 수정으로 이동
-				$(".admin-member-list table>tbody>tr").on("click", function() {
-					var userUid = $(this).attr("uid");
-					location.href = window._ctx.root + "/admin/admin-update-member.html?uid=" + userUid;
-				});
+				updateUserInfo();
 			},
 		});
 	}
