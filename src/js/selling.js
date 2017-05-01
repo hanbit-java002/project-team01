@@ -300,7 +300,7 @@ require([
 				url: window._ctx.root+"/api/market/selling",
 				method: "POST",
 				data: {
-					formData:formData,
+					formData: formData,
 				},
 				processData: false,
 				contentType: false,
