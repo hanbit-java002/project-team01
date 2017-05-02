@@ -3,6 +3,26 @@ require([
 ], function() {
 	var common = require("common");
 
+	function insertSellerInfo() {
+		$.ajax({
+			url: window._ctx.root+"/api/member/getUserInfo",
+			success: function (data) {
+/*				m.uid, m.user_id, m.user_name, m.user_rank, d.phone_num, d.addr, d.addr_detail, d.zip_code*/
+				var nameHTML = "<input class=\"input-default\" id=\"input-name\" type=\"text\" value=\"" +
+					data.user_name +
+					"\" disabled>";
+				$(".seller-name").append(nameHTML);
+				var phoneHTML = "<input class=\"input-default\" id=\"input-phone-num\" type=\"text\" value=\"" +
+					data.phone_num +
+					"\" disabled>";
+				$(".seller-phone").append(phoneHTML);
+			},
+		});
+	}
+
+	insertSellerInfo();
+
+
 	//거래 방식 선택
 	$(".trade-select").on("click", function(event) {
 		event.stopPropagation();
@@ -31,26 +51,6 @@ require([
 		}
 	});
 
-	//판매 등록 버튼 클릭 시 확인 팝업 창
-	$(".btn-ok").on("click", function() {
-		common.popUp("pop-up-series", "left");
-		$(".pop-up-series").addClass("register");
-		$(".pop-up-series").css("position", "fixed");
-		$(".pop-up-series>span").css("top", "30%");
-		$(".pop-up-series>.text1").text("판매 상품을 등록하시겠습니까?");
-		$(".pop-up-series>.text2").text("");
-	});
-
-	//취소 버튼 클릭 시 취소확인 팝업 창
-	$(".btn-cancel").on("click", function() {
-		common.popUp("pop-up-series", "left");
-		$(".pop-up-series").addClass("register-cancel");
-		$(".pop-up-series").css("position", "fixed");
-		$(".pop-up-series>span").css("top", "15%");
-		$(".pop-up-series>.text1").text("판매 등록을 취소하시겠습니까?");
-		$(".pop-up-series>.text2").text("취소시, 작성하던 글은 저장되지 않습니다.");
-	});
-
 	// 드롭다운 메뉴들
 	function dropDown(className) {
 		$(className+" .dropdown-menu>li").on("click", function () {
@@ -67,9 +67,12 @@ require([
 				$(".dropdown-series").show();
 			}
 			else {
+					$(".dropdown-series .dropdown-selected").removeAttr("s-value");
+					$(".dropdown-series .dropdown-selected").text("Series");
 					$(".dropdown-series").hide();
 			}
 			if (className == ".dropdown-category") {
+				$(".dropdown-size .dropdown-selected").removeAttr("s-value");
 				$(".dropdown-size .dropdown-selected").text("Size");
 			}
 
@@ -255,16 +258,17 @@ require([
 	function currentValues() {
 		var currentProduct = {
 			arrImgSrc: scrapImgs(),
-			name: $("#input-product-name").val(),
+			name: $("#input-product-name").val().trim(),
 			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
 			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
 			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
 			seriesId: $(".dropdown-series .dropdown-selected").attr("s-value"),
-			price: $("#input-price").val(),
+			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
+			price: $("#input-price").val().trim(),
 			detail: $("#input-details").val(),
 			mainImgIndex: getMainImg(),
 			dealMeans: getDealMeans(),
-			dealPlace: $("#input-place-time").val(),
+			dealPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
 		};
 
@@ -285,8 +289,103 @@ require([
 		formData.append("dealMeans", currentProduct.dealMeans);
 		formData.append("dealPlace", currentProduct.dealPlace);
 		formData.append("safeDeal", currentProduct.safeDeal);
+		formData.append("qualityId", currentProduct.qualityId);
 		return formData;
 	}
+
+	function infoValidation() {
+		var currentProduct = {
+			arrImgSrc: scrapImgs(),
+			name: $("#input-product-name").val().trim(),
+			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
+			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
+			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
+			seriesId: $(".dropdown-series .dropdown-selected").attr("s-value"),
+			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
+			price: $("#input-price").val().trim(),
+			detail: $("#input-details").val(),
+			mainImgIndex: getMainImg(),
+			dealMeans: getDealMeans(),
+			dealPlace: $("#input-place-time").val().trim(),
+			safeDeal: $(".safe-pay").hasClass("selected"),
+		};
+
+		if (currentProduct.name ==="" || currentProduct.name === undefined) {
+			alert("이름을 입력하세요.");
+			return 0;
+		}
+		if (currentProduct.brandId ==="" || currentProduct.brandId === undefined) {
+			alert("Brand을 입력하세요.");
+			return 0;
+		}
+		if (currentProduct.categoryId ==="" || currentProduct.categoryId === undefined) {
+			alert("Category을 입력하세요.");
+			return 0;
+		}
+		if (($(".dropdown-category .dropdown-selected").text() === "신발")
+			&& ($(".dropdown-brand .dropdown-selected").text() ==="NIKE")) {
+			if (currentProduct.seriesId =="" || currentProduct.seriesId === undefined) {
+				alert("Series을 입력하세요.");
+				return 0;
+			}
+		}
+		if (!($(".dropdown-category .dropdown-selected").text() === "기타")) {
+			if (currentProduct.sizeId =="" || currentProduct.sizeId === undefined) {
+				alert("Size을 입력하세요.");
+				return 0;
+			}
+		}
+		if (currentProduct.qualityId ==="" || currentProduct.qualityId === undefined) {
+			alert("Quality을 입력하세요.");
+			return 0;
+		}
+		if (currentProduct.price ==="" || currentProduct.price === undefined) {
+			alert("Price을 입력하세요.");
+			return 0;
+		}
+		if (currentProduct.arrImgSrc.length <= 0) {
+			alert("이미지를 입력하세요");
+			return 0;
+		}
+		if (currentProduct.dealMeans ==="" || currentProduct.dealMeans === undefined) {
+			alert("거래방식을 하나이상 선택하세요");
+			return 0;
+		}
+		else {
+			if ($(".btn-direct").hasClass("selected")) {
+				if (currentProduct.dealPlace ==="" || currentProduct.dealPlace === undefined) {
+					alert("거래장소를 입력하세요");
+					return 0;
+				}
+			}
+		}
+
+	}
+
+	//판매 등록 버튼 클릭 시 확인 팝업 창
+	$(".btn-ok").on("click", function() {
+		common.popUp("pop-up-series", "left");
+		$(".pop-up-series").addClass("register");
+		$(".pop-up-series").css("position", "fixed");
+		$(".pop-up-series>span").css("top", "30%");
+		$(".pop-up-series>.text1").text("판매 상품을 등록하시겠습니까?");
+		$(".pop-up-series>.text2").text("");
+		var valid = infoValidation();
+		if (valid === 0) {
+			$(".popup-close").click();
+		}
+
+	});
+
+	//취소 버튼 클릭 시 취소확인 팝업 창
+	$(".btn-cancel").on("click", function() {
+		common.popUp("pop-up-series", "left");
+		$(".pop-up-series").addClass("register-cancel");
+		$(".pop-up-series").css("position", "fixed");
+		$(".pop-up-series>span").css("top", "15%");
+		$(".pop-up-series>.text1").text("판매 등록을 취소하시겠습니까?");
+		$(".pop-up-series>.text2").text("취소시, 작성하던 글은 저장되지 않습니다.");
+	});
 
 	//팝업 선택 후 처리
 
@@ -298,6 +397,9 @@ require([
 		//물품 등록
 		else if ($(this).parent().hasClass("register")) {
 			var formData = currentValues();
+			if (formData === 0) {
+				return;
+			}
 			console.log(formData);
 			$.ajax({
 				url: window._ctx.root+"/api/market/selling",
@@ -310,12 +412,11 @@ require([
 						alert("저장");
 					}
 				},
-
 			});
 		}
 	});
 
-
+	dropDown(".dropdown-quality");
 	initBrand();
 	initCategory();
 	initSeries();
