@@ -401,6 +401,11 @@ define([
 		$("html, body").animate({scrollTop: offset.top-100}, 400, "easeOutCubic");
 	}
 
+	/*-----가격에 comma 찍기-----*/
+	function numberWithCommas(price) {
+		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
     checkSignedIn();
 
 	initNavi();
@@ -422,6 +427,7 @@ define([
 		getQuerystring: getQuerystring,
 		listSelector: listSelector,
 		fnMove: fnMove,
+		numberWithCommas: numberWithCommas,
 	});
 
 });

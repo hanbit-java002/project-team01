@@ -5,11 +5,6 @@ require([
 	var rowsPerPage = 4;
 	var currentPage = 1;
 
-	/*-----가격에 comma 찍기-----*/
-	function numberWithCommas(price) {
-		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-
 	/*-----split (list로 리턴)-----*/
 	function split(x) {
 		return x.split("|");
@@ -35,14 +30,14 @@ require([
 					var categoryName = item.category_name;
 					var quality = item.quality;
 					var dealMeans = split(item.deal_means);
-					var price = numberWithCommas(item.price);
+					var price = common.numberWithCommas(item.price);
 					var safeDeal = item.safe_deal;
 
 					console.log(safeDeal);
 
 					itemHTML += "<li product-id='" + item.product_id + "'>";
 					itemHTML += "<div class='product-info'>";
-					itemHTML += "<img class='product-img' src='" + window._ctx.root + item.product_main_img + "'>";
+					itemHTML += "<img class='product-img' src='" + item.img_url + "'>";
 					itemHTML += "<div class='detail-info'>";
 					itemHTML += "<div class='product name'>";
 					itemHTML += item.product_name;
