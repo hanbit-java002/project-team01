@@ -290,6 +290,7 @@ require([
 		formData.append("dealPlace", currentProduct.dealPlace);
 		formData.append("safeDeal", currentProduct.safeDeal);
 		formData.append("qualityId", currentProduct.qualityId);
+		formData.append("seriesId", currentProduct.seriesId);
 		return formData;
 	}
 
@@ -409,7 +410,11 @@ require([
 				contentType: false,
 				success: function(data) {
 					if (data.result == "ok") {
-						alert("저장");
+						alert("저장완료");
+						location.href= window._ctx.root+"/mypage/purchase-list.html";
+					}
+					else {
+						alert("저장실패");
 					}
 				},
 			});
