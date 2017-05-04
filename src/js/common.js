@@ -362,7 +362,7 @@ define([
 					$(".member-area").hide();
 					$(".log-out").show();
 					$(".admin-btn").hide();
-					$(".seller name").show();
+					$(".write-btn").show();
 
 					if (data.userRank == "admin") {
 						$(".admin-btn").show();
@@ -373,7 +373,7 @@ define([
 					$(".member-area").show();
 					$(".log-out").hide();
 					$(".admin-btn").hide();
-					$(".seller name").hide();
+					$(".write-btn").hide();
 				}
 			}
 		});
