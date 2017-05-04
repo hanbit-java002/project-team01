@@ -84,7 +84,7 @@ require([
 							}
 						}
 					}
-					if (safeDeal = 1) {
+					if (safeDeal === 1) {
 						itemHTML += "<li class='dealing-mode safety'>";
 						itemHTML += "안심결제";
 						itemHTML += "</li>";
@@ -92,7 +92,7 @@ require([
 					itemHTML += "</ul>";
 					itemHTML += "<div class='view-details'>";
 					itemHTML += "<a href='" + window._ctx.root;
-					itemHTML += "/market/market-detail.html?brand=" + item.product_id + "'>";
+					itemHTML += "/market/market-detail.html?product=" + item.product_id + "'>";
 					itemHTML += "더보기";
 					itemHTML += "<div class='fa fa-angle-double-right'></div>";
 					itemHTML += "</a>";

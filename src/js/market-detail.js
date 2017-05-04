@@ -4,6 +4,10 @@ require([
 	var common = require("common");
 	var productId = common.getQuerystring("product");
 
+	/*-----split (list로 리턴)-----*/
+	function split(x) {
+		return x.split("|");
+	}
 
 	$(".product-img-layer .carousel").carousel("pause");
 
@@ -22,6 +26,12 @@ require([
 
 	/*-----Like count 불러오기-----*/
 	function countLike() {
+		$.ajax({
+			url: window._ctx.root + "/api/product/like/" + productId,
+			success: function (result) {
+				$(".market-detail .board-info .like").html("<span class='fa fa-heart-o'></span> " + result);
+			},
+		});
 	}
 
 	/*-----comment Info 불러오기-----*/
@@ -30,10 +40,22 @@ require([
 
 	/*-----comment count 불러오기-----*/
 	function countComment() {
+		$.ajax({
+			url: window._ctx.root + "/api/product/comment/" + productId,
+			success: function (result) {
+				$(".market-detail .board-info .comment").html("<span class='fa fa-commenting-o'></span> " + result);
+			},
+		});
 	}
 
 	/*-----complain Info 불러오기-----*/
 	function countComplain() {
+		$.ajax({
+			url: window._ctx.root + "/api/product/complain/" + productId,
+			success: function (result) {
+				$(".market-detail .board-info .complain").html("<span class='fa fa-thumbs-o-down'></span> " + result);
+			},
+		});
 	}
 
 	/*-----hits Info 불러오기-----*/
@@ -81,16 +103,14 @@ require([
 		});
 	}
 
-	/*-----product Detail Info 불러오기-----*/
+	/*-----product Detail + 거래 Info 불러오기-----*/
 	function loadProductDetail() {
 		$.ajax({
 			url: window._ctx.root + "/api/product/detail/" + productId,
 			success: function(list) {
 				var item = list[0];
-
 				var price = common.numberWithCommas(item.price);
 				var date = common.getFormatDate(item.update_date);
-
 
 				// 사이즈
 				if (item.category_name !== undefined && item.category_name.length > 0) {
@@ -118,6 +138,50 @@ require([
 						$(".market-detail .product.quality").html(qulityHTML);
 					}
 				}
+
+				// 거래 방식 info
+				var dealMeans = split(item.deal_means);
+				var deliveryCheck = item.delivery_check;
+				var directPlace = item.direct_place;
+
+				var dealHTML = "";
+				for (var i=0; i<dealMeans.length; i++) {
+					var dealType = dealMeans[i];
+
+					if (dealType === "direct") {
+						dealHTML += "<div class='directly'>";
+						dealHTML += "<line></line>";
+						if (directPlace !== undefined) {
+							dealHTML += item.direct_place;
+						}
+						if (directPlace == "") {
+							dealHTML += "가능";
+						}
+						dealHTML += "</div>";
+					}
+					if (dealType === "delivery") {
+						dealHTML += "<div class='delivery'>";
+						dealHTML += "<line></line>";
+						if (deliveryCheck === "exclude") {
+							dealHTML += "택배비 착불";
+						}
+						if (deliveryCheck === "include") {
+							dealHTML += "무료 배송";
+						}
+						dealHTML += "</div>";
+					}
+				}
+				dealHTML += "<div class='safety'>";
+				dealHTML += "</div>";
+				$(".market-detail .dealing-mode").append(dealHTML);
+
+				if (item.safe_deal === 1) {
+					$(".market-detail .dealing-mode .safety").html("<line></line>가능");
+				}
+				if (item.safe_deal === 0) {
+					$(".market-detail .dealing-mode .safety").html("<line></line>불가");
+				}
+
 
 				$(".market-detail .product.name").text(item.product_name);
 				$(".market-detail .product.price").html("<i class='fa fa-won'></i>" + price);
