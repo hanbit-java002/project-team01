@@ -52,10 +52,31 @@ require([
 				var sellerInfo = result.sellerInfo;
 				var countSell = result.countSell;
 
-				console.log(countSell);
-
 				$(".market-detail .seller-info .seller-name").text(sellerInfo.user_name);
 				$(".market-detail .seller-info .selling-complete span").text(countSell);
+				$(".market-detail .seller-info .seller-rank").attr("seller-rank", sellerInfo.user_rank);
+
+				// user rank 에 따른 icon 변경
+				if (sellerInfo.user_rank !== undefined && sellerInfo.user_rank.length > 0) {
+					var userRank = $(".market-detail .seller-info .seller-rank").attr("seller-rank");
+
+					$(".seller-info .seller-rank").removeClass();
+					if(userRank === "member") {
+						$(".seller-info>.seller.name [seller-rank=member]").addClass("seller-rank fa fa-star-o");
+					}
+					if(userRank === "silver") {
+						$(".seller-info>.seller.name [seller-rank=silver]").addClass("seller-rank fa fa-star");
+					}
+					if(userRank === "gold") {
+						$(".seller-info>.seller.name [seller-rank=gold]").addClass("seller-rank fa fa-diamond");
+					}
+					if(userRank === "admin") {
+						$(".seller-info>.seller.name [seller-rank=admin]").addClass("seller-rank fa fa-user-circle-o");
+					}
+					if(userRank=== "blackList") {
+						$(".seller-info>.seller.name [seller-rank=blackList]").addClass("seller-rank fa fa-frown-o");
+					}
+				}
 			},
 		});
 	}
@@ -66,7 +87,9 @@ require([
 			url: window._ctx.root + "/api/product/detail/" + productId,
 			success: function(list) {
 				var item = list[0];
+
 				var price = common.numberWithCommas(item.price);
+				var date = common.getFormatDate(item.update_date);
 
 
 				// 사이즈
@@ -99,10 +122,11 @@ require([
 				$(".market-detail .product.name").text(item.product_name);
 				$(".market-detail .product.price").html("<i class='fa fa-won'></i>" + price);
 				$(".market-detail .user-description").html(item.description.replace(/\n/g, "<br>"));
-				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span>" + item.update_date);
+				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span>" + date);
 			},
 		});
 	}
+
 	loadProductImg();
 	loadProductDetail();
 	loadSellerInfo();
