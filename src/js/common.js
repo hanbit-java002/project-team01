@@ -414,11 +414,9 @@ define([
 
 	/*----- 날짜 표기 형식 : YYYY/MM/DD ----*/
 	function getFormatDate(date) {
-		var year = date.getFullYear();
-		var month = (1 + date.getMonth());
-		month = month >= 10 ? month : "0" + month;  // month 두자리로 저장
-		var day = date.getDate();
-		day = day >= 10 ? day : "0" + day;  //day 두자리로 저장
+		var year = date.substring(0, 4);
+		var month = date.substring(4, 6);
+		var day = date.substring(6, 8);
 
 		return year + "/" + month + "/" + day;
 	}

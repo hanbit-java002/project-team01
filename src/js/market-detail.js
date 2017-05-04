@@ -122,7 +122,7 @@ require([
 				$(".market-detail .product.name").text(item.product_name);
 				$(".market-detail .product.price").html("<i class='fa fa-won'></i>" + price);
 				$(".market-detail .user-description").html(item.description.replace(/\n/g, "<br>"));
-				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span>" + date);
+				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span> " + date);
 			},
 		});
 	}
