@@ -3,27 +3,6 @@ require([
 ], function() {
 	var common = require("common");
 
-	var naviHandler = function (jqElement) {
-		if ($(jqElement).attr("menu-category-detail") === "ALL") {
-			alert("all");
-		}
-		else if ($(jqElement).attr("menu-category-detail") === "NIKE") {
-			alert("nike");
-		}
-		else if ($(jqElement).attr("menu-category-detail") === "PALACE") {
-			alert("palace");
-		}
-		else if ($(jqElement).attr("menu-category-detail") === "SUPREME") {
-			alert("supreme");
-		}
-	};
-
-	function clickedMenu() {
-		$(".menu-category>ul>li").on("click", function () {
-			common.navigate(this, naviHandler);
-		});
-	}
-
 	$(".filter-series").on("click", function() {
 		common.popUp("pop-up-series", "top");
 	});
@@ -182,44 +161,83 @@ require([
 			},
 		});
 	}
-	function initBrandAjax() {
-		$.ajax({
-			url: window._ctx.root+"/api/brand/list",
-			success: function(data) {
-				var brandHTML = "<li brandId=\"brand-all\" menu-category-detail=\"ALL\">ALL</li>";
-				for (var i = 0; i<data.length; i++) {
-					var item = data[i];
-					var brandId = item.brand_id;
-					var brandName = item.brand_name;
-					brandHTML += "<li brandId=\""+brandId+"\" menu-category-detail=\""+brandName+"\">"
-						+brandName+"</li>";
-				}
-				$(".menu-category ul").html(brandHTML);
-				common.initNavi();
-				initBrand();
-				clickedMenu();
-			},
+	function getPriceValue() {
+		var priceValue ="default";
+		if ($(".product-price-order>.price-low").hasClass("active")) {
+			priceValue ="low";
+		}
+		else if ($(".product-price-order>.price-high").hasClass("active")) {
+			priceValue ="high";
+		}
+		return priceValue;
+	}
+
+	function productListAjax(brandId) {
+		var filterCurrent = {
+			brandId: brandId,
+			searchValue: $(".filter-search-box").val().trim(),
+			seriesId: $(".filter-series").attr("s-value"),
+			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
+			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
+			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
+			price: getPriceValue(),
+		};
+		console.log("브랜드"+filterCurrent.brandId);
+		console.log("서치"+filterCurrent.searchValue);
+		console.log("시리즈"+filterCurrent.seriesId);
+		console.log("카테고리"+filterCurrent.categoryId);
+		console.log("사이즈"+filterCurrent.sizeId);
+		console.log("퀄리티"+filterCurrent.qualityId);
+		console.log("가격"+filterCurrent.price);
+	}
+
+	var naviHandler = function (jqElement) {
+		var brandId = $(jqElement).attr("brand-id");
+		productListAjax(brandId);
+	};
+
+	function clickedMenu() {
+		$(".menu-category>ul>li").on("click", function () {
+			common.navigate(this, naviHandler);
 		});
 	}
 
 	function initBrand() {
-		var brand=common.getQuerystring("brand");
-
+		var brandId=common.getQuerystring("brandId");
+		console.log(brandId);
 		$(".menu-category>ul>li").removeClass("active");
-		if (brand=== "ALL") {
-			$("[menu-category-detail='ALL']").addClass("active");
-		}
-		else if (brand=== "NIKE") {
-			$("[menu-category-detail='NIKE']").addClass("active");
-		}
-		else if (brand=== "PALACE") {
-			$("[menu-category-detail='PALACE']").addClass("active");
-		}
-		else if (brand=== "SUPREME") {
-			$("[menu-category-detail='SUPREME']").addClass("active");
-		}
+		$(".menu-category>ul>li[brand-id ="+brandId+" ]").addClass("active");
+		productListAjax(brandId);
 	}
 
+	function initBrandAjax() {
+		$.ajax({
+			url: window._ctx.root+"/api/brand/list",
+			success: function(data) {
+				var brandHTML = "<li brand-id=\"brand-all\" menu-category-detail=\"ALL\">ALL</li>";
+				for (var i = 0; i<data.length; i++) {
+					var item = data[i];
+					var brandId = item.brand_id;
+					var brandName = item.brand_name;
+					brandHTML += "<li brand-id=\""+brandId+"\" menu-category-detail=\""+brandName+"\">"
+						+brandName+"</li>";
+				}
+				$(".menu-category ul").html(brandHTML);
+				common.initNavi();
+				clickedMenu();
+			},
+		});
+	}
+	function priceClick() {
+		$(".product-price-order>li").on("click", function () {
+			$(".product-price-order>li").removeClass("active");
+			$(this).addClass("active");
+			var brandId= $(".menu-category li.active").attr("brand-id");
+			productListAjax(brandId);
+		});
+	}
+	initBrand();
+	priceClick();
 	initSeries();
 	dropdownList();
 	initCategory();

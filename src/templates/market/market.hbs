@@ -5,7 +5,7 @@
 </section>
 <section class="menu-category">
 	<ul>
-		<li brandid="brand-all" menu-category-detail="all" class="active">ALL</li><li brandid="BRD00000000000000003428373902919380" menu-category-detail="all" class="active">SUPREME</li><li brandid="BRD00000000000000003445226729847143" menu-category-detail="all" class="active">NIKE</li><li brandid="BRD00000000000000003446341033134050" menu-category-detail="all" class="active">PALACE</li>
+
 	</ul>
 </section>
 <section class="contents-wrapper">
@@ -16,7 +16,7 @@
 					<input type="text" class="form-control filter-search-box" placeholder="검색">
 					<i class="fa fa-search"></i>
 				</li>
-				<li class="filter-series active">
+				<li s-value="series-all" class="filter-series active">
 					<span>Series</span>
 					<i class="glyphicon glyphicon-th-large"></i>
 				</li>
@@ -26,7 +26,7 @@
 					<div class="input-style dropdown-category">
 						<div class="dropdown">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<div class="dropdown-selected">Category</div> <span class="caret"></span>
+								<div s-value="category-all" class="dropdown-selected">Category</div> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 
@@ -39,7 +39,7 @@
 					<div class="input-style dropdown-size">
 						<div class="dropdown">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<div class="dropdown-selected">Size</div> <span class="caret"></span>
+								<div s-value="size-all" class="dropdown-selected">Size</div> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 
@@ -51,7 +51,7 @@
 					<div class="input-style dropdown-quality">
 						<div class="dropdown">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<div class="dropdown-selected">Quality</div> <span class="caret"></span>
+								<div s-value="quality-all" class="dropdown-selected">Quality</div> <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu">
 								<li value="quality-all"><a>ALL</a></li>
@@ -66,10 +66,10 @@
 	</section>
 	<div class="market-contents list-header">
 		<div class="main-product-name active">
-			NAME
+			Products
 		</div>
 		<ul class="product-price-order">
-			<li class="price-low active">
+			<li class="price-low">
 				Low Price
 			</li>
 			<li class="price-high">
@@ -77,7 +77,7 @@
 			</li>
 		</ul>
 	</div>
-	<ul class="list like-list">
+	<ul class="list">
 		<li product-id="#">
 			<div class="product-info">
 				<img class="product-img" src="{{root}}/img/shoes.jpg">

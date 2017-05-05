@@ -115,7 +115,7 @@ require([
 		$(".view-more").on("click", function() {
 			var brandId = $(".menu-category>ul .active").attr("menu-category-detail");
 			var url = window._ctx.root + "/market/market.html";
-			url += "?brand=" + brandId;
+			url += "?brandId=" + brandId;
 			location.href = url;
 		});
 	}
