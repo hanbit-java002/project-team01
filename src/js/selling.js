@@ -34,7 +34,7 @@ require([
 			$(this).addClass("selected");
 		}
 
-		if(!$(".trade-info .trade-select").hasClass("selected")) {
+		if(!$(".trade-btns .trade-select").hasClass("selected")) {
 			$(".alert-text.trade").text("* 거래 방식은 1개 이상 선택되어야 합니다");
 			$(".trade-select.btn-direct").focus();
 		}
@@ -42,13 +42,22 @@ require([
 			$(".alert-text.trade").text("");
 		}
 
-
 		if($(".trade-select.btn-direct").hasClass("selected")) {
-			$(".trade-details").show();
+			$(".direct-place").show();
 		}
-		else if($(".trade-select.btn-delivery").hasClass("selected")) {
-			$(".trade-details").hide();
+		else {
+			$("#input-place-time").val("");
+			$(".direct-place").hide();
 		}
+		if($(".trade-select.btn-delivery").hasClass("selected")) {
+			$(".delivery-check").show();
+		}
+		else {
+			$(".delivery-check-btn").removeClass("selected");
+			$(".delivery-check").hide();
+		}
+
+
 	});
 
 	// 드롭다운 메뉴들
@@ -268,8 +277,9 @@ require([
 			detail: $("#input-details").val(),
 			mainImgIndex: getMainImg(),
 			dealMeans: getDealMeans(),
-			dealPlace: $("#input-place-time").val().trim(),
+			directPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
+			deliveryCheck: $(".delivery-check-btn").hasClass("selected")?"include":"exclude",
 		};
 
 		var formData = new FormData();
@@ -287,10 +297,11 @@ require([
 
 		formData.append("mainImgIndex", currentProduct.mainImgIndex);
 		formData.append("dealMeans", currentProduct.dealMeans);
-		formData.append("dealPlace", currentProduct.dealPlace);
+		formData.append("directPlace", currentProduct.directPlace);
 		formData.append("safeDeal", currentProduct.safeDeal);
 		formData.append("qualityId", currentProduct.qualityId);
 		formData.append("seriesId", currentProduct.seriesId);
+		formData.append("deliveryCheck", currentProduct.deliveryCheck);
 		return formData;
 	}
 
@@ -307,8 +318,9 @@ require([
 			detail: $("#input-details").val(),
 			mainImgIndex: getMainImg(),
 			dealMeans: getDealMeans(),
-			dealPlace: $("#input-place-time").val().trim(),
+			directPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
+			deliveryCheck: $(".delivery-check-btn").hasClass("selected")?"include":"exclude",
 		};
 
 		if (currentProduct.name ==="" || currentProduct.name === undefined) {
@@ -354,7 +366,7 @@ require([
 		}
 		else {
 			if ($(".btn-direct").hasClass("selected")) {
-				if (currentProduct.dealPlace ==="" || currentProduct.dealPlace === undefined) {
+				if (currentProduct.directPlace ==="" || currentProduct.directPlace === undefined) {
 					alert("거래장소를 입력하세요");
 					return 0;
 				}

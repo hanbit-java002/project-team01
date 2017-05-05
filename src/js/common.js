@@ -444,6 +444,7 @@ define([
 		fnMove: fnMove,
 		numberWithCommas: numberWithCommas,
 		getFormatDate: getFormatDate,
+		initNavi: initNavi,
 	});
 
 });

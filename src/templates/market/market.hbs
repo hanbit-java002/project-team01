@@ -5,18 +5,7 @@
 </section>
 <section class="menu-category">
 	<ul>
-		<li menu-category-detail="all">
-			ALL
-		</li>
-		<li menu-category-detail="palace">
-			PALACE
-		</li>
-		<li menu-category-detail="nike">
-			NIKE
-		</li>
-		<li menu-category-detail="supreme">
-			SUPREME
-		</li>
+		<li brandid="brand-all" menu-category-detail="all" class="active">ALL</li><li brandid="BRD00000000000000003428373902919380" menu-category-detail="all" class="active">SUPREME</li><li brandid="BRD00000000000000003445226729847143" menu-category-detail="all" class="active">NIKE</li><li brandid="BRD00000000000000003446341033134050" menu-category-detail="all" class="active">PALACE</li>
 	</ul>
 </section>
 <section class="contents-wrapper">
@@ -28,39 +17,49 @@
 					<i class="fa fa-search"></i>
 				</li>
 				<li class="filter-series active">
-					Series
+					<span>Series</span>
 					<i class="glyphicon glyphicon-th-large"></i>
 				</li>
 			</ul>
 			<ul class="filter-dropdown">
 				<li>
-					<select class="form-control category-select">
-						<option>Category</option>
-						<option>상의</option>
-						<option>하의</option>
-						<option>신발</option>
-						<option>잡화</option>
-					</select>
+					<div class="input-style dropdown-category">
+						<div class="dropdown">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<div class="dropdown-selected">Category</div> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+
+							</ul>
+						</div>
+
+					</div>
 				</li>
 				<li>
-					<select class="form-control size-select">
-						<option value="default" selected>Size</option>
-						<option value="size-230" >230이하</option>
-						<option value="size-240">240mm</option>
-						<option value="size-250">250mm</option>
-						<option value="size-260">260mm</option>
-						<option value="size-270">270mm</option>
-						<option value="size-280">280mm</option>
-						<option value="size-290">290mm</option>
-						<option value="size-300">300이상</option>
-					</select>
+					<div class="input-style dropdown-size">
+						<div class="dropdown">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<div class="dropdown-selected">Size</div> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+
+							</ul>
+						</div>
+					</div>
 				</li>
 				<li>
-					<select class="form-control quality-select">
-						<option>Quality</option>
-						<option>중고</option>
-						<option>새제품</option>
-					</select>
+					<div class="input-style dropdown-quality">
+						<div class="dropdown">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<div class="dropdown-selected">Quality</div> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li value="quality-all"><a>ALL</a></li>
+								<li value="new"><a>새상품</a></li>
+								<li value="used"><a>중고</a></li>
+							</ul>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</ul>
@@ -338,73 +337,6 @@
 
 
 <section class="pop-up-series" style="display: none">
-	<ul>
-		<li>
-			<img src="{{root}}/img/jordan1.png">
-			<div>Jordan 1</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan2.png">
-			<div>Jordan 2</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan3.png">
-			<div>Jordan 3</div>
-		</li>
-
-	</ul>
-	<ul>
-		<li>
-			<img src="{{root}}/img/jordan4.png">
-			<div>Jordan 4</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan5.png">
-			<div>Jordan 5</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan6.png">
-			<div>Jordan 6</div>
-		</li>
-	</ul>
-	<ul>
-		<li>
-			<img src="{{root}}/img/jordan7.png">
-			<div>Jordan 7</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan8.png">
-			<div>Jordan 8</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan9.png">
-			<div>Jordan 9</div>
-		</li>
-	</ul>
-	<ul>
-		<li>
-			<img src="{{root}}/img/jordan10.png">
-			<div>Jordan 10</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan11.png">
-			<div>Jordan 12</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/jordan12.png">
-			<div>Jordan 13</div>
-		</li>
-	</ul>
-	<ul>
-		<li>
-			<img src="{{root}}/img/jordan13.png">
-			<div>jordan 13</div>
-		</li>
-		<li>
-			<img src="{{root}}/img/ect.png">
-			<div>ect</div>
-		</li>
-	</ul>
 	<div class="popup-close"></div>
 </section>
 {{>footer jsName="market"}}
