@@ -64,6 +64,24 @@ require([
 
 	/*-----product img 불러오기-----*/
 	function loadProductImg() {
+		$.ajax({
+			url: window._ctx.root + "/api/product/img/" + productId,
+			success: function (result) {
+				var list = result.list;
+				var itemHTML = "";
+
+				for (var i=0; i<list.length; i++) {
+					var item = list[i];
+
+					itemHTML += "<div class='item'>";
+					itemHTML += "<div class='product-img' style='background-image: ";
+					itemHTML += "url('" + item.img_url + "')'></div>";
+					itemHTML += "</div>";
+				}
+
+				$("#market-detail-img-carousel .carousel-inner").html(itemHTML);
+			},
+		});
 	}
 
 	/*-----판매자 정보 불러오기-----*/
@@ -111,6 +129,7 @@ require([
 				var item = list[0];
 				var price = common.numberWithCommas(item.price);
 				var date = common.getFormatDate(item.update_date);
+				console.log(list);
 
 				// 사이즈
 				if (item.category_name !== undefined && item.category_name.length > 0) {

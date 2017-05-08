@@ -12,8 +12,29 @@ require([
 
 	/*-----list 불러오기-----*/
 	function loadList(currentPage) {
+		// 브랜드ID 불러오기
+		$.ajax({
+			url: window._ctx.root + "/api/product/brand",
+			success: function (list) {
+				for (var i=0; i<list.length; i++) {
+					var item = list[i];
+					if(item.brand_name === "PALACE") {
+						$(".menu-category [menu-category-detail=PALACE]").attr("brand_id", item.brand_id);
+					}
+					if(item.brand_name === "NIKE") {
+						$(".menu-category [menu-category-detail=NIKE]").attr("brand_id", item.brand_id);
+					}
+					if(item.brand_name === "SUPREME") {
+						$(".menu-category [menu-category-detail=SUPREME]").attr("brand_id", item.brand_id);
+					}
+				}
+				$(".menu-category [menu-category-detail=ALL]").attr("brand_id", "ALL");
+			},
+		});
+
 		var brandName = $(".menu-category>ul>li.active").attr("menu-category-detail");
 
+		// 리스트 불러오기
 		$.ajax({
 			url: window._ctx.root + "/api/product/list",
 			data: {
@@ -113,7 +134,7 @@ require([
 	// "더 많은 상품 보기" -> 마켓 페이지로 이동
 	function viewMoreProduct() {
 		$(".view-more").on("click", function() {
-			var brandId = $(".menu-category>ul .active").attr("menu-category-detail");
+			var brandId = $(".menu-category>ul .active").attr("brand_id");
 			var url = window._ctx.root + "/market/market.html";
 			url += "?brandId=" + brandId;
 			location.href = url;
@@ -142,6 +163,7 @@ require([
 		}
 	};
 
+	// 브랜드 카테고리 메뉴 클릭시
 	$(".menu-category>ul>li").on("click", function () {
 		common.navigate(this, naviHandler);
 		loadList(currentPage);
