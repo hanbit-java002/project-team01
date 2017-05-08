@@ -89,6 +89,25 @@ define([
 
 	function showSubMenu() {
 		$(".main-menu>li").on("click", function() {
+			$.ajax({
+				url: window._ctx.root + "/api/product/brand",
+				success: function (list) {
+					for (var i=0; i<list.length; i++) {
+						var item = list[i];
+						if(item.brand_name === "PALACE") {
+							$(".sub-menu.market li[brand=palace]").attr("brand_id", item.brand_id);
+						}
+						if(item.brand_name === "NIKE") {
+							$(".sub-menu.market li[brand=nike]").attr("brand_id", item.brand_id);
+						}
+						if(item.brand_name === "SUPREME") {
+							$(".sub-menu.market li[brand=supreme]").attr("brand_id", item.brand_id);
+						}
+					}
+					$(".sub-menu.market li[brand=all]").attr("brand_id", "brand-all");
+				},
+			});
+
 			var selector = $(this).attr("id");
 			if (selector === "market" || selector === "my-page") {
 				$(".sub-menu." + selector).css("display", "block");
@@ -135,7 +154,7 @@ define([
 
 	function locationSubMenu() {
 		$(".sub-menu.market>li").on("click", function() {
-			var brandId = $(this).attr("brand");
+			var brandId = $(this).attr("brand_id");
 			var url = window._ctx.root + "/market/market.html";
 			url += "?brand=" + brandId;
 			location.href = url;

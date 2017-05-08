@@ -9,20 +9,39 @@ require([
 		return x.split("|");
 	}
 
-	$(".product-img-layer .carousel").carousel("pause");
+	/*-----select Like -----*/
+	function selectLike() {
+		$(".list-selector.like").on("click", function() {
+			var select = $(".list-selector.like").hasClass("fa-heart").toString();
 
-	/*---show product-img-layer---*/
-	$("#market-detail-img-carousel .product-img").on("click", function() {
-		$(".product-img-layer").css("display", "block");
-		$("body").css("overflow", "hidden");
-	});
-
-	/*---hide product-img-layer---*/
-	$(".product-img-layer .close-icon").on("click", function() {
-		$(".product-img-layer").css("display", "none");
-		$("body").css("overflow", "");
-	});
-
+			if(select === "false") {
+				$.ajax({
+					url: window._ctx.root + "/api/like/add/" + productId,
+					success: function (result) {
+						$(".list-selector.like").removeClass("fa-heart-o");
+						$(".list-selector.like").addClass("fa-heart");
+						countLike();
+					},
+					error: function() {
+						alert("로그인을 해주세요.");
+					},
+				});
+			}
+			if(select === "true") {
+				$.ajax({
+					url: window._ctx.root + "/api/like/cancel/" + productId,
+					success: function (result) {
+						$(".list-selector.like").removeClass("fa-heart");
+						$(".list-selector.like").addClass("fa-heart-o");
+						countLike();
+					},
+					error: function() {
+						alert("로그인을 해주세요.");
+					},
+				});
+			}
+		});
+	}
 
 	/*-----Like count 불러오기-----*/
 	function countLike() {
@@ -65,21 +84,75 @@ require([
 	/*-----product img 불러오기-----*/
 	function loadProductImg() {
 		$.ajax({
-			url: window._ctx.root + "/api/product/img/" + productId,
+			url: window._ctx.root + "/api/product/image/" + productId,
 			success: function (result) {
-				var list = result.list;
 				var itemHTML = "";
+				var indicatorsHTML = "";
+				var imageLayerHTML = "";
+				var layerIndicatorHTML = "";
 
-				for (var i=0; i<list.length; i++) {
-					var item = list[i];
+				for (var i=0; i<result.length; i++) {
+					var item = result[i];
 
-					itemHTML += "<div class='item'>";
-					itemHTML += "<div class='product-img' style='background-image: ";
-					itemHTML += "url('" + item.img_url + "')'></div>";
+					// 상품 이미지
+					itemHTML += "<div class=\"item";
+					if(i==0) {
+						itemHTML += " active";
+					}
+					itemHTML += "\"> <div class=\"product-img\" style=\"background-image: url('";
+					itemHTML += item.img_url;
+					itemHTML += "')\"></div>";
+					itemHTML += "<div class=\"carousel-caption\"></div>";
 					itemHTML += "</div>";
+
+
+					//상세 이미지 레이어의 이미지
+					imageLayerHTML += "<div class=\"item";
+					if(i==0) {
+						imageLayerHTML += " active";
+					}
+					imageLayerHTML += "\"><img src='" + item.img_url + "'>";
+					imageLayerHTML += "<div class=\"carousel-caption\">";
+					imageLayerHTML += "</div>";
+					imageLayerHTML += "</div>";
+
+
+					//indicator
+					indicatorsHTML += "<li data-target=\"#market-detail-img-carousel\"";
+					indicatorsHTML += " data-slide-to=\"" + i + "\" class=\"";
+					if(i==0) {
+						indicatorsHTML += " active";
+					}
+					indicatorsHTML += "\"></li>";
+
+
+					//상세 이미지 Layer indicator
+					layerIndicatorHTML += "<li data-target=\"#img-layer-carousel\"";
+					layerIndicatorHTML += " data-slide-to=\"" + i + "\" class=\"";
+					if(i==0) {
+						layerIndicatorHTML += " active";
+					}
+					layerIndicatorHTML += "\"></li>";
 				}
 
 				$("#market-detail-img-carousel .carousel-inner").html(itemHTML);
+				$("#market-detail-img-carousel .carousel-indicators").html(indicatorsHTML);
+				$(".product-img-layer .carousel-inner").html(imageLayerHTML);
+				$(".product-img-layer .carousel-indicators").html(layerIndicatorHTML);
+
+				/*---show product-img-layer---*/
+				$("#market-detail-img-carousel .carousel-inner").on("click", function() {
+					$(".product-img-layer").css("display", "block");
+					$("body").css("overflow", "hidden");
+				});
+
+				$(".product-img-layer .carousel").carousel("pause");
+
+				/*---hide product-img-layer---*/
+				$(".product-img-layer .close-icon").on("click", function() {
+					$(".product-img-layer").css("display", "none");
+					$("body").css("overflow", "");
+				});
 			},
 		});
 	}
@@ -161,7 +234,6 @@ require([
 				// 거래 방식 info
 				var dealMeans = split(item.deal_means);
 				var deliveryCheck = item.delivery_check;
-				var directPlace = item.direct_place;
 
 				var dealHTML = "";
 				for (var i=0; i<dealMeans.length; i++) {
@@ -170,11 +242,12 @@ require([
 					if (dealType === "direct") {
 						dealHTML += "<div class='directly'>";
 						dealHTML += "<line></line>";
-						if (directPlace !== undefined) {
-							dealHTML += item.direct_place;
-						}
-						if (directPlace == "") {
+
+						if (item.direct_place === "" || item.direct_place === undefined) {
 							dealHTML += "가능";
+						}
+						else {
+							dealHTML += item.direct_place;
 						}
 						dealHTML += "</div>";
 					}
@@ -201,10 +274,16 @@ require([
 					$(".market-detail .dealing-mode .safety").html("<line></line>불가");
 				}
 
+				//상세 설명
+				if (item.description === undefined || item.description === "") {
+					$(".market-detail .user-description").text("상세 설명이 없습니다.");
+				}
+				else {
+					$(".market-detail .user-description").html(item.description.replace(/\n/g, "<br>"));
+				}
 
 				$(".market-detail .product.name").text(item.product_name);
 				$(".market-detail .product.price").html("<i class='fa fa-won'></i>" + price);
-				$(".market-detail .user-description").html(item.description.replace(/\n/g, "<br>"));
 				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span> " + date);
 			},
 		});
@@ -216,6 +295,7 @@ require([
 	loadComment();
 	countComment();
 	countLike();
+	selectLike();
 	countComplain();
 	countHits();
 });

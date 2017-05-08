@@ -28,7 +28,7 @@ require([
 						$(".menu-category [menu-category-detail=SUPREME]").attr("brand_id", item.brand_id);
 					}
 				}
-				$(".menu-category [menu-category-detail=ALL]").attr("brand_id", "ALL");
+				$(".menu-category [menu-category-detail=ALL]").attr("brand_id", "brand-all");
 			},
 		});
 
