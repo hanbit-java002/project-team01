@@ -29,18 +29,10 @@ require([
 			$(this).parents(".dropdown").find(".dropdown-selected").text(value);
 			$(this).parents(".dropdown").find(".dropdown-selected").attr("s-value", sValue);
 
-			var brandSelected= $(".dropdown-brand .dropdown-selected").text();
 			var categorySelected= $(".dropdown-category .dropdown-selected").text();
 
-			if (brandSelected == "NIKE" && categorySelected == "신발") {
-				/*initSeries();
-				 $(".dropdown-series").show();*/
-			}
-			else {
-				/*$(".dropdown-series .dropdown-selected").removeAttr("s-value");*/
-			}
 			if (isCategory) {
-				$(".dropdown-size .dropdown-selected").removeAttr("s-value");
+				$(".dropdown-size .dropdown-selected").attr("s-value", "size-all");
 				$(".dropdown-size .dropdown-selected").text("Size");
 
 				if (categorySelected !== "Category" || categorySelected !=="ALL" || categorySelected === "ALL") {
@@ -162,17 +154,35 @@ require([
 		});
 	}
 	function getPriceValue() {
-		var priceValue ="default";
-		if ($(".product-price-order>.price-low").hasClass("active")) {
-			priceValue ="low";
+		if ($(".product-price-order>.latest").hasClass("active")) {
+			return "default";
 		}
-		else if ($(".product-price-order>.price-high").hasClass("active")) {
-			priceValue ="high";
+		else {
+			if ($(".price>.price-arrow").hasClass("fa-arrow-down")) {
+				return "DESC";
+			}
+			else if ($(".price>.price-arrow").hasClass("fa-arrow-up")) {
+				return "ASC";
+			}
 		}
-		return priceValue;
 	}
 
-	function productListAjax(brandId) {
+		function productListAjax(brandId) {
+		/* 이프문 시리즈보이기 안보이기*/
+			var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
+			if (brandSelected == "NIKE") {
+				$(".filter-series").addClass("active");
+				$(".filter-series").css("display", "inline-block");
+				$(".filter-search").addClass("active");
+
+			}
+			else {
+				$(".filter-series").removeClass("active");
+				$(".filter-series").css("display", "none");
+				$(".filter-search").removeClass("active");
+
+			}
+
 		var filterCurrent = {
 			brandId: brandId,
 			searchValue: $(".filter-search-box").val().trim(),
@@ -180,7 +190,7 @@ require([
 			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
 			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
 			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
-			price: getPriceValue(),
+			priceFilter: getPriceValue(),
 		};
 		console.log("브랜드"+filterCurrent.brandId);
 		console.log("서치"+filterCurrent.searchValue);
@@ -188,11 +198,157 @@ require([
 		console.log("카테고리"+filterCurrent.categoryId);
 		console.log("사이즈"+filterCurrent.sizeId);
 		console.log("퀄리티"+filterCurrent.qualityId);
-		console.log("가격"+filterCurrent.price);
+		console.log("가격"+filterCurrent.priceFilter);
+
+		var formData = new FormData();
+		formData.append("brandId", filterCurrent.brandId);
+		formData.append("searchValue", filterCurrent.searchValue);
+		formData.append("seriesId", filterCurrent.seriesId);
+		formData.append("categoryId", filterCurrent.categoryId);
+		formData.append("sizeId", filterCurrent.sizeId);
+		formData.append("qualityId", filterCurrent.qualityId);
+		formData.append("priceFilter", filterCurrent.priceFilter);
+
+		$.ajax({
+			url: window._ctx.root + "/api/market/list",
+			data: formData,
+			processData: false,
+			contentType: false,
+			method: "POST",
+			success: function (data) {
+				console.log("실행중");
+				var productList ="";
+				for (var i=0; i<data.length; i++) {
+					var item = data[i];
+
+					productList += "<li product-id=\""+item.product_id+"\" process=\""+item.selling_status+"\">";
+					productList += "    <div class=\"product-info\">";
+					productList += "        <img class=\"product-img\" src=\""+
+						/*window._ctx.root+"/img/jordan1.png"*/item.img_url+"\">";
+					productList += "        <div class=\"detail-info\">";
+					productList += "            <div class=\"product name\">";
+					productList += 						item.product_name;
+					productList += "            </div>";
+					productList += "            <div class=\"product price\">";
+					productList += "                <i class=\"fa fa-won\"></i>";
+					productList += 				common.numberWithCommas(item.price);
+					productList += "            </div>";
+					productList += "            <div class=\"product size\">";
+					productList += 					item.size;
+					if (item.category_name === "신발") {
+						productList += 	"mm";
+					}
+					else if (item.category_name === "허리") {
+						productList += 	"inch";
+					}
+					productList += "            </div>";
+					productList += "            <div class=\"product quality\">";
+					if (item.quality === "new") {
+						productList += 	"새상품";
+					}
+					else if (item.quality === "used") {
+						productList += 	"중고";
+					}
+					productList += "            </div>";
+					productList += "            <ul class=\"product dealing-mode\">";
+
+					var dealMeans = item.deal_means.split("|");
+					for (var j=0; j<dealMeans.length; j++) {
+						var dealType = dealMeans[j];
+
+						if (dealType === "direct") {
+							productList += "<li class=\"dealing-mode directly\">";
+							productList += "직접거래";
+							productList += "</li>";
+						}
+						if (dealType === "delivery") {
+							productList += "<li class=\"dealing-mode delivery\">";
+							productList += "택배거래";
+							productList += "</li>";
+						}
+					}
+
+					if (item.safe_deal === 1) {
+						productList += "<li class=\"dealing-mode safety\">";
+						productList += "안심결제";
+						productList += "</li>";
+					}
+
+					productList += "            </ul>";
+					productList += "            <div class=\"seller-info\">";
+					productList += "                <div class=\"info-label\">판매자</div>";
+
+					productList += "                <div class=\"seller-rank ";
+					if (item.user_rank === "member") {
+						productList +=	"fa fa-star-o\"></div>";
+					}
+					else if (item.user_rank === "silver") {
+						productList +=	"fa fa-star\"></div>";
+					}
+					else if (item.user_rank === "gold") {
+						productList +=	"fa fa-diamond\"></div>";
+					}
+					else if (item.user_rank === "admin") {
+						productList +=	"fa fa-user-circle-o\"></div>";
+					}
+					else if (item.user_rank === "blackList") {
+						productList +=	"fa fa-frown-o\"></div>";
+					}
+
+					productList += "                <div class=\"seller-name\">";
+					productList += item.user_name;
+					productList += "                </div>";
+					productList += "            </div>";
+					productList += "        </div>";
+					productList += "    </div>";
+					productList += "    <div class=\"board-info\">";
+					productList += "        <div class=\"like\">";
+					productList += "            <span class=\"fa fa-heart-o\"></span>";
+					productList += "            10";
+					productList += "        </div>";
+					productList += "        <div class=\"comment\">";
+					productList += "            <span class=\"fa fa-commenting-o\"></span>";
+					productList += "            10";
+					productList += "        </div>";
+					productList += "        <div class=\"complain\">";
+					productList += "            <span class=\"fa fa-thumbs-o-down\"></span>";
+					productList += "            10";
+					productList += "        </div>";
+					productList += "        <div class=\"hits\">";
+					productList += "            <span class=\"fa fa-eye\"></span>";
+					productList += "            1,0";
+					productList += "        </div>";
+					productList += "        <div class=\"reporting-date\">";
+					productList += "            <span class=\"fa fa-clock-o\"></span>";
+					productList += common.getFormatDate(item.update_date);
+					productList += "        </div>";
+					productList += "    </div>";
+					productList += "    <div class=\"list-selector like fa fa-heart\" valid=\"true\"></div>";
+					productList += "</li>";
+				}
+				$(".market-product-list").html(productList);
+			},
+		});
+
 	}
 
+	/* 브랜드 바꾸는 곳*/
 	var naviHandler = function (jqElement) {
 		var brandId = $(jqElement).attr("brand-id");
+
+		/* 초기화 하는 부분*/
+		$(".filter-search-box").val("");
+		$(".filter-series").attr("s-value", "series-all");
+		$(".filter-series").find("span").text("Series");
+		$(".dropdown-category .dropdown-selected").attr("s-value", "category-all");
+		$(".dropdown-category .dropdown-selected").text("Category");
+		$(".dropdown-size .dropdown-selected").attr("s-value", "size-all");
+		$(".dropdown-size .dropdown-selected").text("Size");
+		$(".dropdown-quality .dropdown-selected").attr("s-value", "quality-all");
+		$(".dropdown-quality .dropdown-selected").text("Quality");
+		$(".product-price-order>li").removeClass("active");
+		$(".product-price-order>.latest").addClass("active");
+		/* 에이작스*/
 		productListAjax(brandId);
 	};
 
@@ -224,6 +380,7 @@ require([
 				}
 				$(".menu-category ul").html(brandHTML);
 				common.initNavi();
+				initBrand();
 				clickedMenu();
 			},
 		});
@@ -232,13 +389,30 @@ require([
 		$(".product-price-order>li").on("click", function () {
 			$(".product-price-order>li").removeClass("active");
 			$(this).addClass("active");
+			if ($(this).hasClass("price")) {
+				if ($(this).find(".price-arrow").hasClass("fa-arrow-down")) {
+					$(this).find(".price-arrow").removeClass("fa-arrow-down");
+					$(this).find(".price-arrow").addClass("fa-arrow-up");
+				}
+				else {
+					$(this).find(".price-arrow").addClass("fa-arrow-down");
+					$(this).find(".price-arrow").removeClass("fa-arrow-up");
+				}
+			}
 			var brandId= $(".menu-category li.active").attr("brand-id");
 			productListAjax(brandId);
 		});
 	}
-	initBrand();
-	priceClick();
+
+	/* 검색 필터 눌렀을때 검색결과*/
+	$(".search-btn").on("click", function () {
+		var brandId= $(".menu-category li.active").attr("brand-id");
+		productListAjax(brandId);
+	});
+
+
 	initSeries();
+	priceClick();
 	dropdownList();
 	initCategory();
 	initBrandAjax();
