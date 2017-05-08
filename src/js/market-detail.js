@@ -79,6 +79,22 @@ require([
 
 	/*-----hits Info 불러오기-----*/
 	function countHits() {
+		$.ajax({
+			url: window._ctx.root + "/api/hits/count/" + productId,
+			success: function (result) {
+				console.log(result);
+				$(".market-detail .board-info .hits").html("<span class='fa fa-eye'></span> " + result);
+			},
+		});
+	}
+
+	function plusHits() {
+		$.ajax({
+			url: window._ctx.root + "/api/hits/plus/" + productId,
+			success: function () {
+				countHits();
+			},
+		});
 	}
 
 	/*-----product img 불러오기-----*/
@@ -297,5 +313,5 @@ require([
 	countLike();
 	selectLike();
 	countComplain();
-	countHits();
+	plusHits();
 });
