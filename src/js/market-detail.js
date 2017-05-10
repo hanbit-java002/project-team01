@@ -17,8 +17,9 @@ require([
 			if(select === "false") {
 				$.ajax({
 					url: window._ctx.root + "/api/like/add/" + productId,
-					success: function (result) {
-						if (result === "ok") {
+					success: function (data) {
+						console.log(data.result);
+						if (data.result === "ok") {
 							$(".list-selector.like").removeClass("fa-heart-o");
 							$(".list-selector.like").addClass("fa-heart");
 							countLike();
@@ -32,8 +33,8 @@ require([
 			if(select === "true") {
 				$.ajax({
 					url: window._ctx.root + "/api/like/cancel/" + productId,
-					success: function (result) {
-						if (result === "ok") {
+					success: function (data) {
+						if (data.result === "ok") {
 							$(".list-selector.like").removeClass("fa-heart");
 							$(".list-selector.like").addClass("fa-heart-o");
 							countLike();
@@ -50,7 +51,7 @@ require([
 	/*-----Like count 불러오기-----*/
 	function countLike() {
 		$.ajax({
-			url: window._ctx.root + "/api/product/like/" + productId,
+			url: window._ctx.root + "/api/like/count/" + productId,
 			success: function (result) {
 				$(".market-detail .board-info .like").html("<span class='fa fa-heart-o'></span> " + result);
 			},

@@ -185,6 +185,89 @@ require([
 		});
 	}
 
+	function initCountLike(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/like/count/" + productId,
+			success: function (result) {
+				$(".product-item-list").find(".like-count").html("<span class='fa fa-heart-o'></span> " + result);
+			},
+		});
+	}
+
+	function initLike(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/like/hasLike/" + productId,
+			success: function (data) {
+				var likeHTML = "";
+				if (data.result) {
+					likeHTML = "<div class=\"list-selector like fa fa-heart\" valid=\"true\"></div>";
+				}
+				else {
+					likeHTML = "<div class=\"list-selector like fa fa-heart-o\" valid=\"false\"></div>";
+				}
+
+				$(".product-item-list[product-id='" + productId + "'] .list-selector.like").replaceWith(likeHTML);
+			},
+		});
+
+	}
+
+	function countLike(jqEliment, productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/like/count/" + productId,
+			success: function (result) {
+				$(jqEliment).parents(".product-item-list")
+					.find(".like-count").html("<span class='fa fa-heart-o'></span> " + result);
+			},
+		});
+	}
+
+	function setLike() {
+		$(".list-selector.like").off();
+		$(".list-selector.like").on("click", function (event) {
+			event.stopPropagation();
+			var productId =$(this).parents(".product-item-list").attr("product-id");
+			console.log("프로덕트 아이디: " +productId);
+			var hasLike = $(this).attr("valid");
+			var likeThis =this;
+			if (hasLike === "false") {
+				$.ajax({
+					url: window._ctx.root + "/api/like/add/" + productId,
+					success: function (data) {
+						if (data.result === "ok") {
+							console.log(likeThis);
+							$(likeThis).removeClass("fa-heart-o");
+							$(likeThis).addClass("fa-heart");
+							$(likeThis).attr("valid", "true");
+							countLike(likeThis, productId);
+						}
+					},
+					error: function() {
+						alert("로그인을 해주세요.");
+					},
+				});
+
+			}
+			else{
+				$.ajax({
+					url: window._ctx.root + "/api/like/cancel/" + productId,
+					success: function (data) {
+						if (data.result === "ok") {
+							$(likeThis).removeClass("fa-heart");
+							$(likeThis).addClass("fa-heart-o");
+							$(likeThis).attr("valid", "false");
+							countLike(likeThis, productId);
+						}
+					},
+					error: function() {
+						alert("로그인을 해주세요.");
+					},
+				});
+			}
+		});
+	}
+
+
 	function productListAjax(brandId) {
 	/* 이프문 시리즈보이기 안보이기*/
 		var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
@@ -242,7 +325,8 @@ require([
 				for (var i=0; i<data.length; i++) {
 					var item = data[i];
 
-					productList += "<li product-id=\""+item.product_id+"\" process=\""+item.selling_status+"\">";
+					productList += "<li class=\"product-item-list\" product-id=\""+item.product_id+"" +
+						"\" process=\""+item.selling_status+"\">";
 					productList += "    <div class=\"product-info\">";
 					productList += "        <img class=\"product-img\" src=\""+
 						/*window._ctx.root+"/img/jordan1.png"*/item.img_url+"\">";
@@ -323,9 +407,7 @@ require([
 					productList += "        </div>";
 					productList += "    </div>";
 					productList += "    <div class=\"board-info\">";
-					productList += "        <div class=\"like\">";
-					productList += "            <span class=\"fa fa-heart-o\"></span>";
-					productList += "            10";
+					productList += "        <div class=\"like-count\">";
 					productList += "        </div>";
 					productList += "        <div class=\"comment\">";
 					productList += "            <span class=\"fa fa-commenting-o\"></span>";
@@ -344,11 +426,14 @@ require([
 					productList += common.getFormatDate(item.update_date);
 					productList += "        </div>";
 					productList += "    </div>";
-					productList += "    <div class=\"list-selector like fa fa-heart-o\" valid=\"true\"></div>";
+					productList += "    <div class=\"list-selector like fa fa-heart-o\" valid=\"false\"></div>";
 					productList += "</li>";
+					initCountLike(item.product_id);
+					initLike(item.product_id);
 				}
 				$(".market-product-list").html(productList);
 				goMarketDetail();
+				setLike();
 			},
 		});
 
@@ -430,6 +515,7 @@ require([
 	$(".search-btn").on("click", function () {
 		var brandId= $(".menu-category li.active").attr("brand-id");
 		productListAjax(brandId);
+
 	});
 
 
