@@ -107,7 +107,7 @@ require([
 				else if (categorySelected == "상의") {
 					sizeHTML += "<li value=\"xsmall\"><a>xsmall 이하</a></li>";
 					sizeHTML += "<li value=\"small\"><a>small</a></li>";
-					sizeHTML += "<li value=\"midum\"><a>midum</a></li>";
+					sizeHTML += "<li value=\"medium\"><a>medium</a></li>";
 					sizeHTML += "<li value=\"large\"><a>large</a></li>";
 					sizeHTML += "<li value=\"xlarge\"><a>xlarge</a></li>";
 					sizeHTML += "<li value=\"xxlarge\"><a>xxlarge 이상</a></li>";
@@ -281,6 +281,8 @@ require([
 			safeDeal: $(".safe-pay").hasClass("selected"),
 			deliveryCheck: $(".delivery-check-btn").hasClass("selected")?"include":"exclude",
 		};
+
+		console.log(currentProduct);
 
 		var formData = new FormData();
 		formData.append("name", currentProduct.name);

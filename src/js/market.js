@@ -59,7 +59,7 @@ require([
 					else if (categorySelected === "상의") {
 						sizeHTML += "<li value=\"xsmall\"><a>xsmall 이하</a></li>";
 						sizeHTML += "<li value=\"small\"><a>small</a></li>";
-						sizeHTML += "<li value=\"midum\"><a>midum</a></li>";
+						sizeHTML += "<li value=\"medium\"><a>medium</a></li>";
 						sizeHTML += "<li value=\"large\"><a>large</a></li>";
 						sizeHTML += "<li value=\"xlarge\"><a>xlarge</a></li>";
 						sizeHTML += "<li value=\"xxlarge\"><a>xxlarge 이상</a></li>";
@@ -83,6 +83,8 @@ require([
 					dropdownList();
 				}
 			}
+			/* 리스트 초기화*/
+			$(".market-product-list").html("");
 		});
 	}
 
@@ -112,6 +114,8 @@ require([
 			$(".filter-series>span").text(seriesName);
 			$(".dark-layer"). click();
 			var brandSelected = $(".menu-category li.active").attr("brand-id");
+			/* 리스트 초기화*/
+			$(".market-product-list").html("");
 			productListAjax(brandSelected);
 		});
 	}
@@ -179,6 +183,15 @@ require([
 		$(".market-product-list>li").on("click", function () {
 			var productId= $(this).attr("product-id");
 			console.log("제품아이디"+productId);
+			console.log("제품아이디"+productId);
+			console.log("제품아이디"+productId);
+			console.log("제품아이디"+productId);
+			console.log("제품아이디"+productId);
+			$.ajax({
+				url: window._ctx.root + "/api/hits/plus/" + productId,
+				success: function () {
+				},
+			});
 			var url = window._ctx.root+"/market/market-detail.html";
 			url += "?product="+productId;
 			location.href =url;
@@ -207,6 +220,7 @@ require([
 				}
 
 				$(".product-item-list[product-id='" + productId + "'] .list-selector.like").replaceWith(likeHTML);
+				setLike();
 			},
 		});
 
@@ -267,52 +281,18 @@ require([
 		});
 	}
 
+	function initHits(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/hits/count/" + productId,
+			success: function (data) {
+				var hitsHTML = "<div class=\"hits\"><span class=\"fa fa-eye\"></span>"+data+"</div>";
 
-	function productListAjax(brandId) {
-	/* 이프문 시리즈보이기 안보이기*/
-		var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
-		if (brandSelected == "NIKE") {
-			$(".filter-series").addClass("active");
-			$(".filter-series").css("display", "inline-block");
-			$(".filter-search").addClass("active");
+				$(".product-item-list[product-id='" + productId + "'] .hits").replaceWith(hitsHTML);
+			},
+		});
+	}
 
-		}
-		else {
-			$(".filter-series").removeClass("active");
-			$(".filter-series").css("display", "none");
-			$(".filter-search").removeClass("active");
-
-		}
-
-		var filterCurrent = {
-			brandId: brandId,
-			searchValue: $(".filter-search-box").val().trim(),
-			seriesId: $(".filter-series").attr("s-value"),
-			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
-			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
-			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
-			priceFilter: getPriceValue(),
-		};
-		/* 검색어 설정*/
-		$(".main-product-name.active").text("Product");
-
-		console.log("브랜드"+filterCurrent.brandId);
-		console.log("서치"+filterCurrent.searchValue);
-		console.log("시리즈"+filterCurrent.seriesId);
-		console.log("카테고리"+filterCurrent.categoryId);
-		console.log("사이즈"+filterCurrent.sizeId);
-		console.log("퀄리티"+filterCurrent.qualityId);
-		console.log("가격"+filterCurrent.priceFilter);
-
-		var formData = new FormData();
-		formData.append("brandId", filterCurrent.brandId);
-		formData.append("searchValue", filterCurrent.searchValue);
-		formData.append("seriesId", filterCurrent.seriesId);
-		formData.append("categoryId", filterCurrent.categoryId);
-		formData.append("sizeId", filterCurrent.sizeId);
-		formData.append("qualityId", filterCurrent.qualityId);
-		formData.append("priceFilter", filterCurrent.priceFilter);
-
+	function showList(formData) {
 		$.ajax({
 			url: window._ctx.root + "/api/market/list",
 			data: formData,
@@ -430,12 +410,65 @@ require([
 					productList += "</li>";
 					initCountLike(item.product_id);
 					initLike(item.product_id);
+					initHits(item.product_id);
 				}
-				$(".market-product-list").html(productList);
+				$(".market-product-list").append(productList);
 				goMarketDetail();
-				setLike();
 			},
 		});
+	}
+
+
+	function productListAjax(brandId) {
+	/* 이프문 시리즈보이기 안보이기*/
+		var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
+		if (brandSelected == "NIKE") {
+			$(".filter-series").addClass("active");
+			$(".filter-series").css("display", "inline-block");
+			$(".filter-search").addClass("active");
+
+		}
+		else {
+			$(".filter-series").removeClass("active");
+			$(".filter-series").css("display", "none");
+			$(".filter-search").removeClass("active");
+
+		}
+
+		var filterCurrent = {
+			brandId: brandId,
+			searchValue: $(".filter-search-box").val().trim(),
+			seriesId: $(".filter-series").attr("s-value"),
+			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
+			sizeId: $(".dropdown-size .dropdown-selected").attr("s-value"),
+			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
+			priceFilter: getPriceValue(),
+		};
+
+
+		console.log("브랜드"+filterCurrent.brandId);
+		console.log("서치"+filterCurrent.searchValue);
+		console.log("시리즈"+filterCurrent.seriesId);
+		console.log("카테고리"+filterCurrent.categoryId);
+		console.log("사이즈"+filterCurrent.sizeId);
+		console.log("퀄리티"+filterCurrent.qualityId);
+		console.log("가격"+filterCurrent.priceFilter);
+
+		var formData = new FormData();
+		formData.append("brandId", filterCurrent.brandId);
+		formData.append("searchValue", filterCurrent.searchValue);
+		formData.append("seriesId", filterCurrent.seriesId);
+		formData.append("categoryId", filterCurrent.categoryId);
+		formData.append("sizeId", filterCurrent.sizeId);
+		formData.append("qualityId", filterCurrent.qualityId);
+		formData.append("priceFilter", filterCurrent.priceFilter);
+
+
+
+
+
+
+		showList(formData);
 
 	}
 
@@ -455,6 +488,8 @@ require([
 		$(".dropdown-quality .dropdown-selected").text("Quality");
 		$(".product-price-order>li").removeClass("active");
 		$(".product-price-order>.latest").addClass("active");
+		/* 리스트 초기화*/
+		$(".market-product-list").html("");
 		/* 에이작스*/
 		productListAjax(brandId);
 	};
@@ -492,6 +527,8 @@ require([
 			},
 		});
 	}
+
+	/* 가격 눌렀을 때*/
 	function priceClick() {
 		$(".product-price-order>li").on("click", function () {
 			$(".product-price-order>li").removeClass("active");
@@ -507,6 +544,8 @@ require([
 				}
 			}
 			var brandId= $(".menu-category li.active").attr("brand-id");
+			/* 리스트 초기화*/
+			$(".market-product-list").html("");
 			productListAjax(brandId);
 		});
 	}
@@ -514,8 +553,16 @@ require([
 	/* 검색 필터 눌렀을때 검색결과*/
 	$(".search-btn").on("click", function () {
 		var brandId= $(".menu-category li.active").attr("brand-id");
+		/* 리스트 초기화*/
+		$(".market-product-list").html("");
 		productListAjax(brandId);
-
+		var searchValue = $(".filter-search-box").val().trim();
+		if (searchValue === "" || searchValue === undefined) {
+			$(".main-product-name.active").text("Products");
+		}
+		else {
+			$(".main-product-name.active").text(searchValue);
+		}
 	});
 
 
