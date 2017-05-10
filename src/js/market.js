@@ -22,6 +22,7 @@ require([
 
 	// 드롭다운 메뉴들
 	function dropdownList() {
+		$(".dropdown-menu>li").off("click");
 		$(".dropdown-menu>li").on("click", function () {
 			var isCategory= $(this).parents(".input-style").hasClass("dropdown-category");
 			var value = $(this).children().text();
@@ -30,6 +31,9 @@ require([
 			$(this).parents(".dropdown").find(".dropdown-selected").attr("s-value", sValue);
 
 			var categorySelected= $(".dropdown-category .dropdown-selected").text();
+
+			var brandSelected = $(".menu-category li.active").attr("brand-id");
+			productListAjax(brandSelected);
 
 			if (isCategory) {
 				$(".dropdown-size .dropdown-selected").attr("s-value", "size-all");
@@ -107,6 +111,8 @@ require([
 			$(".filter-series").attr("s-value", seriesId);
 			$(".filter-series>span").text(seriesName);
 			$(".dark-layer"). click();
+			var brandSelected = $(".menu-category li.active").attr("brand-id");
+			productListAjax(brandSelected);
 		});
 	}
 
@@ -192,6 +198,9 @@ require([
 			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
 			priceFilter: getPriceValue(),
 		};
+		/* 검색어 설정*/
+		$(".main-product-name.active").text("Product");
+
 		console.log("브랜드"+filterCurrent.brandId);
 		console.log("서치"+filterCurrent.searchValue);
 		console.log("시리즈"+filterCurrent.seriesId);
@@ -216,7 +225,7 @@ require([
 			contentType: false,
 			method: "POST",
 			success: function (data) {
-				console.log("실행중");
+				console.log(data.length);
 				var productList ="";
 				for (var i=0; i<data.length; i++) {
 					var item = data[i];

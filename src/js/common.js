@@ -156,7 +156,7 @@ define([
 		$(".sub-menu.market>li").on("click", function() {
 			var brandId = $(this).attr("brand_id");
 			var url = window._ctx.root + "/market/market.html";
-			url += "?brand=" + brandId;
+			url += "?brandId=" + brandId;
 			location.href = url;
 		});
 	}
