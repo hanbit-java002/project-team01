@@ -1,16 +1,52 @@
 require([
 	"common",
+	"clipboard",
 ], function() {
 	var common = require("common");
 	var productId = common.getQuerystring("product");
+
+
+	/*----- URL 클립보드 복사-----*/
+	function shareLink() {
+		var url = location;
+		console.log(url);
+		$(".board-setting .board-clipboard").attr("data-clipboard-text", url);
+		var Clipboard = require("clipboard");
+		var clipboard = new Clipboard(".board-clipboard");
+		clipboard.on("success", function() {
+			alert("페이지의 주소가 복사되었습니다.");
+		});
+	}
+
 
 	/*-----split (list로 리턴)-----*/
 	function split(x) {
 		return x.split("|");
 	}
 
+	/*-----Like 초기 세팅 -----*/
+	function initLike(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/like/hasLike/" + productId,
+			success: function (data) {
+				console.log("initLike: " + data.result);
+				var likeHTML = "";
+				if (data.result) {
+					likeHTML = "<div class=\"list-selector like fa fa-heart\"></div>";
+				}
+				else {
+					likeHTML = "<div class=\"list-selector like fa fa-heart-o\"></div>";
+				}
+
+				$(".market-detail .list-selector.like").replaceWith(likeHTML);
+				selectLike();
+			},
+		});
+	}
+
 	/*-----select Like -----*/
 	function selectLike() {
+		$(".list-selector.like").off();
 		$(".list-selector.like").on("click", function() {
 			var select = $(".list-selector.like").hasClass("fa-heart").toString();
 
@@ -24,6 +60,10 @@ require([
 							$(".list-selector.like").addClass("fa-heart");
 							countLike();
 						}
+						if (data.result === "no") {
+							alert("로그인을 해주세요.");
+						}
+
 					},
 					error: function() {
 						alert("로그인을 해주세요.");
@@ -72,6 +112,37 @@ require([
 		});
 	}
 
+
+	/*-----신고 버튼-----*/
+	function addComplain() {
+		$(".board-setting .board-complain").on("click", function() {
+			var select = $(".board-setting .board-complain").hasClass("select").toString();
+
+			if(select === "false") {
+				$.ajax({
+					url: window._ctx.root + "/api/complain/add/" + productId,
+					success: function (data) {
+						console.log(data.result);
+						if (data.result === "ok") {
+							$(".board-setting .board-complain").addClass("select");
+							countComplain();
+							alert("신고가 완료되었습니다.");
+						}
+						if (data.result === "no") {
+							alert("로그인을 해주세요.");
+						}
+					},
+					error: function() {
+						alert("로그인을 해주세요.");
+					},
+				});
+			}
+			if(select === "true") {
+				alert("이미 신고한 게시글입니다.");
+			}
+		});
+	}
+
 	/*-----complain Info 불러오기-----*/
 	function countComplain() {
 		$.ajax({
@@ -101,6 +172,12 @@ require([
 			},
 		});
 	}
+
+	/*-----구매 페이지로 이동-----*/
+	$(".resell-btn.purchase").on("click", function() {
+		location.href = window._ctx.root + "/purchase/purchase.html?product=" + productId;
+	});
+
 
 	/*-----product img 불러오기-----*/
 	function loadProductImg() {
@@ -319,4 +396,7 @@ require([
 	selectLike();
 	countComplain();
 	plusHits();
+	shareLink();
+	addComplain();
+	initLike();
 });

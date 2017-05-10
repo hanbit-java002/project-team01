@@ -161,6 +161,7 @@ define([
 		});
 	}
 
+
 	/* 팝업 공통화
 	 * 사용방법
 	 * 1. 팝업을 가져올 큰틀  <div class="popup-something">~~~</div>
