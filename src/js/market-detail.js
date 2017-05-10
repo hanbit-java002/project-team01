@@ -18,9 +18,11 @@ require([
 				$.ajax({
 					url: window._ctx.root + "/api/like/add/" + productId,
 					success: function (result) {
-						$(".list-selector.like").removeClass("fa-heart-o");
-						$(".list-selector.like").addClass("fa-heart");
-						countLike();
+						if (result === "ok") {
+							$(".list-selector.like").removeClass("fa-heart-o");
+							$(".list-selector.like").addClass("fa-heart");
+							countLike();
+						}
 					},
 					error: function() {
 						alert("로그인을 해주세요.");
@@ -31,9 +33,11 @@ require([
 				$.ajax({
 					url: window._ctx.root + "/api/like/cancel/" + productId,
 					success: function (result) {
-						$(".list-selector.like").removeClass("fa-heart");
-						$(".list-selector.like").addClass("fa-heart-o");
-						countLike();
+						if (result === "ok") {
+							$(".list-selector.like").removeClass("fa-heart");
+							$(".list-selector.like").addClass("fa-heart-o");
+							countLike();
+						}
 					},
 					error: function() {
 						alert("로그인을 해주세요.");

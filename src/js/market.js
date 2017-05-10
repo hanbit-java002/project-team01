@@ -173,21 +173,33 @@ require([
 		}
 	}
 
-		function productListAjax(brandId) {
-		/* 이프문 시리즈보이기 안보이기*/
-			var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
-			if (brandSelected == "NIKE") {
-				$(".filter-series").addClass("active");
-				$(".filter-series").css("display", "inline-block");
-				$(".filter-search").addClass("active");
+	function goMarketDetail() {
+		$(".market-product-list>li").off();
+		/* 마켓디테일 페이지 이동*/
+		$(".market-product-list>li").on("click", function () {
+			var productId= $(this).attr("product-id");
+			console.log("제품아이디"+productId);
+			var url = window._ctx.root+"/market/market-detail.html";
+			url += "?product="+productId;
+			location.href =url;
+		});
+	}
 
-			}
-			else {
-				$(".filter-series").removeClass("active");
-				$(".filter-series").css("display", "none");
-				$(".filter-search").removeClass("active");
+	function productListAjax(brandId) {
+	/* 이프문 시리즈보이기 안보이기*/
+		var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
+		if (brandSelected == "NIKE") {
+			$(".filter-series").addClass("active");
+			$(".filter-series").css("display", "inline-block");
+			$(".filter-search").addClass("active");
 
-			}
+		}
+		else {
+			$(".filter-series").removeClass("active");
+			$(".filter-series").css("display", "none");
+			$(".filter-search").removeClass("active");
+
+		}
 
 		var filterCurrent = {
 			brandId: brandId,
@@ -332,10 +344,11 @@ require([
 					productList += common.getFormatDate(item.update_date);
 					productList += "        </div>";
 					productList += "    </div>";
-					productList += "    <div class=\"list-selector like fa fa-heart\" valid=\"true\"></div>";
+					productList += "    <div class=\"list-selector like fa fa-heart-o\" valid=\"true\"></div>";
 					productList += "</li>";
 				}
 				$(".market-product-list").html(productList);
+				goMarketDetail();
 			},
 		});
 
@@ -418,6 +431,8 @@ require([
 		var brandId= $(".menu-category li.active").attr("brand-id");
 		productListAjax(brandId);
 	});
+
+
 
 
 	initSeries();
