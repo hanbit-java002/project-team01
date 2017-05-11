@@ -83,7 +83,7 @@ section.product-info {
 	padding-top: 4px;
 }
 
-
+.status-buttons,
 .button-select {
 	position: relative;
 	display: inline-flex;
@@ -92,6 +92,15 @@ section.product-info {
 	border: solid 1px @colorLineColor;
 	margin: 3% 0%;
 }
+.status-select {
+	width: calc(~"100% / 3");
+	border-right: solid 1px @colorLineColor !important;
+}
+.status-select:last-child {
+	border-right: none;
+}
+
+.status-select,
 .trade-select,
 .payment-select {
 	font-size: 17px;
@@ -100,11 +109,13 @@ section.product-info {
 	color: @colorMain;
 	border: 0;
 }
+.status-select.selected,
 .trade-select.selected,
 .payment-select.selected{
 	background-color: @colorMain;
 	color: #fff;
 }
+
 .trade-select.left,
 .payment-select.left{
 	width: 50%;
