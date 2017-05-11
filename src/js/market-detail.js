@@ -9,7 +9,6 @@ require([
 	/*----- URL 클립보드 복사-----*/
 	function shareLink() {
 		var url = location;
-		console.log(url);
 		$(".board-setting .board-clipboard").attr("data-clipboard-text", url);
 		var Clipboard = require("clipboard");
 		var clipboard = new Clipboard(".board-clipboard");
@@ -25,7 +24,7 @@ require([
 	}
 
 	/*-----Like 초기 세팅 -----*/
-	function initLike(productId) {
+	function initLike() {
 		$.ajax({
 			url: window._ctx.root + "/api/like/hasLike/" + productId,
 			success: function (data) {
@@ -114,6 +113,23 @@ require([
 
 
 	/*-----신고 버튼-----*/
+	function initComplain() {
+		$.ajax({
+			url: window._ctx.root + "/api/complain/hasComplain/" + productId,
+			success: function (data) {
+
+				console.log("initComplain: " + data.result);
+
+				if (data.result) {
+					$(".board-setting .board-complain").addClass("select");
+				}
+				else {
+					$(".board-setting .board-complain").removeClass("select");
+				}
+			},
+		});
+	}
+
 	function addComplain() {
 		$(".board-setting .board-complain").on("click", function() {
 			var select = $(".board-setting .board-complain").hasClass("select").toString();
@@ -131,9 +147,6 @@ require([
 						if (data.result === "no") {
 							alert("로그인을 해주세요.");
 						}
-					},
-					error: function() {
-						alert("로그인을 해주세요.");
 					},
 				});
 			}
@@ -296,11 +309,26 @@ require([
 	function loadProductDetail() {
 		$.ajax({
 			url: window._ctx.root + "/api/product/detail/" + productId,
-			success: function(list) {
-				var item = list[0];
+			success: function(result) {
+
+				var item = result.productInfo;
+				var sessionUid = result.sessionUid;
 				var price = common.numberWithCommas(item.price);
 				var date = common.getFormatDate(item.update_date);
-				console.log(list);
+				var boardSettingHTML = "";
+
+				// 판매자와 동일한 uid인지 체크
+				if (item.seller_uid === sessionUid) {
+					boardSettingHTML += "<li class=\"board-update\">수정</li>";
+					boardSettingHTML += "<li class=\"board-delete\">삭제</li>";
+				}
+				else if (item.seller_uid !== sessionUid || sessionUid === "null") {
+					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
+					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
+				}
+				$(".market-detail .board-setting>ul").html(boardSettingHTML);
+				shareLink();
+				addComplain();
 
 				// 사이즈
 				if (item.category_name !== undefined && item.category_name.length > 0) {
@@ -392,11 +420,10 @@ require([
 	loadSellerInfo();
 	loadComment();
 	countComment();
+	initLike();
+	initComplain();
 	countLike();
-	selectLike();
 	countComplain();
 	plusHits();
-	shareLink();
-	addComplain();
-	initLike();
+
 });
