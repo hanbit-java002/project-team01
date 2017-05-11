@@ -3,7 +3,6 @@
 
 
 
-//팝업
 .pop-up-series {
 	display: none;
 	position: relative;
@@ -26,6 +25,9 @@
 	font-size: 17px;
 	font-weight: bold;
 }
+.pop-up-series>.text2 {
+	font-size: 14px;
+}
 
 .pop-up-series>.btn {
 	position: absolute;
@@ -35,18 +37,84 @@
 	height: 40px;
 	margin-top: 14%;
 	color: #fff;
-	background-color: @colorMain;
+	background-color: #50546d;
 	border: 0;
 	border-radius: 0;
 }
 
 .pop-up-series>.popup-close {
 	width: 50%;
-	background-color: @colorDarkGray;
+	background-color: rgb(139, 142, 158);
 }
 .pop-up-series>.popup-ok {
 	width: 50%;
-	background-color: @colorMain;
+	background-color: rgb(80, 84, 109);
 	right: 0;
 }
+.delivery-check-btn,
+.safe-pay {
+	width: 100%;
+}
+.trade-details {
+	display: none;
+}
 
+.dropdown-size .dropdown-menu {
+	height: 200px;
+	overflow: auto;
+}
+.img-input-slider {
+	min-width: 100%;
+	height: auto;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+	margin-top: 20px;
+}
+
+.input-img-box {
+	position: relative;
+	display: inline-block;
+	width: 30%;
+	height: 120px;
+	margin-right: 1%;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.input-img-box.main-img {
+	border: 3px solid green;
+}
+.input-img-box.main-img:before {
+	content: "대표";
+	position: absolute;
+	color: green;
+	font-size: 20px;
+	font-weight: bold;
+	top : 0px;
+	left: 0px;
+}
+
+.img-input-slider>div:last-child {
+	margin-right: 0px;
+}
+
+.input-img {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.btn-add-image {
+	text-align: center;
+}
+
+.img-delete {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	font-size: 20px;
+	color: #F8606F;
+	opacity: 0.7;
+	font-weight: bold;
+}

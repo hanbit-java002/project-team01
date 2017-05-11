@@ -1,11 +1,11 @@
 {{set root=".."}}
 {{>header title="판매 상품 수정" cssName="update-selling"}}
 
-<section class="title update-selling-title">
+<section class="title selling-title">
 	<span>판매 상품 수정</span>
 </section>
 
-<section class="contents-wrapper update-selling">
+<section class="contents-wrapper selling-update">
 	<section class="product-info">
 		<div class="info-title">상품 정보</div>
 
@@ -14,53 +14,65 @@
 			<input id="input-product-name" type="text" placeholder="Product Name">
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-brand">
 			<div class="desc">Brand</div>
 			<div class="dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Brand <span class="caret"></span>
+					<div class="dropdown-selected">Brand</div> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Brand 1</a></li>
-					<li><a href="#">Brand 2</a></li>
-					<li><a href="#">Brand 3</a></li>
+
 				</ul>
 			</div>
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-category">
 			<div class="desc">Category</div>
 			<div class="dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Category <span class="caret"></span>
+					<div class="dropdown-selected">Category</div> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Category 1</a></li>
-					<li><a href="#">Category 2</a></li>
-					<li><a href="#">Category 3</a></li>
+
 				</ul>
 			</div>
 
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-series" style="display: none">
 			<div class="desc">Series</div>
 			<div class="dropdown">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Series <span class="caret"></span>
+					<div class="dropdown-selected">Series</div> <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Series 1</a></li>
-					<li><a href="#">Series 2</a></li>
-					<li><a href="#">Series 3</a></li>
+
 				</ul>
 			</div>
-
 		</div>
 
-		<div class="input-style">
+		<div class="input-style dropdown-size" style="display: none">
 			<div class="desc">Size</div>
-			<input id="input-size" type="text" placeholder="Size">
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="dropdown-selected">Size</div> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+				</ul>
+			</div>
+		</div>
+
+		<div class="input-style dropdown-quality">
+			<div class="desc">Quality</div>
+			<div class="dropdown">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="dropdown-selected">Quality</div> <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li value="new"><a>새상품</a></li>
+					<li value="used"><a>중고</a></li>
+				</ul>
+			</div>
 		</div>
 
 		<div class="input-style">
@@ -74,18 +86,21 @@
 		</div>
 
 		<div class="input-style">
-			<div class="desc">Images</div>
-			<div class="preview-images">
-				<i class="fa fa-angle-left"></i>
-				<div class="images">
-					<div class="image"></div>
-					<div class="image"></div>
-					<div class="image"></div>
-				</div>
-				<i class="fa fa-angle-right"></i>
+			<div class="desc">
+				Picture
 			</div>
-			<button class="btn-add-image">+</button>
 		</div>
+		<div class="input-style">
+			<div class="img-input-slider">
+
+			</div>
+		</div>
+		<div class="input-style">
+			<label  class="btn-add-image" for="file-img-input">+</label>
+			<input multiple="multiple" type="file" id="file-img-input"class="hidden" accept="image/*">
+		</div>
+
+		<hr class="line">
 	</section>
 
 
@@ -94,50 +109,35 @@
 		<div class="desc">거래 방식을 선택해주세요. (복수 선택 가능)</div>
 		<span class='alert-text trade'></span>
 
-		<div class="button-select">
+		<div class="button-select trade-btns">
 			<button class="trade-select left btn-direct">직접 거래</button>
 			<button class="trade-select right btn-delivery">택배 거래</button>
 		</div>
 
 
-		<div class="trade-details">
+		<div class="trade-details direct-place">
 			<div class="input-style">
 				<div class="desc">거래 장소 / 시간</div>
-				<input id="input-place-time" type="text" placeholder="목동역, 신정역, 18시 이후">
+				<input id="input-place-time" type="text" placeholder="ex : 목동역, 신정역, 18시 이후">
 			</div>
 		</div>
+		<div class="trade-details delivery-check">
+			<div class="input-style">
+				<div class="desc">택배</div>
+				<div class="button-select trade">
+					<button class="trade-select delivery-check-btn">무료배송</button>
+				</div>
+			</div>
+		</div>
+
+
 	</section>
 
 
 	<section class="payment-info">
-		<div class="info-title">결제 정보</div>
-		<div class="desc">결제 방식을 선택해주세요. (복수 선택 가능)</div>
-		<span class='alert-text payment'></span>
-
-		<div class="button-select">
-			<button class="payment-select left btn-escrow">안심 거래</button>
-			<button class="payment-select right btn-direct">직접 거래</button>
-		</div>
-
-		<div class="payment-details">
-			<div class="input-style">
-				<div class="desc">Bank</div>
-				<div class="dropdown">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Bank <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Bank 1</a></li>
-						<li><a href="#">Bank 2</a></li>
-						<li><a href="#">Bank 3</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div class="input-style">
-				<div class="desc">Account Number</div>
-				<input id="input-account-num" type="text" placeholder="Account Number">
-			</div>
+		<div class="info-title">안심거래</div>
+		<div class="button-select trade">
+			<button class="trade-select safe-pay">체크</button>
 		</div>
 	</section>
 
@@ -145,26 +145,25 @@
 	<section class="seller-info">
 		<div class="info-title">판매자 정보</div>
 
-		<div class="input-style">
+		<div class="input-style seller-name">
 			<div class="desc">Name</div>
-			<input class="input-default" id="input-name" type="text" value="백수현" disabled>
 		</div>
 
-		<div class="input-style">
+		<div class="input-style seller-phone">
 			<div class="desc">Phone Number</div>
-			<input class="input-default" id="input-phone-num" type="text" value="010-2371-6848" disabled>
 		</div>
 	</section>
 
 
 	<hr class="line">
-	<button class="btn-bottom btn-update">수정</button>
+	<button class="btn-bottom btn-ok">판매 등록</button>
 	<button class="btn-bottom btn-cancel">취소</button>
 </section>
 
 
 <div class="pop-up-series">
-	<span class="text1"></span>
+	<span class="text1"></span><br>
+	<span class="text2"></span>
 
 	<button class="btn popup-ok">확인</button>
 	<button class="btn popup-close">취소</button>
