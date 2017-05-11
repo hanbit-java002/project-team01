@@ -220,7 +220,7 @@ line {
 
 .comment>ul>li {
 	position: relative;
-	margin: 15px 0;
+	padding: 15px 0;
 	border-bottom: solid 1px @colorLineColor;
 }
 
@@ -235,66 +235,87 @@ line {
 }
 
 .comments-body .user-info>.user-name {
-	width: 80%;
+	width: 70%;
 	@text-overflow();
 }
 
 .comments-body .reporting-date {
-	position: absolute;
-	top: 0;
-	right: 0;
+	text-align: right;
 	font-size: 13px;
 	line-height: 23px;
 }
 
+.comment-setting {
+	position: absolute;
+	top: 15px;
+	right: 0;
+}
+
 .comment-setting>li {
 	display: inline-block;
-	padding: 4px 0;
-	width: 25%;
+	padding: 0 10px;
 	font-size: 12px;
 	text-align: center;
 	border-right: solid 1px #DDDDE0;
-	border-top: solid 1px #DDDDE0;
 }
 
 .comment-setting>li:last-child {
 	border-right: none;
+	padding-right: 0;
 }
 
 .comments-body .comment-content {
 	padding-top: 10px;
-	padding-bottom: 15px;
-	padding-right: 10%;
-	min-height: 70px;
+	padding-bottom: 10px;
+	min-height: 60px;
+}
+
+.comments-body>li:last-child {
+	margin-bottom: 0;
 }
 
 .reply.glyphicon-arrow-right {
 	position: absolute;
-	top: 2%;
+	top: 10%;
 	font-size: 18px;
 	color: @colorMain;
 }
 .reply.comment-body {
-	padding-left: 35px;
-	width: 72%
+	padding-left: 30px;
 }
 
-.resell-btn.write-comment {
-	margin-top: 10px;
-	padding-top: 0px;
-	padding-bottom: 15px;
+.reply.comment-body .user-info {
+	width: 65%;
+}
+
+.write-comment,
+.write-reply {
+	position: relative;
 	width: 100%;
-	color: @colorMain;
-	background-color: @colorWhite;
-	font-size: 18px;
-	text-align: center;
+	height: 35px;
+	border-bottom: solid 1px @colorLineColor;
 }
 
-.resell-btn.write-comment:before {
-	padding-right: 10px;
-	vertical-align: middle;
-	font-size: 24px;
+.write-comment textarea,
+.write-reply textarea {
+	width: 85%;
+	height: 100%;
+	padding: 5px 10px 5px 5px;
+	border: none;
 }
+
+.write-comment .resell-btn,
+.write-reply .resell-btn {
+	position: absolute;
+	margin-top: auto;
+	right: 0;
+	width: 15%;
+	height: 100%;
+	border-left: solid 1px @colorLineColor;
+	background-color: @colorWhite;
+	color: @colorDarkGray;
+}
+
 
 /*------product-img-layer-area------*/
 

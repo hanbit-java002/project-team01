@@ -97,8 +97,137 @@ require([
 		});
 	}
 
+	/*-----comment reply 쓰기-----*/
+	function writeReply() {
+		$(".write-replay .fa-pencil.resell-btn").off();
+		console.log($(".write-replay .fa-pencil.resell-btn"));
+		$(".write-replay .fa-pencil.resell-btn").on("click", function() {
+			console.log("reply click");
+/*			var replayText = $(".write-replay textarea").val();
+			$.ajax({
+				url: window._ctx.root + "/api/comment/addReply/" + productId,
+				data: {
+					replayText: replayText,
+					upperId: upperId,
+				},
+				success: function (result) {
+					console.log(result);
+					loadComment();
+					$(".write-replay textarea").val("");
+				},
+				error: function () {
+					alert("로그인을 해주세요.");
+				},
+			});*/
+		});
+	}
+
+	function replyComment() {
+		$(".comment-setting .comment-reply").off();
+		$(".comment-setting .comment-reply").on("click", function() {
+			$(".write-reply").remove();
+			var commentHTML = "";
+			commentHTML += "<section class=\"write-reply\">";
+			commentHTML += "<textarea id=\"input-details\" placeholder=\"리플을 달아 보세요.\"></textarea>";
+			commentHTML += "<div class=\"resell-btn fa fa-pencil\"></div>";
+			commentHTML += "</section>";
+			console.log(commentHTML);
+			$(this).parents("li").after(commentHTML);
+			$(".write-reply textarea").focus();
+			writeReply();
+		});
+
+	}
+
+
+	/*-----comment 쓰기-----*/
+	function writeComment() {
+		$(".write-comment .fa-pencil").on("click", function() {
+			var commentText = $(".write-comment textarea").val();
+			$.ajax({
+				url: window._ctx.root + "/api/comment/add/" + productId,
+				data: {
+					commentText: commentText,
+				},
+				success: function (result) {
+					console.log(result);
+					loadComment();
+					$(".write-comment textarea").val("");
+				},
+				error: function () {
+					alert("로그인을 해주세요.");
+				},
+			});
+		});
+	}
+
 	/*-----comment Info 불러오기-----*/
 	function loadComment() {
+		$.ajax({
+			url: window._ctx.root + "/api/comment/list/" + productId,
+			success: function (result) {
+				console.log(result);
+				var sessionUid = result.sessionUid;
+				var list = result.commentInfo;
+				var commentHTML = "";
+
+				for (var i=0; i<list.length; i++) {
+					var item = list[i];
+					var date = common.getFormatDate(item.comment_time);
+
+					commentHTML += "<li comment_id=\"" + item.comment_id + "\">";
+					commentHTML += "<div class=\"comment-body\">";
+					commentHTML += "<div class=\"user-info\">";
+					commentHTML += "<i class=\"user-rank\"></i>";
+					commentHTML += "<div class=\"user-name\">";
+					commentHTML += item.user_name;
+					commentHTML += "</div>";
+					commentHTML += "</div>";
+					commentHTML += "<ul class=\"comment-setting\">";
+					if(sessionUid === item.uid) {
+						commentHTML += "<li class=\"comment-modify\">수정</li>";
+						commentHTML += "<li class=\"comment-delete\">삭제</li>";
+					}
+					if(sessionUid !== item.uid || sessionUid === "null") {
+						commentHTML += "<li class=\"comment-reply fa fa-reply\"> 답글</li>";
+					}
+					commentHTML += "</ul>";
+					commentHTML += "<div class=\"comment-content\">";
+					commentHTML += item.comment_contents.replace(/\n/g, "<br>");
+					commentHTML += "</div>";
+					commentHTML += "<div class=\"reporting-date\">";
+					commentHTML += "<span class=\"fa fa-clock-o\"></span> ";
+					commentHTML += date;
+					commentHTML += "</div>";
+					commentHTML += "</div>";
+					commentHTML += "</li>";
+
+					$(".market-detail.comment .comments-body").html(commentHTML);
+
+
+					// user rank 에 따른 icon 변경
+					var userRank = item.user_rank;
+
+					if(userRank === "member") {
+						$(".user-info>.user-rank").addClass("fa fa-star-o");
+					}
+					if(userRank === "silver") {
+						$(".user-info>.user-rank").addClass("fa fa-star");
+					}
+					if(userRank === "gold") {
+						$(".user-info>.user-rank").addClass("fa fa-diamond");
+					}
+					if(userRank === "admin") {
+						$(".user-info>.user-rank").addClass("fa-user-circle-o");
+					}
+					if(userRank=== "blackList") {
+						$(".user-info>.user-rank").addClass("fa fa-frown-o");
+					}
+				}
+
+				replyComment();
+			},
+		});
 	}
 
 	/*-----comment count 불러오기-----*/
@@ -434,5 +563,7 @@ require([
 	countLike();
 	countComplain();
 	plusHits();
+	writeComment();
+	writeReply();
 
 });
