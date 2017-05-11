@@ -9,7 +9,7 @@ require([
 			data: productId,
 			success: function (result) {
 				var data = result.product;
-				var Img = result.productImg;
+				var img = result.productImg;
 
 /*				/!* 유저 체크하고 뿌려주기*!/
 				$.ajax({
@@ -28,25 +28,25 @@ require([
 
 				$("#input-product-name").val(data.product_name);
 				$(".dropdown-brand .dropdown-selected").text(data.brand_name);
-				$(".dropdown-brand .dropdown-selected").attr("s-value",data.brand_id);
+				$(".dropdown-brand .dropdown-selected").attr("s-value", data.brand_id);
 				$(".dropdown-category .dropdown-selected").text(data.category_name);
-				$(".dropdown-category .dropdown-selected").attr("s-value",data.category_id);
+				$(".dropdown-category .dropdown-selected").attr("s-value", data.category_id);
 
 				if (data.series_id !== undefined || data.series_id !== "" || data.series_id !== null) {
 					$(".dropdown-series .dropdown-selected").text(data.series_name);
-					$(".dropdown-series .dropdown-selected").attr("s-value",data.series_id);
+					$(".dropdown-series .dropdown-selected").attr("s-value", data.series_id);
 				}
 				else {
 					$(".dropdown-series .dropdown-selected").text("Series");
-					$(".dropdown-series .dropdown-selected").attr("s-value","series-all");
+					$(".dropdown-series .dropdown-selected").attr("s-value", "series-all");
 				}
 				if (data.size_id !== undefined || data.size_id !== "" || data.size_id !== null) {
 					$(".dropdown-size .dropdown-selected").text(data.size);
-					$(".dropdown-size .dropdown-selected").attr("s-value",data.size);
+					$(".dropdown-size .dropdown-selected").attr("s-value", data.size);
 				}
 				else {
 					$(".dropdown-size .dropdown-selected").text("Size");
-					$(".dropdown-size .dropdown-selected").attr("s-value","size-all");
+					$(".dropdown-size .dropdown-selected").attr("s-value", "size-all");
 				}
 				if (data.quality === "new") {
 					$(".dropdown-quality .dropdown-selected").text("새상품");
@@ -54,7 +54,7 @@ require([
 				else {
 					$(".dropdown-quality .dropdown-selected").text("중고");
 				}
-				$(".dropdown-quality .dropdown-selected").attr("s-value",data.quality);
+				$(".dropdown-quality .dropdown-selected").attr("s-value", data.quality);
 				$("#input-price").val(data.price);
 
 				if (data.description !== undefined || data.description !== "" || data.description !== null) {
@@ -64,17 +64,24 @@ require([
 					$("#input-details").val("");
 				}
 
-				data.img_url
+				for (var j = 0; j <img.length; j++) {
+					$(".img-input-slider").append("<div class='input-img-box'>" +
+						"<div class=\"input-img\" style=\"background-image: url("+img.img_url+")\">" +
+						"<div class=\"img-delete\">"+
+						"<i class=\"glyphicon glyphicon-remove-circle\"></i>" +
+						"</div>" +
+						"</div>");
+				}
 
 				var dealMeans = data.deal_means.split("|");
 				for (var j=0; j<dealMeans.length; j++) {
 					var dealType = dealMeans[j];
 
 					if (dealType === "direct") {
-						$(".btn-direct").addClass("")
+						$(".btn-direct").addClass("selected");
 					}
 					if (dealType === "delivery") {
-
+						$(".btn-delivery").addClass("selected");
 					}
 				}
 
@@ -468,7 +475,7 @@ require([
 		$(".pop-up-series").addClass("register");
 		$(".pop-up-series").css("position", "fixed");
 		$(".pop-up-series>span").css("top", "30%");
-		$(".pop-up-series>.text1").text("판매 상품을 등록하시겠습니까?");
+		$(".pop-up-series>.text1").text("판매 상품을 수정하시겠습니까?");
 		$(".pop-up-series>.text2").text("");
 		var valid = infoValidation();
 		if (valid === 0) {
@@ -483,7 +490,7 @@ require([
 		$(".pop-up-series").addClass("register-cancel");
 		$(".pop-up-series").css("position", "fixed");
 		$(".pop-up-series>span").css("top", "15%");
-		$(".pop-up-series>.text1").text("판매 등록을 취소하시겠습니까?");
+		$(".pop-up-series>.text1").text("판매 수정을 취소하시겠습니까?");
 		$(".pop-up-series>.text2").text("취소시, 작성하던 글은 저장되지 않습니다.");
 	});
 
