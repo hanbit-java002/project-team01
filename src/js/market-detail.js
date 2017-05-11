@@ -327,6 +327,7 @@ require([
 					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
 				}
 				$(".market-detail .board-setting>ul").html(boardSettingHTML);
+				updateSelling();
 				shareLink();
 				addComplain();
 
@@ -414,6 +415,14 @@ require([
 			},
 		});
 	}
+
+	// 판매 상품 수정 페이지로 이동
+	function updateSelling() {
+		$(".board-setting .board-update").on("click", function() {
+			location.href = window._ctx.root + "/selling/update-selling.html?product=" + productId;
+		});
+	}
+
 
 	loadProductImg();
 	loadProductDetail();
