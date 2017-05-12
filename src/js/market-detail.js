@@ -722,7 +722,7 @@ require([
 				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span> " + date);
 
 				/* 삭제 팝업 이벤트*/
-				deletePopUp();
+				deletePopUp(item.seller_uid);
 			},
 		});
 	}
@@ -737,7 +737,7 @@ require([
 	/* 삭제 팝업 그리고 물품 삭제*/
 
 	//판매 등록 버튼 클릭 시 확인 팝업 창
-	function deletePopUp() {
+	function deletePopUp(sellerUid) {
 		$(".board-delete").on("click", function() {
 			common.popUp("pop-up-series", "left");
 			$(".pop-up-series").addClass("register");
@@ -751,11 +751,17 @@ require([
 			$.ajax({
 				url: window._ctx.root+"/api/market/delete",
 				method: "POST",
-				data: productId,
+				data: {
+					productId: productId,
+					sellerUid: sellerUid,
+				},
 				success: function(data) {
 					if (data.result === "ok") {
-						alert("삭제");
+						alert("삭제 완료");
 						window.history.back();
+					}
+					else {
+						alert("판매자가 아닙니다 삭제가 불가능합니다.");
 					}
 				},
 			});
