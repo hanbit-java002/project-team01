@@ -3,90 +3,170 @@ require([
 ], function() {
 	var common = require("common");
 	var productId= common.getQuerystring("product-id");
+
+	function initTypes() {
+		var brandSelected= $(".dropdown-brand .dropdown-selected").text();
+		var categorySelected= $(".dropdown-category .dropdown-selected").text();
+
+		if (brandSelected == "NIKE" && categorySelected == "신발") {
+			initSeries();
+		}
+		if (!(categorySelected == "기타")) {
+			var sizeHTML ="";
+
+			if (categorySelected == "신발") {
+				for (var i=0; i<19; i++) {
+					var shoeSize = (210+i*5);
+					sizeHTML += "<li value=\""+shoeSize+"\"><a>";
+					if (shoeSize == 210) {
+						sizeHTML += shoeSize+" 이하</a></li>";
+					}
+					else if (shoeSize == 300) {
+						sizeHTML += shoeSize+" 이상</a></li>";
+					}
+					else {
+						sizeHTML += shoeSize+"</a></li>";
+					}
+				}
+			}
+			else if (categorySelected == "상의") {
+				sizeHTML += "<li value=\"xsmall\"><a>xsmall 이하</a></li>";
+				sizeHTML += "<li value=\"small\"><a>small</a></li>";
+				sizeHTML += "<li value=\"medium\"><a>medium</a></li>";
+				sizeHTML += "<li value=\"large\"><a>large</a></li>";
+				sizeHTML += "<li value=\"xlarge\"><a>xlarge</a></li>";
+				sizeHTML += "<li value=\"xxlarge\"><a>xxlarge 이상</a></li>";
+			}
+			else if (categorySelected == "하의") {
+				for (var i=0; i<14; i++) {
+					var bottomSize = (23+i);
+					sizeHTML += "<li value=\""+bottomSize+"\"><a>";
+					if (bottomSize == 23) {
+						sizeHTML += bottomSize+" 이하</a></li>";
+					}
+					else if (bottomSize == 40) {
+						sizeHTML += bottomSize+" 이상</a></li>";
+					}
+					else {
+						sizeHTML += bottomSize+"</a></li>";
+					}
+				}
+			}
+			$(".dropdown-size .dropdown-menu").html(sizeHTML);
+			dropDown(".dropdown-size");
+		}
+	}
+
 	function initProduct() {
 		$.ajax({
 			url: window._ctx.root+"/api/market/getProduct",
-			data: productId,
+			data: {
+				productId: productId,
+			},
 			success: function (result) {
 				var data = result.product;
 				var img = result.productImg;
+				var valid = result.valid;
 
-/*				/!* 유저 체크하고 뿌려주기*!/
-				$.ajax({
-					url: window._ctx.root + "/api/member/signedin",
-					success: function (user) {
-						if (user.uid != data.uid) {
-							alert("수정권한이 없습니다.");
-							location.herf =window._ctx.root+"market.html?brand-id=brand-all";
-						}
-						else {
-							$("#input-name").val(data.user_name);
-							$("#input-phone-num").val(data.user_phone);
-						}
-					},
-				});*/
-
-				$("#input-product-name").val(data.product_name);
-				$(".dropdown-brand .dropdown-selected").text(data.brand_name);
-				$(".dropdown-brand .dropdown-selected").attr("s-value", data.brand_id);
-				$(".dropdown-category .dropdown-selected").text(data.category_name);
-				$(".dropdown-category .dropdown-selected").attr("s-value", data.category_id);
-
-				if (data.series_id !== undefined || data.series_id !== "" || data.series_id !== null) {
-					$(".dropdown-series .dropdown-selected").text(data.series_name);
-					$(".dropdown-series .dropdown-selected").attr("s-value", data.series_id);
+				if (valid === "no") {
+					alert("수정권한이 없습니다.");
+					location.herf =window._ctx.root+"market.html?brand-id=brand-all";
 				}
 				else {
-					$(".dropdown-series .dropdown-selected").text("Series");
-					$(".dropdown-series .dropdown-selected").attr("s-value", "series-all");
-				}
-				if (data.size_id !== undefined || data.size_id !== "" || data.size_id !== null) {
-					$(".dropdown-size .dropdown-selected").text(data.size);
-					$(".dropdown-size .dropdown-selected").attr("s-value", data.size);
-				}
-				else {
-					$(".dropdown-size .dropdown-selected").text("Size");
-					$(".dropdown-size .dropdown-selected").attr("s-value", "size-all");
-				}
-				if (data.quality === "new") {
-					$(".dropdown-quality .dropdown-selected").text("새상품");
-				}
-				else {
-					$(".dropdown-quality .dropdown-selected").text("중고");
-				}
-				$(".dropdown-quality .dropdown-selected").attr("s-value", data.quality);
-				$("#input-price").val(data.price);
+					$("#input-name").val(data.user_name);
+					$("#input-phone-num").val(data.phone_num);
+					$("#input-product-name").val(data.product_name);
+					$(".dropdown-brand .dropdown-selected").text(data.brand_name);
+					$(".dropdown-brand .dropdown-selected").attr("s-value", data.brand_id);
+					$(".dropdown-category .dropdown-selected").text(data.category_name);
+					$(".dropdown-category .dropdown-selected").attr("s-value", data.category_id);
 
-				if (data.description !== undefined || data.description !== "" || data.description !== null) {
-					$("#input-details").val(input-details);
-				}
-				else {
-					$("#input-details").val("");
-				}
-
-				for (var j = 0; j <img.length; j++) {
-					$(".img-input-slider").append("<div class='input-img-box'>" +
-						"<div class=\"input-img\" style=\"background-image: url("+img.img_url+")\">" +
-						"<div class=\"img-delete\">"+
-						"<i class=\"glyphicon glyphicon-remove-circle\"></i>" +
-						"</div>" +
-						"</div>");
-				}
-
-				var dealMeans = data.deal_means.split("|");
-				for (var j=0; j<dealMeans.length; j++) {
-					var dealType = dealMeans[j];
-
-					if (dealType === "direct") {
-						$(".btn-direct").addClass("selected");
+					if (data.series_id !== undefined && data.series_id !== "" && data.series_id !== null) {
+						$(".dropdown-series").show();
+						$(".dropdown-series .dropdown-selected").text(data.series_name);
+						$(".dropdown-series .dropdown-selected").attr("s-value", data.series_id);
 					}
-					if (dealType === "delivery") {
-						$(".btn-delivery").addClass("selected");
-					}
-				}
 
-				if (data.safe_deal) {
-					$(".trade-select.safe-pay").addClass("selected");
+					if (data.size !== undefined && data.size !== "" && data.size !== null) {
+						$(".dropdown-size").show();
+						$(".dropdown-size .dropdown-selected").text(data.size);
+						$(".dropdown-size .dropdown-selected").attr("s-value", data.size);
+					}
+
+					if (data.quality === "new") {
+						$(".dropdown-quality .dropdown-selected").text("새상품");
+					}
+					else {
+						$(".dropdown-quality .dropdown-selected").text("중고");
+					}
+
+					$(".dropdown-quality .dropdown-selected").attr("s-value", data.quality);
+					$("#input-price").val(data.price);
+
+					if (data.description !== undefined && data.description !== "" && data.description !== null) {
+						$("#input-details").val(data.description);
+					}
+					else {
+						$("#input-details").val("");
+					}
+
+					for (var j = 0; j <img.length; j++) {
+						var imgHtml ="<div class=\"input-img-box ";
+						if (img[j].img_main) {
+							imgHtml+= "main-img";
+						}
+							imgHtml+="\">";
+							imgHtml+=	"<div class=\"input-img\" img-id=\""+img[j].img_id+"\""+
+							" style=\"background-image: url("+img[j].img_url+")\">" +
+							"<div class=\"img-delete\">"+
+							"<i class=\"glyphicon glyphicon-remove-circle\"></i>" +
+							"</div>" +
+							"</div>";
+						$(".img-input-slider").append(imgHtml);
+					}
+					deleteImg();
+					selectMainImg();
+
+					var dealMeans = data.deal_means.split("|");
+					for (var j=0; j<dealMeans.length; j++) {
+						var dealType = dealMeans[j];
+
+						if (dealType === "direct") {
+							$(".btn-direct").addClass("selected");
+						}
+						if (dealType === "delivery") {
+							$(".btn-delivery").addClass("selected");
+						}
+					}
+					if ($(".btn-direct").hasClass("selected")) {
+						$(".direct-place").show();
+					}
+					else if ($(".btn-direct").hasClass("selected")) {
+						$(".delivery-check").show();
+					}
+
+					if (data.direct_place !== undefined && data.direct_place !== "" && data.direct_place !== null) {
+						$("#input-place-time").val(data.direct_place);
+					}
+					if (data.delivery_check === "include") {
+
+						$(".delivery-check-btn").addClass("selected");
+					}
+
+					if (data.safe_deal) {
+						$(".trade-select.safe-pay").addClass("selected");
+					}
+
+					if (data.selling_status === "selling") {
+						$(".product-selling").addClass("selected");
+					}
+					else if (data.selling_status === "processing") {
+						$(".product-processing").addClass("selected");
+					}
+					else {
+						$(".product-complete").addClass("selected");
+					}
+					initTypes();
 				}
 			},
 		});
@@ -94,6 +174,13 @@ require([
 	}
 
 	initProduct();
+
+	/* 진행상황 하나만 고르기*/
+	$(".status-select").on("click", function () {
+		$(".status-select").removeClass("selected");
+		$(this).addClass("selected");
+	});
+
 
 	function insertSellerInfo() {
 		$.ajax({
@@ -154,6 +241,7 @@ require([
 
 	// 드롭다운 메뉴들
 	function dropDown(className) {
+		$(className+" .dropdown-menu>li").off();
 		$(className+" .dropdown-menu>li").on("click", function () {
 			var value = $(this).children().text();
 			var sValue =$(this).attr("value");
@@ -282,12 +370,6 @@ require([
 		});
 	}
 
-	function defaultMainImg() {
-		/* 여러번 실행되는거 설정 해야함*/
-		$($(".input-img-box")[0]).off("change");
-		$($(".input-img-box")[0]).addClass("main-img");
-	}
-
 	function selectMainImg() {
 		$(".input-img-box").off("click");
 		$(".input-img-box").on("click", function() {
@@ -296,9 +378,18 @@ require([
 		});
 	}
 
+	function defaultMainImg() {
+		/* 여러번 실행되는거 설정 해야함*/
+		$($(".input-img-box")[0]).off("change");
+		$($(".input-img-box")[0]).addClass("main-img");
+	}
+
 	function deleteImg() {
 		$(".img-delete").off("click");
 		$(".img-delete").on("click", function() {
+			if ($(this).parents(".input-img-box").hasClass("main-img")) {
+				defaultMainImg();
+			}
 			$(this).parents(".input-img-box").remove();
 		});
 	}
@@ -315,7 +406,6 @@ require([
 						"</div>" +
 						"</div>");
 					deleteImg();
-					defaultMainImg();
 					selectMainImg();
 				};
 				reader.readAsDataURL(input[0].files[i]);
@@ -328,6 +418,7 @@ require([
 		var images = $(".input-img");
 
 		for (var i=0; i<images.length; i++) {
+
 			var strImgSrcLen=$(images[i]).css("background-image").length;
 			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
 			arrStrImgSrc.push(strImgSrc);
@@ -358,6 +449,7 @@ require([
 
 	function currentValues() {
 		var currentProduct = {
+			productId: productId,
 			arrImgSrc: scrapImgs(),
 			name: $("#input-product-name").val().trim(),
 			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
@@ -372,6 +464,7 @@ require([
 			directPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
 			deliveryCheck: $(".delivery-check-btn").hasClass("selected")?"include":"exclude",
+			status: $(".status-select.selected").attr("status"),
 		};
 
 		console.log(currentProduct);
@@ -401,6 +494,7 @@ require([
 
 	function infoValidation() {
 		var currentProduct = {
+			productId: productId,
 			arrImgSrc: scrapImgs(),
 			name: $("#input-product-name").val().trim(),
 			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
@@ -415,6 +509,7 @@ require([
 			directPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
 			deliveryCheck: $(".delivery-check-btn").hasClass("selected")?"include":"exclude",
+			status: $(".status-select.selected").attr("status"),
 		};
 
 		if (currentProduct.name ==="" || currentProduct.name === undefined) {
@@ -509,7 +604,7 @@ require([
 			}
 			console.log(formData);
 			$.ajax({
-				url: window._ctx.root+"/api/market/selling",
+				url: window._ctx.root+"/api/market/selling-update",
 				method: "POST",
 				data: formData,
 				processData: false,
@@ -517,7 +612,7 @@ require([
 				success: function(data) {
 					if (data.result == "ok") {
 						alert("저장완료");
-						location.href= window._ctx.root+"/mypage/purchase-list.html";
+						/*location.href= window._ctx.root+"/mypage/purchase-list.html";*/
 					}
 					else {
 						alert("저장실패");
