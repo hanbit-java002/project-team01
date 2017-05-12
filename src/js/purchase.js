@@ -4,6 +4,40 @@ require([
 
 	var common = require("common");
 
+	function loadList() {
+		$.ajax({
+			url: window._ctx.root + "/api/purchase/list",
+			success: function() {
+				var itemHTML = "";
+
+					itemHTML += "<div class='product name'>";
+					itemHTML += "에어 조던 14 Black Pink New";
+					itemHTML += "</div>";
+					itemHTML += "<div class='product price'>";
+					itemHTML += "<i class='fa fa-won'></i>";
+					itemHTML += "200,000";
+					itemHTML += "</div>";
+					itemHTML += "<div class='product size'>";
+					itemHTML += "<div class='info-label'>";
+					itemHTML += "Size";
+					itemHTML += "</div>";
+					itemHTML += "<span for='date'>";
+					itemHTML += "235mm";
+					itemHTML += "</span>";
+					itemHTML += "</div>";
+					itemHTML += "<div class='product quality'>";
+					itemHTML += "<div class='info-label'>";
+					itemHTML += "Quality";
+					itemHTML += "</div>";
+					itemHTML += "<span for='quality'>";
+					itemHTML += "새제품";
+					itemHTML += "</span>";
+					itemHTML += "</div>";
+				$(".detail-info").html(itemHTML);
+			},
+		});
+	}
+
 	//거래 방식 선택 (싱글)
 	$(".trade-select-btn").on("click", function(event) {
 		$("[check-box]").attr("get-checked", "false");
@@ -123,5 +157,6 @@ require([
 	}
 
 	common.listSelector();
+	loadList();
 
 });
