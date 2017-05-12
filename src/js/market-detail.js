@@ -23,12 +23,17 @@ require([
 		return x.split("|");
 	}
 
+	function initPopUp() {
+		$(".popup-layer").hide();
+		$(".dark-layer").hide();
+		$("body").css("overflow", "");
+	}
+
 	/*-----Like 초기 세팅 -----*/
 	function initLike() {
 		$.ajax({
 			url: window._ctx.root + "/api/like/hasLike/" + productId,
 			success: function (data) {
-				console.log("initLike: " + data.result);
 				var likeHTML = "";
 				if (data.result) {
 					likeHTML = "<div class=\"list-selector like fa fa-heart\"></div>";
@@ -98,16 +103,22 @@ require([
 	}
 
 	/*-----comment reply 쓰기-----*/
-	function writeReply() {
-		$(".write-replay .fa-pencil.resell-btn").off();
-		console.log($(".write-replay .fa-pencil.resell-btn"));
-		$(".write-replay .fa-pencil.resell-btn").on("click", function() {
-			console.log("reply click");
-/*			var replayText = $(".write-replay textarea").val();
+	function writeReply(upperId) {
+		$(".write-reply .fa-pencil.resell-btn").off();
+		$(".write-reply .fa-pencil.resell-btn").on("click", function() {
+
+			var replyText = $(".write-reply textarea").val();
+
+			if(replyText === "") {
+				alert("답글을 입력해주세요.");
+				$(".write-reply textarea").focus();
+				return;
+			}
+
 			$.ajax({
 				url: window._ctx.root + "/api/comment/addReply/" + productId,
 				data: {
-					replayText: replayText,
+					replyText: replyText,
 					upperId: upperId,
 				},
 				success: function (result) {
@@ -118,7 +129,7 @@ require([
 				error: function () {
 					alert("로그인을 해주세요.");
 				},
-			});*/
+			});
 		});
 	}
 
@@ -126,15 +137,24 @@ require([
 		$(".comment-setting .comment-reply").off();
 		$(".comment-setting .comment-reply").on("click", function() {
 			$(".write-reply").remove();
-			var commentHTML = "";
-			commentHTML += "<section class=\"write-reply\">";
-			commentHTML += "<textarea id=\"input-details\" placeholder=\"리플을 달아 보세요.\"></textarea>";
-			commentHTML += "<div class=\"resell-btn fa fa-pencil\"></div>";
-			commentHTML += "</section>";
-			console.log(commentHTML);
-			$(this).parents("li").after(commentHTML);
-			$(".write-reply textarea").focus();
-			writeReply();
+
+			if ($(this).hasClass("select")) {
+				$(this).removeClass("select");
+				return;
+			}
+			else {
+				$(".comment-setting .comment-reply").removeClass("select");
+				var upperId = $(this).parents("li").attr("comment_id");
+				var commentHTML = "";
+				commentHTML += "<section class=\"write-reply\">";
+				commentHTML += "<textarea id=\"input-details\" placeholder=\"답글을 달아 보세요.\"></textarea>";
+				commentHTML += "<div class=\"resell-btn fa fa-pencil\"></div>";
+				commentHTML += "</section>";
+				$(this).parents("li").after(commentHTML);
+				$(this).addClass("select");
+				$(".write-reply textarea").focus();
+				writeReply(upperId);
+			}
 		});
 
 	}
@@ -144,6 +164,11 @@ require([
 	function writeComment() {
 		$(".write-comment .fa-pencil").on("click", function() {
 			var commentText = $(".write-comment textarea").val();
+			if(commentText === "") {
+				alert("댓글을 입력해주세요.");
+				$(".write-comment textarea").focus();
+				return;
+			}
 			$.ajax({
 				url: window._ctx.root + "/api/comment/add/" + productId,
 				data: {
@@ -169,14 +194,38 @@ require([
 				console.log(result);
 				var sessionUid = result.sessionUid;
 				var list = result.commentInfo;
-				var commentHTML = "";
+
+				if(list.length === 0) {
+					var commentHTML = "";
+					commentHTML += "<li class=\"default-comment\">";
+					commentHTML += "아직 작성된 댓글이 없습니다.";
+					commentHTML += "</li>";
+					$(".market-detail.comment .comments-body").html(commentHTML);
+					return;
+				}
+
+				$(".write-reply").remove();
+				$(".comments-body>li").remove();
 
 				for (var i=0; i<list.length; i++) {
 					var item = list[i];
+					var commentHTML = "";
+					var userRank = item.user_rank;
 					var date = common.getFormatDate(item.comment_time);
 
-					commentHTML += "<li comment_id=\"" + item.comment_id + "\">";
-					commentHTML += "<div class=\"comment-body\">";
+					commentHTML += "<li comment_id=\"" + item.comment_id + "\"";
+					if (item.upper_id !== undefined) {
+						commentHTML += " upper_id=\"" + item.upper_id + "\"";
+					}
+					commentHTML += ">";
+					if (item.upper_id !== undefined) {
+						commentHTML += "<i class=\"reply glyphicon glyphicon-arrow-right\"></i>";
+					}
+					commentHTML += "<div class=\"comment-body";
+					if (item.upper_id !== undefined) {
+						commentHTML += " reply";
+					}
+					commentHTML += "\">";
 					commentHTML += "<div class=\"user-info\">";
 					commentHTML += "<i class=\"user-rank\"></i>";
 					commentHTML += "<div class=\"user-name\">";
@@ -202,33 +251,166 @@ require([
 					commentHTML += "</div>";
 					commentHTML += "</li>";
 
-					$(".market-detail.comment .comments-body").html(commentHTML);
+					if (item.upper_id === undefined) {
+						$(".market-detail.comment .comments-body").append(commentHTML);
+						console.log(userRank);
+						updateUserRank(userRank, item.comment_id);
+					}
+					else if (item.upper_id !== undefined) {
+						var countUpperId = $(".comments-body>li[upper_id=" + item.upper_id + "]").length;
+						var upper = $(".comments-body>li[comment_id=" + item.upper_id + "]");
+						var lastReply = $(".comments-body>li[upper_id=" + item.upper_id + "]").last();
 
-
-					// user rank 에 따른 icon 변경
-					var userRank = item.user_rank;
-
-					if(userRank === "member") {
-						$(".user-info>.user-rank").addClass("fa fa-star-o");
-					}
-					if(userRank === "silver") {
-						$(".user-info>.user-rank").addClass("fa fa-star");
-					}
-					if(userRank === "gold") {
-						$(".user-info>.user-rank").addClass("fa fa-diamond");
-					}
-					if(userRank === "admin") {
-						$(".user-info>.user-rank").addClass("fa-user-circle-o");
-					}
-					if(userRank=== "blackList") {
-						$(".user-info>.user-rank").addClass("fa fa-frown-o");
+						//동일한 upperId를 가진 li가 있으면 뒤에 갖다 붙여라
+						if (countUpperId > 0) {
+							lastReply.after(commentHTML);
+							updateUserRank(userRank, item.comment_id);
+						}
+						else if (countUpperId === 0) {
+							upper.after(commentHTML);
+							updateUserRank(userRank, item.comment_id);
+						}
 					}
 				}
-
 				replyComment();
+				removeComment();
+				updateComment();
 			},
 		});
 	}
+
+	// user rank 에 따른 icon 변경
+	function updateUserRank(userRank, commentId) {
+		if(userRank === "member") {
+			$("li[comment_id=" + commentId +"] .user-info>.user-rank").addClass("fa fa-star-o");
+		}
+		if(userRank === "silver") {
+			$("li[comment_id=" + commentId +"] .user-info>.user-rank").addClass("fa fa-star");
+		}
+		if(userRank === "gold") {
+			$("li[comment_id=" + commentId +"] .user-info>.user-rank").addClass("fa fa-diamond");
+		}
+		if(userRank === "admin") {
+			$("li[comment_id=" + commentId +"] .user-info>.user-rank").addClass("fa fa-user-circle-o");
+		}
+		if(userRank=== "blackList") {
+			$("li[comment_id=" + commentId +"] .user-info>.user-rank").addClass("fa fa-frown-o");
+		}
+	}
+
+	/*-----comment 삭제-----*/
+	function removeComment() {
+		$(".comment-setting .comment-delete").on("click", function() {
+			var commentId = $(this).parents("li").attr("comment_id");
+			$(".popup-layer.comment-remove").show();
+			$(".dark-layer").show();
+			$("body").css("overflow", "hidden");
+			$(".popup-layer.comment-remove .btn-ok").off();
+			$(".popup-layer.comment-remove .btn-ok").on("click", function() {
+				var hasReply = $(".comments-body>li[upper_id=" + commentId + "]").length;
+
+				if (hasReply > 0) {
+					alert("답글이 달린 댓글은 삭제하실 수 없습니다.");
+					initPopUp();
+				}
+				else if (hasReply === 0) {
+					$.ajax({
+						url: window._ctx.root + "/api/comment/remove/" + productId,
+						data: {
+							commentId: commentId,
+						},
+						success: function (result) {
+							initPopUp();
+							loadComment();
+						},
+						error: function () {
+							alert("로그인을 해주세요.");
+						}
+					});
+				}
+			});
+			$(".popup-layer.comment-remove .btn-cancel").on("click", function() {
+				initPopUp();
+			});
+		});
+	}
+
+	// 클릭 이벤트 발생 target 확인
+	$(document).on("click", function(event) {
+		console.log(event.target);
+	});
+
+	/*-----comment 수정-----*/
+	function updateComment() {
+		$(".comment-setting .comment-modify").off();
+		$(".comment-setting .comment-modify").on("click", function() {
+
+			var commentId = $(this).parents("li").attr("comment_id");
+			var placeholder = $(this).parents("li").find(".comment-content").text();
+			var initHTML = "<div class=\"comment-content\">" + placeholder + "</div>";
+			var initSetting = "<li class=\"comment-modify\">수정</li><li class=\"comment-delete\">삭제</li>";
+			var newSetting = "<li class=\"comment-udt-ok\">확인</li><li class=\"comment-udt-cancel\">취소</li>";
+			var newCommentHTML = "<textarea id=\"update-details\"></textarea>";
+			var hasReply = $(".comments-body>li[upper_id=" + commentId + "]").length;
+
+			if (hasReply > 0) {
+				alert("답글이 달린 댓글은 수정하실 수 없습니다.");
+				initPopUp();
+			}
+
+			else if (hasReply === 0) {
+				//------------------------------------------------------------------이부분 수정---//
+				if (!$(".comment-setting>li").hasClass("comment-reply")) {
+					$("#update-details").replaceWith(initHTML);
+					$(".comment-setting").html(initSetting);
+					updateComment();
+					removeComment();
+				}
+
+				$("li[comment_id=" + commentId + "] .comment-content").replaceWith(newCommentHTML);
+				$("li[comment_id=" + commentId + "] #update-details").text(placeholder);
+				$("li[comment_id=" + commentId + "] .comment-setting>li").remove();
+				$("li[comment_id=" + commentId + "] .comment-setting").html(newSetting);
+
+				$(".comment-setting .comment-udt-cancel").off();
+				$(".comment-setting .comment-udt-cancel").on("click", function() {
+					$("li[comment_id=" + commentId + "] #update-details").replaceWith(initHTML);
+					$("li[comment_id=" + commentId + "] .comment-setting").html(initSetting);
+					updateComment();
+					removeComment();
+				});
+
+
+				$(".comment-setting .comment-udt-ok").off();
+				$(".comment-setting .comment-udt-ok").on("click", function() {
+					var newCommentText = $("#update-details").val();
+
+					if(newCommentText === "") {
+						alert("댓글을 입력해주세요.");
+						$("#update-details").focus();
+						return;
+					}
+
+					$.ajax({
+						url: window._ctx.root + "/api/comment/update/" + productId,
+						data: {
+							commentId: commentId,
+							newCommentText: newCommentText,
+						},
+						success: function () {
+							/*$("li[comment_id=" + commentId + "] .comment-setting").html(initSetting);
+							$(this).parents("li").find("#update-details").replaceWith(initHTML);*/
+							loadComment();
+						},
+						error: function () {
+							alert("로그인을 해주세요.");
+						}
+					});
+				});
+			}
+		});
+	}
+
 
 	/*-----comment count 불러오기-----*/
 	function countComment() {
@@ -246,8 +428,6 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/complain/hasComplain/" + productId,
 			success: function (data) {
-
-				console.log("initComplain: " + data.result);
 
 				if (data.result) {
 					$(".board-setting .board-complain").addClass("select");
@@ -300,7 +480,6 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/hits/count/" + productId,
 			success: function (result) {
-				console.log(result);
 				$(".market-detail .board-info .hits").html("<span class='fa fa-eye'></span> " + result);
 			},
 		});
@@ -565,5 +744,5 @@ require([
 	plusHits();
 	writeComment();
 	writeReply();
-
+	updateComment();
 });
