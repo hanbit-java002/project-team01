@@ -5,6 +5,13 @@ require([
 		signIn();
 	});
 
+	var ENTER_KEYCODE = 13;
+	$(document).on("keydown", function(event) {
+		if (event.keyCode === ENTER_KEYCODE) {
+			signIn();
+		}
+	});
+
 	function signIn() {
 		var userId = $("#member-email").val();
 		var userPw = $("#member-pw").val();
@@ -24,8 +31,8 @@ require([
 		},
 		success: function (data) {
 			if (data.result == "ok") {
-			alert("로그인 되셨습니다.");
-				location.href = window._ctx.root+"/index.html";
+				alert("로그인 되셨습니다.");
+				window.history.back();
 			}
 			else {
 				alert("정상적으로 로그인되지 않았습니다.");

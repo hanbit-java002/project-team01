@@ -635,7 +635,7 @@ require([
 	$(".popup-ok").on("click", function () {
 		//물품 등록 취소
 		if ($(this).parent().hasClass("register-cancel")) {
-			location.href = window._ctx.root+"/index.html";
+			window.history.back();
 		}
 		//물품 등록
 		else if ($(this).parent().hasClass("register")) {
@@ -653,6 +653,7 @@ require([
 				success: function(data) {
 					if (data.result == "ok") {
 						alert("수정완료");
+						window.history.back();
 						/*location.href= window._ctx.root+"/market/market-detail.html?product="+productId;*/
 					}
 					else {
