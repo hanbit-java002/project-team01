@@ -12,10 +12,10 @@ require([
 	function signUp() {
 		var userId = $("#input-email").val();
 		/*var userInputCode = $("#input-code").val();*/
-		var userPw = $("#input-pw").val();
+		var userPw = $("#input-pw").val().trim();
 		/*var userPwCfm = $("#input-pw-conf").val();*/
-		var userName = $("#input-name").val();
-		var userPhone = $("#input-phone-num").val();
+		var userName = $("#input-name").val().trim();
+		var userPhone = $("#input-phone-num").val().trim();
 		var userAddr = $("#input-addr").val();
 		var userAddrDetail = $("#input-detail-addr").val();
 		var userZipcode = $("#input-zip-code").val();
@@ -108,7 +108,7 @@ require([
 				userZipcode: userZipcode,
 			},
 			success: function (data) {
-				if (data.result == "ok") {
+				if (data.result === "ok") {
 					alert("회원가입이 되셨습니다.");
 					location.href = window._ctx.root+"/member/login.html";
 				}

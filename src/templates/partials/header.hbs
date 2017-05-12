@@ -195,12 +195,10 @@
 							<div class="menu-icon fa fa-angle-right"></div>
 						</a>
 					</li>
-					<li class="modify-member-info">
-						<a href="{{root}}/member/update-user.html">
-							<div class="text">
+					<li class="modify-member-info" onclick="goUpdateUser()">
+						<div class="text">
 								회원 정보 수정
-							</div>
-						</a>
+						</div>
 						<div class="menu-icon fa fa-angle-right"></div>
 					</li>
 					<li class="log-out">
@@ -215,4 +213,24 @@
 			</div>
 		</div>
 	</header>
+	<script>
+		function goUpdateUser() {
+			$.ajax({
+				url: window._ctx.root + "/api/member/signedin",
+				success: function (data) {
+					if (data.result === "yes") {
+						var userUid = data.uid;
+
+						location.href = window._ctx.root + "/member/update-user.html?uid=" + userUid;
+					}
+					else {
+						location.href = window._ctx.root + "/member/update-user.html";
+					}
+				}
+			});
+
+
+		}
+	</script>
+
 	<div class="resell-container" {{#if (eq pageId "main")}}pageId="main"{{/if}}>

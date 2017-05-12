@@ -53,6 +53,7 @@ require([
 				$("#userAddrDetail").val(list.addr_detail);
 				$("#userZipCode").val(list.zip_code);
 
+
 				dropDown();
 			},
 		});

@@ -20,7 +20,7 @@
 			"stroustrup"
 		],
 		"max-len": ["error", {
-			"code": 120,
+			"code": 200,
 			"tabWidth": 4,
 			"ignoreUrls": true,
 			"ignorePattern": /^goog\.(module|require)/
