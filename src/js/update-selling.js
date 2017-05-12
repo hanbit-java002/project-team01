@@ -2,7 +2,8 @@ require([
 	"common",
 ], function() {
 	var common = require("common");
-	var productId= common.getQuerystring("product-id");
+	var productId= common.getQuerystring("product");
+	var beforeMain ="";
 
 	function initTypes() {
 		var brandSelected= $(".dropdown-brand .dropdown-selected").text();
@@ -115,8 +116,10 @@ require([
 						if (img[j].img_main) {
 							imgHtml+= "main-img";
 						}
-							imgHtml+="\">";
-							imgHtml+=	"<div class=\"input-img\" img-id=\""+img[j].img_id+"\""+
+							imgHtml+="\" img-id=\"";
+							imgHtml+=img[j].img_id;
+							imgHtml+=	"\">";
+							imgHtml+=	"<div class=\"input-img\""+
 							" style=\"background-image: url("+img[j].img_url+")\">" +
 							"<div class=\"img-delete\">"+
 							"<i class=\"glyphicon glyphicon-remove-circle\"></i>" +
@@ -124,6 +127,7 @@ require([
 							"</div>";
 						$(".img-input-slider").append(imgHtml);
 					}
+					beforeMain = $(".input-img-box.main-img").attr("img-id");
 					deleteImg();
 					selectMainImg();
 
@@ -370,6 +374,8 @@ require([
 		});
 	}
 
+
+
 	function selectMainImg() {
 		$(".input-img-box").off("click");
 		$(".input-img-box").on("click", function() {
@@ -384,22 +390,34 @@ require([
 		$($(".input-img-box")[0]).addClass("main-img");
 	}
 
+	var arrDelImgId = new Array(0);
+
 	function deleteImg() {
 		$(".img-delete").off("click");
 		$(".img-delete").on("click", function() {
 			if ($(this).parents(".input-img-box").hasClass("main-img")) {
 				defaultMainImg();
 			}
+
+			var isOld= $(this).parents(".input-img").css("background-image").match("/api/file/");
+			if (isOld) {
+				arrDelImgId.push($(this).parents(".input-img-box").attr("img-id"));
+			}
+
 			$(this).parents(".input-img-box").remove();
 		});
 	}
+
+	var _imgIdIndex = 0;
 
 	function readURL(input) {
 		for (var i = 0; i<input[0].files.length; i++ ) {
 			if (input[0].files && input[0].files[i]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
-					$(".img-input-slider").append("<div class='input-img-box'>" +
+					var imgId = "new-image-" + _imgIdIndex++;
+
+					$(".img-input-slider").append("<div class='input-img-box' img-id='" + imgId + "'>" +
 						"<div class='input-img' style='background-image: url("+e.target.result+")'>" +
 						"<div class='img-delete'>"+
 						"<i class='glyphicon glyphicon-remove-circle'></i>" +
@@ -413,28 +431,37 @@ require([
 		}
 	}
 
+
+	function getMainImg() {
+		var images = $(".input-img-box.main-img");
+		var mainImg = "default";
+
+		if (beforeMain !== images.attr("img-id")) {
+			mainImg = images.attr("img-id");
+		}
+
+		return mainImg;
+	}
+
 	function scrapImgs() {
 		var arrStrImgSrc = new Array(0);
 		var images = $(".input-img");
 
 		for (var i=0; i<images.length; i++) {
-
 			var strImgSrcLen=$(images[i]).css("background-image").length;
-			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
-			arrStrImgSrc.push(strImgSrc);
+			var isOld= $(images[i]).css("background-image").match("/api/file/");
+			if (!isOld) {
+				var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
+				arrStrImgSrc.push(strImgSrc);
+			}
 		}
-
 		return arrStrImgSrc;
 	}
 
+	/* 파일 읽는 부분 바뀌었을 때*/
 	$("#file-img-input").on("change", function () {
 		readURL($(this));
 	});
-
-	function getMainImg() {
-		var mainImg = $(".input-img-box.main-img").index();
-		return mainImg;
-	}
 
 	function getDealMeans() {
 		var dealMeans = "";
@@ -451,6 +478,9 @@ require([
 		var currentProduct = {
 			productId: productId,
 			arrImgSrc: scrapImgs(),
+			arrDelImgId: arrDelImgId,
+			mainImg: getMainImg(),
+			beforeMainImg: beforeMain,
 			name: $("#input-product-name").val().trim(),
 			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
 			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
@@ -459,7 +489,6 @@ require([
 			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
 			price: $("#input-price").val().trim(),
 			detail: $("#input-details").val(),
-			mainImgIndex: getMainImg(),
 			dealMeans: getDealMeans(),
 			directPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
@@ -467,9 +496,8 @@ require([
 			status: $(".status-select.selected").attr("status"),
 		};
 
-		console.log(currentProduct);
-
 		var formData = new FormData();
+		formData.append("productId", currentProduct.productId);
 		formData.append("name", currentProduct.name);
 		formData.append("brandId", currentProduct.brandId);
 		formData.append("categoryId", currentProduct.categoryId);
@@ -481,21 +509,35 @@ require([
 		for (var i=0; i<currentProduct.arrImgSrc.length; i++) {
 			formData.append("arrImgSrc", currentProduct.arrImgSrc[i]);
 		}
+		for (var i=0; i<currentProduct.arrDelImgId.length; i++) {
+			formData.append("arrDelImgId", currentProduct.arrDelImgId[i]);
+		}
+		formData.append("beforeMainImg", currentProduct.beforeMainImg);
+		formData.append("mainImg", currentProduct.mainImg);
 
-		formData.append("mainImgIndex", currentProduct.mainImgIndex);
 		formData.append("dealMeans", currentProduct.dealMeans);
 		formData.append("directPlace", currentProduct.directPlace);
 		formData.append("safeDeal", currentProduct.safeDeal);
 		formData.append("qualityId", currentProduct.qualityId);
 		formData.append("seriesId", currentProduct.seriesId);
 		formData.append("deliveryCheck", currentProduct.deliveryCheck);
+		formData.append("status", currentProduct.status);
+		console.log(currentProduct);
 		return formData;
 	}
 
+	function validImgs() {
+		var images = $(".input-img").length;
+		if (images<=0) {
+			return 1;
+		}
+		return 0;
+	}
+
+	validImgs();
 	function infoValidation() {
 		var currentProduct = {
 			productId: productId,
-			arrImgSrc: scrapImgs(),
 			name: $("#input-product-name").val().trim(),
 			brandId: $(".dropdown-brand .dropdown-selected").attr("s-value"),
 			categoryId: $(".dropdown-category .dropdown-selected").attr("s-value"),
@@ -504,7 +546,6 @@ require([
 			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
 			price: $("#input-price").val().trim(),
 			detail: $("#input-details").val(),
-			mainImgIndex: getMainImg(),
 			dealMeans: getDealMeans(),
 			directPlace: $("#input-place-time").val().trim(),
 			safeDeal: $(".safe-pay").hasClass("selected"),
@@ -545,7 +586,7 @@ require([
 			alert("Price을 입력하세요.");
 			return 0;
 		}
-		if (currentProduct.arrImgSrc.length <= 0) {
+		if (validImgs()) {
 			alert("이미지를 입력하세요");
 			return 0;
 		}
@@ -611,8 +652,8 @@ require([
 				contentType: false,
 				success: function(data) {
 					if (data.result == "ok") {
-						alert("저장완료");
-						/*location.href= window._ctx.root+"/mypage/purchase-list.html";*/
+						alert("수정완료");
+						/*location.href= window._ctx.root+"/market/market-detail.html?product="+productId;*/
 					}
 					else {
 						alert("저장실패");
