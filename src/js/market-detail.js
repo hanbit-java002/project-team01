@@ -720,6 +720,9 @@ require([
 				$(".market-detail .product.name").text(item.product_name);
 				$(".market-detail .product.price").html("<i class='fa fa-won'></i>" + price);
 				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span> " + date);
+
+				/* 삭제 팝업 이벤트*/
+				deletePopUp();
 			},
 		});
 	}
@@ -730,6 +733,33 @@ require([
 			location.href = window._ctx.root + "/selling/update-selling.html?product=" + productId;
 		});
 	}
+
+	/* 삭제 팝업 그리고 물품 삭제*/
+
+	//판매 등록 버튼 클릭 시 확인 팝업 창
+	function deletePopUp() {
+		$(".board-delete").on("click", function() {
+			common.popUp("pop-up-series", "left");
+			$(".pop-up-series").addClass("register");
+			$(".pop-up-series").css("position", "fixed");
+			$(".pop-up-series>span").css("top", "30%");
+			$(".pop-up-series>.text1").text("삭제하시겠습니까?");
+			$(".pop-up-series>.text2").text("");
+		});
+		//팝업 선택 후 처리
+		$(".popup-ok").on("click", function () {
+			$.ajax({
+				url: window._ctx.root+"/api/market/delete",
+				method: "POST",
+				data: productId,
+				success: function() {
+					alert("삭제");
+					window.history.back();
+				},
+			});
+		});
+	}
+
 
 
 	loadProductImg();
