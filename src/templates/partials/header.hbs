@@ -195,7 +195,7 @@
 							<div class="menu-icon fa fa-angle-right"></div>
 						</a>
 					</li>
-					<li class="modify-member-info" onclick="goUpdateUser()">
+					<li class="modify-member-info" onclick="chSignedIn()">
 						<div class="text">
 								회원 정보 수정
 						</div>
@@ -213,7 +213,20 @@
 			</div>
 		</div>
 	</header>
+
+
+	<div class="popup-box">
+		<div class="popup-contents">
+			<span class="text1">
+				로그인이 필요한 서비스 입니다.
+			</span>
+
+			<button class="btn-ok">확인</button>
+		</div>
+	</div>
+
 	<script>
+
 		function goUpdateUser() {
 			$.ajax({
 				url: window._ctx.root + "/api/member/signedin",
@@ -228,8 +241,38 @@
 					}
 				}
 			});
+		}
 
 
+		function chSignedIn() {
+			$.ajax({
+				url: window._ctx.root + "/api/member/signedin",
+				success: function (data) {
+					if (data.result === "yes") {
+						goUpdateUser();
+
+					}
+					else {
+						$(".popup-box").show();
+						$(".dark-layer").show();
+						$("body").css("overflow", "hidden");
+						$(".popup-box").css("z-index", "31");
+						$(".dark-layer").css("z-index", "41");
+
+						$(".dark-layer, .popup-contents>.btn-ok").on("click", function () {
+							$(".popup-box").hide();
+
+							location.href = window._ctx.root+"/member/login.html";
+
+							$(".dark-layer").hide();
+							$("body").css("overflow", "");
+							$(".popup-box").css("z-index", "");
+							$(".dark-layer").css("z-index", "30");
+						});
+
+					}
+				}
+			});
 		}
 	</script>
 

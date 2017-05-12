@@ -162,4 +162,10 @@ require([
 	$(".popup-apply-leave-box>.popup-contents>.btn-ok").on("click", function() {
 		location.href = "delete-user.html";
 	});
+
+
+	//취소 버튼 클릭 시
+	$(".btn-cancel").on("click", function() {
+		history.back();
+	});
 });

@@ -122,8 +122,15 @@ require([
 		});
 	}
 
+
+	//sign up 버튼 클릭 시
 	$(".btn-signup").on("click", function () {
 		signUp();
+	});
+
+	//취소 버튼 클릭 시
+	$(".btn-cancel").on("click", function() {
+		history.back();
 	});
 
 
