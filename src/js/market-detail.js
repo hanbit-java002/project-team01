@@ -752,9 +752,11 @@ require([
 				url: window._ctx.root+"/api/market/delete",
 				method: "POST",
 				data: productId,
-				success: function() {
-					alert("삭제");
-					window.history.back();
+				success: function(data) {
+					if (data.result === "ok") {
+						alert("삭제");
+						window.history.back();
+					}
 				},
 			});
 		});
