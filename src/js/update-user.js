@@ -159,9 +159,13 @@ require([
 		$(".popup-apply-leave-box").css("z-index", "");
 	});
 
+	//회원탈퇴 팝업 확인 버튼 클릭 시
 	$(".popup-apply-leave-box>.popup-contents>.btn-ok").on("click", function() {
-		location.href = "delete-user.html";
+		var uid = common.getQuerystring("uid");
+
+		location.href = window._ctx.root + "/member/delete-user.html?uid=" + uid;		//회원탈퇴 페이지로
 	});
+
 
 
 	//취소 버튼 클릭 시
