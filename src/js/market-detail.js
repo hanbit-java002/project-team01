@@ -344,7 +344,6 @@ require([
 	function updateComment() {
 		$(".comment-setting .comment-modify").off();
 		$(".comment-setting .comment-modify").on("click", function() {
-
 			var commentId = $(this).parents("li").attr("comment_id");
 			var placeholder = $(this).parents("li").find(".comment-content").text();
 			var initHTML = "<div class=\"comment-content\">" + placeholder + "</div>";
@@ -359,14 +358,6 @@ require([
 			}
 
 			else if (hasReply === 0) {
-				//------------------------------------------------------------------이부분 수정---//
-				if (!$(".comment-setting>li").hasClass("comment-reply")) {
-					$("#update-details").replaceWith(initHTML);
-					$(".comment-setting").html(initSetting);
-					updateComment();
-					removeComment();
-				}
-
 				$("li[comment_id=" + commentId + "] .comment-content").replaceWith(newCommentHTML);
 				$("li[comment_id=" + commentId + "] #update-details").text(placeholder);
 				$("li[comment_id=" + commentId + "] .comment-setting>li").remove();
@@ -383,8 +374,8 @@ require([
 
 				$(".comment-setting .comment-udt-ok").off();
 				$(".comment-setting .comment-udt-ok").on("click", function() {
-					var newCommentText = $("#update-details").val();
-
+					var newCommentText = $(this).parents("li").find("#update-details").val();
+					var commentId = $(this).parents("li").attr("comment_id");
 					if(newCommentText === "") {
 						alert("댓글을 입력해주세요.");
 						$("#update-details").focus();
