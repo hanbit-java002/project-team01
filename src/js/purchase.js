@@ -1,28 +1,56 @@
 require([
 	"common",
 ], function() {
-
 	var common = require("common");
+	var productId = common.getQuerystring("product");
 
-	function loadList() {
+	/*-----split (list로 리턴)-----*/
+	function split(x) {
+		return x.split("|");
+	}
+
+	/*-----product image 불러오기-----*/
+	function loadProductImg() {
 		$.ajax({
-			url: window._ctx.root + "/api/purchase/list",
-			success: function() {
+			url: window._ctx.root + "/api/product/image/" + productId,
+			success: function (result) {
+				var item = result[0];
+				$(".product-img").attr("src", item.img_url);
+			},
+		});
+	}
+
+	/*-----product Detail + 거래 Info 불러오기-----*/
+	function loadProductDetail() {
+		$.ajax({
+			url: window._ctx.root + "/api/product/detail/" + productId,
+			success: function(result) {
+				console.log(result);
+				var item = result.productInfo;
 				var itemHTML = "";
 
 					itemHTML += "<div class='product name'>";
-					itemHTML += "에어 조던 14 Black Pink New";
+					itemHTML += item.product_name;
 					itemHTML += "</div>";
 					itemHTML += "<div class='product price'>";
 					itemHTML += "<i class='fa fa-won'></i>";
-					itemHTML += "200,000";
+					itemHTML += common.numberWithCommas(item.price);
 					itemHTML += "</div>";
 					itemHTML += "<div class='product size'>";
 					itemHTML += "<div class='info-label'>";
 					itemHTML += "Size";
 					itemHTML += "</div>";
 					itemHTML += "<span for='date'>";
-					itemHTML += "235mm";
+					itemHTML += item.size;
+					// 사이즈
+					if (item.category_name !== undefined && item.category_name.length > 0) {
+						if (item.category_name === "신발") {
+							itemHTML += "<span> mm</span>";
+						}
+						if (item.category_name === "하의") {
+							itemHTML += "<span> inch</span>";
+						}
+					}
 					itemHTML += "</span>";
 					itemHTML += "</div>";
 					itemHTML += "<div class='product quality'>";
@@ -30,16 +58,127 @@ require([
 					itemHTML += "Quality";
 					itemHTML += "</div>";
 					itemHTML += "<span for='quality'>";
-					itemHTML += "새제품";
+					// 퀄리티
+					if (item.quality !== undefined && item.quality.length > 0) {
+						if (item.quality === "used") {
+							itemHTML += "중고상품";
+						}
+						if (item.quality === "new") {
+							itemHTML += "새상품";
+						}
+					}
 					itemHTML += "</span>";
 					itemHTML += "</div>";
-				$(".detail-info").html(itemHTML);
+
+				$(".product-info .detail-info").html(itemHTML);
+
+
+				// 거래 정보
+				var dealMeans = split(item.deal_means);
+				var deliveryCheck = item.delivery_check;
+
+				for (var i=0; i<dealMeans.length; i++) {
+					var dealType = dealMeans[i];
+
+					if (dealType === "direct") {
+						if (item.direct_place === "" || item.direct_place === undefined) {
+							$(".detail-info span[for=directly]").text("가능");
+						}
+						else {
+							$(".detail-info span[for=directly]").text(item.direct_place);
+						}
+					}
+
+					if (dealType === "delivery") {
+						if (deliveryCheck === "exclude") {
+							$(".detail-info span[for=delivery]").text("택배비 착불");
+						}
+						if (deliveryCheck === "include") {
+							$(".detail-info span[for=delivery]").text("무료 배송");
+						}
+					}
+				}
+
+				if (item.safe_deal === 1) {
+					$(".trade-info span[for=safety-payment]").text("가능");
+				}
+				if (item.safe_deal === 0) {
+					$(".trade-info span[for=safety-payment]").text("불가");
+				}
 			},
 		});
 	}
 
+	// 구매
+	function purchase() {
+		//"구매" 버튼의 "확인" 버튼 클릭시
+		$(".purchase-complete>.popup-btn-area>.btn-ok").on("click", function() {
+			var userName = "";
+			var phoneNum = "";
+			var dealMeans = "";
+			var safeDeal = "";
+			var directPlace = "";
+			var zipcode = "";
+			var address = "";
+
+			if($(".trade-select-btn.direct").hasClass("selected")) {
+				userName = $(".selected-direct #input-name").val().trim();
+				phoneNum = $(".selected-direct #input-phone-num").val().trim();
+				dealMeans = "direct";
+				if($(".list-selector.escrow").attr("get-checked") === "false") {
+					safeDeal = "0";
+				}
+				else if($(".list-selector.escrow").attr("get-checked") === "true") {
+					safeDeal = "1";
+				}
+				directPlace = $(".selected-direct #input-place").val();
+				zipcode = "";
+				address = "";
+			}
+			else if($(".trade-select-btn.delivery").hasClass("selected")) {
+				userName = $(".selected-delivery #input-name").val().trim();
+				phoneNum = $(".selected-delivery #input-phone-num").val().trim();
+				dealMeans = "delivery";
+				if($(".list-selector.escrow").attr("get-checked") === "false") {
+					safeDeal = "0";
+				}
+				else if($(".list-selector.escrow").attr("get-checked") === "true") {
+					safeDeal = "1";
+				}
+				directPlace = "";
+				zipcode = $(".selected-delivery #input-zip-code").val().trim();
+				address = $(".selected-delivery #input-addr").val();
+			}
+
+
+			$.ajax({
+				url: window._ctx.root + "/api/deal/purchase/" + productId,
+				data: {
+					userName: userName,
+					phoneNum: phoneNum,
+					dealMeans: dealMeans,
+					safeDeal: safeDeal,
+					directPlace: directPlace,
+					zipcode: zipcode,
+					address: address,
+				},
+				success: function() {
+					initPopUp();
+					location.href = window._ctx.root + "/mypage/purchase-detail.html?product=" + productId;
+				},
+				error: function() {
+					initPopUp();
+					alert("로그인을 해주세요.");
+				},
+			});
+		});
+	}
+
+
 	//거래 방식 선택 (싱글)
 	$(".trade-select-btn").on("click", function(event) {
+		$(".alert-default").css("color", "#242947");
+
 		$("[check-box]").attr("get-checked", "false");
 		event.stopPropagation();
 
@@ -129,25 +268,35 @@ require([
 		$("body").css("overflow", "hidden");
 	});
 
+	$(document).on("click", function(event) {
+		console.log(event.target);
+	});
+
 	// "구매" 버튼 팝업
 	$(".half.resell-btn.purchase-ok").on("click", function() {
-		$(".popup-layer.purchase-complete").show();
-		$(".dark-layer").show();
-		$("body").css("overflow", "hidden");
+		console.log(01);
+		if ($(".trade-select-btn").hasClass("selected")) {
+			console.log(02);
+			$(".popup-layer.purchase-complete").show();
+			$(".dark-layer").show();
+			$("body").css("overflow", "hidden");
+		}
+		else if (!$(".trade-select-btn").hasClass("selected")) {
+			console.log(03);
+			$(".alert-default").css("color", "#968279");
+		}
 	});
 
 	//"취소" 버튼의 "확인" 버튼 클릭시
 	$(".purchase-cancel>.popup-btn-area>.btn-ok").on("click", function () {
 		initPopUp();
-		location.href = window._ctx.root + "/mypage/selling-list.html";
+		location.href = window._ctx.root + "/market/market.html?brandId=brand-all";
 		// 마켓으로 이동
 	});
 
-	//"구매" 버튼의 "확인" 버튼 클릭시
-	$(".purchase-complete>.popup-btn-area>.btn-ok").on("click", function() {
-		initPopUp();
-		location.href = window._ctx.root + "/mypage/purchase-detail.html";
-		// 구매 상세 정보 페이지로 이동
+	//product Info에서 >> 버튼 클릭시 해당 상품 상세 페이지로 이동
+	$(".info-body .fa-angle-double-right").on("click", function() {
+		location.href = window._ctx.root + "/market/market-detail.html?product=" + productId;
 	});
 
 	function initPopUp() {
@@ -157,6 +306,7 @@ require([
 	}
 
 	common.listSelector();
-	loadList();
-
+	loadProductImg();
+	loadProductDetail();
+	purchase();
 });
