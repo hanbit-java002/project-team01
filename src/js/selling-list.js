@@ -5,12 +5,86 @@ require([
 	var rowsPerPage = 5;
 	var page =0;
 
+	/* 검색 버튼*/
+	$(".selling-search-btn").on("click", function () {
+		$(".selling-product-list").html("");
+		showList();
+	});
+
+	/* 물품관리 버튼 눌렀을때 팝업*/
+	function clickProductController() {
+		$(".popup-close, .dark-layer").on("click", function () {
+			$(".pop-up-controller-main").show();
+			$(".popup-status").hide();
+			$(".pop-up-delete").hide();
+		});
+		$(".selling-product-controller").off();
+		$(".selling-product-controller").on("click", function (event) {
+			event.stopPropagation();
+			var productId = $(this).parents(".product-listInfo-list").attr("product-id");
+			var sellerUid = $(this).parents(".product-listInfo-list").attr("seller-uid");
+			console.log(productId);
+			common.popUp("pop-up-controller", "left");
+			/* 수정하기*/
+			$(".controller-edit").on("click", function () {
+				location.href = window._ctx.root + "/selling/update-selling.html?product=" + productId;
+			});
+			/* 삭제하기*/
+			$(".controller-delete").on("click", function () {
+				$(".pop-up-controller-main").hide();
+				$(".popup-status").hide();
+				$(".pop-up-delete").show();
+
+				$(".controller-delete-cancel").on("click", function () {
+					$(".pop-up-delete").hide();
+					$(".popup-status").hide();
+					$(".pop-up-controller-main").show();
+				});
+				$(".controller-delete-ok").on("click", function () {
+					$.ajax({
+						url: window._ctx.root+"/api/market/delete",
+						method: "POST",
+						data: {
+							productId: productId,
+							sellerUid: sellerUid,
+						},
+						success: function(data) {
+							if (data.result === "ok") {
+								alert("삭제 완료");
+								location.href = window._ctx.root+"/mypage/selling-list.html";
+							}
+							else {
+								alert("판매자가 아닙니다 삭제가 불가능합니다.");
+							}
+						},
+					});
+				});
+			});
+			/* 진행상황*/
+			$(".controller-process").on("click", function () {
+				$(".pop-up-delete").hide();
+				$(".pop-up-controller-main").hide();
+				$(".popup-status").show();
+
+				$(".controller-process-cancel").on("click", function () {
+					$(".pop-up-delete").hide();
+					$(".pop-up-controller-main").show();
+					$(".popup-status").hide();
+				});
+			});
+		});
+	}
+
+	/* 리스트 보여주기*/
 	function showList() {
+		var searchValue=$(".selling-search").val();
+		console.log(searchValue);
 		$.ajax({
 			url: window._ctx.root + "/api/market/sellingList",
 			data: {
 				page: page,
 				rowsPerPage: rowsPerPage,
+				searchValue: searchValue,
 			},
 			success: function (result) {
 				var listCount = result.listCount;
@@ -24,7 +98,7 @@ require([
 					var item = list[i];
 
 					productList += "<li class=\"product-listInfo-list\" product-id=\""+item.product_id+"" +
-						"\" process=\""+item.selling_status+"\">";
+						"\" process=\""+item.selling_status+"\" seller-uid = \""+item.seller_uid+"\">";
 					productList += "    <div class=\"product-info\">";
 					productList += "        <img class=\"product-img\" src=\""+item.img_url+"\">";
 					productList += "        <div class=\"detail-info\">";
@@ -77,48 +151,76 @@ require([
 					}
 
 					productList += "            </ul>";
-					productList += "            <div class=\"purchaser-info\">";
-					productList += "                <div class=\"info-label\">판매자</div>";
+					if (item.purchaser_name !== undefined) {
+						productList += "            <div class=\"purchaser-info\">";
+						productList += "                <div class=\"info-label\">구매자</div>";
 
-					productList += "                <div class=\"purchaser-rank ";
-					if (item.user_rank === "member") {
-						productList +=	"fa fa-star-o\"></div>";
-					}
-					else if (item.user_rank === "silver") {
-						productList +=	"fa fa-star\"></div>";
-					}
-					else if (item.user_rank === "gold") {
-						productList +=	"fa fa-diamond\"></div>";
-					}
-					else if (item.user_rank === "admin") {
-						productList +=	"fa fa-user-circle-o\"></div>";
-					}
-					else if (item.user_rank === "blackList") {
-						productList +=	"fa fa-frown-o\"></div>";
+						productList += "                <div class=\"purchaser-rank ";
+						if (item.user_rank === "member") {
+							productList +=	"fa fa-star-o\"></div>";
+						}
+						else if (item.user_rank === "silver") {
+							productList +=	"fa fa-star\"></div>";
+						}
+						else if (item.user_rank === "gold") {
+							productList +=	"fa fa-diamond\"></div>";
+						}
+						else if (item.user_rank === "admin") {
+							productList +=	"fa fa-user-circle-o\"></div>";
+						}
+						else if (item.user_rank === "blackList") {
+							productList +=	"fa fa-frown-o\"></div>";
+						}
+
+						productList += "                <div class=\"purchaser-name\">";
+						productList += item.purchaser_name;
+						productList += "                </div>";
+						productList += "            </div>";
 					}
 
-					productList += "                <div class=\"purchaser-name\">";
-					productList += item.user_name;
-					productList += "                </div>";
-					productList += "            </div>";
 					productList += "        </div>";
 					productList += "    </div>";
 					productList += "    <div class=\"board-info\">";
 					productList += "        <div class=\"like\">";
 					productList += "            <span class='fa fa-heart-o'></span>";
-					productList +=item.like_count;
+
+					if (item.like_count === undefined) {
+						productList +="0";
+					}
+					else {
+						productList +=item.like_count;
+					}
+
 					productList += "        </div>";
 					productList += "        <div class=\"comment\">";
 					productList += "            <span class=\"fa fa-commenting-o\"></span>";
-					productList += item.comment_count;
+					if (item.comment_count === undefined) {
+						productList +="0";
+					}
+					else {
+						productList += item.comment_count;
+					}
 					productList += "        </div>";
 					productList += "        <div class=\"complain\">";
 					productList += "            <span class=\"fa fa-thumbs-o-down\"></span>";
-					productList += item.complain_count;
+
+					if (item.complain_count === undefined) {
+						productList +="0";
+					}
+					else {
+						productList += item.complain_count;
+					}
 					productList += "        </div>";
 					productList += "        <div class=\"hits\">";
 					productList += "            <span class=\"fa fa-eye\"></span>";
-					productList += item.hits_count;
+
+					if (item.hits_count === undefined) {
+						productList +="0";
+					}
+					else {
+						productList += item.hits_count;
+					}
+
 					productList += "        </div>";
 					productList += "        <div class=\"reporting-date\">";
 					productList += "            <span class=\"fa fa-clock-o\"></span>";
@@ -131,6 +233,7 @@ require([
 					productList += "</li>";
 				}
 				$(".selling-product-list").append(productList);
+
 				/* 더보기 클릭시*/
 				$(".more-list").off();
 				$(".more-list").on("click", function () {
@@ -138,49 +241,14 @@ require([
 					if (page<=lastPage) {
 						showList();
 					}
+					else {
+						alert("마지막 물품입니다.");
+					}
 				});
+				clickProductController();
 			},
 		});
 	}
-	console.log(showList());
 
-
-	//팝업 레이어 "취소" 버튼 클릭시
-	$(".dark-layer, .popup-btn-area>.btn-cancel").on("click", function () {
-		initPopUp();
-	});
-
-	// "거래 취소" 버튼 팝업
-	$(".half.resell-btn.selling-cancel").on("click", function() {
-		$(".popup-layer.selling-cancel").show();
-		$(".dark-layer").show();
-		$("body").css("overflow", "hidden");
-	});
-
-	//"거래 취소" 버튼의 "확인" 버튼 클릭시
-	$(".selling-cancel>.popup-btn-area>.btn-ok").on("click", function () {
-		initPopUp();
-		location.href = window._ctx.root + "/mypage/selling-list.html";
-		// 판매리스트>"거래 중" 탭으로 이동
-	});
-
-	// "판매 완료" 버튼 팝업
-	$(".resell-btn.selling-complete").on("click", function() {
-		$(".popup-layer.selling-complete").show();
-		$(".dark-layer").show();
-		$("body").css("overflow", "hidden");
-	});
-
-	//"판매 완료" 버튼의 "확인" 버튼 클릭시
-	$(".selling-complete>.popup-btn-area>.btn-ok").on("click", function() {
-		initPopUp();
-		location.href = window._ctx.root + "/mypage/selling-list.html";
-		// 판매리스트>"거래 중" 탭으로 이동
-	});
-
-	function initPopUp() {
-		$(".popup-layer").hide();
-		$(".dark-layer").hide();
-		$("body").css("overflow", "");
-	}
+	showList();
 });

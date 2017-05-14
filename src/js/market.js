@@ -429,7 +429,9 @@ require([
 					++page;
 					if (page<=lastPage) {
 						productListAjax(brandId);
-
+					}
+					else {
+						alert("마지막 물품입니다.");
 					}
 				});
 			},

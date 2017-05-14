@@ -164,7 +164,7 @@ define([
 
 	/* 팝업 공통화
 	 * 사용방법
-	 * 1. 팝업을 가져올 큰틀  <div class="popup-something">~~~</div>
+	 * 1. 팝업을 가져올 큰틀  <div class="pop-up-series">~~~</div>
 	 * 클래스 이름은 아무거나 해도됨.
 	 *
 	 * 2. 해당 자바스크립트에서
@@ -222,7 +222,7 @@ define([
 		if (direction === "top" || direction === "bottom") {
 			$("."+className).css({
 				"display": "block",
-				"position": "absolute",
+				"position": "fixed",
 				"left": "50%",
 				"transform": "translateX(-50%)",
 				"z-index": "100",
@@ -244,7 +244,7 @@ define([
 		else if (direction === "left" || direction === "right") {
 			$("."+className).css({
 				"display": "block",
-				"position": "absolute",
+				"position": "fixed",
 				"top": "50%",
 				"transform": "translateY(-50%)",
 				"z-index": "100",

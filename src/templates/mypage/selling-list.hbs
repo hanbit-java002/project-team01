@@ -5,12 +5,12 @@
 </section>
 <section class="contents-wrapper selling-list">
 	<div class="list-search-box">
-		<input type="text" class="form-control" placeholder="Search">
-		<i class="fa fa-search"></i>
+		<input type="text" class="form-control selling-search" placeholder="Search">
+		<i class="selling-search-btn fa fa-search"></i>
 	</div>
 	<div class="selling-contents list-header">
 		<div class="product-count">
-			총 <span>15</span>건
+			총 <span></span>건
 		</div>
 		<div class="all-selected">
 			<span>전체선택</span>
@@ -25,6 +25,53 @@
 			More
 			<span class="fa fa-angle-down"></span>
 		</section>
+	</section>
+	<section class="pop-up-controller">
+		<div class="pop-up-controller-main">
+			<ul class="controller-box">
+				<li class="controller-list controller-edit">
+					<i class="fa fa-pencil-square-o"></i>
+					<div>수정</div>
+
+				</li>
+				<li class="controller-list controller-delete">
+					<i class="fa fa-fire" aria-hidden="true"></i>
+					<div>삭제</div>
+				</li>
+				<li class="controller-list controller-process">
+					<i class="fa fa-exchange"></i>
+					<div>진행상황</div>
+				</li>
+			</ul>
+			<div class="popup-close full-btn controller-close">
+				취소
+			</div>
+		</div>
+		<div class="pop-up-delete">
+			<ul class="controller-box">
+				<div class="controller-title">삭제 하시겠습니까?</div>
+			</ul>
+			<div class="popup-controller-btn controller-delete-cancel">
+				취소
+			</div>
+			<div class="popup-controller-btn controller-delete-ok">
+				확인
+			</div>
+		</div>
+		<div class="product-status popup-status">
+			<div class="controller-title">진행상황</div>
+			<div class="status-buttons">
+				<button status="selling" class="status-select product-selling">판매중</button><!--
+			--><button status="processing" class="status-select product-processing">거래중</button><!--
+			--><button status="complete" class="status-select product-complete">판매완료</button>
+			</div>
+			<div class="popup-controller-btn controller-process-cancel">
+				취소
+			</div>
+			<div class="popup-controller-btn controller-process-ok">
+				확인
+			</div>
+		</div>
 	</section>
 </section>
 
