@@ -6,46 +6,24 @@ require([
 	var page = 0;
 
 	/*-----select Like -----*/
-	function selectLike(productId) {
+	function selectLike() {
 		$(".list-selector.like").off();
 		$(".list-selector.like").on("click", function() {
-			var select = $(".list-selector.like").hasClass("fa-heart").toString();
-
-			if(select === "false") {
-				$.ajax({
-					url: window._ctx.root + "/api/like/add/" + productId,
-					success: function (data) {
-						console.log(data.result);
-						if (data.result === "ok") {
-							$(".list-selector.like").removeClass("fa-heart-o");
-							$(".list-selector.like").addClass("fa-heart");
-							countLike(productId);
-						}
-						if (data.result === "no") {
-							alert("로그인을 해주세요.");
-						}
-
-					},
-					error: function() {
-						alert("로그인을 해주세요.");
-					},
-				});
-			}
-			if(select === "true") {
-				$.ajax({
-					url: window._ctx.root + "/api/like/cancel/" + productId,
-					success: function (data) {
-						if (data.result === "ok") {
-							$(".list-selector.like").removeClass("fa-heart");
-							$(".list-selector.like").addClass("fa-heart-o");
-							countLike(productId);
-						}
-					},
-					error: function() {
-						alert("로그인을 해주세요.");
-					},
-				});
-			}
+			event.stopPropagation();
+			var productId = $(this).parents("li").attr("product-id");
+			$.ajax({
+				url: window._ctx.root + "/api/like/cancel/" + productId,
+				success: function () {
+					var resultCount = $(".list-header .product-count span").attr("count");
+					console.log(resultCount);
+					$(".list.like-list li[product-id=" + productId + "]").remove();
+					$(".list-header .product-count span").attr("count", resultCount - 1);
+					$(".list-header .product-count span").text(resultCount - 1);
+				},
+				error: function() {
+					alert("로그인을 해주세요.");
+				},
+			});
 		});
 	}
 
@@ -108,6 +86,7 @@ require([
 
 				// count 검색 결과
 				$(".list-header .product-count span").text(count);
+				$(".list-header .product-count span").attr("count", count);
 
 				if(count === 0) {
 					$("ul.list.like-list").html("<div class='default-text'>찜한 상품이 없습니다.</div>");
@@ -223,18 +202,18 @@ require([
 						countComplain(productId);
 						countComment(productId);
 						countLike(productId);
-						selectLike(productId);
+						selectLike();
 					}
 
-					/* 더보기 클릭시*/
-					if(count > rowsPerPage || page < lastPage) {
+					if(page < lastPage) {
 						var moreHTML = "More<span class=\"fa fa-angle-down\"></span>";
 						$(".more-list").html(moreHTML);
 					}
-					else if(page = lastPage) {
+					else if(page >= lastPage) {
 						$("section.more-list").remove();
 					}
 
+					/* 더보기 클릭시*/
 					$(".more-list").off();
 					$(".more-list").on("click", function () {
 						++page;
