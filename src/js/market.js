@@ -192,11 +192,7 @@ require([
 			console.log("제품아이디"+productId);
 			console.log("제품아이디"+productId);
 			console.log("제품아이디"+productId);
-			$.ajax({
-				url: window._ctx.root + "/api/hits/plus/" + productId,
-				success: function () {
-				},
-			});
+
 			var url = window._ctx.root+"/market/market-detail.html";
 			url += "?product="+productId;
 			location.href =url;
