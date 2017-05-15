@@ -133,7 +133,7 @@ require([
 			}
 			else {
 				location.href = window._ctx.root+
-					"/mypage/selling-detail.html?product="+productId+"status="+status;
+					"/mypage/selling-detail.html?product="+productId+"&status="+status;
 			}
 
 		});

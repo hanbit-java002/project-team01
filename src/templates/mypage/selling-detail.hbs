@@ -1,62 +1,33 @@
 {{set root=".."}}
 {{>header title="거래 상세 정보" cssName="selling-detail"}}
-<section class="title selling-detail-title">
-	<span>거래 상세 정보</span>
+
+<section class="title purchase-detail-title">
+	<span>구매 상세 정보</span>
 </section>
-<section class="contents-wrapper selling-detail">
+<section class="contents-wrapper purchase-detail">
 	<section class="product-info">
 		<div class="info-title">
 			상품 정보
 		</div>
 		<div class="info-body">
-			<img class="product-img" src="{{root}}/img/shoes.jpg">
+			<img class="product-img" src="">
 			<div class="detail-info">
-				<div class="product name">
-					에어 조던 14 Black Pink New
-				</div>
-				<div class="product price">
-					<i class="fa fa-won"></i>
-					200,000
-				</div>
-				<div class="product size">
-					<div class="info-label">
-						Size
-					</div>
-					<span for="date">
-					235mm
-					</span>
-				</div>
-				<div class="product quality">
-					<div class="info-label">
-						Quality
-					</div>
-					<span for="quality">
-					새제품
-					</span>
-				</div>
+
 			</div>
 			<i class="fa fa-angle-double-right"></i>
 		</div>
 	</section>
 	<section class="trade-info">
 		<div class="info-title">
-			거래 정보 (구매자가 합의한 거래 방법)
+			거래 정보
 		</div>
 		<div class="detail-info">
-			<div class="trade-info" detail-info="date">
-				<div class="info-label">
-					거래 날짜
-				</div>
-				<span for="date">
-					2017/04/06
-				</span>
-			</div>
 			<div class="trade-info" detail-info="directly">
 				<div class="info-label">
 					직접 거래
 				</div>
 				<span for="directly">
-					목동역,오목교역,18시 이후
+					불가
 				</span>
 			</div>
 			<div class="trade-info" detail-info="delivery">
@@ -64,7 +35,7 @@
 					택배 거래
 				</div>
 				<span for="delivery">
-					택배비 착불
+					불가
 				</span>
 			</div>
 			<div class="trade-info" detail-info="safety">
@@ -72,54 +43,7 @@
 					안심 거래
 				</div>
 				<span for="safety">
-					가능
-				</span>
-			</div>
-		</div>
-	</section>
-	<section class="purchaser-info">
-		<div class="info-title">
-			구매자 정보
-		</div>
-		<div class="detail-info">
-			<div class="purchaser-info" detail-info="name">
-				<div class="info-label">
-					이름
-				</div>
-				<span for="name">
-					백수현
-				</span>
-			</div>
-			<div class="purchaser-info" detail-info="rank">
-				<div class="info-label">
-					회원 등급
-				</div>
-				<span for="rank">
-					일반 회원
-				</span>
-			</div>
-			<div class="purchaser-info" detail-info="contact">
-				<div class="info-label">
-					연락처
-				</div>
-				<span for="contact">
-					010-0000-0000
-				</span>
-			</div>
-			<div class="purchaser-info" detail-info="zip-code">
-				<div class="info-label">
-					우편 번호
-				</div>
-				<span for="zip-code">
-					158-075
-				</span>
-			</div>
-			<div class="purchaser-info" detail-info="address">
-				<div class="info-label">
-					주소
-				</div>
-				<span for="address">
-					서울시 양천구
+
 				</span>
 			</div>
 		</div>
@@ -134,7 +58,6 @@
 					이름
 				</div>
 				<span for="name">
-					백수현
 				</span>
 			</div>
 			<div class="seller-info" detail-info="rank">
@@ -142,7 +65,6 @@
 					회원 등급
 				</div>
 				<span for="rank">
-					일반 회원
 				</span>
 			</div>
 			<div class="seller-info" detail-info="contact">
@@ -150,63 +72,27 @@
 					연락처
 				</div>
 				<span for="contact">
-					010-0000-0000
-				</span>
-			</div>
-			<div class="seller-info" detail-info="address">
-				<div class="info-label">
-					주소
-				</div>
-				<span for="address">
-					서울시 양천구
-				</span>
-			</div>
-			<div class="seller-info" detail-info="account">
-				<div class="info-label">
-					입금 계좌
-				</div>
-				<span for="account">
-					1002-950-000000 (우리은행)
 				</span>
 			</div>
 		</div>
 	</section>
-	<section class="half resell-btn selling-cancel">
-		거래 취소
+	<section class="purchaser-info">
+		<div class="info-title">
+			구매자 정보
+		</div>
+		<div class="detail-info">
+
+		</div>
 	</section>
-	<section class="half resell-btn selling-complete">
-		판매 완료
+
+	<section class="resell-btn safety-payment">
+		안심 결제 하러 가기
+	</section>
+	<section class="resell-btn product-inquire">
+		상품 문의
+	</section>
+	<section class="resell-btn ok">
+		확인
 	</section>
 </section>
-<div class="popup-layer selling-cancel">
-	<div class="popup-text-area">
-		<div class="popup-text-body">
-			<div class="text1">
-			구매자와 거래를 취소하시겠습니까?
-			</div>
-			<div class="text2">
-			거래를 취소하면 다른 구매자와
-			<br>
-			다시 거래를 진행할 수 있습니다.
-			</div>
-		</div>
-	</div>
-	<div class="popup-btn-area">
-		<div class="popup-btn btn-cancel">취소</div>
-		<div class="popup-btn btn-ok">확인</div>
-	</div>
-</div>
-<div class="popup-layer selling-complete">
-	<div class="popup-text-area">
-		<div class="popup-text-body">
-			<div class="text1">
-				판매를 완료하시겠습니까?
-			</div>
-		</div>
-	</div>
-	<div class="popup-btn-area">
-		<div class="popup-btn btn-cancel">취소</div>
-		<div class="popup-btn btn-ok">확인</div>
-	</div>
-</div>
 {{>footer jsName="selling-detail"}}

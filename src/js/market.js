@@ -187,11 +187,12 @@ require([
 		/* 마켓디테일 페이지 이동*/
 		$(".market-product-list>li").on("click", function () {
 			var productId= $(this).attr("product-id");
-			console.log("제품아이디"+productId);
-			console.log("제품아이디"+productId);
-			console.log("제품아이디"+productId);
-			console.log("제품아이디"+productId);
-			console.log("제품아이디"+productId);
+			var status= $(this).attr("status");
+
+			if (status === "blind") {
+				alert("블라인드된 게시물입니다.");
+				return;
+			}
 
 			var url = window._ctx.root+"/market/market-detail.html";
 			url += "?product="+productId;
