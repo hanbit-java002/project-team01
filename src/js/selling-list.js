@@ -11,19 +11,39 @@ require([
 		showList();
 	});
 
+
+
 	/* 물품관리 버튼 눌렀을때 팝업*/
 	function clickProductController() {
+		/* 팝업을 취소 했을 때 설정*/
 		$(".popup-close, .dark-layer").on("click", function () {
+			/* 초기화*/
 			$(".pop-up-controller-main").show();
 			$(".popup-status").hide();
 			$(".pop-up-delete").hide();
+			$(".status-select").removeClass("selected");
 		});
+
 		$(".selling-product-controller").off();
 		$(".selling-product-controller").on("click", function (event) {
 			event.stopPropagation();
 			var productId = $(this).parents(".product-listInfo-list").attr("product-id");
 			var sellerUid = $(this).parents(".product-listInfo-list").attr("seller-uid");
 			console.log(productId);
+
+			/* 스태터스 초기 값 세팅*/
+			var status = $(this).parents(".product-listInfo-list").attr("process");
+			if (status === "selling") {
+				$(".product-selling").addClass("selected");
+			}
+			else if (status === "processing") {
+				$(".product-processing").addClass("selected");
+			}
+			else {
+				$(".product-complete").addClass("selected");
+			}
+
+
 			common.popUp("pop-up-controller", "left");
 			/* 수정하기*/
 			$(".controller-edit").on("click", function () {
@@ -60,18 +80,62 @@ require([
 					});
 				});
 			});
+
+
 			/* 진행상황*/
+			var statusSelectBefore = $(".status-select.selected").attr("status");
 			$(".controller-process").on("click", function () {
 				$(".pop-up-delete").hide();
 				$(".pop-up-controller-main").hide();
 				$(".popup-status").show();
 
+				/* 진행 취소 버튼 눌렀을 떼*/
 				$(".controller-process-cancel").on("click", function () {
+					$(".status-select").removeClass("selected");
+					$(".status-select[status=\""+statusSelectBefore+"\"]").addClass("selected");
 					$(".pop-up-delete").hide();
 					$(".pop-up-controller-main").show();
 					$(".popup-status").hide();
 				});
+
+				/* 진행 오케이 버튼 눌렀을 떼*/
+				$(".controller-process-ok").on("click", function () {
+					var statusSelect = $(".status-select.selected").attr("status");
+					$.ajax({
+						url: window._ctx.root+"/api/market/updateStatus",
+						data: {
+							productId: productId,
+							statusSelect: statusSelect,
+							statusSelectBefore: statusSelectBefore,
+						},
+						success: function () {
+							alert("진행상황이 수정되었습니다.");
+							location.href = window._ctx.root+"/mypage/selling-list.html";
+						},
+					});
+				});
 			});
+		});
+	}
+
+	/* 리스트 클릭 처리처리*/
+	function clickList() {
+		$(".product-listInfo-list").on("click", function() {
+			var productId=$(this).attr("product-id");
+			var status=$(this).attr("process");
+			console.log(status);
+			console.log(productId);
+			if (status === "selling") {
+				location.href = window._ctx.root+"/market/market-detail.html?product="+productId;
+			}
+			else if (status === "blind") {
+				alert("블라인드 된 게시물입니다.");
+			}
+			else {
+				location.href = window._ctx.root+
+					"/mypage/selling-detail.html?product="+productId+"status="+status;
+			}
+
 		});
 	}
 
@@ -233,7 +297,7 @@ require([
 					productList += "</li>";
 				}
 				$(".selling-product-list").append(productList);
-
+				clickList();
 				/* 더보기 클릭시*/
 				$(".more-list").off();
 				$(".more-list").on("click", function () {
@@ -249,6 +313,12 @@ require([
 			},
 		});
 	}
+
+	/* 진행상황 하나만 고르기*/
+	$(".status-select").on("click", function () {
+		$(".status-select").removeClass("selected");
+		$(this).addClass("selected");
+	});
 
 	showList();
 });
