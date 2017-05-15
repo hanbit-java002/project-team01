@@ -331,7 +331,7 @@ require([
 					if (item.category_name === "신발") {
 						productList += 	"mm";
 					}
-					else if (item.category_name === "허리") {
+					else if (item.category_name === "하의") {
 						productList += 	"inch";
 					}
 					productList += "            </div>";
