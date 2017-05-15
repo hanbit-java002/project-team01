@@ -231,15 +231,15 @@ require([
 						var moreHTML = "More<span class=\"fa fa-angle-down\"></span>";
 						$(".more-list").html(moreHTML);
 					}
+					else if(page = lastPage) {
+						$("section.more-list").remove();
+					}
 
 					$(".more-list").off();
 					$(".more-list").on("click", function () {
 						++page;
 						if (page <= lastPage) {
 							showList();
-						}
-						else {
-							alert("마지막 물품입니다.");
 						}
 					});
 

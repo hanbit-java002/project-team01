@@ -485,12 +485,6 @@ require([
 		});
 	}
 
-	/*-----구매 페이지로 이동-----*/
-	$(".resell-btn.purchase").on("click", function() {
-		location.href = window._ctx.root + "/purchase/purchase.html?product=" + productId;
-	});
-
-
 	/*-----product img 불러오기-----*/
 	function loadProductImg() {
 		$.ajax({
@@ -625,6 +619,10 @@ require([
 					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
 					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
 					$(".purchase-area").html("<div class=\"resell-btn purchase\">구매</div>");
+					/*-----구매 페이지로 이동-----*/
+					$(".resell-btn.purchase").on("click", function() {
+						location.href = window._ctx.root + "/purchase/purchase.html?product=" + productId;
+					});
 				}
 				$(".market-detail .board-setting>ul").html(boardSettingHTML);
 				updateSelling();
