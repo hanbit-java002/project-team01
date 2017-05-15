@@ -142,21 +142,129 @@ require([
 					}
 				}
 				$(".seller-info .count-selling").text(countSell + "건 판매)");
-				$(".seller-info span[for=contact]").text(result.sellerInfo.phone_num);
+
+
+				// 전화 번호 form
+				var phoneNum = result.sellerInfo.phone_num;
+				var splite = "-";
+				var position = ["3", "8"];
+				var output = [phoneNum.slice(0, position[0]), splite, phoneNum.slice(position[0])].join("");
+				output = [output.slice(0, position[1]), splite, output.slice(position[1])].join("");
+
+				$(".seller-info span[for=contact]").text(output);
 			},
 		});
 	}
 
-	/*-----판매자 정보 불러오기-----*/
+	/*-----구매자 정보 불러오기-----*/
 	function loadPurchaserInfo() {
 		$.ajax({
 			url: window._ctx.root + "/api/deal/purchaser/" + productId,
 			success: function (result) {
+				console.log(result);
+				var itemHTML = "";
+
+				itemHTML += "<div class='purchaser-info' detail-info='name'>";
+				itemHTML += "<div class='info-label'>";
+				itemHTML += "이름";
+				itemHTML += "</div>";
+				itemHTML += "<span for='name'>";
+				itemHTML += result.user_name;
+				itemHTML += "</span>";
+				itemHTML += "</div>";
+				itemHTML += "<div class='purchaser-info' detail-info='contact'>";
+				itemHTML += "<div class='info-label'>";
+				itemHTML += "연락처";
+				itemHTML += "</div>";
+				itemHTML += "<span for='contact'>";
+				itemHTML += result.phone_num;
+				itemHTML += "</span>";
+				itemHTML += "</div>";
+				itemHTML += "<div class='purchaser-info' detail-info='deal_means'>";
+				itemHTML += "<div class='info-label'>";
+				itemHTML += "거래 방법";
+				itemHTML += "</div>";
+				itemHTML += "<span for='deal_means'>";
+				if(result.deal_means === "direct") {
+					itemHTML += "직접 거래";
+				}
+				else if (result.deal_means === "delivery") {
+					itemHTML += "택배 거래";
+				}
+				itemHTML += "</span>";
+				itemHTML += "</div>";
+
+				if(result.zipcode !== "") {
+					itemHTML += "<div class='purchaser-info' detail-info='zipCode'>";
+					itemHTML += "<div class='info-label'>";
+					itemHTML += "우편 번호";
+					itemHTML += "</div>";
+					itemHTML += "<span for='zipCode'>";
+					itemHTML += result.zipcode;
+					itemHTML += "</span>";
+					itemHTML += "</div>";
+				}
+
+				if(result.address !== "") {
+					itemHTML += "<div class='purchaser-info' detail-info='address'>";
+					itemHTML += "<div class='info-label'>";
+					itemHTML += "주소";
+					itemHTML += "</div>";
+					itemHTML += "<span for='address'>";
+					itemHTML += result.address;
+					itemHTML += "</span>";
+					itemHTML += "</div>";
+				}
+
+				if(result.direct_place !== "") {
+					itemHTML += "<div class='purchaser-info' detail-info='direct-place'>";
+					itemHTML += "<div class='info-label'>";
+					itemHTML += "희망 지역";
+					itemHTML += "</div>";
+					itemHTML += "<span for='direct-place'>";
+					itemHTML += result.direct_place;
+					itemHTML += "</span>";
+					itemHTML += "</div>";
+				}
+
+				$(".purchaser-info .detail-info").html(itemHTML);
+
+				//안심 결제 버튼 display
+				if (result.safe_deal) {
+					$(".resell-btn.safety-payment").css("display", "block");
+				}
 
 			},
+			error: function () {
+				alert("로그인을 해주세요.");
+			}
 		});
 	}
 
+	//안심 거래 사이트로 이동
+	$(".resell-btn.safety-payment").on("click", function() {
+		location.href = "https://www.unicro.co.kr/index.jsp";
+	});
+
+	//"확인" 버튼 클릭시, 마켓으로 이동
+	$(".resell-btn.ok").on("click", function() {
+		var preURL = document.referrer;
+
+		if(preURL.includes("purchase.html")) {
+			location.href = window._ctx.root + "/market/market.html?brandId=brand-all";
+		}
+		else if(preURL.includes("purchase-list.html")) {
+			location.href = window._ctx.root + "/mypage/purchase-list.html";
+		}
+		else {
+			location.href = window._ctx.root + "/market/market.html?brandId=brand-all";
+		}
+	});
+
+	// 상품 문의 버튼 클릭시, 해당 상품 상세 페이지로 이동
+	$(".resell-btn.product-inquire").on("click", function() {
+		location.href = window._ctx.root + "/market/market-detail.html?product=" + productId;
+	});
 
 	//product Info에서 >> 버튼 클릭시 해당 상품 상세 페이지로 이동
 	$(".info-body .fa-angle-double-right").on("click", function() {
