@@ -107,6 +107,17 @@ require([
 				}
 			},
 		});
+
+		$.ajax({
+			url: window._ctx.root + "/api/deal/userInfo",
+			success: function(result) {
+				var address = result.addr + " " + result.addr_detail;
+				$(".trade #input-name").attr("value", result.user_name);
+				$(".trade #input-phone-num").attr("value", result.phone_num);
+				$(".trade #input-zip-code").attr("value", result.zip_code);
+				$(".trade #input-addr").attr("value", address);
+			},
+		});
 	}
 
 	// 구매

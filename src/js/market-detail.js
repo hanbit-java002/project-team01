@@ -624,6 +624,7 @@ require([
 				else if (item.seller_uid !== sessionUid || sessionUid === "null") {
 					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
 					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
+					$(".purchase-area").html("<div class=\"resell-btn purchase\">구매</div>");
 				}
 				$(".market-detail .board-setting>ul").html(boardSettingHTML);
 				updateSelling();

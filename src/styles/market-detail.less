@@ -64,8 +64,7 @@
 .product-info .product.price,
 .product-info .product.quality,
 .seller-info,
-.detail-description,
-.dealing-mode {
+.detail-description {
 	margin-bottom: @section-padding-bottom;
 	padding-bottom: @section-padding-bottom;
 	border-bottom: solid 1px @colorLineColor;
@@ -211,7 +210,12 @@ line {
 	margin-bottom: 15px;
 }
 
-/*----------comments-area----------*/
+.market-detail .resell-btn.purchase:before {
+	content: '';
+	border-top: solid 1px @colorLineColor;
+}
+
+	/*----------comments-area----------*/
 
 .comment-header {
 	font-size: 18px;
