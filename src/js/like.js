@@ -4,6 +4,7 @@ require([
 	var common = require("common");
 	var rowsPerPage = 4;
 	var page = 0;
+	var searchValue = "";
 
 	/*-----select Like -----*/
 	function selectLike() {
@@ -72,12 +73,13 @@ require([
 	}
 
 	/*-----like list 불러오기-----*/
-	function showList() {
+	function showList(searchValue) {
 		$.ajax({
 			url: window._ctx.root + "/api/like/list",
 			data: {
 				rowsPerPage: rowsPerPage,
 				page: page,
+				searchValue: searchValue,
 			},
 			success: function (result) {
 				var count = result.count;
@@ -218,7 +220,7 @@ require([
 					$(".more-list").on("click", function () {
 						++page;
 						if (page <= lastPage) {
-							showList();
+							showList(searchValue);
 						}
 					});
 
@@ -243,6 +245,41 @@ require([
 		});
 	}
 
-	showList();
+	// search
+	function search() {
+		$(".list-search-box input").on("keyup", function(event) {
+			searchValue = $(".list-search-box input").val().trim();
+			if (event.keyCode === 13) {
+				showList(searchValue);
+				$(".list.like-list>li, .list.like-list>div").remove();
+			}
+			else if (event.keyCode === 27) {
+				clearSearchKeywords();
+			}
+		});
+		$(".list-search-box .fa-search").on("click", function () {
+			searchValue = $(".list-search-box input").val().trim();
+			console.log(searchValue);
+			console.log("서치 실행");
+			if (searchValue === "") {
+				alert("검색어를 입력해주세요.");
+				$(".list-search-box input").focus();
+				console.log("서치 실행 포커스");
+			}
+			else {
+				showList(searchValue);
+				$(".list.like-list>li, .list.like-list>div").remove();
+				console.log("서치 실행 리스트");
+			}
+		});
+	}
+
+	// 검색 input TEXT 초기화
+	function clearSearchKeywords() {
+		$(".list-search-box input").val("");
+	}
+
+	showList(searchValue);
+	search();
 	goMarketDetail();
 });
