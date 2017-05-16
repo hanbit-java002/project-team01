@@ -32,7 +32,14 @@ require([
 		success: function (data) {
 			if (data.result == "ok") {
 				alert("로그인 되셨습니다.");
-				window.history.back();
+				var preURL = document.referrer;
+
+				if(preURL.includes("signup.html")) {
+					location.href = window._ctx.root + "/index.html";
+				}
+				else {
+					window.history.back();
+				}
 			}
 			else {
 				alert("정상적으로 로그인되지 않았습니다.");
