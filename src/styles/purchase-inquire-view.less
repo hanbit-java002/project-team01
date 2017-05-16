@@ -1,52 +1,66 @@
 @import 'common.less';
-@import 'lib/product-list';
+@import 'lib/product-list.less';
 
-.purchase-inquire-view .product-info {
+div.product-info {
+	padding-bottom: 15px;
+}
+
+.product-info .product-img {
+	display: inline-block;
+	margin-right: 13px;
+	width: 33%;
+	height: 95px;
+	vertical-align: top;
+}
+
+.product-info .detail-info {
+	width: 62%;
 	position: relative;
+	margin-top: 0%;
 }
 
-.purchase-inquire-view .list-header {
-	margin-top: 25px;
+.product.name {
+	width: 100%;
 }
 
-.purchase-inquire-view .product-info {
-	padding-bottom: 20px;
-}
-
-.inquire-view-area>div {
+.question-info,
+.answer-info {
 	position: relative;
-	padding-top: 20px;
-}
-
-.inquire-title {
-	padding-bottom: 20px;
-	font-weight: bold;
-}
-
-.inquire-content {
-	padding-bottom: 20px;
-}
-
-.seller-answer>.inquire-content {
-	padding-bottom: 0px;
-}
-
-.purchaser-question>.inquire-content {
-	border-bottom: solid 1px @colorLineColor;
-}
-
-.inquire-view-area .reporting-date {
-	position: absolute;
-	top: 20px;
-	right: 0px;
 	font-size: 13px;
-	color: @colorDarkGray;
+	padding: 15px 0;
+	border-bottom: solid 1px #F2F2F2;
 }
 
-.seller-answer .inquire-content.default {
-	color: @colorDarkGray;
+.answer-info {
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
-.purchase-inquire-view ul.list>li {
-	border-bottom: solid 1px @colorDarkGray;
+.info-title {
+	border-bottom: none;
+	padding-bottom: 0;
+	margin-top: 0px;
+	font-size: 13px;
+}
+
+.reporting-date {
+	position: absolute;
+	right: 0;
+	top: 15px;
+	font-size: 12px;
+}
+
+.product-info .fa-angle-double-right {
+	position: absolute;
+	width: 30px;
+	height: 50px;
+	text-align: right;
+	top: 33%;
+	right: 0;
+	color: @colorPoint;
+	font-size: 25px;
+}
+
+.answer-info .content.default {
+	color: @colorDarkGray;
 }

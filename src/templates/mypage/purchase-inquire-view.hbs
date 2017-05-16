@@ -1,131 +1,136 @@
 {{set root=".."}}
-{{>header title="상품 문의" cssName="seller-inqure-view"}}
-
-<div class="product-question">
-	<ul>상품 문의</ul>
-	<div class="product-question-box">
-		<ul class="product-question-count">총 15 건</ul>
-		<ul class="user-list">
-			<li class="product-list">
-				<div class="product-date">2017/04/02</div>
-				<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
-				<div class="product-detail">
-					<div class="product-name">컨버스 네이버후드</div>
-					<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
-					<ul>
-						<li class="product-size"><span>260</span>mm</li>
-						<li class="product-quality"><span>새상품</span></li>
-						<li class="product-deal"><span>직접거래</span></li>
-					</ul>
-				</div>
-				<i class="product-detail-arrow fa fa-angle-double-right" ></i>
-			</li>
-			<div class="product-question-list">
-				<ul class="question-content">
-					<div>
-						문의 내용
-					</div>
-					<div class="reporting-date">
-						<span class="fa fa-clock-o"></span>
-						2017/03/31
-					</div>
-					<br>
-					<li>새상품 맞나요? 보증서 있어요?</li>
-
-				</ul>
-				<ul class="question-return">
-					<div>
-						판매자 답변
-					</div>
-					<div class="reporting-date">
-						<span class="fa fa-clock-o"></span>
-						2017/03/31
-					</div>
-					<br>
-					<li>새상품입니다. 보증서 동봉해드릴게요.</li>
-				</ul>
-			</div>
-		</ul>		<ul class="user-list">
-		<li class="product-list">
-			<div class="product-date">2017/04/02</div>
-			<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
-			<div class="product-detail">
-				<div class="product-name">컨버스 네이버후드</div>
-				<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
-				<ul>
-					<li class="product-size"><span>260</span>mm</li>
-					<li class="product-quality"><span>새상품</span></li>
-					<li class="product-deal"><span>직접거래</span></li>
-				</ul>
-			</div>
-			<i class="product-detail-arrow fa fa-angle-double-right" ></i>
-		</li>
-		<div class="product-question-list">
-			<ul class="question-content">
-				<div>
-					문의 내용
-				</div>
-				<div class="reporting-date">
-					<span class="fa fa-clock-o"></span>
-					2017/03/31
-				</div>
-				<br>
-				<li>새상품 맞나요? 보증서 있어요?</li>
-
-			</ul>
-			<ul class="question-return">
-				<div>
-					판매자 답변
-				</div>
-				<div class="reporting-date">
-					<span class="fa fa-clock-o"></span>
-					2017/03/31
-				</div>
-				<br>
-				<li>새상품입니다. 보증서 동봉해드릴게요.</li>
-			</ul>
-		</div>
-	</ul>		<ul class="user-list">
-		<li class="product-list">
-			<div class="product-date">2017/04/02</div>
-			<div class="product-img" style="background-image: url('{{root}}/img/shoes.jpg')"></div>
-			<div class="product-detail">
-				<div class="product-name">컨버스 네이버후드</div>
-				<div class="product-price"><i class="fa fa-krw"></i><span>260,000</span></div>
-				<ul>
-					<li class="product-size"><span>260</span>mm</li>
-					<li class="product-quality"><span>새상품</span></li>
-					<li class="product-deal"><span>직접거래</span></li>
-				</ul>
-			</div>
-			<i class="product-detail-arrow fa fa-angle-double-right" ></i>
-		</li>
-		<div class="product-question-list">
-			<ul class="question-content">
-				<div>
-					문의 내용
-				</div>
-				<div class="reporting-date">
-					<span class="fa fa-clock-o"></span>
-					2017/03/31
-				</div>
-				<br>
-				<li>새상품 맞나요? 보증서 있어요?</li>
-			</ul>
-			<ul class="question-return">
-				<div>
-					판매자 답변
-				</div>
-				<div class="reporting-date">
-					<span class="fa fa-clock-o"></span>
-					2017/03/31
-				</div>
-				<br>
-				<li>새상품입니다. 보증서 동봉해드릴게요.</li>
-			</ul>
-		</div>
-	</ul>
+{{>header title="상품 문의" cssName="purchase-inquire-view"}}
+<section class="title like-title">
+	<span>상품 문의</span>
+</section>
+<section class="contents-wrapper">
+	<div class="list-search-box">
+		<input type="text" class="form-control" placeholder="Search">
+		<i class="fa fa-search"></i>
 	</div>
-	<div class="question-more"><li>M o r e</li><li class="fa fa-angle-down"></li></div>
-</div>
-{{>footer jsName="main"}}
+	<div class="product-inquire list-header">
+		<div class="product-count">
+			총 <span count=""></span>건
+		</div>
+	</div>
+	<ul class="list inquire-list">
+		<!--<li product-id="" process="">
+			<div class="product-info">
+				<img class="product-img" src="/api/file/IMG00000000000000001478687889521853">
+				<div class="detail-info">
+					<div class="product name">
+						Air Jordan 4 Retro 'Pure Money'
+					</div>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						230,000
+					</div>
+					<div class="product size">
+						275
+						<span> mm</span>
+					</div>
+					<div class="product quality">
+						새상품
+					</div>
+					<ul class="product dealing-mode">
+						<li class="dealing-mode directly">
+							직접거래
+						</li>
+						<li class="dealing-mode delivery">
+							택배거래
+						</li>
+						<li class="dealing-mode safety">
+							안심결제
+						</li>
+					</ul>
+					<i class="fa fa-angle-double-right"></i>
+				</div>
+			</div>
+			<div class="question-info" comment_id="">
+				<div class="info-title">
+					문의 내용
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="content">
+					새상품 맞나요? 보증서 있어요?
+				</div>
+			</div>
+			<div class="answer-info" comment_id="" upper_id="">
+				<div class="info-title">
+					판매자 답변
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="content">
+					새상품입니다. 보증서 동봉해드릴게요.
+				</div>
+			</div>
+		</li>
+		<li product-id="" process="">
+			<div class="product-info">
+				<img class="product-img" src="/api/file/IMG00000000000000001478687889521853">
+				<div class="detail-info">
+					<div class="product name">
+						Air Jordan 4 Retro 'Pure Money'
+					</div>
+					<div class="product price">
+						<i class="fa fa-won"></i>
+						230,000
+					</div>
+					<div class="product size">
+						275
+						<span> mm</span>
+					</div>
+					<div class="product quality">
+						새상품
+					</div>
+					<ul class="product dealing-mode">
+						<li class="dealing-mode directly">
+							직접거래
+						</li>
+						<li class="dealing-mode delivery">
+							택배거래
+						</li>
+						<li class="dealing-mode safety">
+							안심결제
+						</li>
+					</ul>
+					<i class="fa fa-angle-double-right"></i>
+				</div>
+			</div>
+			<div class="question-info" comment_id="">
+				<div class="info-title">
+					문의 내용
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="content">
+					새상품 맞나요? 보증서 있어요?
+				</div>
+			</div>
+			<div class="answer-info" comment_id="" upper_id="">
+				<div class="info-title">
+					판매자 답변
+				</div>
+				<div class="reporting-date">
+					<span class="fa fa-clock-o"></span>
+					2017/03/31
+				</div>
+				<div class="content">
+					새상품입니다. 보증서 동봉해드릴게요.
+				</div>
+			</div>
+		</li>-->
+	</ul>
+	<section class="more-list">
+
+	</section>
+</section>
+{{>footer jsName="purchase-inquire-view"}}
