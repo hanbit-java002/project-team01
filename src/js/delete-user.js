@@ -1,81 +1,82 @@
 require([
 	"common",
 ], function() {
+	var common = require("common");
+
+
+	/* default 유저 정보 가져오기 */
 	function loadUserData() {
-		var common = require("common");
+		var uid = common.getQuerystring("uid");
+
+		$("#member-name").val("");
+		$("#member-phone-num").val("");
+
 		$.ajax({
-			url: window._ctx.root + "/api/member/signedin",
+			url: window._ctx.root + "/api/member/" + uid,
+			method: "GET",
 			success: function(data) {
-				/*var itemHTML = "";
-				itemHTML += "<span class='title'>회원 탈퇴</span>";
-				itemHTML += "<input id='member-name' type='text' value='" + data.userId + "' disabled>";
-				itemHTML += "<input id='member-phone-num' type='text' value='" + data.phone_num + "' disabled>";
-				itemHTML += "<input id='member-pw' type='password' placeholder='Password'>";
-				itemHTML += "<input id='member-reason' type='text' placeholder='탈퇴 사유'>";
+				$("#member-name").val(data.user_name);
+				$("#member-phone-num").val(data.phone_num);
 
-				itemHTML += "<button class='btn-bottom btn-delete'>탈퇴 완료</button>";
-				itemHTML += "<button class='btn-bottom btn-cancel'>취소</button>";
-				$(".delete-user").html(itemHTML);*/
-				$("#member-name").val(data.userId);
-				$("#member-num").val(data.phone_num);
-
-				/* 버튼 클릭시 password 체크 */
-				$(".btn-delete").on("click", function() {
-					var passwordVal = $("#member-pw").val().trim();
-					var reason = $("#member-reason").val().trim();
-
-					if (passwordVal === "") {
-						alert("비밀번호를 입력하세요.");
-						$("#member-pw").focus();
-						return;
-					}
-					else if (reason === "") {
-						alert("사유를 입력해주세요.");
-						$("#member-reason").focus();
-						return;
-					}
-					else {
-						var userId = $("#member-name").val();
-						var userPw = $("#member-pw").val();
-
-						$.ajax({
-							url: window._ctx.root+"/api/member/signIn",
-							method: "POST",
-							data: {
-								userId: userId,
-								userPw: userPw,
-							},
-							success: function (data) {
-								if (data.result == "ok") {
-									/*-----회원 정보 수정-----*/
-									$.ajax({
-										url: window._ctx.root + "/api/admin/member/" + userUid,
-										method: "PUT",
-										data: {
-											userRank: userRank,
-										},
-										success: function() {
-											location.href = window._ctx.root + "/admin/admin-member.html";
-										},
-										error: function() {
-											alert("수정에 실패했습니다.");
-										},
-									});
-									/*탈퇴완료 팝업*/
-									common.popUp("popup-delete-box", "top");
-								}
-								else {
-									alert("정상적으로 처리 되지 않았습니다.");
-								}
-							},
-							error: function (jqXHR) {
-								alert(jqXHR.responseJSON.message);
-							},
-						});
-					}
-				});
+				//var pw = data.user_pw;
+				//alert(pw + " load");
 			},
 		});
 	}
+
+
+	/* 회원 정보 수정 */
+	function deleteUser() {
+		var userUid = common.getQuerystring("uid");
+
+		var userPw = $("#member-pw").val();
+		//var deleteReson = $("#member-reason").val().trim();
+
+
+		$.ajax({
+			url: window._ctx.root + "/api/member/delete",
+			method: "POST",
+			data: {
+				userUid: userUid,
+				userPw: userPw,
+			},
+			success: function() {
+				$(".popup-delete-box").show();
+
+				$(".dark-layer").show();
+				$("body").css("overflow", "hidden");
+				$(".popup-delete-box").css("z-index", "31");
+
+			},
+			error: function(jqXHR) {
+				alert(jqXHR.responseJSON.message);
+			},
+		});
+
+	}
+
+
 	loadUserData();
+
+
+	//탈퇴 완료 버튼 클릭 시
+	<!-- 탈퇴 완료 팝업창 -->
+	$(".btn-delete").on("click", function() {
+		deleteUser();
+	});
+
+	$(".dark-layer, .popup-contents>.btn-ok").on("click", function () {
+		$(".popup-delete-box").hide();
+		location.href = window._ctx.root + "/index.html";
+
+		$(".dark-layer").hide();
+		$("body").css("overflow", "");
+		$(".popup-delete-box").css("z-index", "");
+	});
+
+
+	//취소 버튼 클릭 시
+	$(".btn-cancel").on("click", function() {
+		history.back();
+	});
 });

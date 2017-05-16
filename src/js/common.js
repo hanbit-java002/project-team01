@@ -354,6 +354,10 @@ define([
 
 	/* list selector */
 	function listSelector() {
+		$("#all-selected").attr("get-checked", "false");
+		$("#all-selected").off();
+
+
 		$("[check-box]").on("click", function () {
 			if ($(this).attr("get-checked") == "true") {
 				$(this).attr("get-checked", "false");
@@ -362,6 +366,7 @@ define([
 				$(this).attr("get-checked", "true");
 			}
 		});
+
 
 		$("#all-selected").on("click", function () {
 			if ($(this).attr("get-checked") == "true") {

@@ -4,6 +4,7 @@ require([
 	var common= require("common");
 	var rowsPerPage = 5;
 	var page =0;
+	var statusCount = 0;
 
 
 	function initCountLike(productId) {
@@ -27,23 +28,23 @@ require([
 	}
 
 	function goMarketDetail() {
-		$(".product-list>li").off();
+		$(".product-list>li>.product-info, .board-info").off();
 		/* 마켓디테일 페이지 이동*/
-		$(".product-list>li").on("click", function () {
-			var productId= $(this).attr("product-id");
+		$(".product-list>li>.product-info, .board-info").on("click", function () {
+			var productId= $(this).parent("li").attr("product-id");
 			console.log("제품아이디"+productId);
 			console.log("제품아이디"+productId);
 			console.log("제품아이디"+productId);
 			console.log("제품아이디"+productId);
 			console.log("제품아이디"+productId);
-			$.ajax({
-				url: window._ctx.root + "/api/hits/plus/" + productId,
-				success: function () {
-				},
-			});
+
 			var url = window._ctx.root+"/market/market-detail.html";
 			url += "?product="+productId;
 			location.href =url;
+		});
+
+		$(".list-selector").on("click", function () {
+			common.listSelector();
 		});
 	}
 
@@ -62,16 +63,20 @@ require([
 
 
 				var count = result.count;
+
 				var lastPage = parseInt(count / rowsPerPage)
 					+ (count % rowsPerPage === 0 ? 0 : 1)-1;
 				console.log("마지막페이지"+lastPage);
 				var productList ="";
+
+				statusCount = result.statusCount;
+				$(".product-count>span").text(statusCount);
+
+
 				for (var i=0; i<result.list.length; i++) {
-					$(".product-count>span").text(result.list.length);
 					var item = result.list[i];
 
-					productList += "<li class=\"product-item-list\" product-id=\""+item.product_id+"" +
-						"\" process=\""+item.selling_status+"\">";
+					productList += "<li class=\"product-item-list\" product-id=\""+item.product_id+"" + "\" >";
 					productList += "    <div class=\"product-info\">";
 					productList += "        <img class=\"product-img\" src=\""+
 						/*window._ctx.root+"/img/jordan1.png"*/item.img_url+"\">";
@@ -185,13 +190,14 @@ require([
 				$(".product-list").append(productList);
 
 				goMarketDetail();
+
 				/* 더보기 클릭시*/
 				$(".more-list").off();
 				$(".more-list").on("click", function () {
-					var brandId = $(".menu-category li.active").attr("brand-id");
 					++page;
+
 					if (page<=lastPage) {
-						productListAjax(brandId);
+						showList(menuCategory);
 					}
 					else {
 						alert("마지막 물품입니다.");
@@ -199,9 +205,41 @@ require([
 				});
 			},
 			error: function (jqXHR) {
-				alert(jqXHR.responseJSON.message + "메뉴: " + menuCategory );
+				alert(jqXHR.responseJSON.message);
 			},
 		});
+	}
+
+
+	function convertStatus(menuCategory) {
+		var chk = document.getElementsByName("chk");
+		var parent = document.getElementsByClassName("product-item-list");
+		var i = 0;
+
+		var productId = "";
+
+		while(chk[i]) {
+
+			if(chk[i].getAttribute("get-checked") == "true") {
+				productId = parent[i].getAttribute("product-id");
+
+				$.ajax({
+					url: window._ctx.root + "/api/admin/product/" + menuCategory,
+					method: "PUT",
+					data: {
+						productId: productId,
+					},
+					success: function() {
+						location.reload();
+					},
+					error: function(jqXHR) {
+						alert(jqXHR.responseJSON.message);
+					},
+				});
+			}
+			i++;
+		}
+
 	}
 
 
@@ -209,9 +247,11 @@ require([
 	/*function settingURL() {
 		var tabMenuId = $(".menu-category>ul .active").attr("menu-category-detail");
 		var url = window._ctx.root + "admin/admin-product.html";
-		url += "?tabMenuId=" + tabMenuId;
+		url += "#tabMenuId=" + tabMenuId;
 		location.href = url;
 	}*/
+
+
 
 	var naviHandler = function (jqElement) {
 		var menuCategory = $(jqElement).attr("menu-category-detail");
@@ -245,10 +285,31 @@ require([
 
 		/* 리스트 초기화*/
 		$(".product-list").html("");
+		page = 0;
+
+
+		var hash = location.hash;
+
+		if(hash === "" || hash === "#" ) {
+			location.hash = "#complete";
+			return;
+		}
+
+		var hash = "#" + menuCategory;
+		location.hash = hash;
+
 		showList(menuCategory);
+		//showList(menuCategory);
 	};
 
-	showList("complete");
+	var hash = location.hash;
+
+	if(hash === "" || hash === "#" ) {
+		location.hash = "#complete";
+		showList("complete");
+		return;
+	}
+
 	$(".menu-category>ul>li").on("click", function() {
 		common.navigate(this, naviHandler);
 	});
@@ -269,8 +330,11 @@ require([
 	//"판매 완료" 버튼의 "확인" 버튼 클릭시
 	$(".selling-complete>.popup-btn-area>.btn-ok").on("click", function() {
 		initPopUp();
-		location.href = window._ctx.root + "/admin/admin-product.html";
-		// 판매 관리>"거래 중" 탭으로 이동
+		//location.href = window._ctx.root + "/admin/admin-product.html";
+		// 판매 관리>"판매완료" 탭으로 이동
+
+		convertStatus("complete");
+
 	});
 
 	// "블라인드" 버튼 팝업
@@ -283,8 +347,9 @@ require([
 	//"블라인드" 버튼의 "확인" 버튼 클릭시
 	$(".list-blind>.popup-btn-area>.btn-ok").on("click", function() {
 		initPopUp();
-		location.href = window._ctx.root + "/admin/admin-product.html";
+		//location.href = window._ctx.root + "/admin/admin-product.html";
 		// 판매 관리>"신고 리스트" 탭으로 이동
+		convertStatus("blind");
 	});
 
 
