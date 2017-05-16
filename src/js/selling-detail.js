@@ -162,6 +162,10 @@ require([
 			url: window._ctx.root + "/api/deal/sellingPurchaser/" + productId,
 			success: function (result) {
 				console.log(result);
+				if (result.user_name === undefined) {
+					alert("거래 정보가 없는 완료품목입니다.");
+					location.href = window._ctx.root + "/mypage/selling-list.html";
+				}
 				var itemHTML = "";
 
 				itemHTML += "<div class='purchaser-info' detail-info='name'>";
@@ -248,6 +252,21 @@ require([
 
 	//"확인" 버튼 클릭시, 마켓으로 이동
 	$(".resell-btn.ok").on("click", function() {
+		var statusSelectBefore = "processing";
+		var statusSelect= "complete";
+		$.ajax({
+			url: window._ctx.root+"/api/market/updateStatus",
+			data: {
+				productId: productId,
+				statusSelect: statusSelect,
+				statusSelectBefore: statusSelectBefore,
+			},
+			success: function () {
+				alert("구매 완료 되었습니다.");
+				location.href = window._ctx.root+"/mypage/selling-list.html";
+			},
+		});
+		/*
 		var preURL = document.referrer;
 
 		if(preURL.includes("purchase.html")) {
@@ -258,12 +277,25 @@ require([
 		}
 		else {
 			location.href = window._ctx.root + "/market/market.html?brandId=brand-all";
-		}
+		}*/
 	});
 
 	// 상품 문의 버튼 클릭시, 해당 상품 상세 페이지로 이동
-	$(".resell-btn.product-inquire").on("click", function() {
-		location.href = window._ctx.root + "/market/market-detail.html?product=" + productId;
+	$(".resell-btn.deal-cancel").on("click", function() {
+		var statusSelectBefore = "processing";
+		var statusSelect= "selling";
+		$.ajax({
+			url: window._ctx.root+"/api/market/updateStatus",
+			data: {
+				productId: productId,
+				statusSelect: statusSelect,
+				statusSelectBefore: statusSelectBefore,
+			},
+			success: function () {
+				alert("구매취소 되었습니다.");
+				location.href = window._ctx.root+"/mypage/selling-list.html";
+			},
+		});
 	});
 
 	//product Info에서 >> 버튼 클릭시 해당 상품 상세 페이지로 이동
