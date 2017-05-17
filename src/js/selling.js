@@ -425,7 +425,7 @@ require([
 				success: function(data) {
 					if (data.result == "ok") {
 						alert("저장완료");
-						location.href= window._ctx.root+"/market/market.html";
+						location.href= window._ctx.root+"/market/market.html?brandId=brand-all";
 					}
 					else {
 						alert("저장실패");

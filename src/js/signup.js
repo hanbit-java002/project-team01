@@ -7,20 +7,23 @@ require([
 	 메일 인증 발송 팝업창*/
 	$(".btn-verify").on("click", function() {
 		common.popUp("popup-email-verify-box", "top");
+
 	});
 
 	function signUp() {
 		var userId = $("#input-email").val();
-		/*var userInputCode = $("#input-code").val();*/
+		var userInputCode = $("#input-code").val();
 		var userPw = $("#input-pw").val().trim();
-		/*var userPwCfm = $("#input-pw-conf").val();*/
+		var userPwCfm = $("#input-pw-conf").val();
 		var userName = $("#input-name").val().trim();
 		var userPhone = $("#input-phone-num").val().trim();
 		var userAddr = $("#input-addr").val();
 		var userAddrDetail = $("#input-detail-addr").val();
 		var userZipcode = $("#input-zip-code").val();
 
-		/*var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+		var phoneRegExp = new RegExp("^[0-9]{3}-[0-9]{3,4}-[0-9]{4}$", "g");
 
 		if (!userId.match(regExp)) {
 			alert("정확한 이메일 주소를 입력하세요.");
@@ -66,7 +69,7 @@ require([
 			return;
 		}
 
-		else if (userPhone.length < 11 || userPhone.length > 11) {
+		else if (userPhone.match(phoneRegExp)) {
 			alert("휴대폰 번호를 정확하게 입력하세요.");
 			$("#input-phone-num").focus;
 			common.fnMove("#input-phone-num");
@@ -92,8 +95,6 @@ require([
 			alert("우편번호를 정확히 입력하세요.");
 			return;
 		}
-
-*/
 
 		$.ajax({
 			url: window._ctx.root+"/api/member/signUp",

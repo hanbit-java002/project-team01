@@ -163,8 +163,8 @@ require([
 			success: function (result) {
 				console.log(result);
 				if (result.user_name === undefined) {
-					alert("거래 정보가 없는 완료품목입니다.");
-					location.href = window._ctx.root + "/mypage/selling-list.html";
+					alert("거래 정보가 없는 품목입니다.");
+					location.href = window._ctx.root + "/market/market-detail.html?product="+productId;
 				}
 				var itemHTML = "";
 
