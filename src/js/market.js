@@ -408,7 +408,7 @@ require([
 					productList += "            1,0";
 					productList += "        </div>";
 					productList += "        <div class=\"reporting-date\">";
-					productList += "            <span class=\"fa fa-clock-o\"></span> ";
+					productList += "            <span class=\"fa fa-clock-o\"></span>";
 					productList += common.getFormatDate(item.update_date, form);
 					productList += "        </div>";
 					productList += "    </div>";
@@ -591,4 +591,5 @@ require([
 	dropdownList();
 	initCategory();
 	initBrandAjax();
+
 });

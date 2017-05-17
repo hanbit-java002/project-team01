@@ -6,6 +6,12 @@ require([
 	var page = 0;
 	var searchValue = "";
 
+	$(window).on("popstate", function(e) {
+		console.log("popsatate 실행");
+		console.log("searchValue : " + searchValue);
+		showList(searchValue);
+	});
+
 	/*-----seller answer list 불러오기-----*/
 	function getAnswerList(inquireId, sellerUid) {
 		$.ajax({
@@ -172,6 +178,8 @@ require([
 					});
 
 					goMarketDetail();
+
+					window.history.pushState({searchValue: searchValue}, "search" + searchValue, "#keyword=" + searchValue);
 				}
 			},
 			error: function () {

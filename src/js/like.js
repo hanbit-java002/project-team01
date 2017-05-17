@@ -194,7 +194,7 @@ require([
 						itemHTML += "<span class=\"fa fa-eye\"></span>";
 						itemHTML += "</div>";
 						itemHTML += "<div class=\"reporting-date\">";
-						itemHTML += "<span class=\"fa fa-clock-o\"></span> " + common.getFormatDate(item.update_date, form);
+						itemHTML += "<span class=\"fa fa-clock-o\"></span>" + common.getFormatDate(item.update_date, form);
 						itemHTML += "</div>";
 						itemHTML += "</div>";
 						itemHTML += "<div class=\"list-selector like fa fa-heart\" valid=\"true\"></div>";

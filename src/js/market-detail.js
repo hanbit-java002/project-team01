@@ -604,6 +604,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/product/detail/" + productId,
 			success: function(result) {
+				console.log(result);
 
 				var item = result.productInfo;
 				var sessionUid = result.sessionUid;
@@ -611,12 +612,26 @@ require([
 				var form = "date";
 				var date = common.getFormatDate(item.update_date, form);
 				var boardSettingHTML = "";
+				var status = item.selling_status;
 
 				// 판매자와 동일한 uid인지 체크
 				if (item.seller_uid === sessionUid) {
 					boardSettingHTML += "<li class=\"board-update\">수정</li>";
 					boardSettingHTML += "<li class=\"board-delete\">삭제</li>";
+
+
 				}
+
+				else if (status === "complete") {
+					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
+					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
+				}
+
+				else if (status === "processing") {
+					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
+					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
+				}
+
 				else if (item.seller_uid !== sessionUid || sessionUid === "null") {
 					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
 					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
@@ -626,7 +641,20 @@ require([
 						location.href = window._ctx.root + "/purchase/purchase.html?product=" + productId;
 					});
 				}
+
 				$(".market-detail .board-setting>ul").html(boardSettingHTML);
+
+				var completeText = "해당 상품은 판매가 완료되었습니다.";
+				var processingText = "거래가 진행 중인 상품입니다.";
+
+				if (status === "complete") {
+					$("section.purchase-area").html("<div class=\"complete-text\">" + completeText + "</div>");
+				}
+
+				else if (status === "processing") {
+					$("section.purchase-area").html("<div class=\"processing-text\">" + processingText + "</div>");
+				}
+
 				updateSelling();
 				shareLink();
 				addComplain();
