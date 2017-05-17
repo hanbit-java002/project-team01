@@ -385,6 +385,7 @@ define([
 			success: function (data) {
 				if (data.result === "yes") {
 					$(".member-area").hide();
+					$("#my-page").show();
 					$(".log-out").show();
 					$(".admin-btn").hide();
 					$(".write-btn").show();
@@ -395,6 +396,7 @@ define([
 
 				}
 				else {
+					$("#my-page").hide();
 					$(".member-area").show();
 					$(".log-out").hide();
 					$(".admin-btn").hide();
