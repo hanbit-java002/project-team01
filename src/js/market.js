@@ -420,6 +420,11 @@ require([
 				}
 				$(".market-product-list").append(productList);
 				goMarketDetail();
+
+				if (page>=lastPage) {
+					$(".more-list").hide();
+				}
+
 				/* 더보기 클릭시*/
 				$(".more-list").off();
 				$(".more-list").on("click", function () {
@@ -429,7 +434,7 @@ require([
 						productListAjax(brandId);
 					}
 					else {
-						alert("마지막 물품입니다.");
+						$(".more-list").hide();
 					}
 				});
 			},
@@ -471,6 +476,9 @@ require([
 	}
 
 	function productListAjax(brandId) {
+		$(".more-list").show();
+		var commonSearchValue = common.getQuerystring("commonSearchValue");
+		$(".filter-search-box").val(commonSearchValue);
 		var formData = getSearchFilter(brandId);
 		showList(formData);
 

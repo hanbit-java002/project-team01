@@ -6,13 +6,57 @@ require([
 	/* 인증 버튼 클릭 시
 	 메일 인증 발송 팝업창*/
 	$(".btn-verify").on("click", function() {
-		common.popUp("popup-email-verify-box", "top");
+		var userEmail = $("#input-email").val();
+		$.ajax({
+			url: window._ctx.root+"/api/member/emailConfirmMail",
+			method: "POST",
+			data: {
+				userEmail: userEmail,
+			},
+			success: function (result) {
+				if (result.result === "ok") {
+					common.popUp("popup-email-verify-box", "top");
+				}
+			},
+			error: function (jqXHR) {
+				alert(jqXHR.responseJSON.message);
+			},
 
+		});
+
+	});
+
+	/*  인증번호 확인*/
+	$(".btn-confirm").on("click", function () {
+		var cfm = $("#input-code").val();
+		$.ajax({
+			url: window._ctx.root+"/api/member/emailConfirm",
+			method: "POST",
+			data: {
+				cfm: cfm,
+			},
+			success: function (result) {
+				if (result.result === "ok") {
+					$("#input-code").attr("disabled", "");
+					alert("확인 되었습니다.");
+				}
+			},
+			error: function (jqXHR) {
+				$("#input-code").val("");
+				$("#input-code").removeAttr("disabled", "");
+				alert(jqXHR.responseJSON.message);
+			},
+
+		});
+	});
+
+	$(".btn-addr-search").on("click", function () {
+		alert("직접입력하세요.");
 	});
 
 	function signUp() {
 		var userId = $("#input-email").val();
-		var userInputCode = $("#input-code").val();
+		var userCodeCfm = $("#input-code").attr("disabled");
 		var userPw = $("#input-pw").val().trim();
 		var userPwCfm = $("#input-pw-conf").val();
 		var userName = $("#input-name").val().trim();
@@ -32,8 +76,8 @@ require([
 			return;
 		}
 
-		else if (userInputCode.length < 6) {
-			alert("인증번호 여섯자리를 정확히 입력하세요.");
+		else if (userCodeCfm !== "disabled") {
+			alert("인증번호를 입력하세요.");
 			$("#input-code").focus;
 			common.fnMove("#input-code");
 			return;
@@ -69,7 +113,7 @@ require([
 			return;
 		}
 
-		else if (userPhone.match(phoneRegExp)) {
+		else if (!userPhone.match(phoneRegExp)) {
 			alert("휴대폰 번호를 정확하게 입력하세요.");
 			$("#input-phone-num").focus;
 			common.fnMove("#input-phone-num");

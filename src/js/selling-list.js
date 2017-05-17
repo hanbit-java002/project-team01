@@ -141,6 +141,7 @@ require([
 
 	/* 리스트 보여주기*/
 	function showList() {
+		$(".more-list").show();
 		var searchValue=$(".selling-search").val();
 		console.log(searchValue);
 		$.ajax({
@@ -298,6 +299,11 @@ require([
 				}
 				$(".selling-product-list").append(productList);
 				clickList();
+
+				if (page>=lastPage) {
+					$(".more-list").hide();
+				}
+
 				/* 더보기 클릭시*/
 				$(".more-list").off();
 				$(".more-list").on("click", function () {
@@ -306,7 +312,7 @@ require([
 						showList();
 					}
 					else {
-						alert("마지막 물품입니다.");
+						$(".more-list").hide();
 					}
 				});
 				clickProductController();
