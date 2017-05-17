@@ -92,18 +92,17 @@ require([
 
 	//삭제 버튼 클릭 시 확인 팝업 창
 	$(".btn-delete").on("click", function() {
-		common.popUp("pop-up-series", "left");
-		$(".pop-up-series").css("position", "fixed");
-		$(".pop-up-series>.text1").css("width", "55%");
-		$(".pop-up-series>.text1").css("top", "20%");
-		$(".pop-up-series>.text1").css("left", "25%");
-		$(".pop-up-series>.text1").css("color", "#cc0033");
-		$(".pop-up-series>.text1").text("해당 회원을 \n강제로 탈퇴 시키겠습니까?");
+		$(".popup-box").show();
+		$(".dark-layer").show();
+		$("body").css("overflow", "hidden");
+
+		$(".popup-contents>.text1").css("top", "17%");
+		$(".popup-contents>.text1").css("color", "#cc0033");
 
 
 		//팝업창 확인 버튼 클릭 시
 		/*-----회원 강제 탈퇴-----*/
-		$(".pop-up-series .btn.popup-ok").on("click", function() {
+		$(".popup-box>.popup-contents>.popup-ok").on("click", function() {
 			var userUid = common.getQuerystring("uid");
 
 			$.ajax({
@@ -119,20 +118,37 @@ require([
 		});
 
 		//팝업창 취소 버튼 클릭 시
-		$(".pop-up-series .popup-close").on("click", function() {
-			$(".pop-up-series>.text1").css("width", "100%");
-			$(".pop-up-series>.text1").css("top", "30%");
-			$(".pop-up-series>.text1").css("left", "0");
-			$(".pop-up-series>.text1").css("color", "#50546d");
+		$(".popup-contents>.popup-close, .dark-layer").on("click", function() {
+			$(".popup-box").hide();
+
+			$(".dark-layer").hide();
+			$("body").css("overflow", "");
+			$(".popup-box").css("z-index", "");
+			$(".popup-contents>.text1").css("color", "#50546d");
 		});
 	});
 
 
+
 	//취소 버튼 클릭 시 취소확인 팝업 창
 	$(".btn-cancel").on("click", function() {
-		common.popUp("pop-up-series", "left");
+		$(".popup-box2").show();
+		$(".dark-layer").show();
+		$("body").css("overflow", "hidden");
+		$(".popup-box2>.popup-contents>.text1").css("top", "27%");
 
-		$(".pop-up-series").css("position", "fixed");
-		$(".pop-up-series>.text1").text("수정을 취소하시겠습니까?");
+		//팝업창 확인 버튼 클릭 시
+		$(".popup-box2>.popup-contents>.popup-ok").on("click", function() {
+			location.href = window._ctx.root + "/admin/admin-member.html";
+		});
+
+		//팝업창 취소 버튼 클릭 시
+		$(".popup-contents>.popup-close, .dark-layer").on("click", function() {
+			$(".popup-box2").hide();
+
+			$(".dark-layer").hide();
+			$("body").css("overflow", "");
+			$(".popup-box2").css("z-index", "");
+		});
 	});
 });

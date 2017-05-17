@@ -292,8 +292,6 @@ require([
 
 
 	function selectList(result, menuCategory) {
-		console.log("메뉴카테고리 "+menuCategory);
-
 		var productList ="";
 
 

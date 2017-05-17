@@ -651,6 +651,7 @@ header.header-transparent {
 
 
 //팝업창
+.popup-box2,
 .popup-box {
 	display: none;
 	position: fixed;
@@ -661,7 +662,7 @@ header.header-transparent {
 	background-color: #fff;
 	z-index: 30;
 }
-.popup-box>.popup-contents {
+.popup-contents {
 	position: relative;
 	height: 100%;
 }
@@ -678,7 +679,8 @@ header.header-transparent {
 	font-weight: bold;
 }
 
-.popup-contents>.btn-ok {
+
+.popup-contents>button {
 	position: absolute;
 	display: block;
 	bottom: 0;
@@ -688,6 +690,17 @@ header.header-transparent {
 	color: #fff;
 	background-color: #50546d;
 	border: 0;
+}
+.popup-contents>.btn-ok {
+	width: 100%;
+}
+.popup-contents>.popup-ok {
+	width: 50%;
+	right: 0;
+}
+.popup-contents>.popup-close {
+	width: 50%;
+	background-color: #8B8E9E;
 }
 
 
