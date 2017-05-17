@@ -6,10 +6,20 @@ require([
 	var page = 0;
 	var searchValue = "";
 
+	// 뒤로 가기 버튼을 눌렀을 때 showList 재실행
 	$(window).on("popstate", function(e) {
-		console.log("popsatate 실행");
-		console.log("searchValue : " + searchValue);
+		console.log("popstate 실행");
+		console.log("e.originalEvent.state : " + e.originalEvent.state);
+
+		// pushState에서 넘긴 첫번째 파라미터(object에 담은 data)
+		console.log("e.originalEvent.state가 널이 아니다!");
+
+		var searchValue = e.originalEvent.state.searchValue;
+		page = 0;
+
+		console.log("original searchValue : " + searchValue);
 		showList(searchValue);
+
 	});
 
 	/*-----seller answer list 불러오기-----*/
@@ -44,6 +54,9 @@ require([
 
 	/*-----inquire list 불러오기-----*/
 	function showList(searchValue) {
+		$(".list-search-box>.form-control").val(searchValue);
+		$(".list.inquire-list>div").remove();
+
 		$.ajax({
 			url: window._ctx.root + "/api/inquire/list",
 			data: {
@@ -159,7 +172,6 @@ require([
 					}
 
 					if(page < lastPage) {
-						console.log("더보기 실행");
 						var moreHTML = "More<span class=\"fa fa-angle-down\"></span>";
 						$("section.more-list").html(moreHTML);
 					}
@@ -175,12 +187,14 @@ require([
 						if (page <= lastPage) {
 							showList(searchValue);
 						}
+
 					});
 
 					goMarketDetail();
 
-					window.history.pushState({searchValue: searchValue}, "search" + searchValue, "#keyword=" + searchValue);
 				}
+
+
 			},
 			error: function () {
 				alert("로그인이 필요합니다.");
@@ -206,8 +220,12 @@ require([
 			searchValue = $(".list-search-box input").val().trim();
 			if (event.keyCode === 13) {
 				page = 0;
-				showList(searchValue);
 				$(".list.inquire-list>li, .list.inquire-list>div").remove();
+				showList(searchValue);
+
+				// 뒤로 가기를 위해서 url history 저장
+				window.history.pushState({searchValue: searchValue}, "search" + searchValue, "#keyword=" + searchValue);
+
 			}
 			else if (event.keyCode === 27) {
 				clearSearchKeywords();
@@ -215,15 +233,17 @@ require([
 		});
 		$(".list-search-box .fa-search").on("click", function () {
 			searchValue = $(".list-search-box input").val().trim();
-			console.log("searchValue : " + searchValue);
 			if (searchValue === "") {
 				alert("검색어를 입력해주세요.");
 				$(".list-search-box input").focus();
 			}
 			else {
 				page = 0;
-				showList(searchValue);
 				$(".list.inquire-list>li, .list.inquire-list>div").remove();
+				showList(searchValue);
+
+				// 뒤로 가기를 위해서 url history 저장
+				window.history.pushState({searchValue: searchValue}, "search" + searchValue, "#keyword=" + searchValue);
 			}
 		});
 	}
@@ -232,6 +252,10 @@ require([
 	function clearSearchKeywords() {
 		$(".list-search-box input").val("");
 	}
+
+	// 처음 로딩하는 페이지는 replaceState로 히스토리를 남겨줘야 한다.
+	window.history.replaceState({searchValue: searchValue}, "search" + searchValue, "#keyword=" + searchValue);
+
 
 	showList(searchValue);
 	search();
