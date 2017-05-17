@@ -211,7 +211,8 @@ require([
 					var item = list[i];
 					var commentHTML = "";
 					var userRank = item.user_rank;
-					var date = common.getFormatDate(item.comment_time);
+					var commenTimeForm = "time";
+					var date = common.getFormatDate(item.comment_time, commenTimeForm);
 
 					commentHTML += "<li comment_id=\"" + item.comment_id + "\"";
 					if (item.upper_id !== undefined) {
@@ -607,7 +608,8 @@ require([
 				var item = result.productInfo;
 				var sessionUid = result.sessionUid;
 				var price = common.numberWithCommas(item.price);
-				var date = common.getFormatDate(item.update_date);
+				var form = "date";
+				var date = common.getFormatDate(item.update_date, form);
 				var boardSettingHTML = "";
 
 				// 판매자와 동일한 uid인지 체크

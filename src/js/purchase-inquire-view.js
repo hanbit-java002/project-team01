@@ -16,22 +16,19 @@ require([
 			},
 			success: function (result) {
 				console.log(result);
-				console.log("result 길이 : " + result.length);
 
 				var upperComment = $(".question-info[comment_id =" + inquireId + "]");
 				var prentLi = upperComment.parents("li");
 				if(result.length === 0) {
 					prentLi.find(".answer-info").find(".content").text("아직 작성된 판매자 답변이 없습니다.");
 					prentLi.find(".answer-info").find(".content").addClass("default");
-					console.log("길이 0 실행");
 				}
 
 				else {
-					console.log("길이 1 실행");
-					prentLi.find(".answer-info").find(".content").attr("comment_id", result.comment_id);
-					prentLi.find(".answer-info").find(".content").attr("upper_id", result.upper_id);
-					prentLi.find(".answer-info").find(".content").html("<span class=\"fa fa-clock-o\"></span> "
-						+ common.getFormatDate(result.comment_time));
+					prentLi.find(".answer-info").attr("comment_id", result.comment_id);
+					prentLi.find(".answer-info").attr("upper_id", result.upper_id);
+					prentLi.find(".answer-info").find(".reporting-date").html("<span class=\"fa fa-clock-o\"></span> "
+						+ common.getFormatDate(result.comment_time, "time"));
 					prentLi.find(".answer-info").find(".content").text(result.comment_contents);
 				}
 
@@ -52,6 +49,8 @@ require([
 				var count = result.count;
 				var lastPage = parseInt(count / rowsPerPage) + (count % rowsPerPage === 0 ? 0 : 1) - 1;
 				console.log(result);
+				console.log("lastPage : " + lastPage);
+				console.log("page : " + page);
 
 				// count 검색 결과
 				$(".list-header .product-count span").text(count);
@@ -59,6 +58,8 @@ require([
 
 				if(count === 0) {
 					$("ul.list.inquire-list").html("<div class='default-text'>문의한 상품이 없습니다.</div>");
+					$("section.more-list>span").remove();
+					$("section.more-list").text("");
 				}
 				else {
 					for (var i=0; i<result.list.length; i++) {
@@ -130,7 +131,7 @@ require([
 						itemHTML += "</div>";
 						itemHTML += "<div class=\"reporting-date\">";
 						itemHTML += "<span class=\"fa fa-clock-o\"></span> ";
-						itemHTML += common.getFormatDate(item.comment_time);
+						itemHTML += common.getFormatDate(item.comment_time, "time");
 						itemHTML += "</div>";
 						itemHTML += "<div class=\"content\">";
 						itemHTML += item.comment_contents;
@@ -152,11 +153,13 @@ require([
 					}
 
 					if(page < lastPage) {
+						console.log("더보기 실행");
 						var moreHTML = "More<span class=\"fa fa-angle-down\"></span>";
-						$(".more-list").html(moreHTML);
+						$("section.more-list").html(moreHTML);
 					}
 					else if(page >= lastPage) {
-						$("section.more-list").remove();
+						$("section.more-list>span").remove();
+						$("section.more-list").text("");
 					}
 
 					/* 더보기 클릭시*/
@@ -194,6 +197,7 @@ require([
 		$(".list-search-box input").on("keyup", function(event) {
 			searchValue = $(".list-search-box input").val().trim();
 			if (event.keyCode === 13) {
+				page = 0;
 				showList(searchValue);
 				$(".list.inquire-list>li, .list.inquire-list>div").remove();
 			}
@@ -203,17 +207,15 @@ require([
 		});
 		$(".list-search-box .fa-search").on("click", function () {
 			searchValue = $(".list-search-box input").val().trim();
-			console.log(searchValue);
-			console.log("서치 실행");
+			console.log("searchValue : " + searchValue);
 			if (searchValue === "") {
 				alert("검색어를 입력해주세요.");
 				$(".list-search-box input").focus();
-				console.log("서치 실행 포커스");
 			}
 			else {
+				page = 0;
 				showList(searchValue);
 				$(".list.inquire-list>li, .list.inquire-list>div").remove();
-				console.log("서치 실행 리스트");
 			}
 		});
 	}

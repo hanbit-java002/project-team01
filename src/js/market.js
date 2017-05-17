@@ -4,6 +4,7 @@ require([
 	var common = require("common");
 	var rowsPerPage = 5;
 	var page =0;
+	var form = "date";
 
 	$(".filter-series").on("click", function() {
 		common.popUp("pop-up-series", "top");
@@ -407,8 +408,8 @@ require([
 					productList += "            1,0";
 					productList += "        </div>";
 					productList += "        <div class=\"reporting-date\">";
-					productList += "            <span class=\"fa fa-clock-o\"></span>";
-					productList += common.getFormatDate(item.update_date);
+					productList += "            <span class=\"fa fa-clock-o\"></span> ";
+					productList += common.getFormatDate(item.update_date, form);
 					productList += "        </div>";
 					productList += "    </div>";
 					productList += "    <div class=\"list-selector like fa fa-heart-o\" valid=\"false\"></div>";

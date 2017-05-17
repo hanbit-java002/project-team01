@@ -288,7 +288,7 @@ require([
 					productList += "        </div>";
 					productList += "        <div class=\"reporting-date\">";
 					productList += "            <span class=\"fa fa-clock-o\"></span>";
-					productList += common.getFormatDate(item.update_date);
+					productList += common.getFormatDate(item.update_date, "time");
 					productList += "        </div>";
 					productList += "    </div>";
 					productList += "<div class=\"selling-product-controller\">";

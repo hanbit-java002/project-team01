@@ -438,12 +438,23 @@ define([
 
 
 	/*----- 날짜 표기 형식 : YYYY/MM/DD ----*/
-	function getFormatDate(date) {
+	function getFormatDate(date, form) {
 		var year = date.substring(0, 4);
 		var month = date.substring(4, 6);
 		var day = date.substring(6, 8);
+		var hour = date.substring(8, 10);
+		var minute = date.substring(10, 12);
 
-		return year + "/" + month + "/" + day;
+		// 날짜만 표시
+		if (form === "date") {
+			return year + "/" + month + "/" + day;
+		}
+
+		// 시간도 표시
+		else if (form === "time") {
+			return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+		}
+
 	}
 
     checkSignedIn();
