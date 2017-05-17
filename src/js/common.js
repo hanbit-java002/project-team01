@@ -457,6 +457,17 @@ define([
 
 	}
 
+	/* 공통서치*/
+	function commonSearch() {
+		$(".search-icon.gray").on("click", function () {
+			var commonSearchValue =$("#header-search-input").val();
+			location.href = window._ctx.root+"/market/market.html" +
+				"?brandId=brand-all&commonSearchValue="+commonSearchValue;
+		});
+
+
+	}
+	commonSearch();
     checkSignedIn();
 
 	initNavi();
