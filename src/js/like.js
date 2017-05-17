@@ -34,7 +34,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/like/count/" + productId,
 			success: function (result) {
-				$("[product-id=" + productId + "] .board-info .like-count").html("<span class='fa fa-heart-o'></span> "
+				$("[product-id=" + productId + "] .board-info .like-count").html("<span class='fa fa-heart-o'></span>"
 					+ common.numberWithCommas(result));
 			},
 		});
@@ -45,7 +45,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/product/comment/" + productId,
 			success: function (result) {
-				$("[product-id=" + productId + "] .board-info .comment").html("<span class='fa fa-commenting-o'></span> "
+				$("[product-id=" + productId + "] .board-info .comment").html("<span class='fa fa-commenting-o'></span>"
 					+ common.numberWithCommas(result));
 			},
 		});
@@ -56,7 +56,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/product/complain/" + productId,
 			success: function (result) {
-				$("[product-id=" + productId + "] .board-info .complain").html("<span class='fa fa-thumbs-o-down'></span> "
+				$("[product-id=" + productId + "] .board-info .complain").html("<span class='fa fa-thumbs-o-down'></span>"
 					+ common.numberWithCommas(result));
 			},
 		});
@@ -67,7 +67,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/hits/count/" + productId,
 			success: function (result) {
-				$("[product-id=" + productId + "] .board-info .hits").html("<span class='fa fa-eye'></span> "
+				$("[product-id=" + productId + "] .board-info .hits").html("<span class='fa fa-eye'></span>"
 					+ common.numberWithCommas(result));
 			},
 		});

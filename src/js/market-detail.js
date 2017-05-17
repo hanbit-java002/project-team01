@@ -97,7 +97,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/like/count/" + productId,
 			success: function (result) {
-				$(".market-detail .board-info .like").html("<span class='fa fa-heart-o'></span> " + result);
+				$(".market-detail .board-info .like").html("<span class='fa fa-heart-o'></span>" + result);
 			},
 		});
 	}
@@ -409,7 +409,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/product/comment/" + productId,
 			success: function (result) {
-				$(".market-detail .board-info .comment").html("<span class='fa fa-commenting-o'></span> " + result);
+				$(".market-detail .board-info .comment").html("<span class='fa fa-commenting-o'></span>" + result);
 			},
 		});
 	}
@@ -462,7 +462,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/product/complain/" + productId,
 			success: function (result) {
-				$(".market-detail .board-info .complain").html("<span class='fa fa-thumbs-o-down'></span> " + result);
+				$(".market-detail .board-info .complain").html("<span class='fa fa-thumbs-o-down'></span>" + result);
 			},
 		});
 	}
@@ -472,7 +472,7 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/hits/count/" + productId,
 			success: function (result) {
-				$(".market-detail .board-info .hits").html("<span class='fa fa-eye'></span> " + result);
+				$(".market-detail .board-info .hits").html("<span class='fa fa-eye'></span>" + result);
 			},
 		});
 	}
@@ -711,7 +711,7 @@ require([
 
 				$(".market-detail .product.name").text(item.product_name);
 				$(".market-detail .product.price").html("<i class='fa fa-won'></i>" + price);
-				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span> " + date);
+				$(".board-info .reporting-date").html("<span class='fa fa-clock-o'></span>" + date);
 
 				/* 삭제 팝업 이벤트*/
 				deletePopUp(item.seller_uid);

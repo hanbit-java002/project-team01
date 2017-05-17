@@ -27,7 +27,7 @@ require([
 				else {
 					prentLi.find(".answer-info").attr("comment_id", result.comment_id);
 					prentLi.find(".answer-info").attr("upper_id", result.upper_id);
-					prentLi.find(".answer-info").find(".reporting-date").html("<span class=\"fa fa-clock-o\"></span> "
+					prentLi.find(".answer-info").find(".reporting-date").html("<span class=\"fa fa-clock-o\"></span>"
 						+ common.getFormatDate(result.comment_time, "time"));
 					prentLi.find(".answer-info").find(".content").text(result.comment_contents);
 				}
@@ -130,7 +130,7 @@ require([
 						itemHTML += "문의 내용";
 						itemHTML += "</div>";
 						itemHTML += "<div class=\"reporting-date\">";
-						itemHTML += "<span class=\"fa fa-clock-o\"></span> ";
+						itemHTML += "<span class=\"fa fa-clock-o\"></span>";
 						itemHTML += common.getFormatDate(item.comment_time, "time");
 						itemHTML += "</div>";
 						itemHTML += "<div class=\"content\">";
