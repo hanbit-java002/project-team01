@@ -6,6 +6,7 @@ require([
 	var page =0;
 	var statusCount = 0;
 	var searchCount = 0;
+	var form = "date";
 
 	var naviHandler = function (jqElement) {
 		var menuCategory = $(jqElement).attr("menu-category-detail");
@@ -62,7 +63,7 @@ require([
 	showList($(".menu-category>ul .active").attr("menu-category-detail"));
 
 
-
+	/*-----Like count 불러오기-----*/
 	function initCountLike(productId) {
 		$.ajax({
 			url: window._ctx.root + "/api/like/count/" + productId,
@@ -72,6 +73,29 @@ require([
 		});
 	}
 
+	/*-----comment count 불러오기-----*/
+	function initCountComment(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/product/comment/" + productId,
+			success: function (result) {
+				$("[product-id=" + productId + "] .board-info .comment").html("<span class='fa fa-commenting-o'></span>"
+					+ common.numberWithCommas(result));
+			},
+		});
+	}
+
+	/*-----complain Info 불러오기-----*/
+	function initCountComplain(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/product/complain/" + productId,
+			success: function (result) {
+				$("[product-id=" + productId + "] .board-info .complain").html("<span class='fa fa-thumbs-o-down'></span>"
+					+ common.numberWithCommas(result));
+			},
+		});
+	}
+
+	/*-----hits Info 불러오기-----*/
 	function initHits(productId) {
 		$.ajax({
 			url: window._ctx.root + "/api/hits/count/" + productId,
@@ -395,7 +419,7 @@ require([
 			productList += "        </div>";
 			productList += "        <div class=\"reporting-date\">";
 			productList += "            <span class=\"fa fa-clock-o\"></span>";
-			productList += common.getFormatDate(item.update_date);
+			productList += common.getFormatDate(item.update_date, form);
 			productList += "        </div>";
 			productList += "    </div>";
 
@@ -406,6 +430,8 @@ require([
 			productList += "</li>";
 
 			initCountLike(item.product_id);
+			initCountComment(item.product_id);
+			initCountComplain(item.product_id);
 			initHits(item.product_id);
 		}
 
