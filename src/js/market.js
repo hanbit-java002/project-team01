@@ -175,10 +175,10 @@ require([
 		}
 		else {
 			if ($(".price>.price-arrow").hasClass("fa-arrow-down")) {
-				return "DESC";
+				return "ASC";
 			}
 			else if ($(".price>.price-arrow").hasClass("fa-arrow-up")) {
-				return "ASC";
+				return "DESC";
 			}
 		}
 	}
