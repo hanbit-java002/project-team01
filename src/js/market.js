@@ -451,7 +451,14 @@ require([
 			qualityId: $(".dropdown-quality .dropdown-selected").attr("s-value"),
 			priceFilter: getPriceValue(),
 		};
-		$(".main-product-name.active").text(filterCurrent.searchValue);
+		if (filterCurrent.searchValue !== undefined) {
+			if (filterCurrent.searchValue === "") {
+				$(".main-product-name.active").text("All");
+			}
+			else {
+				$(".main-product-name.active").text(filterCurrent.searchValue);
+			}
+		}
 
 		console.log("브랜드"+filterCurrent.brandId);
 		console.log("서치"+filterCurrent.searchValue);
@@ -557,7 +564,7 @@ require([
 	function initCommonSearch() {
 		var commonSearchValue =decodeURI(common.getQuerystring("commonSearchValue"));
 		var brandId = common.getQuerystring("brandId");
-		if (commonSearchValue !== undefined) {
+		if (commonSearchValue !== "undefined") {
 			console.log(commonSearchValue);
 			$(".filter-search-box").val(commonSearchValue);
 			productListAjax(brandId);
