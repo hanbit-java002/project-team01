@@ -96,7 +96,7 @@ require([
 		$(".dark-layer").show();
 		$("body").css("overflow", "hidden");
 
-		$(".popup-contents>.text1").css("top", "17%");
+		$(".popup-contents>.text1").css("top", "27%");
 		$(".popup-contents>.text1").css("color", "#cc0033");
 
 

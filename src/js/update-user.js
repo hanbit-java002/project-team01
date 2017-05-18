@@ -49,12 +49,14 @@ require([
 		var modifyPwConf = $("#modify-pw-conf").val().trim();
 
 
-		var regExpPH = /^\d{3}\d{3,4}\d{4}$/;
+		//var regExpPH = /^\d{3}\d{3,4}\d{4}$/;
+		var phoneRegExp = new RegExp("^[0-9]{3}-[0-9]{3,4}-[0-9]{4}$", "g");
 
-		if (!userPhoneNum.match(regExpPH)) {
+		if (!userPhoneNum.match(phoneRegExp)) {
 			$(".alert-text").text("");
 			$("#member-phone-num").focus();
-			$(".alert-text.t1").text("*휴대폰 번호를 정확하게 입력하세요. (공백 또는 - 없이)");
+			//$(".alert-text.t1").text("*휴대폰 번호를 정확하게 입력하세요. (공백 또는 - 없이)");
+			$(".alert-text.t1").text("-을 포함하여 휴대폰 번호를 정확하게 입력하세요.");
 			return;
 		}
 		else if(modifyPwConf !== modifyPw ) {
