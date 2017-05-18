@@ -68,7 +68,8 @@ require([
 		$.ajax({
 			url: window._ctx.root + "/api/like/count/" + productId,
 			success: function (result) {
-				$(".product-item-list").find(".like-count").html("<span class='fa fa-heart-o'></span> " + result);
+				$("[product-id=" + productId + "] .board-info .like-count").html("<span class='fa fa-heart-o'></span>"
+					+ common.numberWithCommas(result));
 			},
 		});
 	}
