@@ -238,7 +238,7 @@ require([
 						commentHTML += "<li class=\"comment-modify\">수정</li>";
 						commentHTML += "<li class=\"comment-delete\">삭제</li>";
 					}
-					if(sessionUid !== item.uid || sessionUid === "null") {
+					if(sessionUid !== item.uid || sessionUid === null) {
 						commentHTML += "<li class=\"comment-reply fa fa-reply\"> 답글</li>";
 					}
 					commentHTML += "</ul>";
@@ -614,12 +614,13 @@ require([
 				var boardSettingHTML = "";
 				var status = item.selling_status;
 
+				console.log(result);
+				console.log(sessionUid === null);
+
 				// 판매자와 동일한 uid인지 체크
 				if (item.seller_uid === sessionUid) {
 					boardSettingHTML += "<li class=\"board-update\">수정</li>";
 					boardSettingHTML += "<li class=\"board-delete\">삭제</li>";
-
-
 				}
 
 				else if (status === "complete") {
@@ -632,13 +633,18 @@ require([
 					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
 				}
 
-				else if (item.seller_uid !== sessionUid || sessionUid === "null") {
+				else if (item.seller_uid !== sessionUid || sessionUid === null) {
 					boardSettingHTML += "<li class=\"board-complain\">신고</li>";
 					boardSettingHTML += "<li class=\"board-clipboard\" data-clipboard-text=\"\">URL</li>";
 					$(".purchase-area").html("<div class=\"resell-btn purchase\">구매</div>");
 					/*-----구매 페이지로 이동-----*/
 					$(".resell-btn.purchase").on("click", function() {
-						location.href = window._ctx.root + "/purchase/purchase.html?product=" + productId;
+						if (sessionUid === null) {
+							alert("로그인을 해주세요.");
+						}
+						else {
+							location.href = window._ctx.root + "/purchase/purchase.html?product=" + productId;
+						}
 					});
 				}
 
