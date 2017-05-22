@@ -207,7 +207,14 @@ require([
 	function deleteImg() {
 		$(".img-delete").off("click");
 		$(".img-delete").on("click", function() {
-			$(this).parents(".input-img-box").remove();
+			var getThis =$(this).parents(".input-img-box");
+			getThis.remove();
+			if (getThis.hasClass("main-img")) {
+				console.log($($(".input-img-box")[0]).length);
+				if ($($(".input-img-box")[0]).length) {
+					$($(".input-img-box")[0]).addClass("main-img");
+				}
+			}
 		});
 	}
 
@@ -226,6 +233,10 @@ require([
 					defaultMainImg();
 					selectMainImg();
 				};
+				if (input[0].files[i].size>1000000) {
+					alert("1MB 이하로 올려주세요");
+					return;
+				}
 				reader.readAsDataURL(input[0].files[i]);
 			}
 		}

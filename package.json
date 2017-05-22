@@ -21,6 +21,7 @@
     "@alrra/travis-scripts": "^1.1.1",
     "archiver": "^0.21.0",
     "bootstrap": "^3.0.0",
+    "ckeditor": "^4.6.2",
     "clipboard": "^1.5.16",
     "del": "^2.0.2",
     "eslint": "^3.12.2",

@@ -82,13 +82,7 @@ require([
 					$(".dropdown-category .dropdown-selected").text(data.category_name);
 					$(".dropdown-category .dropdown-selected").attr("s-value", data.category_id);
 
-					if (data.series_id !== undefined && data.series_id !== "" && data.series_id !== null) {
-						$(".dropdown-series").show();
-						$(".dropdown-series .dropdown-selected").text(data.series_name);
-						$(".dropdown-series .dropdown-selected").attr("s-value", data.series_id);
-					}
-
-					if (data.size !== undefined && data.size !== "" && data.size !== null) {
+					if (data.size !== undefined) {
 						$(".dropdown-size").show();
 						$(".dropdown-size .dropdown-selected").text(data.size);
 						$(".dropdown-size .dropdown-selected").attr("s-value", data.size);
@@ -104,24 +98,24 @@ require([
 					$(".dropdown-quality .dropdown-selected").attr("s-value", data.quality);
 					$("#input-price").val(data.price);
 
-					if (data.description !== undefined && data.description !== "" && data.description !== null) {
+					if (data.description !== undefined) {
 						$("#input-details").val(data.description);
 					}
 					else {
 						$("#input-details").val("");
 					}
 
-					for (var j = 0; j <img.length; j++) {
-						var imgHtml ="<div class=\"input-img-box ";
+					for (var j = 0; j < img.length; j++) {
+						var imgHtml = "<div class=\"input-img-box ";
 						if (img[j].img_main) {
-							imgHtml+= "main-img";
+							imgHtml += "main-img";
 						}
-							imgHtml+="\" img-id=\"";
-							imgHtml+=img[j].img_id;
-							imgHtml+=	"\">";
-							imgHtml+=	"<div class=\"input-img\""+
-							" style=\"background-image: url("+img[j].img_url+")\">" +
-							"<div class=\"img-delete\">"+
+						imgHtml += "\" img-id=\"";
+						imgHtml += img[j].img_id;
+						imgHtml += "\">";
+						imgHtml += "<div class=\"input-img\"" +
+							" style=\"background-image: url(" + img[j].img_url + ")\">" +
+							"<div class=\"img-delete\">" +
 							"<i class=\"glyphicon glyphicon-remove-circle\"></i>" +
 							"</div>" +
 							"</div>";
@@ -132,7 +126,7 @@ require([
 					selectMainImg();
 
 					var dealMeans = data.deal_means.split("|");
-					for (var j=0; j<dealMeans.length; j++) {
+					for (var j = 0; j < dealMeans.length; j++) {
 						var dealType = dealMeans[j];
 
 						if (dealType === "direct") {
@@ -170,6 +164,12 @@ require([
 					else {
 						$(".product-complete").addClass("selected");
 					}
+					if (data.series_id !== undefined) {
+						$(".dropdown-series").show();
+						console.log(data.series_name);
+						$(".dropdown-series .dropdown-selected").text(data.series_name);
+						$(".dropdown-series .dropdown-selected").attr("s-value", data.series_id);
+					}
 					initTypes();
 				}
 			},
@@ -190,6 +190,7 @@ require([
 		$.ajax({
 			url: window._ctx.root+"/api/member/getUserInfo",
 			success: function (data) {
+				console.log("유저이름"+data.user_name);
 				/*m.uid, m.user_id, m.user_name, m.user_rank, d.phone_num, d.addr, d.addr_detail, d.zip_code*/
 				var nameHTML = "<input class=\"input-default\" id=\"input-name\" type=\"text\" value=\"" +
 					data.user_name +
@@ -667,7 +668,6 @@ require([
 	dropDown(".dropdown-quality");
 	initBrand();
 	initCategory();
-	initSeries();
 
 
 });

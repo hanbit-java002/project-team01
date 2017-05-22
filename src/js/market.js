@@ -489,6 +489,22 @@ require([
 		showList(formData);
 
 	}
+	function seriresDisplay() {
+		/* 시리즈보이기 안보이기*/
+		var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
+		if (brandSelected == "NIKE") {
+			$(".filter-series").addClass("active");
+			$(".filter-series").css("display", "inline-block");
+			$(".filter-search").addClass("active");
+
+		}
+		else {
+			$(".filter-series").removeClass("active");
+			$(".filter-series").css("display", "none");
+			$(".filter-search").removeClass("active");
+
+		}
+	}
 
 	/* 브랜드 바꾸는 곳*/
 	var naviHandler = function (jqElement) {
@@ -509,20 +525,10 @@ require([
 		/* 리스트 초기화*/
 		$(".market-product-list").html("");
 		page =0;
+
 		/* 시리즈보이기 안보이기*/
-		var brandSelected = $(".menu-category li.active").attr("menu-category-detail");
-		if (brandSelected == "NIKE") {
-			$(".filter-series").addClass("active");
-			$(".filter-series").css("display", "inline-block");
-			$(".filter-search").addClass("active");
+		seriresDisplay();
 
-		}
-		else {
-			$(".filter-series").removeClass("active");
-			$(".filter-series").css("display", "none");
-			$(".filter-search").removeClass("active");
-
-		}
 		/* 에이작스*/
 		productListAjax(brandId);
 	};
@@ -557,6 +563,8 @@ require([
 				common.initNavi();
 				initBrand();
 				clickedMenu();
+				/* 시리즈보이기 안보이기*/
+				seriresDisplay();
 			},
 		});
 	}
