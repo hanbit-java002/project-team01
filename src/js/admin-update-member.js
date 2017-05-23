@@ -89,7 +89,7 @@ require([
 	});
 
 
-
+/*
 	//삭제 버튼 클릭 시 확인 팝업 창
 	$(".btn-delete").on("click", function() {
 		$(".popup-box").show();
@@ -101,7 +101,7 @@ require([
 
 
 		//팝업창 확인 버튼 클릭 시
-		/*-----회원 강제 탈퇴-----*/
+		/!*-----회원 강제 탈퇴-----*!/
 		$(".popup-box>.popup-contents>.popup-ok").on("click", function() {
 			var userUid = common.getQuerystring("uid");
 
@@ -126,7 +126,7 @@ require([
 			$(".popup-box").css("z-index", "");
 			$(".popup-contents>.text1").css("color", "#50546d");
 		});
-	});
+	});*/
 
 
 

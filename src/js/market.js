@@ -565,13 +565,27 @@ require([
 		});
 	}
 
-	function initBrand() {
+	function initUrlBrandSearch() {
+		var commonSearchValue =decodeURI(common.getQuerystring("commonSearchValue"));
+		var brandId = common.getQuerystring("brandId");
+
+		$(".menu-category>ul>li").removeClass("active");
+		$(".menu-category>ul>li[brand-id ="+brandId+" ]").addClass("active");
+
+		if (commonSearchValue !== "undefined") {
+			console.log(commonSearchValue);
+			$(".filter-search-box").val(commonSearchValue);
+		}
+		productListAjax(brandId);
+	}
+
+/*	function initBrand() {
 		var brandId=common.getQuerystring("brandId");
 		console.log(brandId);
 		$(".menu-category>ul>li").removeClass("active");
 		$(".menu-category>ul>li[brand-id ="+brandId+" ]").addClass("active");
 		productListAjax(brandId);
-	}
+	}*/
 
 	function initBrandAjax() {
 		$.ajax({
@@ -587,24 +601,13 @@ require([
 				}
 				$(".menu-category ul").html(brandHTML);
 				common.initNavi();
-				initBrand();
+				initUrlBrandSearch();
 				clickedMenu();
 				/* 시리즈보이기 안보이기*/
 				seriresDisplay();
 			},
 		});
 	}
-
-	function initCommonSearch() {
-		var commonSearchValue =decodeURI(common.getQuerystring("commonSearchValue"));
-		var brandId = common.getQuerystring("brandId");
-		if (commonSearchValue !== "undefined") {
-			console.log(commonSearchValue);
-			$(".filter-search-box").val(commonSearchValue);
-			productListAjax(brandId);
-		}
-	}
-	initCommonSearch();
 
 	/* 가격 눌렀을 때*/
 	function priceClick() {
@@ -650,5 +653,4 @@ require([
 	dropdownList();
 	initCategory();
 	initBrandAjax();
-
 });

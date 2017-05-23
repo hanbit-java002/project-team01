@@ -145,13 +145,13 @@ require([
 
 
 				// 전화 번호 form
-				var phoneNum = result.sellerInfo.phone_num;
+				/*var phoneNum = result.sellerInfo.phone_num;
 				var splite = "-";
 				var position = ["3", "8"];
 				var output = [phoneNum.slice(0, position[0]), splite, phoneNum.slice(position[0])].join("");
-				output = [output.slice(0, position[1]), splite, output.slice(position[1])].join("");
+				output = [output.slice(0, position[1]), splite, output.slice(position[1])].join("");*/
 
-				$(".seller-info span[for=contact]").text(output);
+				$(".seller-info span[for=contact]").text(result.sellerInfo.phone_num);
 			},
 		});
 	}
