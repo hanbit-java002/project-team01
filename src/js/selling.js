@@ -233,10 +233,6 @@ require([
 					defaultMainImg();
 					selectMainImg();
 				};
-				if (input[0].files[i].size>1000000) {
-					alert("1MB 이하로 올려주세요");
-					return;
-				}
 				reader.readAsDataURL(input[0].files[i]);
 			}
 		}
@@ -248,7 +244,7 @@ require([
 
 		for (var i=0; i<images.length; i++) {
 			var strImgSrcLen=$(images[i]).css("background-image").length;
-			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
+			var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-2));
 			arrStrImgSrc.push(strImgSrc);
 		}
 
@@ -273,6 +269,31 @@ require([
 			dealMeans+= "delivery";
 		};
 		return dealMeans;
+	}
+
+	/* base64 -> blob*/
+	function getBlobFromBase64(dataURI) {
+		// convert base64 to raw binary data held in a string
+		// doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+		var byteChars = window.atob(dataURI.split(",")[1]);
+		var sliceSize =1024;
+		// separate out the mime component
+		var mimeType = dataURI.split(",")[0].split(":")[1].split(";")[0];
+		var byteArrays= [];
+
+		for (var offset = 0, len = byteChars.length; offset < len; offset+= sliceSize) {
+			var slice = byteChars.slice(offset, offset + sliceSize);
+
+			var byteNumbers = new Array(slice.length);
+			for (var i =0; i < slice.length; i++) {
+				byteNumbers[i] = slice.charCodeAt(i);
+			}
+
+			var byteArray = new Uint8Array(byteNumbers);
+			byteArrays.push(byteArray);
+		}
+
+		return new Blob(byteArrays, {type: mimeType});
 	}
 
 	function currentValues() {
@@ -305,7 +326,7 @@ require([
 		formData.append("detail", currentProduct.detail);
 
 		for (var i=0; i<currentProduct.arrImgSrc.length; i++) {
-			formData.append("arrImgSrc", currentProduct.arrImgSrc[i]);
+			formData.append("arrImgSrc", getBlobFromBase64(currentProduct.arrImgSrc[i]));
 		}
 
 		formData.append("mainImgIndex", currentProduct.mainImgIndex);
@@ -426,7 +447,7 @@ require([
 			if (formData === 0) {
 				return;
 			}
-			console.log(formData);
+			console.log("실행");
 			$.ajax({
 				url: window._ctx.root+"/api/market/selling",
 				method: "POST",

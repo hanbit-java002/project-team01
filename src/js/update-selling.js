@@ -467,12 +467,39 @@ require([
 	function getDealMeans() {
 		var dealMeans = "";
 		if ($(".btn-direct").hasClass("selected")) {
-			dealMeans+= "direct|";
+			dealMeans += "direct|";
 		}
 		if ($(".btn-delivery").hasClass("selected")) {
-			dealMeans+= "delivery";
-		};
+			dealMeans += "delivery";
+		}
+		;
 		return dealMeans;
+	}
+
+	/* base64 -> blob*/
+	function getBlobFromBase64(dataURI) {
+		// convert base64 to raw binary data held in a string
+		// doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+		console.log(dataURI.split(",")[1]);
+		var byteChars = window.atob(dataURI.split(",")[1]);
+		var sliceSize =1024;
+		// separate out the mime component
+		var mimeType = dataURI.split(",")[0].split(":")[1].split(";")[0];
+		var byteArrays= [];
+
+		for (var offset = 0, len = byteChars.length; offset < len; offset+= sliceSize) {
+			var slice = byteChars.slice(offset, offset + sliceSize);
+
+			var byteNumbers = new Array(slice.length);
+			for (var i =0; i < slice.length; i++) {
+				byteNumbers[i] = slice.charCodeAt(i);
+			}
+
+			var byteArray = new Uint8Array(byteNumbers);
+			byteArrays.push(byteArray);
+		}
+
+		return new Blob(byteArrays, {type: mimeType});
 	}
 
 	function currentValues() {
@@ -508,9 +535,10 @@ require([
 		formData.append("detail", currentProduct.detail);
 
 		for (var i=0; i<currentProduct.arrImgSrc.length; i++) {
-			formData.append("arrImgSrc", currentProduct.arrImgSrc[i]);
+			formData.append("arrImgSrc", getBlobFromBase64(currentProduct.arrImgSrc[i]));
 		}
 		for (var i=0; i<currentProduct.arrDelImgId.length; i++) {
+
 			formData.append("arrDelImgId", currentProduct.arrDelImgId[i]);
 		}
 		formData.append("beforeMainImg", currentProduct.beforeMainImg);
