@@ -155,6 +155,12 @@ require([
 				var listCount = result.listCount;
 				var list = result.list;
 				$(".product-count>span").text(listCount);
+
+				if (listCount <= 0) {
+					var noneHtml = "<div class='none-div'>검색 결과가 없습니다.</div>";
+					$(".market-product-list").html(noneHtml);
+				}
+
 				var lastPage = parseInt(listCount / rowsPerPage)
 					+ (listCount % rowsPerPage === 0 ? 0 : 1)-1;
 				console.log("마지막페이지"+lastPage);

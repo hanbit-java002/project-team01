@@ -452,7 +452,7 @@ require([
 			var strImgSrcLen=$(images[i]).css("background-image").length;
 			var isOld= $(images[i]).css("background-image").match("/api/file/");
 			if (!isOld) {
-				var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-3));
+				var strImgSrc = $(images[i]).css("background-image").substring(5, (strImgSrcLen-2));
 				arrStrImgSrc.push(strImgSrc);
 			}
 		}
@@ -472,7 +472,6 @@ require([
 		if ($(".btn-delivery").hasClass("selected")) {
 			dealMeans += "delivery";
 		}
-		;
 		return dealMeans;
 	}
 
@@ -480,7 +479,6 @@ require([
 	function getBlobFromBase64(dataURI) {
 		// convert base64 to raw binary data held in a string
 		// doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-		console.log(dataURI.split(",")[1]);
 		var byteChars = window.atob(dataURI.split(",")[1]);
 		var sliceSize =1024;
 		// separate out the mime component

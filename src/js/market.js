@@ -294,6 +294,26 @@ require([
 			},
 		});
 	}
+	function initComment(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/product/comment/" + productId,
+			success: function (data) {
+				var commentHTML = "<div class=\"comment\"><span class=\"fa fa-commenting-o\"></span>"+data+"</div>";
+
+				$(".product-item-list[product-id='" + productId + "'] .comment").replaceWith(commentHTML);
+			},
+		});
+	}
+	function initComplain(productId) {
+		$.ajax({
+			url: window._ctx.root + "/api/product/complain/" + productId,
+			success: function (data) {
+				var conplainHTML = "<div class=\"complain\"><span class=\"fa fa-thumbs-o-down\"></span>"+data+"</div>";
+
+				$(".product-item-list[product-id='" + productId + "'] .complain").replaceWith(conplainHTML);
+			},
+		});
+	}
 
 	function showList(formData) {
 		$.ajax({
@@ -304,6 +324,10 @@ require([
 			method: "POST",
 			success: function (result) {
 				var count = result.count;
+				if (count <= 0) {
+					var noneHtml = "<div class='none-div'>검색 결과가 없습니다.</div>";
+					$(".market-product-list").html(noneHtml);
+				}
 				var lastPage = parseInt(count / rowsPerPage)
 					+ (count % rowsPerPage === 0 ? 0 : 1)-1;
 				console.log("마지막페이지"+lastPage);
@@ -417,6 +441,8 @@ require([
 					initCountLike(item.product_id);
 					initLike(item.product_id);
 					initHits(item.product_id);
+					initComplain(item.product_id);
+					initComment(item.product_id);
 				}
 				$(".market-product-list").append(productList);
 				goMarketDetail();
