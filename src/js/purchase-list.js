@@ -39,7 +39,7 @@ require([
 
 				if (listCount <= 0) {
 					var noneHtml = "<div class='none-div'>검색 결과가 없습니다.</div>";
-					$(".market-product-list").html(noneHtml);
+					$(".selling-product-list").html(noneHtml);
 				}
 
 				var lastPage = parseInt(listCount / rowsPerPage)
