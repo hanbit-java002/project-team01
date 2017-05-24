@@ -6,6 +6,14 @@ require([
 	/* 인증 버튼 클릭 시
 	 메일 인증 발송 팝업창*/
 	$(".btn-verify").on("click", function() {
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var userId = $("#input-email").val();
+		if (!userId.match(regExp)) {
+			alert("정확한 이메일 주소를 입력하세요.");
+			$("#input-email").focus;
+			common.fnMove("#input-email");
+			return;
+		}
 		var userEmail = $("#input-email").val();
 		$.ajax({
 			url: window._ctx.root+"/api/member/emailConfirmMail",

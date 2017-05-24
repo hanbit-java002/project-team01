@@ -192,8 +192,11 @@ require([
 
 	function defaultMainImg() {
 		/* 여러번 실행되는거 설정 해야함*/
-		$($(".input-img-box")[0]).off("change");
-		$($(".input-img-box")[0]).addClass("main-img");
+		if (!$(".input-img-box").hasClass("main-img")) {
+			$($(".input-img-box")[0]).off("change");
+			$($(".input-img-box")[0]).addClass("main-img");
+		}
+
 	}
 
 	function selectMainImg() {
